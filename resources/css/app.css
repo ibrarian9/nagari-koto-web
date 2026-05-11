@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+
+/*
+|--------------------------------------------------------------------------
+| Design Tokens — Nagari Koto Web
+|--------------------------------------------------------------------------
+| Primary: Desa Green (#2D6A4F)
+| Accent:  Warm Amber (#F59E0B)
+| Font:    Inter (Google Fonts)
+|--------------------------------------------------------------------------
+*/
+@theme {
+    /* Primary — Desa Green */
+    --color-desa-50: #edf7f0;
+    --color-desa-100: #d5eddb;
+    --color-desa-200: #a8d9b5;
+    --color-desa-300: #7ac58e;
+    --color-desa-400: #4daf68;
+    --color-desa-500: #2D6A4F;
+    --color-desa-600: #245a42;
+    --color-desa-700: #1b4a35;
+    --color-desa-800: #143a29;
+    --color-desa-900: #0d2a1d;
+    --color-desa-950: #071a12;
+
+    /* Accent — Warm Amber */
+    --color-amber-50: #fffbeb;
+    --color-amber-100: #fef3c7;
+    --color-amber-200: #fde68a;
+    --color-amber-300: #fcd34d;
+    --color-amber-400: #fbbf24;
+    --color-amber-500: #f59e0b;
+    --color-amber-600: #d97706;
+    --color-amber-700: #b45309;
+    --color-amber-800: #92400e;
+    --color-amber-900: #78350f;
+    --color-amber-950: #451a03;
+
+    /* Font Family */
+    --font-sans: 'Inter', 'Figtree', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Base Styles */
+@layer base {
+    body {
+        @apply font-sans antialiased text-gray-800;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-semibold tracking-tight;
+    }
+}
+
+/* Reusable Component Classes */
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg bg-desa-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-desa-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-desa-500 focus:ring-offset-2 active:bg-desa-700;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg border border-desa-500 bg-white px-5 py-2.5 text-sm font-semibold text-desa-500 shadow-sm transition-all duration-200 hover:bg-desa-50 focus:outline-none focus:ring-2 focus:ring-desa-500 focus:ring-offset-2;
+    }
+
+    .btn-amber {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2;
+    }
+
+    .btn-danger {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg bg-red-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+    }
+
+    .btn-sm {
+        @apply px-3 py-1.5 text-xs;
+    }
+
+    .card {
+        @apply overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md;
+    }
+
+    .card-body {
+        @apply p-5;
+    }
+
+    .badge {
+        @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+    }
+
+    .badge-success {
+        @apply bg-green-100 text-green-800;
+    }
+
+    .badge-warning {
+        @apply bg-amber-100 text-amber-800;
+    }
+
+    .badge-danger {
+        @apply bg-red-100 text-red-800;
+    }
+
+    .badge-info {
+        @apply bg-blue-100 text-blue-800;
+    }
+
+    .badge-desa {
+        @apply bg-desa-100 text-desa-800;
+    }
+
+    .form-input {
+        @apply block w-full rounded-xl border border-gray-200 bg-gray-50/60 px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400
+               shadow-none outline-none
+               transition-all duration-200 ease-in-out
+               focus:border-desa-500 focus:bg-white focus:ring-2 focus:ring-desa-500/20 focus:shadow-sm;
+    }
+
+    select.form-input {
+        @apply pr-10 appearance-none bg-[length:1.25rem_1.25rem] bg-[right_0.75rem_center] bg-no-repeat;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    }
+
+    textarea.form-input {
+        @apply resize-y min-h-[80px];
+    }
+
+    .form-label {
+        @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-500;
+    }
+
+    .form-error {
+        @apply mt-1.5 flex items-center gap-1 text-xs font-medium text-red-500;
+    }
+
+    .form-error::before {
+        content: '';
+        @apply inline-block h-1 w-1 rounded-full bg-red-400 flex-shrink-0;
+    }
+
+    /* Modern checkbox */
+    .form-checkbox {
+        @apply h-4.5 w-4.5 rounded-md border-gray-300 text-desa-600 transition-all duration-150
+               focus:ring-2 focus:ring-desa-500/20 focus:ring-offset-0;
+    }
+
+    .stat-card {
+        @apply flex flex-col items-center justify-center rounded-xl bg-white p-6 shadow-sm border border-gray-100;
+    }
+
+    .section-title {
+        @apply text-2xl font-bold text-gray-900 md:text-3xl;
+    }
+
+    .section-subtitle {
+        @apply mt-2 text-base text-gray-600 md:text-lg;
+    }
+
+    .table-container {
+        @apply overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm;
+    }
+
+    .data-table {
+        @apply min-w-full divide-y divide-gray-200;
+    }
+
+    .data-table thead {
+        @apply bg-gray-50;
+    }
+
+    .data-table th {
+        @apply px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500;
+    }
+
+    .data-table td {
+        @apply whitespace-nowrap px-4 py-3 text-sm text-gray-700;
+    }
+
+    .data-table tbody tr {
+        @apply border-b border-gray-100 transition-colors hover:bg-gray-50;
+    }
+}
+
+/* Trix Editor Overrides */
+trix-editor {
+    @apply rounded-xl border border-gray-200 bg-gray-50/60 shadow-none px-3.5 py-2.5 text-sm;
+    min-height: 140px;
+    transition: all 0.2s ease-in-out;
+}
+
+trix-editor:focus {
+    @apply border-desa-500 bg-white ring-2 ring-desa-500/20 shadow-sm;
+}
+
+trix-toolbar .trix-button-group {
+    @apply rounded-lg border-gray-200 bg-white;
+}
+
+trix-toolbar .trix-button {
+    @apply border-gray-200 text-gray-500;
+}
+
+trix-toolbar .trix-button.trix-active {
+    @apply bg-desa-50 text-desa-700;
+}
+
+trix-toolbar .trix-button:hover {
+    @apply bg-gray-50;
+}
+
+/* Hide Trix file attachment button — not needed */
+trix-toolbar .trix-button-group--file-tools {
+    display: none !important;
+}
+
+/* SweetAlert2 Toast Styling */
+.swal-toast {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.875rem !important;
+}
