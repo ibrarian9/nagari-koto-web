@@ -33,7 +33,7 @@
                 <a href="{{ route('berita.show', $post->slug) }}" wire:navigate data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" class="card group overflow-hidden hover:-translate-y-1 transition-all duration-300">
                     <div class="aspect-video bg-gray-100 overflow-hidden">
                         @if($post->thumbnail)
-                            <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                         @else
                             <div class="w-full h-full flex items-center justify-center bg-desa-50">
                                 <span class="material-symbols-outlined text-4xl text-desa-300">newspaper</span>

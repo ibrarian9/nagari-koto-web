@@ -1,10 +1,15 @@
 <div>
+    @if($post->thumbnail)
+        @push('preload')
+            <link rel="preload" as="image" href="{{ Storage::url($post->thumbnail) }}">
+        @endpush
+    @endif
     {{-- ─── HERO / THUMBNAIL ─────────────────────────────────── --}}
     @if($post->thumbnail)
         <div class="relative">
             <div class="aspect-[21/9] bg-gray-900 overflow-hidden">
                 <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}"
-                    class="w-full h-full object-cover opacity-40">
+                    class="w-full h-full object-cover opacity-40" fetchpriority="high">
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pb-10">
@@ -124,7 +129,7 @@
                                 <a href="{{ route('berita.show', $rp->slug) }}" wire:navigate class="flex gap-3 group">
                                     <div class="flex-shrink-0 h-14 w-18 rounded-lg bg-gray-100 overflow-hidden">
                                         @if($rp->thumbnail)
-                                            <img src="{{ Storage::url($rp->thumbnail) }}" alt="{{ $rp->title }}" class="h-full w-full object-cover">
+                                            <img src="{{ Storage::url($rp->thumbnail) }}" alt="{{ $rp->title }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                                         @else
                                             <div class="h-full w-full flex items-center justify-center bg-desa-50">
                                                 <span class="material-symbols-outlined text-desa-300 text-base">newspaper</span>

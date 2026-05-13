@@ -1,8 +1,13 @@
 <div>
+    @if($village?->photo)
+        @push('preload')
+            <link rel="preload" as="image" href="{{ Storage::url($village->photo) }}">
+        @endpush
+    @endif
     {{-- ─── HERO ─────────────────────────────────── --}}
     <section class="relative bg-gradient-to-br from-desa-600 via-desa-700 to-desa-900 overflow-hidden">
         @if($village?->photo)
-            <img src="{{ Storage::url($village->photo) }}" alt="{{ $village->name }}" class="absolute inset-0 w-full h-full object-cover">
+            <img src="{{ Storage::url($village->photo) }}" alt="{{ $village->name }}" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
             <div class="absolute inset-0 bg-gradient-to-br from-desa-900/85 via-desa-800/80 to-desa-900/90"></div>
         @else
             <div class="absolute inset-0 opacity-10">
@@ -87,7 +92,7 @@
                         <div class="card p-6 text-center">
                             <div class="mx-auto h-24 w-24 rounded-full bg-gray-100 overflow-hidden mb-3 ring-4 ring-desa-100">
                                 @if($kepala->photo)
-                                    <img src="{{ Storage::url($kepala->photo) }}" alt="{{ $kepala->name }}" class="h-full w-full object-cover">
+                                    <img src="{{ Storage::url($kepala->photo) }}" alt="{{ $kepala->name }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                                 @else
                                     <div class="h-full w-full flex items-center justify-center bg-desa-50">
                                         <span class="material-symbols-outlined text-4xl text-desa-300">person</span>

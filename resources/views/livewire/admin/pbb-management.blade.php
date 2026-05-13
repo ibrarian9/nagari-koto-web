@@ -9,11 +9,25 @@
         <div class="stat-card"><span class="text-2xl font-bold text-red-600">{{ $summary['unpaid'] }}</span><span class="text-xs text-gray-500">Belum Lunas</span></div>
         <div class="stat-card"><span class="text-lg font-bold">Rp {{ number_format($summary['total_amount'],0,',','.') }}</span><span class="text-xs text-gray-500">Total Pajak</span></div>
     </div>
-    <div class="flex flex-wrap gap-4 mb-6">
-        <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span> Tambah</button>
-        <input type="text" wire:model.live.debounce.300ms="search" placeholder="Cari NOP/nama..." class="form-input w-60">
-        <select wire:model.live="yearFilter" class="form-input w-32"><option value="">Semua Tahun</option>@for($y=date('Y');$y>=2020;$y--)<option value="{{ $y }}">{{ $y }}</option>@endfor</select>
-        <select wire:model.live="statusFilter" class="form-input w-36"><option value="">Semua Status</option><option value="paid">Lunas</option><option value="unpaid">Belum</option></select>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+        <button wire:click="create" class="btn-primary btn-sm flex-shrink-0">
+            <span class="material-symbols-outlined text-base">add</span> Tambah
+        </button>
+        <div class="relative flex-1 sm:max-w-xs">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg pointer-events-none">search</span>
+            <input type="text" wire:model.live.debounce.300ms="search" placeholder="Cari NOP/nama..." class="form-input w-full pl-10">
+        </div>
+        <select wire:model.live="yearFilter" class="form-input w-full sm:w-32 flex-shrink-0">
+            <option value="">Semua Tahun</option>
+            @for($y=date('Y');$y>=2020;$y--)
+                <option value="{{ $y }}">{{ $y }}</option>
+            @endfor
+        </select>
+        <select wire:model.live="statusFilter" class="form-input w-full sm:w-36 flex-shrink-0">
+            <option value="">Semua Status</option>
+            <option value="paid">Lunas</option>
+            <option value="unpaid">Belum</option>
+        </select>
     </div>
 
     <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' PBB'" subtitle="Data Pajak Bumi dan Bangunan" icon="receipt_long" iconBg="bg-orange-100" iconColor="text-orange-600" maxWidth="max-w-3xl">

@@ -27,7 +27,7 @@
                     <div class="aspect-video bg-gray-100 overflow-hidden relative">
                         @if($product->photo)
                             <img src="{{ Storage::url($product->photo) }}" alt="{{ $product->business_name }}"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                         @else
                             <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-50">
                                 <span class="material-symbols-outlined text-5xl text-amber-200">storefront</span>

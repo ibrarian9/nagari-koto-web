@@ -23,7 +23,7 @@
                     <div class="card group text-center p-6 w-64 hover:-translate-y-1 transition-all duration-300 border-2 border-desa-200 bg-gradient-to-b from-desa-50 to-white">
                         <div class="mx-auto h-28 w-28 rounded-full bg-gray-100 overflow-hidden mb-4 ring-4 ring-desa-200 group-hover:ring-desa-400 transition-all">
                             @if($kepala->photo)
-                                <img src="{{ Storage::url($kepala->photo) }}" alt="{{ $kepala->name }}" class="h-full w-full object-cover">
+                                <img src="{{ Storage::url($kepala->photo) }}" alt="{{ $kepala->name }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                             @else
                                 <div class="h-full w-full flex items-center justify-center bg-desa-50"><span class="material-symbols-outlined text-5xl text-desa-300">person</span></div>
                             @endif
@@ -44,7 +44,7 @@
                     <div class="card group text-center p-5 w-56 hover:-translate-y-1 transition-all duration-300 border border-desa-100">
                         <div class="mx-auto h-22 w-22 rounded-full bg-gray-100 overflow-hidden mb-3 ring-4 ring-gray-100 group-hover:ring-desa-200 transition-all">
                             @if($sekretaris->photo)
-                                <img src="{{ Storage::url($sekretaris->photo) }}" alt="{{ $sekretaris->name }}" class="h-full w-full object-cover">
+                                <img src="{{ Storage::url($sekretaris->photo) }}" alt="{{ $sekretaris->name }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                             @else
                                 <div class="h-full w-full flex items-center justify-center bg-desa-50"><span class="material-symbols-outlined text-4xl text-desa-300">person</span></div>
                             @endif
@@ -70,7 +70,7 @@
                                 <div class="card group text-center p-4 w-full hover:-translate-y-1 transition-all duration-300">
                                     <div class="mx-auto h-20 w-20 rounded-full bg-gray-100 overflow-hidden mb-3 ring-4 ring-gray-100 group-hover:ring-desa-200 transition-all">
                                         @if($member->photo)
-                                            <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}" class="h-full w-full object-cover">
+                                            <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                                         @else
                                             <div class="h-full w-full flex items-center justify-center bg-desa-50"><span class="material-symbols-outlined text-3xl text-desa-300">person</span></div>
                                         @endif
@@ -98,7 +98,7 @@
                                 <div class="card group text-center p-4 w-full hover:-translate-y-1 transition-all duration-300">
                                     <div class="mx-auto h-20 w-20 rounded-full bg-gray-100 overflow-hidden mb-3 ring-4 ring-gray-100 group-hover:ring-desa-200 transition-all">
                                         @if($member->photo)
-                                            <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}" class="h-full w-full object-cover">
+                                            <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                                         @else
                                             <div class="h-full w-full flex items-center justify-center bg-desa-50"><span class="material-symbols-outlined text-3xl text-desa-300">person</span></div>
                                         @endif
@@ -124,7 +124,7 @@
                             <div class="card group text-center p-4 hover:-translate-y-1 transition-all duration-300 bg-gray-50 border-dashed">
                                 <div class="mx-auto h-16 w-16 rounded-full bg-gray-100 overflow-hidden mb-3 ring-2 ring-gray-200 group-hover:ring-desa-200 transition-all">
                                     @if($member->photo)
-                                        <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}" class="h-full w-full object-cover">
+                                        <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                                     @else
                                         <div class="h-full w-full flex items-center justify-center bg-desa-50"><span class="material-symbols-outlined text-2xl text-desa-300">person</span></div>
                                     @endif

@@ -33,7 +33,7 @@
                     <div class="aspect-video bg-gray-100 overflow-hidden relative">
                         @if($p->thumbnail)
                             <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                         @else
                             <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-desa-50 to-amber-50">
                                 <span class="material-symbols-outlined text-5xl text-desa-200">eco</span>

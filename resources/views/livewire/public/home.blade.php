@@ -1,8 +1,15 @@
 <div>
+    {{-- Preload LCP hero image --}}
+    @if($village?->photo)
+        @push('preload')
+            <link rel="preload" as="image" href="{{ Storage::url($village->photo) }}">
+        @endpush
+    @endif
+
     {{-- ─── HERO SECTION ─────────────────────────────────── --}}
     <section class="relative bg-gradient-to-br from-desa-600 via-desa-700 to-desa-900 overflow-hidden">
         @if($village?->photo)
-            <img src="{{ Storage::url($village->photo) }}" alt="{{ $village->name }}" class="absolute inset-0 w-full h-full object-cover">
+            <img src="{{ Storage::url($village->photo) }}" alt="{{ $village->name }}" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
             <div class="absolute inset-0 bg-gradient-to-br from-desa-900/85 via-desa-800/80 to-desa-900/90"></div>
         @else
             <div class="absolute inset-0 opacity-10">
@@ -53,7 +60,7 @@
                                 class="mx-auto h-32 w-32 rounded-full bg-white/20 overflow-hidden mb-4 ring-4 ring-white/30">
                                 @if ($kepala->photo)
                                     <img src="{{ Storage::url($kepala->photo) }}" alt="{{ $kepala->name }}"
-                                        class="h-full w-full object-cover">
+                                        class="h-full w-full object-cover" loading="lazy" decoding="async">
                                 @else
                                     <div class="h-full w-full flex items-center justify-center">
                                         <span class="material-symbols-outlined text-5xl text-white/60">person</span>
@@ -172,7 +179,7 @@
                         <div class="aspect-video bg-gray-100 overflow-hidden">
                             @if ($post->thumbnail)
                                 <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}"
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                             @else
                                 <div class="w-full h-full flex items-center justify-center bg-desa-50">
                                     <span class="material-symbols-outlined text-4xl text-desa-300">newspaper</span>
@@ -333,7 +340,7 @@
                     <div class="aspect-video bg-gray-100 overflow-hidden">
                         @if ($p->thumbnail)
                             <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                         @else
                             <div class="w-full h-full flex items-center justify-center bg-amber-50">
                                 <span class="material-symbols-outlined text-4xl text-amber-300">eco</span>
@@ -372,7 +379,7 @@
                             <div class="flex-shrink-0 h-16 w-16 rounded-xl bg-gray-100 overflow-hidden">
                                 @if ($product->photo)
                                     <img src="{{ Storage::url($product->photo) }}"
-                                        alt="{{ $product->business_name }}" class="h-full w-full object-cover">
+                                        alt="{{ $product->business_name }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                                 @else
                                     <div class="h-full w-full flex items-center justify-center bg-amber-50">
                                         <span class="material-symbols-outlined text-amber-400">storefront</span>

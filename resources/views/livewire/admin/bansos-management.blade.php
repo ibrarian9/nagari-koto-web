@@ -94,7 +94,12 @@
         @endif
     </div>
 
-    <div class="mb-4"><input type="text" wire:model.live.debounce.300ms="search" placeholder="Cari nama/NIK..." class="form-input w-full sm:w-80"></div>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+        <div class="relative flex-1 sm:max-w-sm">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg pointer-events-none">search</span>
+            <input type="text" wire:model.live.debounce.300ms="search" placeholder="Cari nama/NIK..." class="form-input w-full pl-10">
+        </div>
+    </div>
     <div class="card overflow-hidden"><div class="table-container border-0 shadow-none"><table class="data-table"><thead><tr><th>NIK</th><th>Nama</th><th>Program</th><th>Periode</th><th>Status</th><th class="text-right">Aksi</th></tr></thead><tbody>
         @forelse($recipients as $r)<tr class="hover:bg-gray-50/50 transition-colors">
             <td class="font-mono text-xs">{{ Str::mask($r->nik, '*', 6, 6) }}</td>
