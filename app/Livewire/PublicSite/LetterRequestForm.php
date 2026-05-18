@@ -2,6 +2,7 @@
 namespace App\Livewire\PublicSite;
 
 use App\Models\LetterRequest;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -42,10 +43,10 @@ class LetterRequestForm extends Component
         $this->submitted = true;
     }
 
+    #[Layout('layouts.app', ['title' => 'Ajukan Surat'])]
     public function render()
     {
         $letterTypes = config('letters.types', []);
-        return view('livewire.public.letter-request-form', compact('letterTypes'))
-            ->layout('layouts.app', ['title' => 'Ajukan Surat']);
+        return view('livewire.public.letter-request-form', compact('letterTypes'));
     }
 }

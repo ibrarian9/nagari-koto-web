@@ -11,8 +11,12 @@ class NewsShow extends Component
 
     public function mount(string $slug): void
     {
-        $this->post = Post::with('category', 'user')->where('slug', $slug)->published()->firstOrFail();
-        $this->post->increment('views');
+        $this->post = Post::with('category', 'user')
+            ->where('slug', $slug)
+            ->published()
+            ->firstOrFail();
+        
+        $this->post->increment('views', 1);
     }
 
     public function render()
@@ -25,7 +29,9 @@ class NewsShow extends Component
             ->take(3)
             ->get();
 
-        return view('livewire.public.news-show', ['post' => $this->post, 'relatedPosts' => $relatedPosts])
-            ->layout('layouts.app', ['title' => $this->post->title]);
+        return view('livewire.public.news-show', [
+            'post' => $this->post, 
+            'relatedPosts' => $relatedPosts
+        ])->layout('layouts.app', ['title' => $this->post->title]);
     }
 }

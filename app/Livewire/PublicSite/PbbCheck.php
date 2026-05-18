@@ -4,6 +4,7 @@ namespace App\Livewire\PublicSite;
 
 use App\Models\PbbRecord;
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
 class PbbCheck extends Component
 {
@@ -23,13 +24,14 @@ class PbbCheck extends Component
             return;
         }
 
-        $this->result = PbbRecord::where('nop', $this->nop)->latest('tax_year')->first();
+        $this->result = PbbRecord::query()->where('nop', $this->nop)->latest('tax_year')->first();
 
         if (!$this->result) {
             $this->errorMessage = 'Data PBB dengan NOP tersebut tidak ditemukan.';
         }
     }
 
+    #[Layout('layouts.app', ['title' => 'Informasi PBB'])]
     public function render()
     {
         // Summary stats for the hero section
@@ -41,7 +43,6 @@ class PbbCheck extends Component
             'total_penerimaan' => PbbRecord::forYear($currentYear)->paid()->sum('tax_amount'),
         ];
 
-        return view('livewire.public.pbb-check', compact('summary', 'currentYear'))
-            ->layout('layouts.app', ['title' => 'Informasi PBB']);
+        return view('livewire.public.pbb-check', compact('summary', 'currentYear'));
     }
 }

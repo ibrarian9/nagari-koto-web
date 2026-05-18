@@ -1,6 +1,8 @@
 <?php
 namespace App\Livewire\PublicSite;
+
 use App\Models\BudgetStat;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class BudgetStats extends Component
@@ -12,11 +14,11 @@ class BudgetStats extends Component
         $this->selectedYear = BudgetStat::latestYear()->value('year') ?? (int) date('Y');
     }
 
+    #[Layout('layouts.app', ['title' => 'Anggaran Nagari'])]
     public function render()
     {
         $stat = BudgetStat::query()->where('year', $this->selectedYear)->first();
         $years = BudgetStat::orderByDesc('year')->pluck('year');
-        return view('livewire.public.budget-stats', compact('stat', 'years'))
-            ->layout('layouts.app', ['title' => 'Anggaran Desa']);
+        return view('livewire.public.budget-stats', compact('stat', 'years'));
     }
 }

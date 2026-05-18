@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Agenda;
-use App\Models\BansosRecipient;
 use App\Models\BudgetStat;
 use App\Models\Category;
 use App\Models\Contact;
@@ -225,11 +224,6 @@ class DatabaseSeeder extends Seeder
         foreach ($pbbRecords as $pbb) {
             PbbRecord::create($pbb);
         }
-
-        // ─── Bansos Recipients ──────────────────────────────
-        BansosRecipient::create(['nik' => '1306040101900001', 'full_name' => 'Surya Alam', 'address' => 'Jorong Koto RT 01', 'program_name' => 'PKH', 'program_type' => 'Reguler', 'start_period' => '2024-01-01', 'end_period' => '2024-12-31', 'is_active' => true]);
-        BansosRecipient::create(['nik' => '1306040201850002', 'full_name' => 'Dewi Sartika', 'address' => 'Jorong Koto RT 02', 'program_name' => 'BPNT', 'program_type' => 'Reguler', 'start_period' => '2024-01-01', 'end_period' => '2024-12-31', 'is_active' => true]);
-        BansosRecipient::create(['nik' => '1306040301780003', 'full_name' => 'Ahmad Dahlan', 'address' => 'Jorong Koto RT 03', 'program_name' => 'BST', 'program_type' => 'Bantuan Langsung', 'start_period' => '2024-06-01', 'is_active' => true]);
     }
 }
 

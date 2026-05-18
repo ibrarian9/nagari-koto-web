@@ -18,8 +18,7 @@ return [
         'surat_keterangan_usaha' => 'Surat Keterangan Usaha',
         'surat_keterangan_lahir' => 'Surat Keterangan Kelahiran',
         'surat_kematian' => 'Surat Keterangan Kematian',
-        'surat_pengantar_nikah' => 'Surat Pengantar Nikah',
-        'surat_izin_keramaian' => 'Surat Izin Keramaian',
+        'surat_pengantar_nikah' => 'Surat Pengantar Nikah'
     ],
 
 ];

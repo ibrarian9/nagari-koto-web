@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire\Admin;
 use App\Models\User;
+use App\Services\ImageOptimizer;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
@@ -30,7 +31,7 @@ class UserManagement extends Component
         $this->validate(array_merge($this->rules ?? [], $rules));
         $data = ['name'=>$this->name,'email'=>$this->email,'role'=>$this->role];
         if ($this->password) $data['password'] = Hash::make($this->password);
-        if ($this->photo) $data['photo'] = $this->photo->store('users','public');
+        if ($this->photo) $data['photo'] = (new ImageOptimizer())->optimize($this->photo, 'users', 'avatar');
         if ($this->editingId) User::findOrFail($this->editingId)->update($data); else User::create(array_merge($data, ['password' => Hash::make($this->password)]));
         $this->resetForm(); $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'User berhasil disimpan.');
     }

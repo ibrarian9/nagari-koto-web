@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire\Admin;
 use App\Models\Potential;
+use App\Services\ImageOptimizer;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
@@ -28,7 +29,7 @@ class PotentialManagement extends Component
     {
         $this->validate();
         $data = ['category'=>$this->category,'title'=>$this->title,'slug'=>Str::slug($this->title).'-'.Str::random(5),'description'=>$this->description];
-        if ($this->thumbnail) $data['thumbnail'] = $this->thumbnail->store('potentials','public');
+        if ($this->thumbnail) $data['thumbnail'] = (new ImageOptimizer())->optimize($this->thumbnail, 'potentials', 'thumbnail');
         if ($this->editingId) { unset($data['slug']); Potential::findOrFail($this->editingId)->update($data); } else { Potential::create($data); }
         $this->resetForm(); $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data berhasil disimpan.');
     }

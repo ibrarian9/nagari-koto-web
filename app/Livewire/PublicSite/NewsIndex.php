@@ -4,6 +4,7 @@ namespace App\Livewire\PublicSite;
 
 use App\Models\Category;
 use App\Models\Post;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,6 +22,7 @@ class NewsIndex extends Component
     public function updatingSearch(): void { $this->resetPage(); }
     public function updatingCategory(): void { $this->resetPage(); }
 
+    #[Layout('layouts.app', ['title' => 'Berita'])]
     public function render()
     {
         $posts = Post::with('category', 'user')
@@ -32,7 +34,6 @@ class NewsIndex extends Component
 
         $categories = Category::ofType('berita')->get();
 
-        return view('livewire.public.news-index', compact('posts', 'categories'))
-            ->layout('layouts.app', ['title' => 'Berita']);
+        return view('livewire.public.news-index', compact('posts', 'categories'));
     }
 }

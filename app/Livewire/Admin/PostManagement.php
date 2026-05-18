@@ -3,6 +3,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Services\ImageOptimizer;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
@@ -61,7 +62,7 @@ class PostManagement extends Component
         ];
         if ($this->status === 'published') { $data['published_at'] = now(); }
         if ($this->thumbnail) {
-            $path = $this->thumbnail->store('posts', 'public');
+            $path = (new ImageOptimizer())->optimize($this->thumbnail, 'posts', 'thumbnail');
             $data['thumbnail'] = $path;
         }
         if ($this->editingId) {

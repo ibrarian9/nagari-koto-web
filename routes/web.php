@@ -2,6 +2,7 @@
 
 use App\Livewire\Admin;
 use App\Livewire\PublicSite;
+use App\Http\Controllers\MidtransWebhookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,17 @@ Route::get('/anggaran', PublicSite\BudgetStats::class)->name('anggaran');
 Route::get('/pbb', PublicSite\PbbCheck::class)->name('pbb');
 Route::get('/surat', PublicSite\LetterInfo::class)->name('surat.info');
 
-// Bansos check
-Route::get('/bansos', PublicSite\BansosCheck::class)->name('bansos');
+Route::get('/bansos', PublicSite\BansosLink::class)->name('bansos');
+Route::get('/kehutanan', PublicSite\ForestryInfo::class)->name('kehutanan');
+Route::get('/bamus', PublicSite\BamusInfo::class)->name('bamus');
+Route::get('/lembaga', PublicSite\InstitutionInfo::class)->name('lembaga');
+Route::get('/donasi', PublicSite\DonationPage::class)->name('donasi');
+Route::get('/donasi/{slug}', PublicSite\DonationDetail::class)->name('donasi.detail');
+
+// Midtrans webhook (no CSRF)
+Route::post('/api/midtrans/webhook', [MidtransWebhookController::class, 'handle'])
+    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])
+    ->name('midtrans.webhook');
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +72,10 @@ Route::prefix('admin')
         Route::get('/anggaran', Admin\BudgetStatManagement::class)->name('anggaran');
         Route::get('/surat', Admin\LetterRequestManagement::class)->name('surat');
         Route::get('/pbb', Admin\PbbManagement::class)->name('pbb');
-        Route::get('/bansos', Admin\BansosManagement::class)->name('bansos');
+        Route::get('/kehutanan', Admin\ForestryManagement::class)->name('kehutanan');
+        Route::get('/bamus', Admin\BamusManagement::class)->name('bamus');
+        Route::get('/lembaga', Admin\InstitutionManagement::class)->name('lembaga');
+        Route::get('/donasi', Admin\CampaignManagement::class)->name('donasi');
 
         // User management — super_admin only
         Route::get('/users', Admin\UserManagement::class)

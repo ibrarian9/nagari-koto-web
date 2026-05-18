@@ -2,6 +2,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\GovernmentMember;
+use App\Services\ImageOptimizer;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -43,7 +44,7 @@ class GovernmentManagement extends Component
     {
         $this->validate();
         $data = ['name' => $this->name, 'position' => $this->position, 'order' => $this->order, 'is_active' => $this->is_active];
-        if ($this->photo) { $data['photo'] = $this->photo->store('government', 'public'); }
+        if ($this->photo) { $data['photo'] = (new ImageOptimizer())->optimize($this->photo, 'government', 'avatar'); }
         if ($this->editingId) { GovernmentMember::findOrFail($this->editingId)->update($data); }
         else { GovernmentMember::create($data); }
         $this->resetForm();

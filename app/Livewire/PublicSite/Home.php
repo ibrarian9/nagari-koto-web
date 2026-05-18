@@ -10,17 +10,19 @@ use App\Models\Post;
 use App\Models\Potential;
 use App\Models\Product;
 use App\Models\VillageProfile;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Home extends Component
 {
+    #[Layout('layouts.app', ['title' => 'Beranda'])]
     public function render()
     {
-        $village = VillageProfile::first();
+        $village = VillageProfile::query()->first();
         $latestStats = PopulationStat::latestYear()->first();
         $latestPosts = Post::with('category')->published()->latest('published_at')->take(3)->get();
         $upcomingAgendas = Agenda::publicOnly()->upcoming()->take(3)->get();
-        $potentials = Potential::latest()->take(4)->get();
+        $potentials = Potential::query()->latest()->take(4)->get();
         $products = Product::active()->latest()->take(6)->get();
         $idm = IdmStat::latestYear()->first();
         $kepala = GovernmentMember::active()->ordered()->first();
@@ -34,6 +36,6 @@ class Home extends Component
             'products',
             'idm',
             'kepala'
-        ))->layout('layouts.app', ['title' => 'Beranda']);
+        ));
     }
 }

@@ -120,7 +120,7 @@
             'route' => 'bansos',
             'icon' => 'volunteer_activism',
             'label' => 'Cek Bansos',
-            'desc' => 'Cek penerima bantuan',
+            'desc' => 'Link cek bantuan sosial',
             'bg_light' => 'bg-green-50',
             'bg_hover' => 'group-hover:bg-green-600',
             'text_color' => 'text-green-500',

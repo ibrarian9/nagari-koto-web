@@ -108,12 +108,12 @@
             'text_color' => 'text-amber-600',
         ],
         [
-            'route' => 'admin.bansos',
-            'icon' => 'volunteer_activism',
-            'label' => 'Data Bansos',
-            'bg_light' => 'bg-green-50',
-            'bg_hover' => 'group-hover:bg-green-500',
-            'text_color' => 'text-green-600',
+            'route' => 'admin.donasi',
+            'icon' => 'favorite',
+            'label' => 'Kelola Donasi',
+            'bg_light' => 'bg-rose-50',
+            'bg_hover' => 'group-hover:bg-rose-500',
+            'text_color' => 'text-rose-600',
         ],
     ] as $qa)
             <a href="{{ route($qa['route']) }}" wire:navigate

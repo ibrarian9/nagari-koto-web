@@ -2,17 +2,17 @@
     {{-- ─── HERO ─────────────────────────────────── --}}
     <section class="bg-gradient-to-br from-desa-600 to-desa-800 py-12">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <div data-aos="zoom-in" class="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white/10 mb-4">
+            <div class="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white/10 mb-4">
                 <span class="material-symbols-outlined text-white text-2xl">newspaper</span>
             </div>
-            <h1 data-aos="fade-up" data-aos-delay="100" class="text-3xl md:text-4xl font-extrabold text-white">Berita & Artikel</h1>
-            <p data-aos="fade-up" data-aos-delay="200" class="mt-2 text-desa-100">Informasi terkini seputar desa</p>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white">Berita & Artikel</h1>
+            <p class="mt-2 text-desa-100">Informasi terkini seputar desa</p>
         </div>
     </section>
 
     <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         {{-- Filters --}}
-        <div data-aos="fade-up" class="card p-4 mb-8">
+        <div class="card p-4 mb-8">
             <div class="flex flex-col sm:flex-row gap-4">
                 <div class="relative flex-1">
                     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl">search</span>
@@ -30,7 +30,7 @@
         {{-- Posts Grid --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($posts as $post)
-                <a href="{{ route('berita.show', $post->slug) }}" wire:navigate data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" class="card group overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                <a href="{{ route('berita.show', $post->slug) }}" wire:navigate class="card group overflow-hidden hover:-translate-y-1 transition-all duration-300">
                     <div class="aspect-video bg-gray-100 overflow-hidden">
                         @if($post->thumbnail)
                             <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">

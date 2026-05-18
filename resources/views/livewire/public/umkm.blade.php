@@ -2,17 +2,17 @@
     {{-- ─── HERO ─────────────────────────────────── --}}
     <section class="bg-gradient-to-br from-amber-500 to-orange-600 py-12">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <div data-aos="zoom-in" class="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white/10 mb-4">
+            <div class="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white/10 mb-4">
                 <span class="material-symbols-outlined text-white text-2xl">storefront</span>
             </div>
-            <h1 data-aos="fade-up" data-aos-delay="100" class="text-3xl md:text-4xl font-extrabold text-white">UMKM & Produk Desa</h1>
-            <p data-aos="fade-up" data-aos-delay="200" class="mt-2 text-amber-100 max-w-lg mx-auto">Dukung usaha lokal desa kami — temukan produk dan layanan dari warga</p>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white">UMKM & Produk Desa</h1>
+            <p class="mt-2 text-amber-100 max-w-lg mx-auto">Dukung usaha lokal desa kami — temukan produk dan layanan dari warga</p>
         </div>
     </section>
 
     <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         {{-- Search --}}
-        <div data-aos="fade-up" class="card p-4 mb-8">
+        <div class="card p-4 mb-8">
             <div class="relative max-w-md mx-auto">
                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
                 <input type="text" wire:model.live.debounce.300ms="search" placeholder="Cari nama usaha atau produk..."
@@ -23,7 +23,7 @@
         {{-- Grid --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($products as $product)
-                <div data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}" class="card group overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                <div class="card group overflow-hidden hover:-translate-y-1 transition-all duration-300">
                     <div class="aspect-video bg-gray-100 overflow-hidden relative">
                         @if($product->photo)
                             <img src="{{ Storage::url($product->photo) }}" alt="{{ $product->business_name }}"

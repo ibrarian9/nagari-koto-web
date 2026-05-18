@@ -2,10 +2,10 @@
 namespace App\Livewire\Admin;
 
 use App\Models\VillageProfile;
+use App\Services\ImageOptimizer;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 
 class VillageProfileForm extends Component
 {
@@ -70,29 +70,18 @@ class VillageProfileForm extends Component
         ];
 
         // Handle cropped banner (base64)
+        $optimizer = new ImageOptimizer();
         if ($this->croppedBannerData) {
-            $data['photo'] = $this->saveCroppedBanner($this->croppedBannerData);
+            $data['photo'] = $optimizer->optimizeBase64($this->croppedBannerData, 'village', 'banner');
         } elseif ($this->newPhoto) {
-            $data['photo'] = $this->newPhoto->store('village', 'public');
+            $data['photo'] = $optimizer->optimize($this->newPhoto, 'village', 'banner');
         }
 
-        if ($this->newLogo) { $data['logo'] = $this->newLogo->store('village', 'public'); }
+        if ($this->newLogo) { $data['logo'] = $optimizer->optimize($this->newLogo, 'village', 'logo'); }
 
         VillageProfile::updateOrCreate(['id' => 1], $data);
         $this->croppedBannerData = null;
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Profil desa berhasil diperbarui.');
-    }
-
-    private function saveCroppedBanner(string $dataUrl): string
-    {
-        // Parse base64 data URL
-        $data = explode(',', $dataUrl, 2);
-        $imageData = base64_decode($data[1]);
-
-        $filename = 'village/banner_' . time() . '.jpg';
-        Storage::disk('public')->put($filename, $imageData);
-
-        return $filename;
     }
 
     public function render()

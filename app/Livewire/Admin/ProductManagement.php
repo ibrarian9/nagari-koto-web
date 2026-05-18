@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire\Admin;
 use App\Models\Product;
+use App\Services\ImageOptimizer;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -27,7 +28,7 @@ class ProductManagement extends Component
     public function save(): void {
         $this->validate();
         $data = ['owner_name'=>$this->owner_name,'business_name'=>$this->business_name,'category'=>$this->category,'description'=>$this->description,'whatsapp'=>$this->whatsapp,'address'=>$this->address,'is_active'=>$this->is_active];
-        if ($this->photo) $data['photo'] = $this->photo->store('products','public');
+        if ($this->photo) $data['photo'] = (new ImageOptimizer())->optimize($this->photo, 'products', 'photo');
         if ($this->editingId) Product::findOrFail($this->editingId)->update($data); else Product::create($data);
         $this->resetForm(); $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data UMKM berhasil disimpan.');
     }

@@ -62,6 +62,8 @@
                         ['divider' => true, 'label' => 'Konten'],
                         ['route' => 'admin.profil-desa', 'label' => 'Profil Desa', 'icon' => 'location_city'],
                         ['route' => 'admin.pemerintahan', 'label' => 'Pemerintahan', 'icon' => 'groups'],
+                        ['route' => 'admin.bamus', 'label' => 'BAMUS', 'icon' => 'gavel'],
+                        ['route' => 'admin.lembaga', 'label' => 'Lembaga Nagari', 'icon' => 'domain'],
                         ['route' => 'admin.berita', 'label' => 'Berita', 'icon' => 'newspaper'],
                         ['route' => 'admin.potensi', 'label' => 'Potensi Desa', 'icon' => 'eco'],
                         ['route' => 'admin.umkm', 'label' => 'UMKM', 'icon' => 'storefront'],
@@ -71,10 +73,11 @@
                         ['route' => 'admin.infografis', 'label' => 'Infografis', 'icon' => 'bar_chart'],
                         ['route' => 'admin.idm', 'label' => 'IDM', 'icon' => 'trending_up'],
                         ['route' => 'admin.anggaran', 'label' => 'Anggaran', 'icon' => 'account_balance'],
+                        ['route' => 'admin.kehutanan', 'label' => 'Kehutanan', 'icon' => 'forest'],
                         ['divider' => true, 'label' => 'Layanan'],
                         ['route' => 'admin.surat', 'label' => 'Permohonan Surat', 'icon' => 'mail'],
                         ['route' => 'admin.pbb', 'label' => 'PBB', 'icon' => 'receipt_long'],
-                        ['route' => 'admin.bansos', 'label' => 'Bansos', 'icon' => 'volunteer_activism'],
+                        ['route' => 'admin.donasi', 'label' => 'Donasi', 'icon' => 'favorite'],
                     ];
                     if (auth()->user()?->isSuperAdmin() || auth()->user()?->isAdmin()) {
                         $adminNav[] = ['divider' => true, 'label' => 'Sistem'];
