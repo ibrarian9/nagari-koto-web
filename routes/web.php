@@ -23,7 +23,6 @@ Route::get('/agenda', PublicSite\Agenda::class)->name('agenda');
 Route::get('/infografis', PublicSite\PopulationInfographic::class)->name('infografis');
 Route::get('/idm', PublicSite\IdmStats::class)->name('idm');
 Route::get('/anggaran', PublicSite\BudgetStats::class)->name('anggaran');
-Route::get('/pbb', PublicSite\PbbCheck::class)->name('pbb');
 Route::get('/surat', PublicSite\LetterInfo::class)->name('surat.info');
 
 Route::get('/bansos', PublicSite\BansosLink::class)->name('bansos');
@@ -71,7 +70,6 @@ Route::prefix('admin')
         Route::get('/idm', Admin\IdmStatManagement::class)->name('idm');
         Route::get('/anggaran', Admin\BudgetStatManagement::class)->name('anggaran');
         Route::get('/surat', Admin\LetterRequestManagement::class)->name('surat');
-        Route::get('/pbb', Admin\PbbManagement::class)->name('pbb');
         Route::get('/kehutanan', Admin\ForestryManagement::class)->name('kehutanan');
         Route::get('/bamus', Admin\BamusManagement::class)->name('bamus');
         Route::get('/lembaga', Admin\InstitutionManagement::class)->name('lembaga');

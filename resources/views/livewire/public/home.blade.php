@@ -126,15 +126,6 @@
             'text_color' => 'text-green-500',
         ],
         [
-            'route' => 'pbb',
-            'icon' => 'receipt_long',
-            'label' => 'Cek PBB',
-            'desc' => 'Informasi pajak bumi',
-            'bg_light' => 'bg-amber-50',
-            'bg_hover' => 'group-hover:bg-amber-600',
-            'text_color' => 'text-amber-500',
-        ],
-        [
             'route' => 'infografis',
             'icon' => 'bar_chart',
             'label' => 'Infografis',

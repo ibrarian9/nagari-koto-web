@@ -76,7 +76,6 @@
                         ['route' => 'admin.kehutanan', 'label' => 'Kehutanan', 'icon' => 'forest'],
                         ['divider' => true, 'label' => 'Layanan'],
                         ['route' => 'admin.surat', 'label' => 'Permohonan Surat', 'icon' => 'mail'],
-                        ['route' => 'admin.pbb', 'label' => 'PBB', 'icon' => 'receipt_long'],
                         ['route' => 'admin.donasi', 'label' => 'Donasi', 'icon' => 'favorite'],
                     ];
                     if (auth()->user()?->isSuperAdmin() || auth()->user()?->isAdmin()) {

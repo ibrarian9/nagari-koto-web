@@ -9,7 +9,6 @@ use App\Models\Contact;
 use App\Models\GovernmentMember;
 use App\Models\IdmStat;
 use App\Models\PopulationStat;
-use App\Models\PbbRecord;
 use App\Models\Post;
 use App\Models\Potential;
 use App\Models\Product;
@@ -205,25 +204,6 @@ class DatabaseSeeder extends Seeder
                 'Bantuan Provinsi' => 180000000,
             ]),
         ]);
-
-        // ─── PBB Records ───────────────────────────────────
-        $pbbRecords = [
-            ['nop' => '13.06.040.001.001-0001.0', 'taxpayer_name' => 'H. Syafrizal', 'address' => 'Jorong Koto RT 01/RW 01', 'land_area' => 500, 'building_area' => 120, 'njop' => 85000000, 'tax_amount' => 125000, 'tax_year' => 2024, 'status' => 'paid', 'paid_at' => now()->subMonths(3)],
-            ['nop' => '13.06.040.001.002-0002.0', 'taxpayer_name' => 'Drs. Andi Rahman', 'address' => 'Jorong Koto RT 01/RW 02', 'land_area' => 350, 'building_area' => 85, 'njop' => 62000000, 'tax_amount' => 98000, 'tax_year' => 2024, 'status' => 'paid', 'paid_at' => now()->subMonths(2)],
-            ['nop' => '13.06.040.001.003-0003.0', 'taxpayer_name' => 'Surya Alam', 'address' => 'Jorong Koto RT 02/RW 01', 'land_area' => 280, 'building_area' => 60, 'njop' => 45000000, 'tax_amount' => 72000, 'tax_year' => 2024, 'status' => 'paid', 'paid_at' => now()->subMonth()],
-            ['nop' => '13.06.040.001.004-0004.0', 'taxpayer_name' => 'Dewi Sartika', 'address' => 'Jorong Koto RT 02/RW 02', 'land_area' => 200, 'building_area' => 45, 'njop' => 32000000, 'tax_amount' => 55000, 'tax_year' => 2024, 'status' => 'unpaid'],
-            ['nop' => '13.06.040.001.005-0005.0', 'taxpayer_name' => 'Ahmad Dahlan', 'address' => 'Jorong Koto RT 03/RW 01', 'land_area' => 600, 'building_area' => 150, 'njop' => 110000000, 'tax_amount' => 185000, 'tax_year' => 2024, 'status' => 'unpaid'],
-            ['nop' => '13.06.040.001.006-0006.0', 'taxpayer_name' => 'Yuliana', 'address' => 'Jorong Koto RT 03/RW 02', 'land_area' => 400, 'building_area' => 90, 'njop' => 72000000, 'tax_amount' => 115000, 'tax_year' => 2024, 'status' => 'paid', 'paid_at' => now()->subWeeks(6)],
-            ['nop' => '13.06.040.001.007-0007.0', 'taxpayer_name' => 'Rudi Hartono', 'address' => 'Jorong Koto RT 04/RW 01', 'land_area' => 320, 'building_area' => 70, 'njop' => 52000000, 'tax_amount' => 85000, 'tax_year' => 2024, 'status' => 'unpaid'],
-            ['nop' => '13.06.040.001.008-0008.0', 'taxpayer_name' => 'Siti Aminah', 'address' => 'Jorong Koto RT 04/RW 02', 'land_area' => 250, 'building_area' => 55, 'njop' => 38000000, 'tax_amount' => 62000, 'tax_year' => 2024, 'status' => 'paid', 'paid_at' => now()->subWeeks(4)],
-            ['nop' => '13.06.040.001.009-0009.0', 'taxpayer_name' => 'Bambang Widodo', 'address' => 'Jorong Koto RT 05/RW 01', 'land_area' => 800, 'building_area' => 200, 'njop' => 150000000, 'tax_amount' => 250000, 'tax_year' => 2024, 'status' => 'unpaid'],
-            ['nop' => '13.06.040.001.010-0010.0', 'taxpayer_name' => 'Nur Hasanah', 'address' => 'Jorong Koto RT 05/RW 02', 'land_area' => 180, 'building_area' => 36, 'njop' => 25000000, 'tax_amount' => 42000, 'tax_year' => 2024, 'status' => 'paid', 'paid_at' => now()->subWeeks(8)],
-            ['nop' => '13.06.040.001.011-0011.0', 'taxpayer_name' => 'Eko Prasetyo', 'address' => 'Jorong Koto RT 06/RW 01', 'land_area' => 450, 'building_area' => 100, 'njop' => 78000000, 'tax_amount' => 128000, 'tax_year' => 2024, 'status' => 'paid', 'paid_at' => now()->subWeeks(2)],
-            ['nop' => '13.06.040.001.012-0012.0', 'taxpayer_name' => 'Budi Santoso', 'address' => 'Jorong Koto RT 06/RW 02', 'land_area' => 300, 'building_area' => 65, 'njop' => 48000000, 'tax_amount' => 78000, 'tax_year' => 2024, 'status' => 'unpaid'],
-        ];
-        foreach ($pbbRecords as $pbb) {
-            PbbRecord::create($pbb);
-        }
     }
 }
 

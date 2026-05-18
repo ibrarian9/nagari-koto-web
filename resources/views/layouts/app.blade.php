@@ -208,7 +208,7 @@
                             'type' => 'dropdown',
                             'label' => 'Layanan',
                             'icon' => 'handshake',
-                            'activeRoutes' => ['surat.info', 'pbb', 'donasi', 'donasi.detail', 'bansos'],
+                            'activeRoutes' => ['surat.info', 'donasi', 'donasi.detail', 'bansos'],
                             'items' => [
                                 [
                                     'route' => 'surat.info',
@@ -221,12 +221,6 @@
                                     'label' => 'Cek Bansos',
                                     'icon' => 'volunteer_activism',
                                     'desc' => 'Link cek bantuan sosial',
-                                ],
-                                [
-                                    'route' => 'pbb',
-                                    'label' => 'Cek PBB',
-                                    'icon' => 'receipt_long',
-                                    'desc' => 'Pajak bumi & bangunan',
                                 ],
                                 [
                                     'route' => 'donasi',
@@ -432,8 +426,6 @@
                         wire:navigate>Anggaran</a>
                     <a href="{{ route('surat.info') }}" class="hover:text-white transition-colors"
                         wire:navigate>Layanan Surat</a>
-                    <a href="{{ route('pbb') }}" class="hover:text-white transition-colors" wire:navigate>Cek
-                        PBB</a>
                     <a href="{{ route('kontak') }}" class="hover:text-white transition-colors"
                         wire:navigate>Kontak</a>
                 </nav>
