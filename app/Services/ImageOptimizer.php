@@ -78,9 +78,10 @@ class ImageOptimizer
         $data = explode(',', $base64Data, 2);
         $binary = base64_decode($data[1]);
 
-        $image = $this->manager->read($binary);
+        $image = $this->manager->decodeBinary($binary);
         $image = $this->scaleDown($image, $config['width'], $config['height']);
-        $encoded = $image->toWebp($config['quality']);
+        
+        $encoded = $image->encodeUsingFormat(Format::WEBP, quality: $config['quality']);
 
         $filename = $folder . '/banner_' . time() . '.webp';
         Storage::disk('public')->put($filename, (string) $encoded);
