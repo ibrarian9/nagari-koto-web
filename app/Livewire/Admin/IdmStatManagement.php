@@ -15,13 +15,16 @@ class IdmStatManagement extends Component
     #[Validate('required|numeric|min:0|max:1')] public $social_score = 0;
     #[Validate('required|numeric|min:0|max:1')] public $economic_score = 0;
     #[Validate('required|numeric|min:0|max:1')] public $environment_score = 0;
+    #[Validate('nullable|numeric|min:0|max:1')] public $accessibility_score = 0;
+    #[Validate('nullable|numeric|min:0|max:1')] public $basic_service_score = 0;
+    #[Validate('nullable|numeric|min:0|max:1')] public $governance_score = 0;
     #[Validate('nullable|string')] public string $notes = '';
 
     public function create(): void { $this->resetForm(); $this->showForm = true; }
-    public function edit(int $id): void { $m = IdmStat::findOrFail($id); $this->editingId = $m->id; $this->fill($m->only(['year','score','status','social_score','economic_score','environment_score'])); $this->notes = $m->notes ?? ''; $this->showForm = true; }
-    public function save(): void { $this->validate(); $data = ['year'=>$this->year,'score'=>$this->score,'status'=>$this->status,'social_score'=>$this->social_score,'economic_score'=>$this->economic_score,'environment_score'=>$this->environment_score,'notes'=>$this->notes]; if ($this->editingId) IdmStat::findOrFail($this->editingId)->update($data); else IdmStat::create($data); $this->resetForm(); $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data IDM disimpan.'); }
+    public function edit(int $id): void { $m = IdmStat::findOrFail($id); $this->editingId = $m->id; $this->fill($m->only(['year','score','status','social_score','economic_score','environment_score','accessibility_score','basic_service_score','governance_score'])); $this->notes = $m->notes ?? ''; $this->showForm = true; }
+    public function save(): void { $this->validate(); $data = ['year'=>$this->year,'score'=>$this->score,'status'=>$this->status,'social_score'=>$this->social_score,'economic_score'=>$this->economic_score,'environment_score'=>$this->environment_score,'accessibility_score'=>$this->accessibility_score,'basic_service_score'=>$this->basic_service_score,'governance_score'=>$this->governance_score,'notes'=>$this->notes]; if ($this->editingId) IdmStat::findOrFail($this->editingId)->update($data); else IdmStat::create($data); $this->resetForm(); $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data IDM disimpan.'); }
     #[On('deleteConfirmed')]
     public function delete(int $id): void { IdmStat::findOrFail($id)->delete(); $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data IDM dihapus.'); }
-    private function resetForm(): void { $this->reset(['showForm','editingId','year','score','status','social_score','economic_score','environment_score','notes']); $this->year = (int) date('Y'); $this->status = 'berkembang'; }
+    private function resetForm(): void { $this->reset(['showForm','editingId','year','score','status','social_score','economic_score','environment_score','accessibility_score','basic_service_score','governance_score','notes']); $this->year = (int) date('Y'); $this->status = 'berkembang'; }
     public function render() { return view('livewire.admin.idm-stat-management', ['stats' => IdmStat::orderByDesc('year')->get()])->layout('layouts.admin', ['title' => 'IDM']); }
 }

@@ -56,7 +56,7 @@
                 <span class="material-symbols-outlined text-desa-500">description</span>
                 Jenis Surat yang Tersedia
             </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" style="grid-auto-rows: 1fr">
                 @php
                     $iconMap = [
                         'surat_domisili' => 'home',
@@ -64,19 +64,72 @@
                         'surat_keterangan_usaha' => 'storefront',
                         'surat_keterangan_lahir' => 'child_care',
                         'surat_kematian' => 'sentiment_sad',
-                        'surat_pengantar_nikah' => 'favorite',
+                        'surat_pengantar_nikah' => 'family_restroom',
                     ];
                 @endphp
                 @foreach ($letterTypes as $key => $label)
-                    <div class="card p-5 flex items-start gap-4 hover:-translate-y-0.5 transition-all duration-300">
-                        <div class="flex-shrink-0 h-12 w-12 rounded-xl bg-desa-50 flex items-center justify-center">
-                            <span
-                                class="material-symbols-outlined text-desa-600">{{ $iconMap[$key] ?? 'description' }}</span>
+                    <div x-data="{ showPdf: false }" class="card p-5 flex flex-col hover:-translate-y-0.5 transition-all duration-300">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 h-12 w-12 rounded-xl bg-desa-50 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-desa-600">{{ $iconMap[$key] ?? 'description' }}</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-gray-900 text-sm">{{ $label }}</h4>
+                                <p class="text-xs text-gray-400 mt-0.5">Kode: {{ str_replace('_', ' ', $key) }}</p>
+                                @if($key === 'surat_pengantar_nikah' && file_exists(storage_path('app/public/templates/formulir-nikah-n1.pdf')))
+                                    <div class="flex flex-wrap gap-2 mt-2.5">
+                                        <button @click="showPdf = true"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-gray-200 hover:border-desa-400 hover:bg-desa-50 text-desa-700 text-xs font-medium transition-all shadow-sm hover:shadow">
+                                            <span class="material-symbols-outlined text-sm">visibility</span>
+                                            Lihat Formulir N1
+                                        </button>
+                                        <a href="{{ asset('storage/templates/formulir-nikah-n1.pdf') }}" download
+                                           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-desa-600 hover:bg-desa-700 text-white text-xs font-medium transition-colors shadow-sm">
+                                            <span class="material-symbols-outlined text-sm">download</span>
+                                            Simpan PDF
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-semibold text-gray-900 text-sm">{{ $label }}</h4>
-                            <p class="text-xs text-gray-400 mt-0.5">Kode: {{ str_replace('_', ' ', $key) }}</p>
-                        </div>
+
+                        {{-- PDF Viewer Modal (nikah only) --}}
+                        @if($key === 'surat_pengantar_nikah' && file_exists(storage_path('app/public/templates/formulir-nikah-n1.pdf')))
+                        <template x-teleport="body">
+                            <div x-show="showPdf" x-transition.opacity.duration.200ms
+                                 class="fixed inset-0 z-[999] flex items-center justify-center p-4"
+                                 @keydown.escape.window="showPdf = false" style="display:none">
+                                <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="showPdf = false"></div>
+                                <div x-show="showPdf" x-transition.scale.origin.center.duration.200ms
+                                     class="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
+                                    <div class="flex items-center justify-between px-5 py-3 border-b border-gray-100 bg-gray-50/80">
+                                        <div class="flex items-center gap-3">
+                                            <div class="h-8 w-8 rounded-lg bg-red-100 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-red-600 text-sm">picture_as_pdf</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-900 text-sm">Formulir Nikah (N1)</h3>
+                                                <p class="text-xs text-gray-400">Preview dokumen</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <a href="{{ asset('storage/templates/formulir-nikah-n1.pdf') }}" download
+                                               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-desa-600 hover:bg-desa-700 text-white text-xs font-medium transition-colors">
+                                                <span class="material-symbols-outlined text-sm">download</span> Simpan
+                                            </a>
+                                            <button @click="showPdf = false" class="h-8 w-8 rounded-lg hover:bg-gray-200 flex items-center justify-center transition-colors">
+                                                <span class="material-symbols-outlined text-gray-500">close</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-h-0 bg-gray-100">
+                                        <iframe x-bind:src="showPdf ? '{{ asset('storage/templates/formulir-nikah-n1.pdf') }}' : ''"
+                                                class="w-full h-full min-h-[70vh]" frameborder="0"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        @endif
                     </div>
                 @endforeach
             </div>

@@ -1,11 +1,13 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────────────── --}}
-    <section class="relative bg-gradient-to-br from-green-700 via-emerald-800 to-teal-900 overflow-hidden">
-        <div class="absolute inset-0">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-green-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-            <div class="absolute bottom-0 left-0 w-80 h-80 bg-emerald-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
-        </div>
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
+    <x-hero-section slug="bansos" gradient="from-green-700 via-emerald-800 to-teal-900">
+        <x-slot:decorations>
+            <div class="absolute inset-0">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-green-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-emerald-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
+            </div>
+        </x-slot:decorations>
+        <div class="text-center">
             <div class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
                 <span class="material-symbols-outlined text-white text-3xl">volunteer_activism</span>
             </div>
@@ -16,7 +18,7 @@
                 Akses portal resmi untuk mengecek status penerima bantuan sosial pemerintah
             </p>
         </div>
-    </section>
+    </x-hero-section>
 
     {{-- ─── MAIN CONTENT ─────────────────────────────────── --}}
     <section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 -mt-8 relative z-10 pb-12">

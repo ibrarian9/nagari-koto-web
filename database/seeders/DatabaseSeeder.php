@@ -169,9 +169,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // ─── IDM Stats ──────────────────────────────────────
-        IdmStat::create(['year' => 2024, 'score' => 0.742, 'status' => 'maju', 'social_score' => 0.785, 'economic_score' => 0.692, 'environment_score' => 0.750]);
-        IdmStat::create(['year' => 2023, 'score' => 0.714, 'status' => 'maju', 'social_score' => 0.756, 'economic_score' => 0.671, 'environment_score' => 0.715]);
-        IdmStat::create(['year' => 2022, 'score' => 0.685, 'status' => 'berkembang', 'social_score' => 0.720, 'economic_score' => 0.640, 'environment_score' => 0.695]);
+        IdmStat::create(['year' => 2024, 'score' => 0.742, 'status' => 'maju', 'social_score' => 0.785, 'economic_score' => 0.692, 'environment_score' => 0.750, 'accessibility_score' => 0.768, 'basic_service_score' => 0.812, 'governance_score' => 0.735]);
+        IdmStat::create(['year' => 2023, 'score' => 0.714, 'status' => 'maju', 'social_score' => 0.756, 'economic_score' => 0.671, 'environment_score' => 0.715, 'accessibility_score' => 0.742, 'basic_service_score' => 0.780, 'governance_score' => 0.710]);
+        IdmStat::create(['year' => 2022, 'score' => 0.685, 'status' => 'berkembang', 'social_score' => 0.720, 'economic_score' => 0.640, 'environment_score' => 0.695, 'accessibility_score' => 0.715, 'basic_service_score' => 0.745, 'governance_score' => 0.680]);
 
         // ─── Budget Stats ───────────────────────────────────
         BudgetStat::create([

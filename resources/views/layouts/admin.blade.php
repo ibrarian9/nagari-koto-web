@@ -57,30 +57,61 @@
             {{-- Nav --}}
             <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-1">
                 @php
+                    $pendingSurat = \App\Models\LetterRequest::where('status', 'pending')->count();
+                    $pendingDonasi = \App\Models\Donation::where('payment_status', 'pending')->count();
+                    $pendingPpid = \App\Models\PpidPermohonan::whereIn('status', ['menunggu'])->count();
+
                     $adminNav = [
+                        // ── Utama
                         ['route' => 'admin.dashboard', 'label' => 'Dashboard', 'icon' => 'dashboard'],
-                        ['divider' => true, 'label' => 'Konten'],
+
+                        // ── Pemerintahan & Kelembagaan
+                        ['divider' => true, 'label' => 'Pemerintahan'],
                         ['route' => 'admin.profil-desa', 'label' => 'Profil Desa', 'icon' => 'location_city'],
-                        ['route' => 'admin.pemerintahan', 'label' => 'Pemerintahan', 'icon' => 'groups'],
+                        ['route' => 'admin.pemerintahan', 'label' => 'Perangkat Nagari', 'icon' => 'groups'],
                         ['route' => 'admin.bamus', 'label' => 'BAMUS', 'icon' => 'gavel'],
                         ['route' => 'admin.lembaga', 'label' => 'Lembaga Nagari', 'icon' => 'domain'],
+
+                        // ── BUMNag
+                        ['divider' => true, 'label' => 'BUMNag'],
+                        ['route' => 'admin.bumnag-profil', 'label' => 'Profil BUMNag', 'icon' => 'store'],
+                        ['route' => 'admin.bumnag-anggota', 'label' => 'Anggota BUMNag', 'icon' => 'badge'],
+                        ['route' => 'admin.bumnag-anggaran', 'label' => 'Anggaran BUMNag', 'icon' => 'account_balance'],
+                        ['route' => 'admin.bumnag-program', 'label' => 'Program Kerja', 'icon' => 'assignment'],
+
+                        // ── Konten & Publikasi
+                        ['divider' => true, 'label' => 'Konten'],
                         ['route' => 'admin.berita', 'label' => 'Berita', 'icon' => 'newspaper'],
                         ['route' => 'admin.potensi', 'label' => 'Potensi Desa', 'icon' => 'eco'],
                         ['route' => 'admin.umkm', 'label' => 'UMKM', 'icon' => 'storefront'],
-                        ['route' => 'admin.kontak', 'label' => 'Kontak', 'icon' => 'call'],
                         ['route' => 'admin.agenda', 'label' => 'Agenda', 'icon' => 'event'],
+                        ['route' => 'admin.hero', 'label' => 'Hero Halaman', 'icon' => 'wallpaper'],
+                        ['route' => 'admin.kontak', 'label' => 'Kontak', 'icon' => 'call'],
+
+                        // ── Data & Statistik
                         ['divider' => true, 'label' => 'Data & Statistik'],
                         ['route' => 'admin.infografis', 'label' => 'Infografis', 'icon' => 'bar_chart'],
                         ['route' => 'admin.idm', 'label' => 'IDM', 'icon' => 'trending_up'],
-                        ['route' => 'admin.anggaran', 'label' => 'Anggaran', 'icon' => 'account_balance'],
+                        ['route' => 'admin.anggaran', 'label' => 'Anggaran Nagari', 'icon' => 'account_balance_wallet'],
                         ['route' => 'admin.kehutanan', 'label' => 'Kehutanan', 'icon' => 'forest'],
-                        ['divider' => true, 'label' => 'Layanan'],
-                        ['route' => 'admin.surat', 'label' => 'Permohonan Surat', 'icon' => 'mail'],
-                        ['route' => 'admin.donasi', 'label' => 'Donasi', 'icon' => 'favorite'],
+
+                        // ── Layanan Publik
+                        ['divider' => true, 'label' => 'Layanan Publik'],
+                        ['route' => 'admin.surat', 'label' => 'Permohonan Surat', 'icon' => 'mail', 'badge' => $pendingSurat],
+                        ['route' => 'admin.donasi', 'label' => 'Donasi', 'icon' => 'favorite', 'badge' => $pendingDonasi],
+
+                        // ── PPID
+                        ['divider' => true, 'label' => 'PPID'],
+                        ['route' => 'admin.ppid-berkala', 'label' => 'Info Berkala', 'icon' => 'schedule'],
+                        ['route' => 'admin.ppid-setiap-saat', 'label' => 'Info Setiap Saat', 'icon' => 'folder_open'],
+                        ['route' => 'admin.ppid-serta-merta', 'label' => 'Info Serta Merta', 'icon' => 'campaign'],
+                        ['route' => 'admin.ppid-dikecualikan', 'label' => 'Info Dikecualikan', 'icon' => 'lock'],
+                        ['route' => 'admin.ppid-permohonan', 'label' => 'Permohonan PPID', 'icon' => 'assignment', 'badge' => $pendingPpid],
                     ];
                     if (auth()->user()?->isSuperAdmin() || auth()->user()?->isAdmin()) {
                         $adminNav[] = ['divider' => true, 'label' => 'Sistem'];
                         $adminNav[] = ['route' => 'admin.users', 'label' => 'Manajemen User', 'icon' => 'manage_accounts'];
+                        $adminNav[] = ['route' => 'admin.activity-log', 'label' => 'Log Aktivitas', 'icon' => 'history'];
                     }
                 @endphp
                 @foreach($adminNav as $item)
@@ -91,6 +122,9 @@
                            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 {{ request()->routeIs($item['route']) ? 'bg-white/15 text-white shadow-sm' : 'text-desa-200 hover:bg-white/10 hover:text-white' }}">
                             <span class="material-symbols-outlined text-lg" style="font-size:20px">{{ $item['icon'] }}</span>
                             {{ $item['label'] }}
+                            @if(($item['badge'] ?? 0) > 0)
+                                <span class="ml-auto inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full text-xs font-bold bg-red-500 text-white animate-pulse">{{ $item['badge'] }}</span>
+                            @endif
                         </a>
                     @endif
                 @endforeach

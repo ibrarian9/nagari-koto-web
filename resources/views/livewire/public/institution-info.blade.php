@@ -1,35 +1,30 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────────────── --}}
-    <section class="relative bg-gradient-to-br from-purple-800 via-purple-900 to-slate-900 overflow-hidden">
-        <div class="absolute inset-0">
-            <div
-                class="absolute top-0 right-0 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3">
+    <x-hero-section slug="lembaga" gradient="from-purple-800 via-purple-900 to-slate-900">
+        <x-slot:decorations>
+            <div class="absolute inset-0">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-fuchsia-400/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
             </div>
-            <div
-                class="absolute bottom-0 left-0 w-80 h-80 bg-fuchsia-400/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3">
-            </div>
-        </div>
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
-            <div
-                class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
+        </x-slot:decorations>
+        <div class="text-center">
+            <div class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
                 <span class="material-symbols-outlined text-white text-3xl">domain</span>
             </div>
-            <h1
-                class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
                 Lembaga Nagari
             </h1>
             <p class="mt-3 text-lg text-purple-200 max-w-2xl mx-auto">
                 Organisasi dan lembaga kemasyarakatan {{ $village?->name ?? 'nagari' }}
             </p>
-            <div
-                class="mt-5 flex items-center justify-center gap-4 text-sm text-purple-300">
+            <div class="mt-5 flex items-center justify-center gap-4 text-sm text-purple-300">
                 <span class="flex items-center gap-1.5">
                     <span class="material-symbols-outlined text-base text-amber-400">domain</span>
                     {{ $institutions->count() }} Lembaga Aktif
                 </span>
             </div>
         </div>
-    </section>
+    </x-hero-section>
 
     {{-- ─── FILTER BUTTONS ───────────────────────────────── --}}
     <section class="relative -mt-6 z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 mb-10">

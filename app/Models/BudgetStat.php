@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class BudgetStat extends Model
 {
+    use LogsActivity;
+
     protected $table = 'budget_stats';
 
     protected $fillable = [
@@ -35,5 +38,10 @@ class BudgetStat extends Model
     public function scopeLatestYear($query)
     {
         return $query->orderByDesc('year');
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Anggaran Tahun: {$this->year}";
     }
 }

@@ -1,49 +1,47 @@
 <div>
     {{-- ─── HERO SECTION ─────────────────────────────────── --}}
-    <section class="relative bg-gradient-to-br from-emerald-800 via-green-900 to-emerald-950 overflow-hidden">
-        {{-- Decorative elements --}}
-        <div class="absolute inset-0">
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-green-400/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl"></div>
-            {{-- Tree pattern overlay --}}
-            <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><text y=%2240%22 font-size=%2230%22>🌲</text></svg>'); background-size: 80px;"></div>
+    <x-hero-section slug="kehutanan" gradient="from-emerald-800 via-green-900 to-emerald-950" class="py-16 md:py-24">
+        <x-slot:decorations>
+            <div class="absolute inset-0">
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-green-400/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl"></div>
+                {{-- Tree pattern overlay --}}
+                <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><text y=%2240%22 font-size=%2230%22>🌲</text></svg>'); background-size: 80px;"></div>
+            </div>
+        </x-slot:decorations>
+        <div class="text-center">
+            <div class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
+                <span class="material-symbols-outlined text-white text-3xl">forest</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                Data Kehutanan
+            </h1>
+            <p class="mt-3 text-lg text-emerald-200 max-w-2xl mx-auto">
+                Informasi kawasan hutan dan lahan {{ $village?->name ?? 'desa' }}
+            </p>
         </div>
 
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-            <div class="text-center">
-                <div class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
-                    <span class="material-symbols-outlined text-white text-3xl">forest</span>
-                </div>
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-                    Data Kehutanan
-                </h1>
-                <p class="mt-3 text-lg text-emerald-200 max-w-2xl mx-auto">
-                    Informasi kawasan hutan dan lahan {{ $village?->name ?? 'desa' }}
-                </p>
+        {{-- Hero Stats --}}
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
+                <span class="text-3xl font-extrabold text-white">{{ number_format($summary['total_area'], 0, ',', '.') }}</span>
+                <p class="text-xs text-emerald-300 mt-1 font-medium">Total Luas (Ha)</p>
             </div>
-
-            {{-- Hero Stats --}}
-            <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
-                    <span class="text-3xl font-extrabold text-white">{{ number_format($summary['total_area'], 0, ',', '.') }}</span>
-                    <p class="text-xs text-emerald-300 mt-1 font-medium">Total Luas (Ha)</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
-                    <span class="text-3xl font-extrabold text-white">{{ $summary['total_zones'] }}</span>
-                    <p class="text-xs text-emerald-300 mt-1 font-medium">Kawasan</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
-                    <span class="text-3xl font-extrabold text-emerald-300">{{ $summary['aktif'] }}</span>
-                    <p class="text-xs text-emerald-300 mt-1 font-medium">Aktif</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
-                    <span class="text-3xl font-extrabold {{ $summary['kritis'] > 0 ? 'text-red-400' : 'text-emerald-300' }}">{{ $summary['kritis'] }}</span>
-                    <p class="text-xs text-emerald-300 mt-1 font-medium">Kritis</p>
-                </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
+                <span class="text-3xl font-extrabold text-white">{{ $summary['total_zones'] }}</span>
+                <p class="text-xs text-emerald-300 mt-1 font-medium">Kawasan</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
+                <span class="text-3xl font-extrabold text-emerald-300">{{ $summary['aktif'] }}</span>
+                <p class="text-xs text-emerald-300 mt-1 font-medium">Aktif</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
+                <span class="text-3xl font-extrabold {{ $summary['kritis'] > 0 ? 'text-red-400' : 'text-emerald-300' }}">{{ $summary['kritis'] }}</span>
+                <p class="text-xs text-emerald-300 mt-1 font-medium">Kritis</p>
             </div>
         </div>
-    </section>
+    </x-hero-section>
 
     {{-- ─── CATEGORY BREAKDOWN ────────────────────────────── --}}
     @if($byCategory->count())

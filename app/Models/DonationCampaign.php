@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DonationCampaign extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
         'title', 'slug', 'description', 'thumbnail',
         'target_amount', 'collected_amount', 'start_date', 'end_date',
@@ -69,5 +72,10 @@ class DonationCampaign extends Model
         $this->update([
             'collected_amount' => $this->donations()->where('payment_status', 'success')->sum('amount'),
         ]);
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Kampanye Donasi: {$this->title}";
     }
 }

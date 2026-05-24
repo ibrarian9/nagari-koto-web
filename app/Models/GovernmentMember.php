@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class GovernmentMember extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
         'name',
         'position',
@@ -35,5 +38,10 @@ class GovernmentMember extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('order');
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Perangkat Desa: {$this->name}";
     }
 }

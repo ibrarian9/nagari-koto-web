@@ -1,23 +1,25 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────────────── --}}
-    <section class="relative bg-gradient-to-br from-rose-700 via-rose-800 to-pink-900 overflow-hidden">
-        <div class="absolute inset-0">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-rose-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-            <div class="absolute bottom-0 left-0 w-80 h-80 bg-pink-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-400/5 rounded-full blur-3xl"></div>
-        </div>
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
-            <div data-aos="zoom-in" class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
+    <x-hero-section slug="donasi" gradient="from-rose-700 via-rose-800 to-pink-900" class="py-16 md:py-24">
+        <x-slot:decorations>
+            <div class="absolute inset-0">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-rose-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-pink-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-400/5 rounded-full blur-3xl"></div>
+            </div>
+        </x-slot:decorations>
+        <div class="text-center">
+            <div class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
                 <span class="material-symbols-outlined text-white text-3xl">favorite</span>
             </div>
-            <h1 data-aos="fade-up" data-aos-delay="100" class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
                 Donasi untuk Nagari
             </h1>
-            <p data-aos="fade-up" data-aos-delay="200" class="mt-3 text-lg text-rose-200 max-w-2xl mx-auto">
+            <p class="mt-3 text-lg text-rose-200 max-w-2xl mx-auto">
                 Mari bersama membangun {{ $village?->name ?? 'nagari' }} menjadi lebih baik melalui donasi
             </p>
 
-            <div data-aos="fade-up" data-aos-delay="300" class="mt-10 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+            <div class="mt-10 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
                     <span class="text-2xl font-extrabold text-white">Rp {{ number_format($summary['total_collected'], 0, ',', '.') }}</span>
                     <p class="text-xs text-rose-300 mt-1 font-medium">Total Terkumpul</p>
@@ -32,7 +34,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </x-hero-section>
 
     {{-- ─── CAMPAIGNS ────────────────────────────────────── --}}
     <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">

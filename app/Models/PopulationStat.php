@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class PopulationStat extends Model
 {
+    use LogsActivity;
+
     protected $table = 'population_stats';
 
     protected $fillable = [
@@ -41,5 +44,10 @@ class PopulationStat extends Model
     public function scopeLatestYear($query)
     {
         return $query->orderByDesc('year');
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Statistik Penduduk: {$this->year}";
     }
 }

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Donation extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
         'campaign_id', 'order_id', 'donor_name', 'donor_email', 'donor_phone',
         'amount', 'message', 'is_anonymous', 'payment_status', 'payment_type',

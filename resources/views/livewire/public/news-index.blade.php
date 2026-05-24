@@ -1,14 +1,14 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────── --}}
-    <section class="bg-gradient-to-br from-desa-600 to-desa-800 py-12">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+    <x-hero-section slug="berita" gradient="from-desa-600 to-desa-800" class="py-12">
+        <div class="text-center">
             <div class="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white/10 mb-4">
                 <span class="material-symbols-outlined text-white text-2xl">newspaper</span>
             </div>
             <h1 class="text-3xl md:text-4xl font-extrabold text-white">Berita & Artikel</h1>
             <p class="mt-2 text-desa-100">Informasi terkini seputar desa</p>
         </div>
-    </section>
+    </x-hero-section>
 
     <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         {{-- Filters --}}

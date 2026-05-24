@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
         'label',
         'phone',
@@ -33,5 +36,10 @@ class Contact extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('order');
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Kontak: {$this->label}";
     }
 }

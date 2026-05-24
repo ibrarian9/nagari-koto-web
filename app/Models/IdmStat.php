@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class IdmStat extends Model
 {
+    use LogsActivity;
+
     protected $table = 'idm_stats';
 
     protected $fillable = [
@@ -15,6 +18,9 @@ class IdmStat extends Model
         'social_score',
         'economic_score',
         'environment_score',
+        'accessibility_score',
+        'basic_service_score',
+        'governance_score',
         'notes',
     ];
 
@@ -29,6 +35,9 @@ class IdmStat extends Model
             'social_score' => 'decimal:3',
             'economic_score' => 'decimal:3',
             'environment_score' => 'decimal:3',
+            'accessibility_score' => 'decimal:3',
+            'basic_service_score' => 'decimal:3',
+            'governance_score' => 'decimal:3',
         ];
     }
 
@@ -69,5 +78,10 @@ class IdmStat extends Model
             'mandiri' => 'bg-green-100 text-green-800',
             default => 'bg-gray-100 text-gray-800',
         };
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "IDM Tahun: {$this->year}";
     }
 }

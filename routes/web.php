@@ -2,6 +2,8 @@
 
 use App\Livewire\Admin;
 use App\Livewire\PublicSite;
+use App\Livewire\PublicSite\Ppid;
+use App\Livewire\PublicSite\Bumnag;
 use App\Http\Controllers\MidtransWebhookController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +33,26 @@ Route::get('/bamus', PublicSite\BamusInfo::class)->name('bamus');
 Route::get('/lembaga', PublicSite\InstitutionInfo::class)->name('lembaga');
 Route::get('/donasi', PublicSite\DonationPage::class)->name('donasi');
 Route::get('/donasi/{slug}', PublicSite\DonationDetail::class)->name('donasi.detail');
+
+// BUMNag (Badan Usaha Milik Nagari)
+Route::prefix('bumnag')->name('bumnag.')->group(function () {
+    Route::get('/', Bumnag\BumnagHome::class)->name('home');
+    Route::get('/struktur', Bumnag\BumnagStruktur::class)->name('struktur');
+    Route::get('/badan-hukum', Bumnag\BumnagHukum::class)->name('hukum');
+    Route::get('/anggaran', Bumnag\BumnagAnggaran::class)->name('anggaran');
+    Route::get('/program-kerja', Bumnag\BumnagProgramKerja::class)->name('program-kerja');
+});
+
+// PPID (Pejabat Pengelola Informasi dan Dokumentasi)
+Route::prefix('ppid')->name('ppid.')->group(function () {
+    Route::get('/', Ppid\PpidHome::class)->name('home');
+    Route::get('/informasi-berkala', Ppid\PpidBerkala::class)->name('berkala');
+    Route::get('/informasi-setiap-saat', Ppid\PpidSetiapSaat::class)->name('setiap-saat');
+    Route::get('/informasi-serta-merta', Ppid\PpidSertaMerta::class)->name('serta-merta');
+    Route::get('/informasi-dikecualikan', Ppid\PpidDikecualikan::class)->name('dikecualikan');
+    Route::get('/permohonan', Ppid\PpidPermohonanForm::class)->name('permohonan');
+    Route::get('/cek-status', Ppid\PpidCekStatus::class)->name('cek-status');
+});
 
 // Midtrans webhook (no CSRF)
 Route::post('/api/midtrans/webhook', [MidtransWebhookController::class, 'handle'])
@@ -74,11 +96,30 @@ Route::prefix('admin')
         Route::get('/bamus', Admin\BamusManagement::class)->name('bamus');
         Route::get('/lembaga', Admin\InstitutionManagement::class)->name('lembaga');
         Route::get('/donasi', Admin\CampaignManagement::class)->name('donasi');
+        Route::get('/hero', Admin\HeroSettingManagement::class)->name('hero');
+
+        // PPID Admin
+        Route::get('/ppid-berkala', Admin\PpidBerkalaManagement::class)->name('ppid-berkala');
+        Route::get('/ppid-setiap-saat', Admin\PpidSetiapSaatManagement::class)->name('ppid-setiap-saat');
+        Route::get('/ppid-serta-merta', Admin\PpidSertaMertaManagement::class)->name('ppid-serta-merta');
+        Route::get('/ppid-dikecualikan', Admin\PpidDikecualikanManagement::class)->name('ppid-dikecualikan');
+        Route::get('/ppid-permohonan', Admin\PpidPermohonanManagement::class)->name('ppid-permohonan');
+
+        // BUMNag Admin
+        Route::get('/bumnag-profil', Admin\BumnagProfileManagement::class)->name('bumnag-profil');
+        Route::get('/bumnag-anggota', Admin\BumnagMemberManagement::class)->name('bumnag-anggota');
+        Route::get('/bumnag-anggaran', Admin\BumnagBudgetManagement::class)->name('bumnag-anggaran');
+        Route::get('/bumnag-program', Admin\BumnagProgramManagement::class)->name('bumnag-program');
 
         // User management — super_admin only
         Route::get('/users', Admin\UserManagement::class)
             ->middleware('role:super_admin,admin')
             ->name('users');
+
+        // Activity Log
+        Route::get('/activity-log', Admin\ActivityLogViewer::class)
+            ->middleware('role:super_admin,admin')
+            ->name('activity-log');
     });
 
 require __DIR__.'/auth.php';

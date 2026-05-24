@@ -17,11 +17,14 @@
                 </div>
                 <div class="text-sm text-gray-600 leading-relaxed">
                     <h3 class="font-bold text-gray-900 mb-2">Apa itu IDM?</h3>
-                    <p>Indeks Desa Membangun (IDM) adalah indikator yang dikembangkan oleh <strong>Kementerian Desa, PDT dan Transmigrasi</strong> untuk mengukur tingkat kemajuan dan kemandirian desa. IDM menggunakan 3 dimensi utama:</p>
+                    <p>Indeks Desa Membangun (IDM) adalah indikator yang dikembangkan oleh <strong>Kementerian Desa, PDT dan Transmigrasi</strong> untuk mengukur tingkat kemajuan dan kemandirian desa. IDM menggunakan dimensi utama dan tambahan:</p>
                     <ul class="mt-2 space-y-1">
                         <li class="flex items-start gap-2"><span class="material-symbols-outlined text-blue-500 text-sm mt-0.5">group</span> <span><strong>IKS (Sosial):</strong> Kesehatan, pendidikan, modal sosial, dan permukiman</span></li>
-                        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-amber-500 text-sm mt-0.5">trending_up</span> <span><strong>IKE (Ekonomi):</strong> Keragaman produksi, perdagangan, akses distribusi dan kredit, serta keterbukaan wilayah</span></li>
-                        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">eco</span> <span><strong>IKL (Lingkungan):</strong> Kualitas lingkungan, potensi rawan bencana, dan tanggap bencana</span></li>
+                        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-amber-500 text-sm mt-0.5">trending_up</span> <span><strong>IKE (Ekonomi):</strong> Keragaman produksi, perdagangan, akses distribusi dan kredit</span></li>
+                        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-green-500 text-sm mt-0.5">eco</span> <span><strong>IKL (Lingkungan):</strong> Kualitas lingkungan, potensi rawan bencana</span></li>
+                        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-purple-500 text-sm mt-0.5">route</span> <span><strong>Aksesibilitas:</strong> Kemudahan akses transportasi dan komunikasi</span></li>
+                        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-rose-500 text-sm mt-0.5">medical_services</span> <span><strong>Layanan Dasar:</strong> Ketersediaan pelayanan kesehatan, pendidikan, dan infrastruktur</span></li>
+                        <li class="flex items-start gap-2"><span class="material-symbols-outlined text-indigo-500 text-sm mt-0.5">account_balance</span> <span><strong>Tata Kelola Pemdes:</strong> Kualitas penyelenggaraan pemerintahan desa</span></li>
                     </ul>
                     <p class="mt-2">Skor IDM berkisar antara <strong>0 sampai 1</strong>. Semakin tinggi skor, semakin maju desanya.</p>
                 </div>
@@ -48,11 +51,14 @@
             </div>
 
             {{-- Dimension Scores --}}
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
                 @foreach([
                     ['label' => 'Indeks Ketahanan Sosial', 'short' => 'IKS', 'score' => $latest->social_score, 'icon' => 'group', 'color' => 'blue', 'desc' => 'Kesehatan, pendidikan, permukiman'],
                     ['label' => 'Indeks Ketahanan Ekonomi', 'short' => 'IKE', 'score' => $latest->economic_score, 'icon' => 'trending_up', 'color' => 'amber', 'desc' => 'Produksi, perdagangan, kredit'],
                     ['label' => 'Indeks Ketahanan Lingkungan', 'short' => 'IKL', 'score' => $latest->environment_score, 'icon' => 'eco', 'color' => 'green', 'desc' => 'Lingkungan hidup, bencana'],
+                    ['label' => 'Skor Aksesibilitas', 'short' => 'Akses', 'score' => $latest->accessibility_score, 'icon' => 'route', 'color' => 'purple', 'desc' => 'Transportasi & komunikasi'],
+                    ['label' => 'Layanan Dasar', 'short' => 'LayDas', 'score' => $latest->basic_service_score, 'icon' => 'medical_services', 'color' => 'rose', 'desc' => 'Kesehatan, pendidikan, infrastruktur'],
+                    ['label' => 'Tata Kelola Pemdes', 'short' => 'TKP', 'score' => $latest->governance_score, 'icon' => 'account_balance', 'color' => 'indigo', 'desc' => 'Penyelenggaraan pemerintahan desa'],
                 ] as $dim)
                     <div class="card p-5">
                         <div class="flex items-center gap-3 mb-3">
@@ -80,10 +86,10 @@
                 new Chart(document.getElementById('radarChart'), {
                     type: 'radar',
                     data: {
-                        labels: ['Sosial (IKS)', 'Ekonomi (IKE)', 'Lingkungan (IKL)'],
+                        labels: ['Sosial (IKS)', 'Ekonomi (IKE)', 'Lingkungan (IKL)', 'Aksesibilitas', 'Layanan Dasar', 'Tata Kelola'],
                         datasets: [{
                             label: 'Skor IDM {{ $latest->year }}',
-                            data: [{{ $latest->social_score }}, {{ $latest->economic_score }}, {{ $latest->environment_score }}],
+                            data: [{{ $latest->social_score }}, {{ $latest->economic_score }}, {{ $latest->environment_score }}, {{ $latest->accessibility_score }}, {{ $latest->basic_service_score }}, {{ $latest->governance_score }}],
                             backgroundColor: 'rgba(45,106,79,0.15)',
                             borderColor: '#2D6A4F',
                             pointBackgroundColor: '#2D6A4F',
@@ -155,6 +161,9 @@
                                 <th>IKS (Sosial)</th>
                                 <th>IKE (Ekonomi)</th>
                                 <th>IKL (Lingkungan)</th>
+                                <th>Akses.</th>
+                                <th>Lay. Dasar</th>
+                                <th>Tata Kelola</th>
                                 <th>Perubahan</th>
                             </tr>
                         </thead>
@@ -171,6 +180,9 @@
                                     <td class="font-mono">{{ number_format($stat->social_score, 3) }}</td>
                                     <td class="font-mono">{{ number_format($stat->economic_score, 3) }}</td>
                                     <td class="font-mono">{{ number_format($stat->environment_score, 3) }}</td>
+                                    <td class="font-mono">{{ number_format($stat->accessibility_score, 3) }}</td>
+                                    <td class="font-mono">{{ number_format($stat->basic_service_score, 3) }}</td>
+                                    <td class="font-mono">{{ number_format($stat->governance_score, 3) }}</td>
                                     <td>
                                         @if($change !== null)
                                             <span class="inline-flex items-center gap-1 text-sm font-medium {{ $change >= 0 ? 'text-green-600' : 'text-red-600' }}">

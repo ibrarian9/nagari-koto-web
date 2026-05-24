@@ -1,11 +1,13 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────────────── --}}
-    <section class="relative bg-gradient-to-br from-amber-600 via-amber-700 to-orange-800 overflow-hidden">
-        <div class="absolute inset-0">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-            <div class="absolute bottom-0 left-0 w-80 h-80 bg-orange-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
-        </div>
-        <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
+    <x-hero-section slug="agenda" gradient="from-amber-600 via-amber-700 to-orange-800">
+        <x-slot:decorations>
+            <div class="absolute inset-0">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-orange-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
+            </div>
+        </x-slot:decorations>
+        <div class="text-center">
             <div class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
                 <span class="material-symbols-outlined text-white text-3xl">event</span>
             </div>
@@ -26,7 +28,7 @@
                 </span>
             </div>
         </div>
-    </section>
+    </x-hero-section>
 
     {{-- ─── UPCOMING ─────────────────────────────────────── --}}
     <section class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12">
@@ -70,11 +72,11 @@
 
                         {{-- Flyer --}}
                         @if($agenda->flyer)
-                            <div class="flex-shrink-0 sm:w-40 md:w-48">
+                            <div class="flex-shrink-0 hidden sm:block sm:w-28 md:w-32">
                                 <a href="{{ Storage::url($agenda->flyer) }}" target="_blank"
-                                    class="block h-full group relative">
+                                    class="block aspect-square group relative overflow-hidden sm:rounded-r-2xl">
                                     <img src="{{ Storage::url($agenda->flyer) }}" alt="Flyer {{ $agenda->title }}"
-                                        class="w-full h-full object-cover sm:rounded-r-2xl group-hover:brightness-90 transition-all" loading="lazy" decoding="async">
+                                        class="w-full h-full object-cover group-hover:brightness-90 transition-all" loading="lazy" decoding="async">
                                     <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-all">
                                         <span class="material-symbols-outlined text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg">zoom_in</span>
                                     </div>

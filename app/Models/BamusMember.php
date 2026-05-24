@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class BamusMember extends Model
 {
+    use LogsActivity;
+
     protected $fillable = ['name', 'position', 'photo', 'period', 'order', 'is_active'];
 
     protected function casts(): array
@@ -15,4 +18,9 @@ class BamusMember extends Model
 
     public function scopeActive($query) { return $query->where('is_active', true); }
     public function scopeOrdered($query) { return $query->orderBy('order'); }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Anggota BAMUS: {$this->name}";
+    }
 }

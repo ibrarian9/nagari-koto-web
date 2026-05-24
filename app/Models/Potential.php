@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class Potential extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
         'category',
         'title',
@@ -19,5 +22,10 @@ class Potential extends Model
     public function scopeOfCategory($query, string $category)
     {
         return $query->where('category', $category);
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Potensi: {$this->title}";
     }
 }

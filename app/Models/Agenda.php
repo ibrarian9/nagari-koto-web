@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class Agenda extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
         'title',
         'description',
@@ -45,5 +48,10 @@ class Agenda extends Model
     public function scopePublicOnly($query)
     {
         return $query->where('is_public', true);
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Agenda: {$this->title}";
     }
 }

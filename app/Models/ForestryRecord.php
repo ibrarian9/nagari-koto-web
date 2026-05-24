@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class ForestryRecord extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
         'title',
         'category',
@@ -66,5 +69,10 @@ class ForestryRecord extends Model
     public function scopeByStatus($query, $status)
     {
         return $query->where('status', $status);
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Data Kehutanan: {$this->title}";
     }
 }

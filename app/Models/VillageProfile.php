@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class VillageProfile extends Model
 {
+    use LogsActivity;
+
     protected $fillable = [
         'name',
         'tagline',
@@ -40,7 +43,11 @@ class VillageProfile extends Model
      */
     public static function getCached(): ?self
     {
-        return static::first();
+        return static::query()->first();
+    }
+
+    protected function getActivityModelLabel(): string
+    {
+        return "Profil Desa: {$this->name}";
     }
 }
-
