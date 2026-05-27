@@ -9,6 +9,7 @@
         content="{{ $metaDescription ?? 'Website Profil Desa Digital — Informasi lengkap tentang desa, pemerintahan, berita, dan layanan publik.' }}">
 
     <title>{{ ($title ?? 'Beranda') . ' — ' . config('app.name') }}</title>
+    @include('partials.favicon')
 
     {{-- Preconnect: prioritas tinggi untuk domain font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,7 +1,23 @@
 <div>
     <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <h1 class="section-title">Informasi Setiap Saat</h1>
-        <p class="section-subtitle mb-8">Informasi yang tersedia dan dapat diakses kapan saja</p>
+        {{-- Header Section --}}
+        <div class="mb-10 text-center md:text-left md:flex md:items-center md:justify-between border-b border-gray-150 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-100 px-3 py-1 text-xs text-emerald-700 font-semibold mb-3">
+                    <span class="material-symbols-outlined text-sm">folder_open</span>
+                    Tersedia Setiap Saat
+                </div>
+                <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Informasi Setiap Saat</h1>
+                <p class="text-sm text-gray-500 mt-1">Informasi yang tersedia dan dapat diakses kapan saja</p>
+            </div>
+
+            <div class="mt-4 md:mt-0">
+                <a href="{{ route('ppid.home') }}" wire:navigate class="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-200 hover:border-desa-300 hover:bg-desa-50 text-gray-700 hover:text-desa-700 rounded-xl text-xs font-semibold transition-all">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span>
+                    Kembali ke PPID Hub
+                </a>
+            </div>
+        </div>
 
         {{-- Filters --}}
         <div class="card p-4 mb-6">
