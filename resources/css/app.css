@@ -51,6 +51,15 @@
     h1, h2, h3, h4, h5, h6 {
         @apply font-semibold tracking-tight;
     }
+
+    /* Prevent FOUT: hide icon text until Material Symbols font is loaded */
+    .material-symbols-outlined {
+        opacity: 0;
+        transition: opacity 0.15s ease;
+    }
+    .fonts-loaded .material-symbols-outlined {
+        opacity: 1;
+    }
 }
 
 /* Reusable Component Classes */
