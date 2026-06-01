@@ -14,11 +14,8 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Seed existing program names from bansos_recipients
-        $existing = \App\Models\BansosRecipient::distinct()->pluck('program_name')->filter();
-        foreach ($existing as $name) {
-            \App\Models\BansosProgram::create(['name' => $name]);
-        }
+        // Data seeding moved to DatabaseSeeder/BansosProgramSeeder
+        // to avoid Model dependency issues during fresh migration
     }
 
     public function down(): void
