@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Donation;
 use App\Models\DonationCampaign;
+use App\Models\DonationSetting;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -12,6 +13,15 @@ class DonationCampaignSeeder extends Seeder
 {
     public function run(): void
     {
+        // Seed bank account settings
+        DonationSetting::firstOrCreate([], [
+            'bank_accounts' => [
+                ['bank' => 'Bank Nagari', 'account_number' => '2100.0300.12345', 'account_name' => 'BUMNag Duo Koto'],
+                ['bank' => 'BRI', 'account_number' => '0012.0100.5678.901', 'account_name' => 'Nagari Duo Koto'],
+            ],
+            'transfer_instructions' => 'Silakan transfer ke salah satu rekening di atas. Setelah transfer, upload bukti pembayaran pada form donasi. Admin akan mengkonfirmasi donasi Anda dalam 1x24 jam.',
+        ]);
+
         $creator = User::query()->where('role', 'super_admin')->first() ?? User::first();
 
         $campaigns = [
@@ -87,7 +97,7 @@ class DonationCampaignSeeder extends Seeder
                 'message'        => $donor['message'],
                 'is_anonymous'   => $donor['anonymous'] ?? false,
                 'payment_status' => 'success',
-                'payment_type'   => collect(['bank_transfer', 'gopay', 'qris', 'shopeepay'])->random(),
+                'payment_type'   => 'transfer',
                 'paid_at'        => now()->subDays(rand(1, 15))->subHours(rand(1, 12)),
             ]);
         }

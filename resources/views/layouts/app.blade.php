@@ -31,15 +31,8 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     </noscript>
 
-    {{-- Material Symbols: only 400 weight, reduced range --}}
-    <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
-    </noscript>
-    @include('partials.font-loader')
+
+    {{-- Material Symbols: self-hosted via app.css —  no CDN needed --}}
 
     {{-- AOS CSS: async load --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" media="print"

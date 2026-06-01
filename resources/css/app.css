@@ -2,6 +2,33 @@
 
 @plugin "@tailwindcss/forms";
 
+/* Self-hosted Material Symbols — eliminates CDN latency */
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('/fonts/material-symbols-outlined.woff2') format('woff2');
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'liga';
+}
+
 /*
 |--------------------------------------------------------------------------
 | Design Tokens — Nagari Koto Web
@@ -50,15 +77,6 @@
 
     h1, h2, h3, h4, h5, h6 {
         @apply font-semibold tracking-tight;
-    }
-
-    /* Prevent FOUT: hide icon text until Material Symbols font is loaded */
-    .material-symbols-outlined {
-        opacity: 0;
-        transition: opacity 0.15s ease;
-    }
-    .fonts-loaded .material-symbols-outlined {
-        opacity: 1;
     }
 }
 

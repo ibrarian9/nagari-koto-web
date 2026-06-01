@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Donation;
 use App\Models\DonationCampaign;
+use App\Models\DonationSetting;
 use App\Services\ImageOptimizer;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
@@ -18,10 +19,12 @@ class CampaignManagement extends Component
 
     public bool $showForm = false;
     public bool $showDonations = false;
+    public bool $showBankSettings = false;
     public ?int $editingId = null;
     public ?int $viewingCampaignId = null;
     public string $search = '';
 
+    // Campaign form
     #[Validate('required|string|max:255')]
     public string $title = '';
     #[Validate('nullable|string')]
@@ -37,6 +40,61 @@ class CampaignManagement extends Component
     #[Validate('nullable|image|mimes:jpg,jpeg,png,webp|max:2048')]
     public $thumbnail = null;
     public ?string $existingThumbnail = null;
+
+    // Bank account settings
+    public array $bankAccounts = [];
+    public string $transferInstructions = '';
+
+    public function mount(): void
+    {
+        $this->loadBankSettings();
+    }
+
+    public function loadBankSettings(): void
+    {
+        $setting = DonationSetting::getContent();
+        $this->bankAccounts = $setting->bank_accounts ?? [];
+        $this->transferInstructions = $setting->transfer_instructions ?? '';
+    }
+
+    // ─── Bank Account Management ─────────────────────────
+
+    public function openBankSettings(): void
+    {
+        $this->loadBankSettings();
+        $this->showBankSettings = true;
+    }
+
+    public function addBankAccount(): void
+    {
+        $this->bankAccounts[] = ['bank' => '', 'account_number' => '', 'account_name' => ''];
+    }
+
+    public function removeBankAccount(int $index): void
+    {
+        unset($this->bankAccounts[$index]);
+        $this->bankAccounts = array_values($this->bankAccounts);
+    }
+
+    public function saveBankSettings(): void
+    {
+        // Filter out empty rows
+        $filtered = array_filter($this->bankAccounts, function ($a) {
+            return !empty($a['bank']) && !empty($a['account_number']) && !empty($a['account_name']);
+        });
+
+        $setting = DonationSetting::getContent();
+        $setting->update([
+            'bank_accounts' => array_values($filtered),
+            'transfer_instructions' => $this->transferInstructions,
+        ]);
+
+        $this->bankAccounts = array_values($filtered);
+        $this->showBankSettings = false;
+        $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Pengaturan rekening berhasil disimpan.');
+    }
+
+    // ─── Campaign CRUD ───────────────────────────────────
 
     public function create(): void
     {
@@ -113,10 +171,33 @@ class CampaignManagement extends Component
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Campaign berhasil dihapus.');
     }
 
+    // ─── Donation Management ─────────────────────────────
+
     public function viewDonations(int $id): void
     {
         $this->viewingCampaignId = $id;
         $this->showDonations = true;
+    }
+
+    public function confirmDonation(int $id): void
+    {
+        $donation = Donation::findOrFail($id);
+        $donation->update([
+            'payment_status' => 'success',
+            'paid_at'        => now(),
+        ]);
+        $donation->campaign->recalculateCollected();
+        $this->dispatch('swal', icon: 'success', title: 'Dikonfirmasi', text: 'Donasi dari ' . $donation->donor_name . ' berhasil dikonfirmasi.');
+    }
+
+    public function rejectDonation(int $id): void
+    {
+        $donation = Donation::findOrFail($id);
+        $donation->update([
+            'payment_status' => 'failed',
+        ]);
+        $donation->campaign->recalculateCollected();
+        $this->dispatch('swal', icon: 'info', title: 'Ditolak', text: 'Donasi dari ' . $donation->donor_name . ' ditolak.');
     }
 
     private function resetForm(): void
@@ -137,6 +218,7 @@ class CampaignManagement extends Component
             'total_campaigns' => DonationCampaign::count(),
             'active_campaigns' => DonationCampaign::where('status', 'active')->count(),
             'total_donors' => Donation::where('payment_status', 'success')->count(),
+            'pending_count' => Donation::where('payment_status', 'pending')->count(),
         ];
 
         $viewingDonations = null;

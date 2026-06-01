@@ -4,12 +4,15 @@ namespace App\Livewire\PublicSite;
 
 use App\Models\Donation;
 use App\Models\DonationCampaign;
-use App\Services\MidtransService;
+use App\Models\DonationSetting;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class DonationDetail extends Component
 {
+    use WithFileUploads;
+
     public DonationCampaign $campaign;
 
     #[Validate('required|string|max:255')]
@@ -24,8 +27,11 @@ class DonationDetail extends Component
     public ?string $message = '';
     public bool $is_anonymous = false;
 
-    public ?string $snapToken = null;
+    #[Validate('nullable|image|mimes:jpg,jpeg,png,webp|max:3072')]
+    public $payment_proof_upload = null;
+
     public bool $showForm = false;
+    public bool $submitted = false;
 
     public function mount(string $slug): void
     {
@@ -48,28 +54,27 @@ class DonationDetail extends Component
 
         $orderId = 'DON-' . strtoupper(uniqid()) . '-' . time();
 
-        $donation = Donation::create([
-            'campaign_id' => $this->campaign->id,
-            'order_id'    => $orderId,
-            'donor_name'  => $this->donor_name,
-            'donor_email' => $this->donor_email,
-            'donor_phone' => $this->donor_phone,
-            'amount'      => $this->amount,
-            'message'     => $this->message,
-            'is_anonymous' => $this->is_anonymous,
+        $data = [
+            'campaign_id'    => $this->campaign->id,
+            'order_id'       => $orderId,
+            'donor_name'     => $this->donor_name,
+            'donor_email'    => $this->donor_email,
+            'donor_phone'    => $this->donor_phone,
+            'amount'         => $this->amount,
+            'message'        => $this->message,
+            'is_anonymous'   => $this->is_anonymous,
             'payment_status' => 'pending',
-        ]);
+            'payment_type'   => 'transfer',
+        ];
 
-        try {
-            $midtrans = new MidtransService();
-            $this->snapToken = $midtrans->createSnapToken($donation);
-            $donation->update(['snap_token' => $this->snapToken]);
-
-            $this->dispatch('openSnap', token: $this->snapToken);
-        } catch (\Exception $e) {
-            report($e);
-            $this->dispatch('swal', icon: 'error', title: 'Gagal', text: 'Tidak dapat memproses pembayaran. Pastikan konfigurasi Midtrans sudah benar.');
+        if ($this->payment_proof_upload) {
+            $data['payment_proof'] = $this->payment_proof_upload->store('donations/proof', 'public');
         }
+
+        Donation::create($data);
+
+        $this->submitted = true;
+        $this->dispatch('swal', icon: 'success', title: 'Donasi Tercatat!', text: 'Terima kasih! Silakan transfer ke rekening yang tertera. Admin akan mengkonfirmasi donasi Anda.');
     }
 
     public function render()
@@ -84,7 +89,9 @@ class DonationDetail extends Component
             ->where('payment_status', 'success')
             ->count();
 
-        return view('livewire.public.donation-detail', compact('recentDonors', 'donorCount'))
+        $donationSetting = DonationSetting::getContent();
+
+        return view('livewire.public.donation-detail', compact('recentDonors', 'donorCount', 'donationSetting'))
             ->layout('layouts.app', ['title' => 'Donasi — ' . $this->campaign->title]);
     }
 }

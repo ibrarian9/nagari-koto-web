@@ -4,7 +4,7 @@ use App\Livewire\Admin;
 use App\Livewire\PublicSite;
 use App\Livewire\PublicSite\Ppid;
 use App\Livewire\PublicSite\Bumnag;
-use App\Http\Controllers\MidtransWebhookController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,10 +54,7 @@ Route::prefix('ppid')->name('ppid.')->group(function () {
     Route::get('/cek-status', Ppid\PpidCekStatus::class)->name('cek-status');
 });
 
-// Midtrans webhook (no CSRF)
-Route::post('/api/midtrans/webhook', [MidtransWebhookController::class, 'handle'])
-    ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])
-    ->name('midtrans.webhook');
+
 
 /*
 |--------------------------------------------------------------------------

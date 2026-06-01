@@ -13,16 +13,15 @@ class Donation extends Model
     protected $fillable = [
         'campaign_id', 'order_id', 'donor_name', 'donor_email', 'donor_phone',
         'amount', 'message', 'is_anonymous', 'payment_status', 'payment_type',
-        'snap_token', 'paid_at', 'midtrans_response',
+        'payment_proof', 'paid_at',
     ];
 
     protected function casts(): array
     {
         return [
-            'amount'             => 'decimal:2',
-            'is_anonymous'       => 'boolean',
-            'paid_at'            => 'datetime',
-            'midtrans_response'  => 'array',
+            'amount'       => 'decimal:2',
+            'is_anonymous' => 'boolean',
+            'paid_at'      => 'datetime',
         ];
     }
 

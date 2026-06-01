@@ -52,6 +52,39 @@
                     </div>
                 </div>
 
+                {{-- Bank Accounts Card --}}
+                @if(!empty($donationSetting->bank_accounts))
+                    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+                        <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-rose-500">account_balance</span> Rekening Donasi
+                        </h3>
+                        <div class="space-y-3">
+                            @foreach($donationSetting->bank_accounts as $account)
+                                <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-gray-50 to-rose-50/30 rounded-xl border border-gray-100 group hover:border-rose-200 transition-colors">
+                                    <div class="flex-shrink-0 h-12 w-12 rounded-xl bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center shadow-md">
+                                        <span class="material-symbols-outlined text-white text-xl">account_balance</span>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-xs font-semibold text-rose-600 uppercase tracking-wider">{{ $account['bank'] ?? 'Bank' }}</p>
+                                        <p class="text-lg font-bold text-gray-900 tracking-wide font-mono">{{ $account['account_number'] ?? '-' }}</p>
+                                        <p class="text-sm text-gray-500">a.n. {{ $account['account_name'] ?? '-' }}</p>
+                                    </div>
+                                    <button onclick="navigator.clipboard.writeText('{{ $account['account_number'] ?? '' }}'); this.querySelector('span').textContent='check'; setTimeout(() => this.querySelector('span').textContent='content_copy', 1500)"
+                                        class="flex-shrink-0 h-9 w-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-rose-500 hover:border-rose-300 transition-all shadow-sm" title="Salin nomor rekening">
+                                        <span class="material-symbols-outlined text-base">content_copy</span>
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+                        @if($donationSetting->transfer_instructions)
+                            <div class="mt-4 p-3 bg-amber-50 border border-amber-200/60 rounded-xl flex items-start gap-3">
+                                <span class="material-symbols-outlined text-amber-500 text-base mt-0.5">info</span>
+                                <p class="text-xs text-amber-700 leading-relaxed">{{ $donationSetting->transfer_instructions }}</p>
+                            </div>
+                        @endif
+                    </div>
+                @endif
+
                 {{-- Description --}}
                 @if($campaign->description)
                     <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
@@ -99,109 +132,115 @@
             {{-- RIGHT: Donation Form --}}
             <div class="lg:col-span-2">
                 <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sticky top-24">
-                    <div class="text-center mb-5">
-                        <div class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-rose-100 mb-3">
-                            <span class="material-symbols-outlined text-2xl text-rose-600">favorite</span>
-                        </div>
-                        <h3 class="font-bold text-gray-900 text-lg">Donasi Sekarang</h3>
-                        <p class="text-sm text-gray-400 mt-1">Minimal Rp 10.000</p>
-                    </div>
-
-                    @if($campaign->status !== 'active' || $campaign->is_expired)
-                        <div class="text-center py-8 px-4 bg-gray-50 rounded-xl">
-                            <span class="material-symbols-outlined text-3xl text-gray-300">lock</span>
-                            <p class="text-gray-500 font-medium mt-2">Campaign ini sudah ditutup</p>
+                    @if($submitted)
+                        {{-- Success State --}}
+                        <div class="text-center py-8">
+                            <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                                <span class="material-symbols-outlined text-3xl text-green-600">check_circle</span>
+                            </div>
+                            <h3 class="font-bold text-gray-900 text-lg mb-2">Donasi Tercatat!</h3>
+                            <p class="text-sm text-gray-500 mb-4">Silakan segera transfer ke rekening yang tertera di samping. Admin akan mengkonfirmasi donasi Anda setelah pembayaran diterima.</p>
+                            <button wire:click="$set('submitted', false)" class="text-sm text-rose-600 hover:text-rose-700 font-semibold">Donasi Lagi</button>
                         </div>
                     @else
-                        <form wire:submit="submitDonation" class="space-y-4">
-                            {{-- Quick amount buttons --}}
-                            <div>
-                                <label class="form-label">Pilih Nominal</label>
-                                <div class="grid grid-cols-3 gap-2 mb-2">
-                                    @foreach([10000, 25000, 50000, 100000, 250000, 500000] as $preset)
-                                        <button type="button" wire:click="$set('amount', {{ $preset }})"
-                                            class="py-2 rounded-lg text-xs font-semibold transition-all {{ $amount == $preset ? 'bg-rose-500 text-white shadow-md shadow-rose-200' : 'bg-gray-100 text-gray-700 hover:bg-rose-50 hover:text-rose-600' }}">
-                                            {{ number_format($preset / 1000) }}rb
-                                        </button>
-                                    @endforeach
-                                </div>
-                                <input type="number" wire:model="amount" class="form-input w-full" placeholder="Nominal lainnya" min="10000">
-                                @error('amount')<p class="form-error">{{ $message }}</p>@enderror
+                        <div class="text-center mb-5">
+                            <div class="inline-flex items-center justify-center h-12 w-12 rounded-full bg-rose-100 mb-3">
+                                <span class="material-symbols-outlined text-2xl text-rose-600">favorite</span>
                             </div>
-
-                            <div>
-                                <label class="form-label">Nama <span class="text-red-400">*</span></label>
-                                <input type="text" wire:model="donor_name" class="form-input w-full" placeholder="Nama Anda">
-                                @error('donor_name')<p class="form-error">{{ $message }}</p>@enderror
-                            </div>
-
-                            <div>
-                                <label class="form-label">Email</label>
-                                <input type="email" wire:model="donor_email" class="form-input w-full" placeholder="email@contoh.com">
-                                @error('donor_email')<p class="form-error">{{ $message }}</p>@enderror
-                            </div>
-
-                            <div>
-                                <label class="form-label">No. HP</label>
-                                <input type="text" wire:model="donor_phone" class="form-input w-full" placeholder="08xxxxxxxxxx">
-                            </div>
-
-                            <div>
-                                <label class="form-label">Pesan / Doa</label>
-                                <textarea wire:model="message" class="form-input w-full" rows="2" placeholder="Semoga bermanfaat..."></textarea>
-                            </div>
-
-                            <label class="inline-flex items-center gap-2.5 cursor-pointer select-none group">
-                                <input type="checkbox" wire:model="is_anonymous" class="form-checkbox">
-                                <span class="text-sm text-gray-600 group-hover:text-gray-900 transition-colors">Donasi sebagai anonim</span>
-                            </label>
-
-                            <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold text-sm hover:from-rose-600 hover:to-pink-700 transition-all shadow-lg shadow-rose-200 flex items-center justify-center gap-2"
-                                wire:loading.attr="disabled" wire:target="submitDonation">
-                                <span wire:loading.remove wire:target="submitDonation" class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-base">favorite</span> Donasi Sekarang
-                                </span>
-                                <span wire:loading wire:target="submitDonation" class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-base animate-spin">progress_activity</span> Memproses...
-                                </span>
-                            </button>
-                        </form>
-
-                        <div class="mt-4 flex items-center justify-center gap-2 text-xs text-gray-400">
-                            <span class="material-symbols-outlined text-sm">lock</span>
-                            Pembayaran aman via Midtrans
+                            <h3 class="font-bold text-gray-900 text-lg">Donasi Sekarang</h3>
+                            <p class="text-sm text-gray-400 mt-1">Minimal Rp 10.000</p>
                         </div>
+
+                        @if($campaign->status !== 'active' || $campaign->is_expired)
+                            <div class="text-center py-8 px-4 bg-gray-50 rounded-xl">
+                                <span class="material-symbols-outlined text-3xl text-gray-300">lock</span>
+                                <p class="text-gray-500 font-medium mt-2">Campaign ini sudah ditutup</p>
+                            </div>
+                        @else
+                            <form wire:submit="submitDonation" class="space-y-4">
+                                {{-- Quick amount buttons --}}
+                                <div>
+                                    <label class="form-label">Pilih Nominal</label>
+                                    <div class="grid grid-cols-3 gap-2 mb-2">
+                                        @foreach([10000, 25000, 50000, 100000, 250000, 500000] as $preset)
+                                            <button type="button" wire:click="$set('amount', {{ $preset }})"
+                                                class="py-2 rounded-lg text-xs font-semibold transition-all {{ $amount == $preset ? 'bg-rose-500 text-white shadow-md shadow-rose-200' : 'bg-gray-100 text-gray-700 hover:bg-rose-50 hover:text-rose-600' }}">
+                                                {{ number_format($preset / 1000) }}rb
+                                            </button>
+                                        @endforeach
+                                    </div>
+                                    <input type="number" wire:model="amount" class="form-input w-full" placeholder="Nominal lainnya" min="10000">
+                                    @error('amount')<p class="form-error">{{ $message }}</p>@enderror
+                                </div>
+
+                                <div>
+                                    <label class="form-label">Nama <span class="text-red-400">*</span></label>
+                                    <input type="text" wire:model="donor_name" class="form-input w-full" placeholder="Nama Anda">
+                                    @error('donor_name')<p class="form-error">{{ $message }}</p>@enderror
+                                </div>
+
+                                <div>
+                                    <label class="form-label">Email</label>
+                                    <input type="email" wire:model="donor_email" class="form-input w-full" placeholder="email@contoh.com">
+                                    @error('donor_email')<p class="form-error">{{ $message }}</p>@enderror
+                                </div>
+
+                                <div>
+                                    <label class="form-label">No. HP</label>
+                                    <input type="text" wire:model="donor_phone" class="form-input w-full" placeholder="08xxxxxxxxxx">
+                                </div>
+
+                                <div>
+                                    <label class="form-label">Pesan / Doa</label>
+                                    <textarea wire:model="message" class="form-input w-full" rows="2" placeholder="Semoga bermanfaat..."></textarea>
+                                </div>
+
+                                {{-- Upload bukti transfer --}}
+                                <div>
+                                    <label class="form-label">Bukti Transfer <span class="text-xs text-gray-400">(opsional)</span></label>
+                                    <div class="relative">
+                                        <input type="file" wire:model="payment_proof_upload" accept="image/*" class="hidden" id="proof-upload">
+                                        <label for="proof-upload" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl border-2 border-dashed border-gray-200 hover:border-rose-300 hover:bg-rose-50/30 text-sm text-gray-500 hover:text-rose-600 cursor-pointer transition-all">
+                                            <span class="material-symbols-outlined text-base">cloud_upload</span>
+                                            <span>Pilih foto bukti transfer</span>
+                                        </label>
+                                    </div>
+                                    @if($payment_proof_upload)
+                                        <div class="mt-2 flex items-center gap-2 p-2 bg-green-50 rounded-lg border border-green-200">
+                                            <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                                            <span class="text-xs text-green-700 truncate">{{ $payment_proof_upload->getClientOriginalName() }}</span>
+                                        </div>
+                                    @endif
+                                    @error('payment_proof_upload')<p class="form-error">{{ $message }}</p>@enderror
+                                    <div wire:loading wire:target="payment_proof_upload" class="mt-2 text-xs text-gray-400 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-xs animate-spin">progress_activity</span> Mengupload...
+                                    </div>
+                                </div>
+
+                                <label class="inline-flex items-center gap-2.5 cursor-pointer select-none group">
+                                    <input type="checkbox" wire:model="is_anonymous" class="form-checkbox">
+                                    <span class="text-sm text-gray-600 group-hover:text-gray-900 transition-colors">Donasi sebagai anonim</span>
+                                </label>
+
+                                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold text-sm hover:from-rose-600 hover:to-pink-700 transition-all shadow-lg shadow-rose-200 flex items-center justify-center gap-2"
+                                    wire:loading.attr="disabled" wire:target="submitDonation">
+                                    <span wire:loading.remove wire:target="submitDonation" class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-base">favorite</span> Kirim Donasi
+                                    </span>
+                                    <span wire:loading wire:target="submitDonation" class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-base animate-spin">progress_activity</span> Memproses...
+                                    </span>
+                                </button>
+                            </form>
+
+                            <div class="mt-4 flex items-center justify-center gap-2 text-xs text-gray-400">
+                                <span class="material-symbols-outlined text-sm">info</span>
+                                Transfer ke rekening di atas, lalu tunggu konfirmasi admin
+                            </div>
+                        @endif
                     @endif
                 </div>
             </div>
         </div>
     </section>
-
-    {{-- Midtrans Snap.js --}}
-    @push('scripts')
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}" defer></script>
-    <script>
-        document.addEventListener('livewire:init', () => {
-            Livewire.on('openSnap', ({ token }) => {
-                if (typeof snap !== 'undefined') {
-                    snap.pay(token, {
-                        onSuccess: function(result) {
-                            Swal.fire({ icon: 'success', title: 'Terima Kasih!', text: 'Donasi Anda berhasil. Semoga menjadi amal kebaikan.', confirmButtonColor: '#e11d48' });
-                            setTimeout(() => window.location.reload(), 2000);
-                        },
-                        onPending: function(result) {
-                            Swal.fire({ icon: 'info', title: 'Menunggu Pembayaran', text: 'Silakan selesaikan pembayaran Anda.', confirmButtonColor: '#e11d48' });
-                        },
-                        onError: function(result) {
-                            Swal.fire({ icon: 'error', title: 'Pembayaran Gagal', text: 'Terjadi kesalahan. Silakan coba lagi.', confirmButtonColor: '#e11d48' });
-                        },
-                        onClose: function() {
-                            // User closed popup without completing
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-    @endpush
 </div>
