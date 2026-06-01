@@ -23,29 +23,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // ─── Users ──────────────────────────────────────────
-        User::create([
-            'name' => 'Super Admin',
-            'email' => 'admin@nagari-koto.desa.id',
-            'password' => Hash::make('password'),
-            'role' => 'super_admin',
-            'is_active' => true,
-        ]);
-
-        User::create([
-            'name' => 'Operator Desa',
-            'email' => 'operator@nagari-koto.desa.id',
-            'password' => Hash::make('password'),
-            'role' => 'operator',
-            'is_active' => true,
-        ]);
-
-        $warga = User::create([
-            'name' => 'Budi Santoso',
-            'email' => 'budi@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'warga',
-            'is_active' => true,
-        ]);
+        $this->call(UserSeeder::class);
 
         // ─── Village Profile ────────────────────────────────
         VillageProfile::create([
