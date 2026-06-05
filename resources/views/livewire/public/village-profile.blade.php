@@ -1,24 +1,30 @@
 <div>
-    @if($village?->photo)
+    @if ($village?->photo)
         @push('preload')
             <link rel="preload" as="image" href="{{ Storage::url($village->photo) }}">
         @endpush
     @endif
     {{-- ─── HERO ─────────────────────────────────── --}}
     <section class="relative bg-gradient-to-br from-desa-600 via-desa-700 to-desa-900 overflow-hidden">
-        @if($village?->photo)
-            <img src="{{ Storage::url($village->photo) }}" alt="{{ $village->name }}" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
+        @if ($village?->photo)
+            <img src="{{ Storage::url($village->photo) }}" alt="{{ $village->name }}"
+                class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
             <div class="absolute inset-0 bg-gradient-to-br from-desa-900/85 via-desa-800/80 to-desa-900/90"></div>
         @else
             <div class="absolute inset-0 opacity-10">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-amber-400 rounded-full filter blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-                <div class="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full filter blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+                <div
+                    class="absolute top-0 right-0 w-96 h-96 bg-amber-400 rounded-full filter blur-3xl translate-x-1/2 -translate-y-1/2">
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full filter blur-3xl -translate-x-1/2 translate-y-1/2">
+                </div>
             </div>
         @endif
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
                 <div class="lg:col-span-3">
-                    <div class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm text-amber-300 mb-4">
+                    <div
+                        class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm text-amber-300 mb-4">
                         <span class="material-symbols-outlined text-base">location_city</span>
                         Profil Desa
                     </div>
@@ -28,7 +34,7 @@
                     <p class="mt-3 text-lg text-desa-100 max-w-lg">
                         {{ $village?->tagline ?? 'Membangun desa maju, sejahtera, dan berbudaya' }}
                     </p>
-                    @if($village?->address)
+                    @if ($village?->address)
                         <p class="mt-4 flex items-center gap-2 text-sm text-desa-200">
                             <span class="material-symbols-outlined text-base">location_on</span>
                             {{ $village->address }}
@@ -37,14 +43,10 @@
                 </div>
                 {{-- Quick Info Cards --}}
                 <div class="lg:col-span-2 grid grid-cols-2 gap-3">
-                    @foreach([
-                        ['icon' => 'tag', 'value' => $village?->village_code ?? '-', 'label' => 'Kode Desa'],
-                        ['icon' => 'landscape', 'value' => ($village?->area_ha ?? '-') . ' Ha', 'label' => 'Luas Wilayah'],
-                        ['icon' => 'calendar_month', 'value' => $village?->established_year ?? '-', 'label' => 'Tahun Berdiri'],
-                        ['icon' => 'groups', 'value' => $latestStats ? number_format($latestStats->total_population) : '-', 'label' => 'Penduduk'],
-                    ] as $qi)
+                    @foreach ([['icon' => 'tag', 'value' => $village?->village_code ?? '-', 'label' => 'Kode Desa'], ['icon' => 'landscape', 'value' => ($village?->area_ha ?? '-') . ' Ha', 'label' => 'Luas Wilayah'], ['icon' => 'calendar_month', 'value' => $village?->established_year ?? '-', 'label' => 'Tahun Berdiri'], ['icon' => 'groups', 'value' => $latestStats ? number_format($latestStats->total_population) : '-', 'label' => 'Penduduk']] as $qi)
                         <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/10">
-                            <span class="material-symbols-outlined text-amber-300 text-xl mb-1">{{ $qi['icon'] }}</span>
+                            <span
+                                class="material-symbols-outlined text-amber-300 text-xl mb-1">{{ $qi['icon'] }}</span>
                             <p class="text-xl font-extrabold text-white">{{ $qi['value'] }}</p>
                             <p class="text-xs text-desa-200">{{ $qi['label'] }}</p>
                         </div>
@@ -57,14 +59,10 @@
     {{-- ─── NAVIGATION TABS ─────────────────────────────────── --}}
     <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12" x-data="{ tab: 'sejarah' }">
         <div class="flex flex-wrap justify-center gap-2 mb-8">
-            @foreach([
-                ['key' => 'sejarah', 'label' => 'Sejarah', 'icon' => 'history_edu'],
-                ['key' => 'visi', 'label' => 'Visi & Misi', 'icon' => 'flag'],
-                ['key' => 'wilayah', 'label' => 'Wilayah', 'icon' => 'domain'],
-                ['key' => 'peta', 'label' => 'Peta Desa', 'icon' => 'map'],
-            ] as $t)
+            @foreach ([['key' => 'sejarah', 'label' => 'Sejarah', 'icon' => 'history_edu'], ['key' => 'visi', 'label' => 'Visi & Misi', 'icon' => 'flag'], ['key' => 'wilayah', 'label' => 'Wilayah', 'icon' => 'domain'], ['key' => 'peta', 'label' => 'Peta Desa', 'icon' => 'map']] as $t)
                 <button @click="tab = '{{ $t['key'] }}'"
-                    :class="tab === '{{ $t['key'] }}' ? 'bg-desa-500 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-50'"
+                    :class="tab === '{{ $t['key'] }}' ? 'bg-desa-500 text-white shadow-md' :
+                        'bg-white text-gray-600 hover:bg-gray-50'"
                     class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 border border-gray-200">
                     <span class="material-symbols-outlined text-lg">{{ $t['icon'] }}</span>
                     <span class="hidden sm:inline">{{ $t['label'] }}</span>
@@ -88,11 +86,13 @@
                 {{-- Sidebar --}}
                 <div class="space-y-6">
                     {{-- Kepala Desa --}}
-                    @if($kepala)
+                    @if ($kepala)
                         <div class="card p-6 text-center">
-                            <div class="mx-auto h-24 w-24 rounded-full bg-gray-100 overflow-hidden mb-3 ring-4 ring-desa-100">
-                                @if($kepala->photo)
-                                    <img src="{{ Storage::url($kepala->photo) }}" alt="{{ $kepala->name }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
+                            <div
+                                class="mx-auto h-24 w-24 rounded-full bg-gray-100 overflow-hidden mb-3 ring-4 ring-desa-100">
+                                @if ($kepala->photo)
+                                    <img src="{{ Storage::url($kepala->photo) }}" alt="{{ $kepala->name }}"
+                                        class="h-full w-full object-cover" loading="lazy" decoding="async">
                                 @else
                                     <div class="h-full w-full flex items-center justify-center bg-desa-50">
                                         <span class="material-symbols-outlined text-4xl text-desa-300">person</span>
@@ -116,12 +116,7 @@
                             Wilayah Administratif
                         </h3>
                         <div class="space-y-3 text-sm">
-                            @foreach([
-                                ['label' => 'Provinsi', 'value' => $village?->province ?? '-'],
-                                ['label' => 'Kabupaten', 'value' => $village?->regency ?? '-'],
-                                ['label' => 'Kecamatan', 'value' => $village?->district ?? '-'],
-                                ['label' => 'Kode Desa', 'value' => $village?->village_code ?? '-'],
-                            ] as $item)
+                            @foreach ([['label' => 'Provinsi', 'value' => $village?->province ?? '-'], ['label' => 'Kabupaten', 'value' => $village?->regency ?? '-'], ['label' => 'Kecamatan', 'value' => $village?->district ?? '-'], ['label' => 'Kode Desa', 'value' => $village?->village_code ?? '-']] as $item)
                                 <div class="flex justify-between">
                                     <span class="text-gray-400">{{ $item['label'] }}</span>
                                     <span class="font-medium text-gray-900">{{ $item['value'] }}</span>
@@ -131,7 +126,7 @@
                     </div>
 
                     {{-- Statistik Singkat --}}
-                    @if($latestStats)
+                    @if ($latestStats)
                         <div class="card p-6">
                             <h3 class="font-bold text-gray-900 text-sm mb-4 flex items-center gap-2">
                                 <span class="material-symbols-outlined text-desa-500 text-lg">bar_chart</span>
@@ -140,19 +135,23 @@
                             <div class="space-y-3 text-sm">
                                 <div class="flex justify-between">
                                     <span class="text-gray-400">Penduduk</span>
-                                    <span class="font-bold text-gray-900">{{ number_format($latestStats->total_population) }}</span>
+                                    <span
+                                        class="font-bold text-gray-900">{{ number_format($latestStats->total_population) }}</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-400">Laki-laki</span>
-                                    <span class="font-medium text-blue-600">{{ number_format($latestStats->male) }}</span>
+                                    <span
+                                        class="font-medium text-blue-600">{{ number_format($latestStats->male) }}</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-400">Perempuan</span>
-                                    <span class="font-medium text-pink-600">{{ number_format($latestStats->female) }}</span>
+                                    <span
+                                        class="font-medium text-pink-600">{{ number_format($latestStats->female) }}</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-400">Kepala Keluarga</span>
-                                    <span class="font-medium text-gray-900">{{ number_format($latestStats->total_families) }}</span>
+                                    <span
+                                        class="font-medium text-gray-900">{{ number_format($latestStats->total_families) }}</span>
                                 </div>
                             </div>
                             <a href="{{ route('infografis') }}" wire:navigate
@@ -184,7 +183,7 @@
                 {{-- Misi --}}
                 <div class="card p-6 md:p-8">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="h-12 w-12 rounded-xl bg-amber-500 flex items-center justify-center">
+                        <div class="h-12 w-12 rounded-xl bg-desa-500 flex items-center justify-center">
                             <span class="material-symbols-outlined text-white text-2xl">checklist</span>
                         </div>
                         <h2 class="text-xl font-bold text-gray-900">Misi</h2>
@@ -205,16 +204,10 @@
                         Informasi Wilayah
                     </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        @foreach([
-                            ['icon' => 'public', 'label' => 'Provinsi', 'value' => $village?->province ?? '-'],
-                            ['icon' => 'apartment', 'label' => 'Kabupaten/Kota', 'value' => $village?->regency ?? '-'],
-                            ['icon' => 'domain', 'label' => 'Kecamatan', 'value' => $village?->district ?? '-'],
-                            ['icon' => 'tag', 'label' => 'Kode Desa', 'value' => $village?->village_code ?? '-'],
-                            ['icon' => 'landscape', 'label' => 'Luas Wilayah', 'value' => ($village?->area_ha ?? '-') . ' Ha'],
-                            ['icon' => 'calendar_month', 'label' => 'Tahun Berdiri', 'value' => $village?->established_year ?? '-'],
-                        ] as $item)
+                        @foreach ([['icon' => 'public', 'label' => 'Provinsi', 'value' => $village?->province ?? '-'], ['icon' => 'apartment', 'label' => 'Kabupaten/Kota', 'value' => $village?->regency ?? '-'], ['icon' => 'domain', 'label' => 'Kecamatan', 'value' => $village?->district ?? '-'], ['icon' => 'tag', 'label' => 'Kode Desa', 'value' => $village?->village_code ?? '-'], ['icon' => 'landscape', 'label' => 'Luas Wilayah', 'value' => ($village?->area_ha ?? '-') . ' Ha'], ['icon' => 'calendar_month', 'label' => 'Tahun Berdiri', 'value' => $village?->established_year ?? '-']] as $item)
                             <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-50">
-                                <div class="h-10 w-10 rounded-lg bg-desa-50 flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="h-10 w-10 rounded-lg bg-desa-50 flex items-center justify-center flex-shrink-0">
                                     <span class="material-symbols-outlined text-desa-600">{{ $item['icon'] }}</span>
                                 </div>
                                 <div>
@@ -224,7 +217,7 @@
                             </div>
                         @endforeach
                     </div>
-                    @if($village?->address)
+                    @if ($village?->address)
                         <div class="mt-6 p-4 rounded-xl bg-desa-50 flex items-start gap-3">
                             <span class="material-symbols-outlined text-desa-600 mt-0.5">location_on</span>
                             <div>
@@ -235,7 +228,7 @@
                     @endif
                 </div>
                 {{-- Demografis --}}
-                @if($latestStats)
+                @if ($latestStats)
                     <div class="space-y-6">
                         <div class="card p-6">
                             <h3 class="font-bold text-gray-900 text-sm mb-4 flex items-center gap-2">
@@ -243,7 +236,8 @@
                                 Demografi
                             </h3>
                             <div class="text-center mb-4">
-                                <p class="text-4xl font-extrabold text-desa-600">{{ number_format($latestStats->total_population) }}</p>
+                                <p class="text-4xl font-extrabold text-desa-600">
+                                    {{ number_format($latestStats->total_population) }}</p>
                                 <p class="text-xs text-gray-400 mt-1">Total Penduduk ({{ $latestStats->year }})</p>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
@@ -260,14 +254,17 @@
                             </div>
                             <div class="mt-3 rounded-lg bg-amber-50 p-3 text-center">
                                 <span class="material-symbols-outlined text-amber-500 text-lg">family_restroom</span>
-                                <p class="font-bold text-gray-900">{{ number_format($latestStats->total_families) }}</p>
+                                <p class="font-bold text-gray-900">{{ number_format($latestStats->total_families) }}
+                                </p>
                                 <p class="text-xs text-gray-400">Kepala Keluarga</p>
                             </div>
                         </div>
                         <a href="{{ route('infografis') }}" wire:navigate
                             class="card p-5 flex items-center gap-3 group hover:-translate-y-0.5 transition-all duration-300">
-                            <div class="h-10 w-10 rounded-lg bg-desa-50 flex items-center justify-center group-hover:bg-desa-500 transition-colors">
-                                <span class="material-symbols-outlined text-desa-600 group-hover:text-white transition-colors">bar_chart</span>
+                            <div
+                                class="h-10 w-10 rounded-lg bg-desa-50 flex items-center justify-center group-hover:bg-desa-500 transition-colors">
+                                <span
+                                    class="material-symbols-outlined text-desa-600 group-hover:text-white transition-colors">bar_chart</span>
                             </div>
                             <div class="flex-1">
                                 <p class="font-bold text-gray-900 text-sm">Infografis Lengkap</p>
@@ -288,7 +285,7 @@
                         <span class="material-symbols-outlined text-desa-500">map</span>
                         Peta Lokasi Desa
                     </h2>
-                    @if($village?->address)
+                    @if ($village?->address)
                         <p class="text-sm text-gray-500 hidden md:flex items-center gap-1">
                             <span class="material-symbols-outlined text-sm">location_on</span>
                             {{ $village->address }}
@@ -296,7 +293,7 @@
                     @endif
                 </div>
                 <div class="aspect-video bg-gray-100">
-                    @if($village?->map_embed_url)
+                    @if ($village?->map_embed_url)
                         <iframe src="{{ $village->map_embed_url }}" class="w-full h-full border-0" loading="lazy"
                             allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
                     @else
@@ -306,7 +303,7 @@
                         </div>
                     @endif
                 </div>
-                @if($village?->address)
+                @if ($village?->address)
                     <div class="p-5 bg-gray-50 md:hidden">
                         <p class="flex items-start gap-2 text-sm text-gray-600">
                             <span class="material-symbols-outlined text-desa-500 text-base mt-0.5">location_on</span>

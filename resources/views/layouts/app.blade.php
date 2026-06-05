@@ -83,6 +83,134 @@
                         ],
                         [
                             'type' => 'dropdown',
+                            'label' => 'Layanan',
+                            'icon' => 'handshake',
+                            'activeRoutes' => ['surat.info', 'donasi', 'donasi.detail', 'bansos'],
+                            'items' => [
+                                [
+                                    'route' => 'surat.info',
+                                    'label' => 'Layanan Surat',
+                                    'icon' => 'mail',
+                                    'desc' => 'Permohonan surat online',
+                                ],
+                                [
+                                    'route' => 'bansos',
+                                    'label' => 'Cek Bansos',
+                                    'icon' => 'volunteer_activism',
+                                    'desc' => 'Link cek bantuan sosial',
+                                ],
+                                [
+                                    'route' => 'donasi',
+                                    'label' => 'Donasi',
+                                    'icon' => 'favorite',
+                                    'desc' => 'Crowdfunding program nagari',
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'dropdown',
+                            'label' => 'PPID',
+                            'icon' => 'policy',
+                            'activeRoutes' => ['ppid.home'],
+                            'items' => [
+                                [
+                                    'route' => 'ppid.home',
+                                    'params' => ['tab' => 'profil'],
+                                    'label' => 'Profil Singkat',
+                                    'icon' => 'badge',
+                                    'desc' => 'Profil Singkat PPID',
+                                ],
+                                [
+                                    'route' => 'ppid.home',
+                                    'params' => ['tab' => 'visi'],
+                                    'label' => 'Visi & Misi',
+                                    'icon' => 'visibility',
+                                    'desc' => 'Visi & Misi PPID',
+                                ],
+                                [
+                                    'route' => 'ppid.home',
+                                    'params' => ['tab' => 'tugas'],
+                                    'label' => 'Tugas & Fungsi',
+                                    'icon' => 'assignment',
+                                    'desc' => 'Tugas & Fungsi PPID',
+                                ],
+                                [
+                                    'route' => 'ppid.home',
+                                    'params' => ['tab' => 'struktur'],
+                                    'label' => 'Struktur Organisasi',
+                                    'icon' => 'account_tree',
+                                    'desc' => 'Struktur Organisasi PPID',
+                                ],
+                                [
+                                    'route' => 'ppid.home',
+                                    'params' => ['tab' => 'dip'],
+                                    'label' => 'Informasi Publik',
+                                    'icon' => 'list_alt',
+                                    'desc' => 'Berkala, Setiap Saat & Serta Merta',
+                                ],
+                                [
+                                    'type' => 'sub_dropdown',
+                                    'label' => 'Pelayanan Publik',
+                                    'icon' => 'support_agent',
+                                    'desc' => 'Form online & alur pelayanan',
+                                    'sub_items' => [
+                                        [
+                                            'route' => 'ppid.home',
+                                            'params' => ['tab' => 'pelayanan', 'sub' => 'alur_info'],
+                                            'label' => 'Alur Informasi',
+                                            'icon' => 'route',
+                                        ],
+                                        [
+                                            'route' => 'ppid.home',
+                                            'params' => ['tab' => 'pelayanan', 'sub' => 'permohonan'],
+                                            'label' => 'Permohonan Online',
+                                            'icon' => 'edit_note',
+                                        ],
+                                        [
+                                            'route' => 'ppid.home',
+                                            'params' => ['tab' => 'pelayanan', 'sub' => 'alur_kbr'],
+                                            'label' => 'Alur Keberatan',
+                                            'icon' => 'report',
+                                        ],
+                                        [
+                                            'route' => 'ppid.home',
+                                            'params' => ['tab' => 'pelayanan', 'sub' => 'keberatan'],
+                                            'label' => 'Keberatan Online',
+                                            'icon' => 'feedback',
+                                        ],
+                                        [
+                                            'route' => 'ppid.home',
+                                            'params' => ['tab' => 'pelayanan', 'sub' => 'alur_skt'],
+                                            'label' => 'Alur Sengketa',
+                                            'icon' => 'balance',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'route' => 'ppid.home',
+                                    'params' => ['tab' => 'maklumat'],
+                                    'label' => 'Maklumat Pelayanan',
+                                    'icon' => 'verified',
+                                    'desc' => 'Maklumat Pelayanan PPID',
+                                ],
+                                [
+                                    'route' => 'ppid.home',
+                                    'params' => ['tab' => 'jadwal'],
+                                    'label' => 'Jadwal & Biaya',
+                                    'icon' => 'event_note',
+                                    'desc' => 'Jadwal & Biaya Informasi',
+                                ],
+                                [
+                                    'route' => 'ppid.home',
+                                    'params' => ['tab' => 'regulasi'],
+                                    'label' => 'Regulasi',
+                                    'icon' => 'gavel',
+                                    'desc' => 'Dasar Hukum & SOP',
+                                ],
+                            ],
+                        ],
+                        [
+                            'type' => 'dropdown',
                             'label' => 'Profil',
                             'icon' => 'info',
                             'activeRoutes' => ['profil-desa', 'pemerintahan'],
@@ -98,32 +226,6 @@
                                     'label' => 'Pemerintahan',
                                     'icon' => 'groups',
                                     'desc' => 'Struktur organisasi',
-                                ],
-                            ],
-                        ],
-                        [
-                            'type' => 'dropdown',
-                            'label' => 'Lembaga Nagari',
-                            'icon' => 'info',
-                            'activeRoutes' => ['bamus', 'lembaga', 'bumnag.home', 'bumnag.struktur', 'bumnag.hukum', 'bumnag.anggaran', 'bumnag.program-kerja'],
-                            'items' => [
-                                [
-                                    'route' => 'bamus',
-                                    'label' => 'Badan Musyawarah',
-                                    'icon' => 'gavel',
-                                    'desc' => 'Susunan keanggotaan Bamus',
-                                ],
-                                [
-                                    'route' => 'lembaga',
-                                    'label' => 'Daftar Lembaga Nagari',
-                                    'icon' => 'domain',
-                                    'desc' => 'Lembaga nagari Duo Koto',
-                                ],
-                                [
-                                    'route' => 'bumnag.home',
-                                    'label' => 'BUMNag',
-                                    'icon' => 'store',
-                                    'desc' => 'Badan Usaha Milik Nagari',
                                 ],
                             ],
                         ],
@@ -150,26 +252,6 @@
                                     'label' => 'Kontak',
                                     'icon' => 'call',
                                     'desc' => 'Nomor penting desa',
-                                ],
-                            ],
-                        ],
-                        [
-                            'type' => 'dropdown',
-                            'label' => 'Potensi',
-                            'icon' => 'eco',
-                            'activeRoutes' => ['potensi', 'umkm'],
-                            'items' => [
-                                [
-                                    'route' => 'potensi',
-                                    'label' => 'Potensi Desa',
-                                    'icon' => 'eco',
-                                    'desc' => 'Kekayaan & unggulan',
-                                ],
-                                [
-                                    'route' => 'umkm',
-                                    'label' => 'UMKM',
-                                    'icon' => 'storefront',
-                                    'desc' => 'Direktori usaha lokal',
                                 ],
                             ],
                         ],
@@ -207,53 +289,47 @@
                         ],
                         [
                             'type' => 'dropdown',
-                            'label' => 'Layanan',
-                            'icon' => 'handshake',
-                            'activeRoutes' => ['surat.info', 'donasi', 'donasi.detail', 'bansos'],
+                            'label' => 'Lembaga Nagari',
+                            'icon' => 'info',
+                            'activeRoutes' => ['bamus', 'lembaga', 'bumnag.home', 'bumnag.struktur', 'bumnag.hukum', 'bumnag.anggaran', 'bumnag.program-kerja'],
                             'items' => [
                                 [
-                                    'route' => 'surat.info',
-                                    'label' => 'Layanan Surat',
-                                    'icon' => 'mail',
-                                    'desc' => 'Permohonan surat online',
+                                    'route' => 'bamus',
+                                    'label' => 'Badan Musyawarah',
+                                    'icon' => 'gavel',
+                                    'desc' => 'Susunan keanggotaan Bamus',
                                 ],
                                 [
-                                    'route' => 'bansos',
-                                    'label' => 'Cek Bansos',
-                                    'icon' => 'volunteer_activism',
-                                    'desc' => 'Link cek bantuan sosial',
+                                    'route' => 'lembaga',
+                                    'label' => 'Daftar Lembaga Nagari',
+                                    'icon' => 'domain',
+                                    'desc' => 'Lembaga nagari Duo Koto',
                                 ],
                                 [
-                                    'route' => 'donasi',
-                                    'label' => 'Donasi',
-                                    'icon' => 'favorite',
-                                    'desc' => 'Crowdfunding program nagari',
+                                    'route' => 'bumnag.home',
+                                    'label' => 'BUMNag',
+                                    'icon' => 'store',
+                                    'desc' => 'Badan Usaha Milik Nagari',
                                 ],
                             ],
                         ],
                         [
                             'type' => 'dropdown',
-                            'label' => 'PPID',
-                            'icon' => 'policy',
-                            'activeRoutes' => ['ppid.home', 'ppid.berkala', 'ppid.setiap-saat', 'ppid.serta-merta', 'ppid.dikecualikan', 'ppid.permohonan', 'ppid.cek-status'],
+                            'label' => 'Potensi',
+                            'icon' => 'eco',
+                            'activeRoutes' => ['potensi', 'umkm'],
                             'items' => [
                                 [
-                                    'route' => 'ppid.home',
-                                    'label' => 'Informasi Publik',
-                                    'icon' => 'policy',
-                                    'desc' => 'PPID Nagari',
+                                    'route' => 'potensi',
+                                    'label' => 'Potensi Desa',
+                                    'icon' => 'eco',
+                                    'desc' => 'Kekayaan & unggulan',
                                 ],
                                 [
-                                    'route' => 'ppid.permohonan',
-                                    'label' => 'Permohonan Informasi',
-                                    'icon' => 'edit_note',
-                                    'desc' => 'Ajukan permohonan',
-                                ],
-                                [
-                                    'route' => 'ppid.cek-status',
-                                    'label' => 'Cek Status',
-                                    'icon' => 'search',
-                                    'desc' => 'Lacak permohonan',
+                                    'route' => 'umkm',
+                                    'label' => 'UMKM',
+                                    'icon' => 'storefront',
+                                    'desc' => 'Direktori usaha lokal',
                                 ],
                             ],
                         ],
@@ -281,19 +357,62 @@
                                     x-transition:leave="transition ease-in duration-100"
                                     x-transition:leave-start="opacity-100 translate-y-0"
                                     x-transition:leave-end="opacity-0 translate-y-1"
-                                    class="absolute left-0 mt-1 w-60 rounded-xl bg-white shadow-xl ring-1 ring-gray-200/70 py-2 z-50">
+                                    class="absolute left-0 mt-1 w-64 rounded-xl bg-white shadow-xl ring-1 ring-gray-200/70 py-2 z-50">
                                     @foreach ($group['items'] as $item)
-                                        <a href="{{ route($item['route']) }}" wire:navigate
-                                            class="flex items-start gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors {{ request()->routeIs($item['route']) ? 'bg-desa-50' : '' }}">
-                                            <span
-                                                class="material-symbols-outlined text-lg mt-0.5 {{ request()->routeIs($item['route']) ? 'text-desa-600' : 'text-gray-400' }}">{{ $item['icon'] }}</span>
-                                            <div>
-                                                <p
-                                                    class="text-sm font-medium {{ request()->routeIs($item['route']) ? 'text-desa-600' : 'text-gray-800' }}">
-                                                    {{ $item['label'] }}</p>
-                                                <p class="text-xs text-gray-400">{{ $item['desc'] }}</p>
+                                        @if (($item['type'] ?? '') === 'sub_dropdown')
+                                            {{-- Sub Dropdown --}}
+                                            <div class="relative" x-data="{ subdd: false }" @mouseenter="subdd = true" @mouseleave="subdd = false">
+                                                <button @click="subdd = !subdd"
+                                                    class="w-full flex items-center justify-between px-4 py-2.5 hover:bg-gray-50 text-gray-800 transition-colors">
+                                                    <div class="flex items-start gap-3">
+                                                        <span class="material-symbols-outlined text-lg mt-0.5 text-gray-400">{{ $item['icon'] }}</span>
+                                                        <div class="text-left">
+                                                            <p class="text-sm font-medium text-gray-800">{{ $item['label'] }}</p>
+                                                            <p class="text-xs text-gray-400">{{ $item['desc'] }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <span class="material-symbols-outlined text-sm text-gray-400">chevron_right</span>
+                                                </button>
+                                                {{-- Sub Dropdown Menu --}}
+                                                <div x-show="subdd" x-transition:enter="transition ease-out duration-150"
+                                                    x-transition:enter-start="opacity-0 translate-x-1"
+                                                    x-transition:enter-end="opacity-100 translate-x-0"
+                                                    x-transition:leave="transition ease-in duration-100"
+                                                    x-transition:leave-start="opacity-100 translate-x-0"
+                                                    x-transition:leave-end="opacity-0 translate-x-1"
+                                                    class="absolute left-full top-0 ml-1 w-56 rounded-xl bg-white shadow-xl ring-1 ring-gray-200/70 py-2 z-50">
+                                                    @foreach ($item['sub_items'] as $subItem)
+                                                        @php
+                                                            $isSubActive = request()->routeIs($subItem['route']) && 
+                                                                           (empty($subItem['params']) || 
+                                                                            collect($subItem['params'])->every(fn($val, $key) => request()->query($key) == $val));
+                                                        @endphp
+                                                        <a href="{{ route($subItem['route'], $subItem['params'] ?? []) }}" wire:navigate
+                                                            class="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors {{ $isSubActive ? 'bg-desa-50 text-desa-600 font-medium' : 'text-gray-700' }}">
+                                                            <span class="material-symbols-outlined text-base {{ $isSubActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $subItem['icon'] }}</span>
+                                                            <span class="text-xs font-semibold">{{ $subItem['label'] }}</span>
+                                                        </a>
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </a>
+                                        @else
+                                            @php
+                                                $isActive = request()->routeIs($item['route']) && 
+                                                            (empty($item['params']) || 
+                                                             collect($item['params'])->every(fn($val, $key) => request()->query($key) == $val));
+                                            @endphp
+                                            <a href="{{ route($item['route'], $item['params'] ?? []) }}" wire:navigate
+                                                class="flex items-start gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors {{ $isActive ? 'bg-desa-50' : '' }}">
+                                                <span
+                                                    class="material-symbols-outlined text-lg mt-0.5 {{ $isActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $item['icon'] }}</span>
+                                                <div>
+                                                    <p
+                                                        class="text-sm font-medium {{ $isActive ? 'text-desa-600' : 'text-gray-800' }}">
+                                                        {{ $item['label'] }}</p>
+                                                    <p class="text-xs text-gray-400">{{ $item['desc'] }}</p>
+                                                </div>
+                                            </a>
+                                        @endif
                                     @endforeach
                                 </div>
                             </div>
@@ -402,12 +521,48 @@
                             <div x-show="mobileGroup === {{ $gi }}" x-collapse>
                                 <div class="ml-6 pl-3 border-l-2 border-gray-100 space-y-0.5 py-1">
                                     @foreach ($group['items'] as $item)
-                                        <a href="{{ route($item['route']) }}" wire:navigate @click="open = false"
-                                            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors {{ request()->routeIs($item['route']) ? 'text-desa-600 bg-desa-50 font-medium' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50' }}">
-                                            <span
-                                                class="material-symbols-outlined text-base">{{ $item['icon'] }}</span>
-                                            {{ $item['label'] }}
-                                        </a>
+                                        @if (($item['type'] ?? '') === 'sub_dropdown')
+                                            {{-- Sub Dropdown Mobile (Accordion) --}}
+                                            <div x-data="{ subOpen: false }">
+                                                <button @click="subOpen = !subOpen"
+                                                    class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-50">
+                                                    <span class="flex items-center gap-3">
+                                                        <span class="material-symbols-outlined text-base text-gray-400">{{ $item['icon'] }}</span>
+                                                        {{ $item['label'] }}
+                                                    </span>
+                                                    <span class="material-symbols-outlined text-xs transition-transform duration-200"
+                                                        :class="subOpen ? 'rotate-180' : ''">expand_more</span>
+                                                </button>
+                                                <div x-show="subOpen" x-collapse>
+                                                    <div class="ml-4 pl-3 border-l border-gray-100 space-y-0.5 py-1">
+                                                        @foreach ($item['sub_items'] as $subItem)
+                                                            @php
+                                                                $isSubActive = request()->routeIs($subItem['route']) && 
+                                                                               (empty($subItem['params']) || 
+                                                                                collect($subItem['params'])->every(fn($val, $key) => request()->query($key) == $val));
+                                                            @endphp
+                                                            <a href="{{ route($subItem['route'], $subItem['params'] ?? []) }}" wire:navigate @click="open = false"
+                                                                class="flex items-center gap-3 px-3 py-1.5 rounded-lg text-xs transition-colors {{ $isSubActive ? 'text-desa-600 bg-desa-50 font-semibold' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50' }}">
+                                                                <span class="material-symbols-outlined text-sm {{ $isSubActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $subItem['icon'] }}</span>
+                                                                {{ $subItem['label'] }}
+                                                            </a>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            @php
+                                                $isActive = request()->routeIs($item['route']) && 
+                                                            (empty($item['params']) || 
+                                                             collect($item['params'])->every(fn($val, $key) => request()->query($key) == $val));
+                                            @endphp
+                                            <a href="{{ route($item['route'], $item['params'] ?? []) }}" wire:navigate @click="open = false"
+                                                class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors {{ $isActive ? 'text-desa-600 bg-desa-50 font-medium' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50' }}">
+                                                <span
+                                                    class="material-symbols-outlined text-base {{ $isActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $item['icon'] }}</span>
+                                                {{ $item['label'] }}
+                                            </a>
+                                        @endif
                                     @endforeach
                                 </div>
                             </div>

@@ -1,0 +1,26 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('ppid_comments', function (Blueprint $table) {
+            $table->id();
+            $table->text('komentar');
+            $table->string('nama');
+            $table->string('email')->nullable();
+            $table->string('no_hp');
+            $table->boolean('is_approved')->default(false);
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('ppid_comments');
+    }
+};

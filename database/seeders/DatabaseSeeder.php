@@ -12,10 +12,8 @@ use App\Models\PopulationStat;
 use App\Models\Post;
 use App\Models\Potential;
 use App\Models\Product;
-use App\Models\User;
 use App\Models\VillageProfile;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -182,6 +180,17 @@ class DatabaseSeeder extends Seeder
                 'Bantuan Provinsi' => 180000000,
             ]),
         ]);
+
+        // ─── Call semua seeder tambahan ──────────────────────
+        $this->call([
+            DonationCampaignSeeder::class,
+            ForestryRecordSeeder::class,
+            HeroSettingSeeder::class,
+            BamusMemberSeeder::class,
+            VillageInstitutionSeeder::class,
+            BumnagSeeder::class,
+            PpidSeeder::class,
+            PpidContentSeeder::class,
+        ]);
     }
 }
-
