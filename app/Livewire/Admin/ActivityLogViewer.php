@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\ActivityLog;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Layout;
 
 class ActivityLogViewer extends Component
 {
@@ -18,6 +19,7 @@ class ActivityLogViewer extends Component
     public function updatingActionFilter(): void { $this->resetPage(); }
     public function updatingModelFilter(): void { $this->resetPage(); }
 
+    #[Layout('layouts.admin', ['title' => 'Log Aktivitas'])]
     public function render()
     {
         $query = ActivityLog::with('user')->latest();
@@ -43,6 +45,6 @@ class ActivityLogViewer extends Component
         return view('livewire.admin.activity-log-viewer', [
             'logs' => $query->paginate(25),
             'models' => $models,
-        ])->layout('layouts.admin', ['title' => 'Log Aktivitas']);
+        ]);
     }
 }

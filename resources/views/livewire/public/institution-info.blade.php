@@ -1,10 +1,10 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────────────── --}}
-    <x-hero-section slug="lembaga" gradient="from-purple-800 via-purple-900 to-slate-900">
+    <x-hero-section slug="lembaga" gradient="from-desa-700 via-desa-800 to-desa-950">
         <x-slot:decorations>
             <div class="absolute inset-0">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-                <div class="absolute bottom-0 left-0 w-80 h-80 bg-fuchsia-400/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
+                <div class="absolute top-0 right-0 w-96 h-96 bg-desa-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-desa-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
             </div>
         </x-slot:decorations>
         <div class="text-center">
@@ -14,12 +14,12 @@
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
                 Lembaga Nagari
             </h1>
-            <p class="mt-3 text-lg text-purple-200 max-w-2xl mx-auto">
+            <p class="mt-3 text-lg text-desa-200 max-w-2xl mx-auto">
                 Organisasi dan lembaga kemasyarakatan {{ $village?->name ?? 'nagari' }}
             </p>
-            <div class="mt-5 flex items-center justify-center gap-4 text-sm text-purple-300">
+            <div class="mt-5 flex items-center justify-center gap-4 text-sm text-desa-300">
                 <span class="flex items-center gap-1.5">
-                    <span class="material-symbols-outlined text-base text-amber-400">domain</span>
+                    <span class="material-symbols-outlined text-base text-desa-300">domain</span>
                     {{ $institutions->count() }} Lembaga Aktif
                 </span>
             </div>
@@ -30,7 +30,7 @@
     <section class="relative -mt-6 z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 mb-10">
         <div class="flex flex-wrap justify-center gap-2">
             <button wire:click="$set('typeFilter', '')"
-                class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border shadow-sm {{ !$typeFilter ? 'bg-purple-600 text-white border-purple-600 shadow-purple-200' : 'bg-white text-gray-600 border-gray-200 hover:border-purple-300 hover:text-purple-700' }}">
+                class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border shadow-sm {{ !$typeFilter ? 'bg-desa-600 text-white border-desa-600 shadow-desa-200' : 'bg-white text-gray-600 border-gray-200 hover:border-desa-300 hover:text-desa-700' }}">
                 Semua
             </button>
             @php
@@ -46,7 +46,7 @@
             @endphp
             @foreach (\App\Models\VillageInstitution::TYPES as $key => $label)
                 <button wire:click="$set('typeFilter', '{{ $typeFilter === $key ? '' : $key }}')"
-                    class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border shadow-sm flex items-center gap-1.5 {{ $typeFilter === $key ? 'bg-purple-600 text-white border-purple-600 shadow-purple-200' : 'bg-white text-gray-600 border-gray-200 hover:border-purple-300 hover:text-purple-700' }}">
+                    class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border shadow-sm flex items-center gap-1.5 {{ $typeFilter === $key ? 'bg-desa-600 text-white border-desa-600 shadow-desa-200' : 'bg-white text-gray-600 border-gray-200 hover:border-desa-300 hover:text-desa-700' }}">
                     <span class="material-symbols-outlined text-sm">{{ $typeIcons[$key] ?? 'category' }}</span>
                     {{ $label }}
                 </button>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="min-w-0 flex-1">
                                     <h3
-                                        class="font-bold text-gray-900 text-lg leading-tight group-hover:text-purple-700 transition-colors">
+                                        class="font-bold text-gray-900 text-lg leading-tight group-hover:text-desa-700 transition-colors">
                                         {{ $inst->name }}</h3>
                                     <span
                                         class="inline-flex items-center gap-1 mt-1 text-xs font-semibold text-gray-500">
@@ -102,7 +102,7 @@
 
                             @if ($inst->head_name)
                                 <div class="flex items-center gap-2 mb-3 px-3 py-2 bg-gray-50 rounded-lg">
-                                    <span class="material-symbols-outlined text-sm text-purple-500">person</span>
+                                    <span class="material-symbols-outlined text-sm text-desa-500">person</span>
                                     <div>
                                         <p class="text-xs text-gray-400">Ketua</p>
                                         <p class="text-sm font-semibold text-gray-800">{{ $inst->head_name }}</p>
@@ -136,8 +136,8 @@
             </div>
         @else
             <div class="text-center py-20">
-                <div class="inline-flex items-center justify-center h-20 w-20 rounded-2xl bg-purple-50 mb-6">
-                    <span class="material-symbols-outlined text-4xl text-purple-300">domain</span>
+                <div class="inline-flex items-center justify-center h-20 w-20 rounded-2xl bg-desa-50 mb-6">
+                    <span class="material-symbols-outlined text-4xl text-desa-300">domain</span>
                 </div>
                 <h2 class="text-xl font-bold text-gray-400 mb-2">
                     @if ($typeFilter)

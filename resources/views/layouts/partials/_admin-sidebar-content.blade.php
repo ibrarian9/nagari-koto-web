@@ -15,21 +15,20 @@
 </div>
 
 {{-- Nav --}}
-<nav class="admin-sidebar-nav px-3 py-3 space-y-0.5"
-     x-data="{
-         currentPath: window.location.pathname,
-         _handler: null,
-         init() {
-             this._handler = () => { this.currentPath = window.location.pathname; };
-             document.addEventListener('livewire:navigated', this._handler);
-         },
-         destroy() {
-             if (this._handler) document.removeEventListener('livewire:navigated', this._handler);
-         },
-         isActive(el) {
-             try { return this.currentPath === new URL(el.href, window.location.origin).pathname; } catch { return false; }
-         }
-     }">
+<nav class="admin-sidebar-nav px-3 py-3 space-y-0.5" x-data="{
+    currentPath: window.location.pathname,
+    _handler: null,
+    init() {
+        this._handler = () => { this.currentPath = window.location.pathname; };
+        document.addEventListener('livewire:navigated', this._handler);
+    },
+    destroy() {
+        if (this._handler) document.removeEventListener('livewire:navigated', this._handler);
+    },
+    isActive(el) {
+        try { return this.currentPath === new URL(el.href, window.location.origin).pathname; } catch { return false; }
+    }
+}">
     @php
         $pendingSurat = \App\Models\LetterRequest::where('status', 'pending')->count();
         $pendingDonasi = \App\Models\Donation::where('payment_status', 'pending')->count();
@@ -79,14 +78,27 @@
             // ── PPID
             ['divider' => true, 'label' => 'PPID'],
             ['route' => 'admin.ppid-konten', 'label' => 'Konten PPID', 'icon' => 'article'],
-            ['route' => 'admin.ppid-dip', 'label' => 'Daftar Info Publik', 'icon' => 'list_alt'],
             ['route' => 'admin.ppid-berkala', 'label' => 'Info Berkala', 'icon' => 'schedule'],
             ['route' => 'admin.ppid-setiap-saat', 'label' => 'Info Setiap Saat', 'icon' => 'folder_open'],
             ['route' => 'admin.ppid-serta-merta', 'label' => 'Info Serta Merta', 'icon' => 'campaign'],
-            ['route' => 'admin.ppid-dikecualikan', 'label' => 'Info Dikecualikan', 'icon' => 'lock'],
-            ['route' => 'admin.ppid-permohonan', 'label' => 'Permohonan PPID', 'icon' => 'assignment', 'badge' => $pendingPpid],
-            ['route' => 'admin.ppid-keberatan', 'label' => 'Keberatan PPID', 'icon' => 'report', 'badge' => $pendingKeberatan],
-            ['route' => 'admin.ppid-komentar', 'label' => 'Komentar PPID', 'icon' => 'chat', 'badge' => $pendingKomentar],
+            [
+                'route' => 'admin.ppid-permohonan',
+                'label' => 'Permohonan PPID',
+                'icon' => 'assignment',
+                'badge' => $pendingPpid,
+            ],
+            [
+                'route' => 'admin.ppid-keberatan',
+                'label' => 'Keberatan PPID',
+                'icon' => 'report',
+                'badge' => $pendingKeberatan,
+            ],
+            [
+                'route' => 'admin.ppid-komentar',
+                'label' => 'Komentar PPID',
+                'icon' => 'chat',
+                'badge' => $pendingKomentar,
+            ],
         ];
         if (auth()->user()?->isSuperAdmin() || auth()->user()?->isAdmin()) {
             $adminNav[] = ['divider' => true, 'label' => 'Sistem'];
@@ -94,19 +106,22 @@
             $adminNav[] = ['route' => 'admin.activity-log', 'label' => 'Log Aktivitas', 'icon' => 'history'];
         }
     @endphp
-    @foreach($adminNav as $item)
-        @if(isset($item['divider']))
-            <p class="px-3 pt-4 pb-1 text-[10px] font-bold uppercase tracking-widest text-desa-400/80">{{ $item['label'] }}</p>
+    @foreach ($adminNav as $item)
+        @if (isset($item['divider']))
+            <p class="px-3 pt-4 pb-1 text-[10px] font-bold uppercase tracking-widest text-desa-400/80">
+                {{ $item['label'] }}</p>
         @else
             <a href="{{ route($item['route']) }}" wire:navigate
-               @if(!empty($showClose)) @click="sidebarOpen = false" @endif
-               x-bind:data-active="isActive($el) ? '' : null"
-               class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150"
-               :class="isActive($el) ? 'bg-white/15 text-white shadow-sm' : 'text-desa-200/80 hover:bg-white/10 hover:text-white'">
+                @if (!empty($showClose)) @click="sidebarOpen = false" @endif
+                x-bind:data-active="isActive($el) ? '' : null"
+                class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150"
+                :class="isActive($el) ? 'bg-white/15 text-white shadow-sm' :
+                    'text-desa-200/80 hover:bg-white/10 hover:text-white'">
                 <span class="material-symbols-outlined" style="font-size:18px">{{ $item['icon'] }}</span>
                 <span class="truncate">{{ $item['label'] }}</span>
-                @if(($item['badge'] ?? 0) > 0)
-                    <span class="ml-auto inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-bold bg-red-500 text-white">{{ $item['badge'] }}</span>
+                @if (($item['badge'] ?? 0) > 0)
+                    <span
+                        class="ml-auto inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-bold bg-red-500 text-white">{{ $item['badge'] }}</span>
                 @endif
             </a>
         @endif
@@ -115,7 +130,9 @@
 
 {{-- Bottom --}}
 <div class="border-t border-white/10 p-3 flex-shrink-0">
-    <a href="{{ route('home') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-desa-300 hover:bg-white/10 hover:text-white transition-colors" wire:navigate>
+    <a href="{{ route('home') }}"
+        class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-desa-300 hover:bg-white/10 hover:text-white transition-colors"
+        wire:navigate>
         <span class="material-symbols-outlined text-lg">public</span>
         Lihat Situs Publik
     </a>

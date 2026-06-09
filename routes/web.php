@@ -46,14 +46,6 @@ Route::prefix('bumnag')->name('bumnag.')->group(function () {
 // PPID (Pejabat Pengelola Informasi dan Dokumentasi)
 Route::prefix('ppid')->name('ppid.')->group(function () {
     Route::get('/', Ppid\PpidHome::class)->name('home');
-    Route::get('/profil', Ppid\PpidProfil::class)->name('profil');
-    Route::get('/visi-misi', Ppid\PpidVisiMisi::class)->name('visi-misi');
-    Route::get('/tugas-fungsi', Ppid\PpidTugasFungsi::class)->name('tugas-fungsi');
-    Route::get('/struktur-organisasi', Ppid\PpidStruktur::class)->name('struktur');
-    Route::get('/informasi-berkala', Ppid\PpidBerkala::class)->name('berkala');
-    Route::get('/informasi-setiap-saat', Ppid\PpidSetiapSaat::class)->name('setiap-saat');
-    Route::get('/informasi-serta-merta', Ppid\PpidSertaMerta::class)->name('serta-merta');
-    Route::get('/informasi-dikecualikan', Ppid\PpidDikecualikan::class)->name('dikecualikan');
     Route::get('/permohonan', fn() => redirect()->route('ppid.home', ['tab' => 'pelayanan', 'sub' => 'permohonan']))->name('permohonan');
     Route::get('/cek-status', Ppid\PpidCekStatus::class)->name('cek-status');
 });
@@ -103,10 +95,8 @@ Route::prefix('admin')
         Route::get('/ppid-berkala', Admin\PpidBerkalaManagement::class)->name('ppid-berkala');
         Route::get('/ppid-setiap-saat', Admin\PpidSetiapSaatManagement::class)->name('ppid-setiap-saat');
         Route::get('/ppid-serta-merta', Admin\PpidSertaMertaManagement::class)->name('ppid-serta-merta');
-        Route::get('/ppid-dikecualikan', Admin\PpidDikecualikanManagement::class)->name('ppid-dikecualikan');
         Route::get('/ppid-permohonan', Admin\PpidPermohonanManagement::class)->name('ppid-permohonan');
         Route::get('/ppid-konten', Admin\PpidContentManagement::class)->name('ppid-konten');
-        Route::get('/ppid-dip', Admin\PpidDipManagement::class)->name('ppid-dip');
         Route::get('/ppid-keberatan', Admin\PpidKeberatanManagement::class)->name('ppid-keberatan');
         Route::get('/ppid-komentar', Admin\PpidCommentManagement::class)->name('ppid-komentar');
 

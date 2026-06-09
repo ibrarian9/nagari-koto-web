@@ -94,6 +94,7 @@
                             tab === 'pelayanan' ? 'support_agent' :
                             tab === 'maklumat' ? 'verified' :
                             tab === 'jadwal' ? 'event_note' :
+                            tab === 'dikecualikan' ? 'lock' :
                             tab === 'regulasi' ? 'gavel' : 'badge'
                         "></span>
                     </div>
@@ -108,6 +109,7 @@
                             tab === 'pelayanan' ? 'Pelayanan Publik' :
                             tab === 'maklumat' ? 'Maklumat Pelayanan' :
                             tab === 'jadwal' ? 'Jadwal & Biaya' :
+                            tab === 'dikecualikan' ? 'Informasi Dikecualikan' :
                             tab === 'regulasi' ? 'Regulasi' : 'Profil Singkat'
                         "></p>
                     </div>
@@ -190,6 +192,7 @@
                                     ['key' => 'pelayanan', 'label' => 'Pelayanan Publik', 'icon' => 'support_agent'],
                                     ['key' => 'maklumat', 'label' => 'Maklumat Pelayanan', 'icon' => 'verified'],
                                     ['key' => 'jadwal', 'label' => 'Jadwal & Biaya', 'icon' => 'event_note'],
+                                    ['key' => 'dikecualikan', 'label' => 'Informasi Dikecualikan', 'icon' => 'lock'],
                                 ] as $m)
                                     <button @click="tab = '{{ $m['key'] }}'; if('{{ $m['key'] }}' === 'dip') sub = 'info_berkala'; if('{{ $m['key'] }}' === 'pelayanan') sub = 'alur_info'; mobileMenuOpen = false;"
                                             :class="tab === '{{ $m['key'] }}' ? 'bg-desa-50 text-desa-700 font-bold border-l-4 border-desa-500 pl-2' : 'text-gray-600 hover:bg-gray-50'"
@@ -264,6 +267,7 @@
                                 ['key' => 'pelayanan', 'label' => 'Pelayanan Publik', 'icon' => 'support_agent'],
                                 ['key' => 'maklumat', 'label' => 'Maklumat Pelayanan', 'icon' => 'verified'],
                                 ['key' => 'jadwal', 'label' => 'Jadwal & Biaya', 'icon' => 'event_note'],
+                                ['key' => 'dikecualikan', 'label' => 'Informasi Dikecualikan', 'icon' => 'lock'],
                             ] as $m)
                                 <button @click="tab = '{{ $m['key'] }}'; if('{{ $m['key'] }}' === 'dip') sub = 'info_berkala'; if('{{ $m['key'] }}' === 'pelayanan') sub = 'alur_info';"
                                         :class="tab === '{{ $m['key'] }}' ? 'bg-desa-50 text-desa-700 font-bold border-l-4 border-desa-500 pl-2' : 'text-gray-600 hover:bg-gray-50'"

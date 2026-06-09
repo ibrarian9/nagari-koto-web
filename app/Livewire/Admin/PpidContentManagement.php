@@ -6,6 +6,7 @@ use App\Models\PpidContent;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Layout;
 
 class PpidContentManagement extends Component
 {
@@ -133,9 +134,9 @@ class PpidContentManagement extends Component
         $this->existingImage = null;
     }
 
+    #[Layout('layouts.admin', ['title' => 'Konten PPID'])]
     public function render()
     {
-        return view('livewire.admin.ppid-content-management')
-            ->layout('layouts.admin', ['title' => 'Konten PPID']);
+        return view('livewire.admin.ppid-content-management');
     }
 }

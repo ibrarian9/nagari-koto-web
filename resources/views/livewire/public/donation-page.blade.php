@@ -1,11 +1,11 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────────────── --}}
-    <x-hero-section slug="donasi" gradient="from-rose-700 via-rose-800 to-pink-900" class="py-16 md:py-24">
+    <x-hero-section slug="donasi" gradient="from-desa-700 via-desa-800 to-desa-950" class="py-16 md:py-24">
         <x-slot:decorations>
             <div class="absolute inset-0">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-rose-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-                <div class="absolute bottom-0 left-0 w-80 h-80 bg-pink-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-400/5 rounded-full blur-3xl"></div>
+                <div class="absolute top-0 right-0 w-96 h-96 bg-desa-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-desa-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-desa-300/5 rounded-full blur-3xl"></div>
             </div>
         </x-slot:decorations>
         <div class="text-center">
@@ -15,22 +15,22 @@
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
                 Donasi untuk Nagari
             </h1>
-            <p class="mt-3 text-lg text-rose-200 max-w-2xl mx-auto">
+            <p class="mt-3 text-lg text-desa-200 max-w-2xl mx-auto">
                 Mari bersama membangun {{ $village?->name ?? 'nagari' }} menjadi lebih baik melalui donasi
             </p>
 
             <div class="mt-10 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
                     <span class="text-2xl font-extrabold text-white">Rp {{ number_format($summary['total_collected'], 0, ',', '.') }}</span>
-                    <p class="text-xs text-rose-300 mt-1 font-medium">Total Terkumpul</p>
+                    <p class="text-xs text-desa-300 mt-1 font-medium">Total Terkumpul</p>
                 </div>
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
                     <span class="text-2xl font-extrabold text-white">{{ $summary['total_donors'] }}</span>
-                    <p class="text-xs text-rose-300 mt-1 font-medium">Donatur</p>
+                    <p class="text-xs text-desa-300 mt-1 font-medium">Donatur</p>
                 </div>
                 <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
                     <span class="text-2xl font-extrabold text-white">{{ $summary['active_campaigns'] }}</span>
-                    <p class="text-xs text-rose-300 mt-1 font-medium">Program Aktif</p>
+                    <p class="text-xs text-desa-300 mt-1 font-medium">Program Aktif</p>
                 </div>
             </div>
         </div>
@@ -45,12 +45,12 @@
                         data-aos="fade-up" data-aos-delay="{{ $loop->index % 3 * 100 }}"
                         class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden group block">
                         {{-- Image --}}
-                        <div class="aspect-[16/9] bg-gradient-to-br from-rose-100 to-pink-50 overflow-hidden relative">
+                        <div class="aspect-[16/9] bg-gradient-to-br from-desa-100 to-desa-50 overflow-hidden relative">
                             @if($c->thumbnail)
                                 <img src="{{ Storage::url($c->thumbnail) }}" alt="{{ $c->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
                             @else
                                 <div class="w-full h-full flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-6xl text-rose-200 group-hover:scale-110 transition-transform duration-300">favorite</span>
+                                    <span class="material-symbols-outlined text-6xl text-desa-200 group-hover:scale-110 transition-transform duration-300">favorite</span>
                                 </div>
                             @endif
                             @if($c->end_date)
@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="p-5">
-                            <h3 class="font-bold text-gray-900 text-lg leading-tight mb-3 group-hover:text-rose-600 transition-colors">{{ $c->title }}</h3>
+                            <h3 class="font-bold text-gray-900 text-lg leading-tight mb-3 group-hover:text-desa-600 transition-colors">{{ $c->title }}</h3>
 
                             {{-- Progress bar --}}
                             <div class="mb-3">
@@ -70,17 +70,17 @@
                                     <span class="text-gray-400">{{ $c->progress_percent }}%</span>
                                 </div>
                                 <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-rose-400 to-pink-500 rounded-full transition-all duration-500" style="width: {{ min(100, $c->progress_percent) }}%"></div>
+                                    <div class="h-full bg-gradient-to-r from-desa-400 to-desa-500 rounded-full transition-all duration-500" style="width: {{ min(100, $c->progress_percent) }}%"></div>
                                 </div>
                                 <p class="text-xs text-gray-400 mt-1">Target: Rp {{ number_format($c->target_amount, 0, ',', '.') }}</p>
                             </div>
 
                             <div class="flex items-center justify-between text-sm text-gray-500 pt-3 border-t border-gray-100">
                                 <span class="flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-sm text-rose-400">group</span>
+                                    <span class="material-symbols-outlined text-sm text-desa-400">group</span>
                                     {{ $c->donor_count ?? 0 }} donatur
                                 </span>
-                                <span class="flex items-center gap-1 text-rose-500 font-medium group-hover:gap-2 transition-all">
+                                <span class="flex items-center gap-1 text-desa-500 font-medium group-hover:gap-2 transition-all">
                                     Donasi <span class="material-symbols-outlined text-sm">arrow_forward</span>
                                 </span>
                             </div>
@@ -90,8 +90,8 @@
             </div>
         @else
             <div class="text-center py-20">
-                <div class="inline-flex items-center justify-center h-20 w-20 rounded-2xl bg-rose-50 mb-6">
-                    <span class="material-symbols-outlined text-4xl text-rose-300">favorite</span>
+                <div class="inline-flex items-center justify-center h-20 w-20 rounded-2xl bg-desa-50 mb-6">
+                    <span class="material-symbols-outlined text-4xl text-desa-300">favorite</span>
                 </div>
                 <h2 class="text-xl font-bold text-gray-400 mb-2">Belum ada program donasi</h2>
                 <p class="text-gray-400">Program donasi nagari akan segera tersedia.</p>

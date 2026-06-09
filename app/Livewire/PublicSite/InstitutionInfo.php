@@ -10,6 +10,7 @@ class InstitutionInfo extends Component
 {
     public string $typeFilter = '';
 
+    #[Layout]
     public function render()
     {
         $institutions = VillageInstitution::active()->ordered()
