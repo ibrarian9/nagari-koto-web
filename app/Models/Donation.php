@@ -13,7 +13,7 @@ class Donation extends Model
     protected $fillable = [
         'campaign_id', 'order_id', 'donor_name', 'donor_email', 'donor_phone',
         'amount', 'message', 'is_anonymous', 'payment_status', 'payment_type',
-        'payment_proof', 'paid_at',
+        'paid_at',
     ];
 
     protected function casts(): array
@@ -45,10 +45,5 @@ class Donation extends Model
     public function scopeSuccessful($query)
     {
         return $query->where('payment_status', 'success');
-    }
-
-    public function scopePending($query)
-    {
-        return $query->where('payment_status', 'pending');
     }
 }

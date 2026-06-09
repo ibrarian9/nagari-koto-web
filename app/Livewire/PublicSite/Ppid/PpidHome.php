@@ -135,7 +135,7 @@ class PpidHome extends Component
             'pmhTujuan'     => 'required|string|max:1000',
             'pmhFormat'     => 'required|in:softcopy,hardcopy,keduanya',
             'pmhCara'       => 'required|in:mengambil_langsung,email,pos',
-            'pmhLampiran'   => 'nullable|image|max:2048',
+            'pmhLampiran'   => 'required|image|max:2048',
         ]);
 
         $data = [

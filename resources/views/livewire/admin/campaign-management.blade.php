@@ -1,6 +1,6 @@
 <div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div><h2 class="text-xl font-bold text-gray-900">Donasi & Campaign</h2><p class="text-sm text-gray-500 mt-0.5">Kelola program donasi dan pantau dana masuk</p></div>
+        <div><h2 class="text-xl font-bold text-gray-900">Donasi & Campaign</h2><p class="text-sm text-gray-500 mt-0.5">Kelola program donasi dan catat dana masuk secara manual</p></div>
         <div class="flex items-center gap-2">
             <button wire:click="openBankSettings" class="btn-secondary btn-sm"><span class="material-symbols-outlined text-base">account_balance</span> Rekening Bank</button>
             @if($canManage)
@@ -9,22 +9,21 @@
         </div>
     </div>
 
-    <x-page-guide title="Panduan Donasi" description="Kelola program donasi nagari. Donatur akan transfer ke rekening yang Anda atur, lalu Anda konfirmasi secara manual. Klik tombol 'Rekening Bank' untuk mengatur nomor rekening." />
+    <x-page-guide title="Panduan Donasi" description="Kelola program donasi nagari. Warga transfer langsung ke rekening yang Anda atur, lalu Anda catat donasi secara manual setelah mengecek mutasi bank. Klik tombol 'Rekening Bank' untuk mengatur nomor rekening." />
 
     {{-- Summary Cards --}}
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div class="stat-card"><span class="text-2xl font-bold text-green-600">Rp {{ number_format($globalSummary['total_collected'], 0, ',', '.') }}</span><span class="text-xs text-gray-500">Total Terkumpul</span></div>
         <div class="stat-card"><span class="text-2xl font-bold text-gray-900">{{ $globalSummary['total_campaigns'] }}</span><span class="text-xs text-gray-500">Total Campaign</span></div>
         <div class="stat-card"><span class="text-2xl font-bold text-desa-600">{{ $globalSummary['active_campaigns'] }}</span><span class="text-xs text-gray-500">Campaign Aktif</span></div>
         <div class="stat-card"><span class="text-2xl font-bold text-amber-600">{{ $globalSummary['total_donors'] }}</span><span class="text-xs text-gray-500">Total Donatur</span></div>
-        <div class="stat-card"><span class="text-2xl font-bold {{ $globalSummary['pending_count'] > 0 ? 'text-rose-600' : 'text-gray-400' }}">{{ $globalSummary['pending_count'] }}</span><span class="text-xs text-gray-500">Menunggu Konfirmasi</span></div>
     </div>
 
     {{-- Bank Settings Modal --}}
     <x-admin-modal :show="$showBankSettings" title="Pengaturan Rekening Bank" subtitle="Rekening untuk menerima donasi" icon="account_balance" iconBg="bg-blue-100" iconColor="text-blue-600" maxWidth="max-w-2xl">
         <div class="space-y-4">
             <x-form-guide>
-                <p>Tambahkan rekening bank yang akan ditampilkan di halaman donasi publik. Donatur akan transfer ke rekening ini.</p>
+                <p>Tambahkan rekening bank yang akan ditampilkan di halaman donasi publik. Warga akan transfer langsung ke rekening ini.</p>
             </x-form-guide>
 
             {{-- Bank Accounts List --}}
@@ -59,7 +58,7 @@
             {{-- Transfer Instructions --}}
             <div>
                 <label class="form-label">Instruksi Transfer</label>
-                <textarea wire:model="transferInstructions" class="form-input w-full" rows="3" placeholder="cth: Silakan transfer ke salah satu rekening di atas, lalu upload bukti transfer..."></textarea>
+                <textarea wire:model="transferInstructions" class="form-input w-full" rows="3" placeholder="cth: Silakan transfer ke rekening di atas. Admin akan mencatat donasi setelah verifikasi mutasi."></textarea>
             </div>
 
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
@@ -104,18 +103,62 @@
     </x-admin-modal>
     @endif
 
-    {{-- Donation Detail Modal with Confirm/Reject --}}
-    <x-admin-modal :show="$showDonations" title="Daftar Donasi" :subtitle="$viewingCampaign?->title ?? ''" icon="payments" iconBg="bg-green-100" iconColor="text-green-600" maxWidth="max-w-5xl">
+    {{-- Add Manual Donation Modal --}}
+    <x-admin-modal :show="$showAddDonation" title="Tambah Donasi Manual" subtitle="Catat donasi setelah verifikasi mutasi bank" icon="add_circle" iconBg="bg-green-100" iconColor="text-green-600" maxWidth="max-w-lg">
+        <form wire:submit="saveManualDonation" class="space-y-4">
+            <x-form-guide>
+                <p>Tambahkan donasi setelah Anda memverifikasi transfer melalui mutasi rekening bank. Donasi akan langsung tercatat sebagai <strong>berhasil</strong>.</p>
+            </x-form-guide>
+
+            <div>
+                <label class="form-label">Nama Donatur <span class="text-red-400">*</span></label>
+                <input type="text" wire:model="addDonorName" class="form-input w-full" placeholder="Nama pengirim transfer">
+                @error('addDonorName')<p class="form-error">{{ $message }}</p>@enderror
+            </div>
+
+            <div>
+                <label class="form-label">Nominal (Rp) <span class="text-red-400">*</span></label>
+                <input type="number" wire:model="addAmount" class="form-input w-full" placeholder="100000" min="1000">
+                @error('addAmount')<p class="form-error">{{ $message }}</p>@enderror
+            </div>
+
+            <div>
+                <label class="form-label">Pesan / Doa <span class="text-xs text-gray-400">(opsional)</span></label>
+                <textarea wire:model="addMessage" class="form-input w-full" rows="2" placeholder="Semoga bermanfaat..."></textarea>
+            </div>
+
+            <label class="inline-flex items-center gap-2.5 cursor-pointer select-none group">
+                <input type="checkbox" wire:model="addIsAnonymous" class="form-checkbox">
+                <span class="text-sm text-gray-600 group-hover:text-gray-900 transition-colors">Donatur anonim (Hamba Allah)</span>
+            </label>
+
+            <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <button type="submit" class="btn-primary" wire:loading.attr="disabled" wire:target="saveManualDonation">
+                    <span wire:loading.remove wire:target="saveManualDonation" class="flex items-center gap-2"><span class="material-symbols-outlined text-base">check_circle</span> Simpan Donasi</span>
+                    <span wire:loading wire:target="saveManualDonation" class="flex items-center gap-2"><span class="material-symbols-outlined text-base animate-spin">progress_activity</span> Menyimpan...</span>
+                </button>
+                <button type="button" wire:click="$set('showAddDonation', false)" class="btn-secondary">Batal</button>
+            </div>
+        </form>
+    </x-admin-modal>
+
+    {{-- Donation List Modal --}}
+    <x-admin-modal :show="$showDonations" title="Daftar Donasi" :subtitle="$viewingCampaign?->title ?? ''" icon="payments" iconBg="bg-green-100" iconColor="text-green-600" maxWidth="max-w-4xl">
         @if($viewingCampaign)
-            <div class="flex items-center gap-4 p-3 bg-green-50 rounded-xl mb-4 text-sm">
-                <div><span class="font-medium text-gray-700">Target:</span> <span class="font-bold text-gray-900">Rp {{ number_format($viewingCampaign->target_amount, 0, ',', '.') }}</span></div>
-                <div><span class="font-medium text-gray-700">Terkumpul:</span> <span class="font-bold text-green-600">Rp {{ number_format($viewingCampaign->collected_amount, 0, ',', '.') }}</span></div>
-                <div><span class="font-medium text-gray-700">Progress:</span> <span class="font-bold text-desa-600">{{ $viewingCampaign->progress_percent }}%</span></div>
+            <div class="flex items-center justify-between gap-4 p-3 bg-green-50 rounded-xl mb-4 text-sm">
+                <div class="flex items-center gap-4">
+                    <div><span class="font-medium text-gray-700">Target:</span> <span class="font-bold text-gray-900">Rp {{ number_format($viewingCampaign->target_amount, 0, ',', '.') }}</span></div>
+                    <div><span class="font-medium text-gray-700">Terkumpul:</span> <span class="font-bold text-green-600">Rp {{ number_format($viewingCampaign->collected_amount, 0, ',', '.') }}</span></div>
+                    <div><span class="font-medium text-gray-700">Progress:</span> <span class="font-bold text-desa-600">{{ $viewingCampaign->progress_percent }}%</span></div>
+                </div>
+                @if($canManage)
+                    <button wire:click="openAddDonation" class="btn-primary btn-sm flex-shrink-0"><span class="material-symbols-outlined text-base">add</span> Tambah Donasi</button>
+                @endif
             </div>
         @endif
         <div class="max-h-[28rem] overflow-y-auto">
             <table class="data-table">
-                <thead><tr><th>Donatur</th><th>Nominal</th><th>Bukti</th><th>Status</th><th>Waktu</th><th class="text-right">Aksi</th></tr></thead>
+                <thead><tr><th>Donatur</th><th>Nominal</th><th>Status</th><th>Waktu</th><th class="text-right">Aksi</th></tr></thead>
                 <tbody>
                     @forelse($viewingDonations ?? [] as $d)
                         <tr class="hover:bg-gray-50/50">
@@ -124,43 +167,25 @@
                                     <span class="font-medium">{{ $d->display_name }}</span>
                                     @if($d->is_anonymous)<span class="text-xs text-gray-400 ml-1">(anonim)</span>@endif
                                 </div>
-                                @if($d->donor_phone)<p class="text-xs text-gray-400">{{ $d->donor_phone }}</p>@endif
                                 @if($d->message)<p class="text-xs text-gray-400 mt-0.5 line-clamp-1">{{ $d->message }}</p>@endif
                             </td>
                             <td class="font-mono text-sm font-medium">Rp {{ number_format($d->amount, 0, ',', '.') }}</td>
                             <td>
-                                @if($d->payment_proof)
-                                    <a href="{{ Storage::url($d->payment_proof) }}" target="_blank" class="inline-flex items-center gap-1 text-xs text-desa-600 hover:text-desa-700 font-medium">
-                                        <span class="material-symbols-outlined text-sm">image</span> Lihat
-                                    </a>
-                                @else
-                                    <span class="text-xs text-gray-400">-</span>
-                                @endif
-                            </td>
-                            <td>
-                                @php $sc = match($d->payment_status) { 'success' => 'badge-success', 'pending' => 'badge-warning', 'failed' => 'badge-danger', 'expired' => 'badge-secondary', default => 'badge-secondary' }; @endphp
-                                <span class="badge {{ $sc }}">{{ ucfirst($d->payment_status) }}</span>
+                                <span class="badge badge-success flex items-center gap-1 w-fit"><span class="material-symbols-outlined text-xs">verified</span> Terkonfirmasi</span>
                             </td>
                             <td class="text-sm text-gray-500">{{ $d->paid_at?->format('d/m/Y H:i') ?? $d->created_at->format('d/m/Y H:i') }}</td>
                             <td>
-                                @if($d->payment_status === 'pending')
-                                    <div class="flex justify-end gap-1">
-                                        <button wire:click="confirmDonation({{ $d->id }})" class="h-8 px-2.5 rounded-lg flex items-center gap-1 text-xs font-medium bg-green-50 text-green-700 hover:bg-green-100 transition-colors" title="Konfirmasi">
-                                            <span class="material-symbols-outlined text-sm">check</span> Konfirmasi
-                                        </button>
-                                        <button wire:click="rejectDonation({{ $d->id }})" class="h-8 px-2.5 rounded-lg flex items-center gap-1 text-xs font-medium bg-red-50 text-red-700 hover:bg-red-100 transition-colors" title="Tolak">
-                                            <span class="material-symbols-outlined text-sm">close</span>
+                                @if($canManage)
+                                    <div class="flex justify-end">
+                                        <button onclick="confirmAction({{ $d->id }}, 'deleteDonationConfirmed', 'Yakin ingin menghapus donasi dari {{ $d->donor_name }}? Jumlah terkumpul campaign akan diperbarui.')" class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-red-50 hover:text-red-600 transition-colors" title="Hapus donasi">
+                                            <span class="material-symbols-outlined text-lg">delete</span>
                                         </button>
                                     </div>
-                                @elseif($d->payment_status === 'success')
-                                    <span class="text-xs text-green-500 flex items-center gap-1 justify-end"><span class="material-symbols-outlined text-sm">verified</span> Terkonfirmasi</span>
-                                @else
-                                    <span class="text-xs text-gray-400">-</span>
                                 @endif
                             </td>
                         </tr>
                     @empty
-                        <tr><td colspan="6" class="text-center py-8 text-gray-400">Belum ada donasi.</td></tr>
+                        <tr><td colspan="5" class="text-center py-8 text-gray-400">Belum ada donasi tercatat.</td></tr>
                     @endforelse
                 </tbody>
             </table>
@@ -206,6 +231,9 @@
                     </td>
                     <td>
                         <div class="flex justify-end gap-1">
+                            @if($canManage)
+                                <button wire:click="openAddDonation({{ $c->id }})" class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-green-50 hover:text-green-600 transition-colors" title="Tambah donasi"><span class="material-symbols-outlined text-lg">add_circle</span></button>
+                            @endif
                             <button wire:click="viewDonations({{ $c->id }})" class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-green-50 hover:text-green-600 transition-colors" title="Lihat donasi"><span class="material-symbols-outlined text-lg">payments</span></button>
                             @if($canManage)
                                 <button wire:click="edit({{ $c->id }})" class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-desa-50 hover:text-desa-600 transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>

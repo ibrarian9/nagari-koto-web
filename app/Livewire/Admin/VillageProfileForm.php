@@ -47,6 +47,26 @@ class VillageProfileForm extends Component
     public $newLogo = null;
     public ?string $croppedBannerData = null;
 
+    // Social media
+    public array $socialMedia = [];
+
+    /**
+     * Available social media platforms with their icons and colors.
+     */
+    public static function socialPlatforms(): array
+    {
+        return [
+            'facebook'  => ['label' => 'Facebook',  'icon' => 'fab fa-facebook-f',    'placeholder' => 'https://facebook.com/...', 'color' => '#1877F2'],
+            'instagram' => ['label' => 'Instagram', 'icon' => 'fab fa-instagram',      'placeholder' => 'https://instagram.com/...', 'color' => '#E4405F'],
+            'youtube'   => ['label' => 'YouTube',   'icon' => 'fab fa-youtube',         'placeholder' => 'https://youtube.com/...', 'color' => '#FF0000'],
+            'tiktok'    => ['label' => 'TikTok',    'icon' => 'fab fa-tiktok',          'placeholder' => 'https://tiktok.com/@...', 'color' => '#000000'],
+            'twitter'   => ['label' => 'X (Twitter)', 'icon' => 'fab fa-x-twitter',    'placeholder' => 'https://x.com/...', 'color' => '#000000'],
+            'whatsapp'  => ['label' => 'WhatsApp',  'icon' => 'fab fa-whatsapp',        'placeholder' => 'https://wa.me/62...', 'color' => '#25D366'],
+            'telegram'  => ['label' => 'Telegram',  'icon' => 'fab fa-telegram-plane',  'placeholder' => 'https://t.me/...', 'color' => '#0088CC'],
+            'email'     => ['label' => 'Email',     'icon' => 'fas fa-envelope',         'placeholder' => 'mailto:email@contoh.com', 'color' => '#6B7280'],
+        ];
+    }
+
     public function mount(): void
     {
         $profile = VillageProfile::first();
@@ -55,7 +75,21 @@ class VillageProfileForm extends Component
                 'name','tagline','history','vision','mission','address','province',
                 'regency','district','village_code','area_ha','established_year','map_embed_url'
             ]));
+            $this->socialMedia = $profile->social_media ?? [];
         }
+    }
+
+    // ─── Social Media Management ─────────────────────────
+
+    public function addSocialMedia(): void
+    {
+        $this->socialMedia[] = ['platform' => 'facebook', 'url' => ''];
+    }
+
+    public function removeSocialMedia(int $index): void
+    {
+        unset($this->socialMedia[$index]);
+        $this->socialMedia = array_values($this->socialMedia);
     }
 
     public function save(): void
@@ -68,6 +102,10 @@ class VillageProfileForm extends Component
             'village_code' => $this->village_code, 'area_ha' => $this->area_ha,
             'established_year' => $this->established_year, 'map_embed_url' => $this->map_embed_url,
         ];
+
+        // Filter out empty social media entries
+        $filteredSocial = array_filter($this->socialMedia, fn($s) => !empty($s['platform']) && !empty($s['url']));
+        $data['social_media'] = array_values($filteredSocial);
 
         // Handle cropped banner (base64)
         $optimizer = new ImageOptimizer();
@@ -86,7 +124,8 @@ class VillageProfileForm extends Component
 
     public function render()
     {
-        return view('livewire.admin.village-profile-form')
-            ->layout('layouts.admin', ['title' => 'Profil Desa']);
+        return view('livewire.admin.village-profile-form', [
+            'platforms' => static::socialPlatforms(),
+        ])->layout('layouts.admin', ['title' => 'Profil Desa']);
     }
 }

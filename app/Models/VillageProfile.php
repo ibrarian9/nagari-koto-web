@@ -25,6 +25,7 @@ class VillageProfile extends Model
         'photo',
         'logo',
         'map_embed_url',
+        'social_media',
     ];
 
     /**
@@ -35,6 +36,7 @@ class VillageProfile extends Model
         return [
             'area_ha' => 'decimal:2',
             'established_year' => 'integer',
+            'social_media' => 'array',
         ];
     }
 

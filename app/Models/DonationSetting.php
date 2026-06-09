@@ -28,7 +28,7 @@ class DonationSetting extends Model
     {
         return static::firstOrCreate([], [
             'bank_accounts' => [],
-            'transfer_instructions' => 'Silakan transfer ke salah satu rekening di atas, lalu upload bukti transfer pada form donasi.',
+            'transfer_instructions' => 'Silakan transfer ke rekening di atas. Dana donasi akan dicatat oleh admin setelah verifikasi mutasi bank.',
         ]);
     }
 

@@ -98,8 +98,7 @@
                             <span
                                 class="text-[10px] uppercase tracking-widest text-amber-300 font-bold bg-amber-400/10 px-4 py-1 rounded-full border border-amber-400/20">{{ $kepala->position ?? 'Kepala Desa' }}</span>
                             <h3 class="font-extrabold text-white text-xl mt-4 tracking-wide">{{ $kepala->name }}</h3>
-                            <p class="text-desa-300 text-xs font-medium mt-1">NIP. {{ $kepala->nip ?? '-' }}</p>
-
+                            
                             <div class="mt-8 pt-6 border-t border-white/10">
                                 <a href="{{ route('pemerintahan') }}" wire:navigate
                                     class="inline-flex items-center gap-1.5 text-xs text-white/70 hover:text-white transition-colors duration-300 font-semibold group-hover:gap-2">

@@ -54,7 +54,7 @@ Route::prefix('ppid')->name('ppid.')->group(function () {
     Route::get('/informasi-setiap-saat', Ppid\PpidSetiapSaat::class)->name('setiap-saat');
     Route::get('/informasi-serta-merta', Ppid\PpidSertaMerta::class)->name('serta-merta');
     Route::get('/informasi-dikecualikan', Ppid\PpidDikecualikan::class)->name('dikecualikan');
-    Route::get('/permohonan', Ppid\PpidPermohonanForm::class)->name('permohonan');
+    Route::get('/permohonan', fn() => redirect()->route('ppid.home', ['tab' => 'pelayanan', 'sub' => 'permohonan']))->name('permohonan');
     Route::get('/cek-status', Ppid\PpidCekStatus::class)->name('cek-status');
 });
 

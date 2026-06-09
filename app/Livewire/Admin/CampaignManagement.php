@@ -20,8 +20,10 @@ class CampaignManagement extends Component
     public bool $showForm = false;
     public bool $showDonations = false;
     public bool $showBankSettings = false;
+    public bool $showAddDonation = false;
     public ?int $editingId = null;
     public ?int $viewingCampaignId = null;
+    public ?int $addingToCampaignId = null;
     public string $search = '';
 
     // Campaign form
@@ -44,6 +46,12 @@ class CampaignManagement extends Component
     // Bank account settings
     public array $bankAccounts = [];
     public string $transferInstructions = '';
+
+    // Manual donation form
+    public string $addDonorName = '';
+    public $addAmount = '';
+    public ?string $addMessage = '';
+    public bool $addIsAnonymous = false;
 
     public function mount(): void
     {
@@ -179,25 +187,52 @@ class CampaignManagement extends Component
         $this->showDonations = true;
     }
 
-    public function confirmDonation(int $id): void
+    public function openAddDonation(?int $campaignId = null): void
     {
-        $donation = Donation::findOrFail($id);
-        $donation->update([
-            'payment_status' => 'success',
-            'paid_at'        => now(),
-        ]);
-        $donation->campaign->recalculateCollected();
-        $this->dispatch('swal', icon: 'success', title: 'Dikonfirmasi', text: 'Donasi dari ' . $donation->donor_name . ' berhasil dikonfirmasi.');
+        $this->addingToCampaignId = $campaignId ?? $this->viewingCampaignId;
+        $this->reset(['addDonorName', 'addAmount', 'addMessage', 'addIsAnonymous']);
+        $this->showAddDonation = true;
     }
 
-    public function rejectDonation(int $id): void
+    public function saveManualDonation(): void
+    {
+        $this->validate([
+            'addDonorName' => 'required|string|max:255',
+            'addAmount'    => 'required|numeric|min:1000',
+            'addMessage'   => 'nullable|string|max:500',
+        ]);
+
+        $campaign = DonationCampaign::findOrFail($this->addingToCampaignId);
+
+        $orderId = 'MAN-' . strtoupper(uniqid()) . '-' . time();
+
+        Donation::create([
+            'campaign_id'    => $campaign->id,
+            'order_id'       => $orderId,
+            'donor_name'     => $this->addDonorName,
+            'amount'         => $this->addAmount,
+            'message'        => $this->addMessage,
+            'is_anonymous'   => $this->addIsAnonymous,
+            'payment_status' => 'success',
+            'payment_type'   => 'manual',
+            'paid_at'        => now(),
+        ]);
+
+        $campaign->recalculateCollected();
+
+        $this->reset(['addDonorName', 'addAmount', 'addMessage', 'addIsAnonymous', 'showAddDonation']);
+        $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Donasi dari ' . $this->addDonorName . ' berhasil dicatat.');
+    }
+
+    #[On('deleteDonationConfirmed')]
+    public function deleteDonation(int $id): void
     {
         $donation = Donation::findOrFail($id);
-        $donation->update([
-            'payment_status' => 'failed',
-        ]);
-        $donation->campaign->recalculateCollected();
-        $this->dispatch('swal', icon: 'info', title: 'Ditolak', text: 'Donasi dari ' . $donation->donor_name . ' ditolak.');
+        $campaign = $donation->campaign;
+        $name = $donation->donor_name;
+        $donation->delete();
+        $campaign->recalculateCollected();
+        $this->dispatch('swal', icon: 'success', title: 'Dihapus', text: "Donasi dari {$name} berhasil dihapus.");
     }
 
     private function resetForm(): void
@@ -218,7 +253,6 @@ class CampaignManagement extends Component
             'total_campaigns' => DonationCampaign::count(),
             'active_campaigns' => DonationCampaign::where('status', 'active')->count(),
             'total_donors' => Donation::where('payment_status', 'success')->count(),
-            'pending_count' => Donation::where('payment_status', 'pending')->count(),
         ];
 
         $viewingDonations = null;

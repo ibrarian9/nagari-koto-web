@@ -237,6 +237,76 @@
             </div>
         </div>
 
+        {{-- Social Media --}}
+        <div class="card overflow-hidden">
+            <div class="p-5 bg-gray-50 border-b border-gray-100 flex items-center gap-3">
+                <div class="h-9 w-9 rounded-lg bg-rose-100 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-rose-600">share</span>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-900">Media Sosial</h3>
+                    <p class="text-xs text-gray-400">Link media sosial yang ditampilkan di footer website</p>
+                </div>
+            </div>
+            <div class="p-6 space-y-4">
+                @if(count($socialMedia) > 0)
+                    <div class="space-y-3">
+                        @foreach($socialMedia as $index => $social)
+                            <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100 group">
+                                <div class="flex-shrink-0">
+                                    @php $p = $platforms[$social['platform'] ?? 'facebook'] ?? $platforms['facebook']; @endphp
+                                    <div class="h-10 w-10 rounded-lg flex items-center justify-center" style="background-color: {{ $p['color'] }}15">
+                                        <span class="material-symbols-outlined text-lg" style="color: {{ $p['color'] }}">
+                                            @switch($social['platform'] ?? 'facebook')
+                                                @case('facebook') thumb_up @break
+                                                @case('instagram') photo_camera @break
+                                                @case('youtube') play_circle @break
+                                                @case('tiktok') music_note @break
+                                                @case('twitter') tag @break
+                                                @case('whatsapp') chat @break
+                                                @case('telegram') send @break
+                                                @case('email') mail @break
+                                                @default link
+                                            @endswitch
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <div>
+                                        <label class="form-label text-xs">Platform</label>
+                                        <select wire:model.live="socialMedia.{{ $index }}.platform" class="form-input w-full text-sm">
+                                            @foreach($platforms as $key => $platform)
+                                                <option value="{{ $key }}">{{ $platform['label'] }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label class="form-label text-xs">URL / Link</label>
+                                        <input type="url" wire:model="socialMedia.{{ $index }}.url" class="form-input w-full text-sm"
+                                            placeholder="{{ $platforms[$social['platform'] ?? 'facebook']['placeholder'] ?? 'https://...' }}">
+                                    </div>
+                                </div>
+                                <button type="button" wire:click="removeSocialMedia({{ $index }})"
+                                    class="flex-shrink-0 h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-red-50 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100" title="Hapus">
+                                    <span class="material-symbols-outlined text-sm">close</span>
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="text-center py-6">
+                        <span class="material-symbols-outlined text-3xl text-gray-200">share</span>
+                        <p class="text-sm text-gray-400 mt-2">Belum ada media sosial. Klik tombol di bawah untuk menambahkan.</p>
+                    </div>
+                @endif
+
+                <button type="button" wire:click="addSocialMedia"
+                    class="w-full py-2.5 rounded-xl border-2 border-dashed border-gray-200 hover:border-rose-300 hover:bg-rose-50/30 text-sm text-gray-500 hover:text-rose-600 transition-all flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-base">add</span> Tambah Media Sosial
+                </button>
+            </div>
+        </div>
+
         {{-- Submit --}}
         <div class="flex justify-end">
             <button type="submit" class="btn-primary" wire:loading.attr="disabled" wire:target="save">

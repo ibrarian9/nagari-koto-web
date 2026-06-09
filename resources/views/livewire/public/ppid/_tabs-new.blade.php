@@ -311,7 +311,7 @@
                         </div>
                     </div>
                     <div x-data="{ previewUrl: null }" class="space-y-2">
-                        <label class="form-label">Lampiran KTP <span class="text-gray-400 text-xs">(opsional)</span></label>
+                        <label class="form-label">Lampiran KTP <span class="text-red-400">*</span></label>
                         <label class="block cursor-pointer">
                             <div class="flex items-center gap-3 px-4 py-3 rounded-xl border-2 border-dashed border-gray-200 hover:border-desa-400 bg-gray-50 hover:bg-desa-50/30 transition-all text-sm text-gray-500">
                                 <span class="material-symbols-outlined text-xl text-gray-400">photo_camera</span>
