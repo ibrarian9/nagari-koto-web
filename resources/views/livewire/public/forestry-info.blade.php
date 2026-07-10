@@ -172,7 +172,7 @@
                         Data belum tersedia
                     @endif
                 </h2>
-                <p class="text-gray-400">Informasi data kehutanan desa sedang dalam proses pengisian.</p>
+                <p class="text-gray-400">Informasi data kehutanan nagari sedang dalam proses pengisian.</p>
                 @if($categoryFilter)
                     <button wire:click="$set('categoryFilter', '')" class="mt-4 btn-secondary btn-sm">
                         <span class="material-symbols-outlined text-base">filter_alt_off</span> Reset Filter
@@ -189,7 +189,7 @@
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-white">
                     <div>
                         <h3 class="text-xl font-bold">Menjaga Hutan, Melestarikan Kehidupan</h3>
-                        <p class="text-emerald-200 mt-1">Data ini merupakan bentuk transparansi pengelolaan kawasan hutan desa.</p>
+                        <p class="text-emerald-200 mt-1">Data ini merupakan bentuk transparansi pengelolaan kawasan hutan nagari.</p>
                     </div>
                     <a href="{{ route('kontak') }}" wire:navigate class="inline-flex items-center gap-2 px-6 py-3 bg-white text-emerald-700 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg flex-shrink-0">
                         <span class="material-symbols-outlined text-lg">eco</span>

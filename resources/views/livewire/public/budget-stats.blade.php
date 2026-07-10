@@ -6,8 +6,8 @@
                 class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-desa-500 to-desa-700 mb-4 shadow-lg shadow-desa-500/20">
                 <span class="material-symbols-outlined text-white text-3xl">account_balance</span>
             </div>
-            <h1 class="section-title">Anggaran Desa (APBDes)</h1>
-            <p class="section-subtitle">Transparansi pengelolaan keuangan desa</p>
+            <h1 class="section-title">Anggaran Nagari (APB Nagari)</h1>
+            <p class="section-subtitle">Transparansi pengelolaan keuangan Nagari</p>
         </div>
 
         {{-- Year Selector --}}
@@ -23,15 +23,20 @@
             </div>
         </div>
 
-        {{-- Penjelasan APBDes --}}
+        {{-- Penjelasan APBNag --}}
         <div class="card p-6 mb-8">
             <div class="flex items-start gap-4">
                 <div class="flex-shrink-0 h-10 w-10 rounded-lg bg-desa-50 flex items-center justify-center">
                     <span class="material-symbols-outlined text-desa-600">help</span>
                 </div>
                 <div class="text-sm text-gray-600 leading-relaxed">
-                    <h3 class="font-bold text-gray-900 mb-1">Apa itu APBDes?</h3>
-                    <p><strong>Anggaran Pendapatan dan Belanja Desa (APBDes)</strong> adalah rencana keuangan tahunan pemerintahan desa. APBDes memuat seluruh rencana pendapatan, belanja, dan pembiayaan desa dalam satu tahun anggaran. Transparansi ini bertujuan agar masyarakat dapat mengawasi pengelolaan keuangan desa secara terbuka dan akuntabel.</p>
+                    <h3 class="font-bold text-gray-900 mb-1">Apa itu APB Nagari?</h3>
+                    <p><strong>Anggaran Pendapatan dan Belanja Nagari (APB Nagari)</strong> adalah rencana keuangan
+                        tahunan
+                        pemerintahan Nagari. APB Nagari memuat seluruh rencana pendapatan, belanja, dan pembiayaan
+                        Nagari dalam
+                        satu tahun anggaran. Transparansi ini bertujuan agar masyarakat dapat mengawasi pengelolaan
+                        keuangan Nagari secara terbuka dan akuntabel.</p>
                 </div>
             </div>
         </div>
@@ -83,17 +88,17 @@
                     }
                 });
             
-                const apbdes = @js($stat->apbdes_data ?? []);
-                if (Object.keys(apbdes).length) {
+                const apbnag = @js($stat->apbnag_data ?? []);
+                if (Object.keys(apbnag).length) {
                     const colors = ['#2D6A4F', '#4daf68', '#7ac58e', '#f59e0b', '#3b82f6', '#8b5cf6', '#ec4899'];
-                    new Chart(document.getElementById('apbdesChart'), {
+                    new Chart(document.getElementById('apbnagChart'), {
                         type: 'bar',
                         data: {
-                            labels: Object.keys(apbdes),
+                            labels: Object.keys(apbnag),
                             datasets: [{
                                 label: 'Jumlah (Rp)',
-                                data: Object.values(apbdes),
-                                backgroundColor: colors.slice(0, Object.keys(apbdes).length),
+                                data: Object.values(apbnag),
+                                backgroundColor: colors.slice(0, Object.keys(apbnag).length),
                                 borderRadius: 6,
                                 borderSkipped: false
                             }]
@@ -133,24 +138,24 @@
                 <div class="card p-6">
                     <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
                         <span class="material-symbols-outlined text-desa-500">bar_chart</span>
-                        Rincian Sumber APBDes
+                        Rincian Sumber APBNag
                     </h3>
                     <div class="relative w-full h-72">
-                        <canvas id="apbdesChart"></canvas>
+                        <canvas id="apbnagChart"></canvas>
                     </div>
                 </div>
             </div>
             @php
-                $apbdes = is_string($stat->apbdes_data) ? json_decode($stat->apbdes_data, true) : $stat->apbdes_data;
+                $apbnag = is_string($stat->apbnag_data) ? json_decode($stat->apbnag_data, true) : $stat->apbnag_data;
             @endphp
 
-            {{-- APBDes Detail Table --}}
-            @if (is_array($apbdes) && count($apbdes) > 0)
+            {{-- APBNag Detail Table --}}
+            @if (is_array($apbnag) && count($apbnag) > 0)
                 <div class="card overflow-hidden">
                     <div class="p-5 border-b border-gray-100">
                         <h3 class="font-bold text-gray-900 flex items-center gap-2">
                             <span class="material-symbols-outlined text-desa-500">table_chart</span>
-                            Detail Komponen APBDes {{ $stat->year }}
+                            Detail Komponen APBNag {{ $stat->year }}
                         </h3>
                     </div>
                     <div class="overflow-x-auto">
@@ -164,8 +169,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $totalApbdes = array_sum($apbdes); @endphp
-                                @foreach ($apbdes as $label => $amount)
+                                @php $totalApbdes = array_sum($apbnag); @endphp
+                                @foreach ($apbnag as $label => $amount)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td class="font-medium">{{ $label }}</td>

@@ -42,7 +42,7 @@
 
             // ── Pemerintahan & Kelembagaan
             ['divider' => true, 'label' => 'Pemerintahan'],
-            ['route' => 'admin.profil-desa', 'label' => 'Profil Desa', 'icon' => 'location_city'],
+            ['route' => 'admin.profil-nagari', 'label' => 'Profil Nagari', 'icon' => 'location_city'],
             ['route' => 'admin.pemerintahan', 'label' => 'Perangkat Nagari', 'icon' => 'groups'],
             ['route' => 'admin.bamus', 'label' => 'BAMUS', 'icon' => 'gavel'],
             ['route' => 'admin.lembaga', 'label' => 'Lembaga Nagari', 'icon' => 'domain'],
@@ -57,7 +57,7 @@
             // ── Konten & Publikasi
             ['divider' => true, 'label' => 'Konten'],
             ['route' => 'admin.berita', 'label' => 'Berita', 'icon' => 'newspaper'],
-            ['route' => 'admin.potensi', 'label' => 'Potensi Desa', 'icon' => 'eco'],
+            ['route' => 'admin.potensi', 'label' => 'Potensi Nagari', 'icon' => 'eco'],
             ['route' => 'admin.umkm', 'label' => 'UMKM', 'icon' => 'storefront'],
             ['route' => 'admin.agenda', 'label' => 'Agenda', 'icon' => 'event'],
             ['route' => 'admin.hero', 'label' => 'Hero Halaman', 'icon' => 'wallpaper'],

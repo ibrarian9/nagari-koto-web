@@ -7,7 +7,7 @@
                 <span class="material-symbols-outlined text-white text-3xl">insights</span>
             </div>
             <h1 class="section-title">Indeks Desa Membangun (IDM)</h1>
-            <p class="section-subtitle">Mengukur kemajuan dan kemandirian desa</p>
+            <p class="section-subtitle">Mengukur kemajuan dan kemandirian nagari</p>
         </div>
 
         {{-- Penjelasan IDM --}}
@@ -19,7 +19,7 @@
                 <div class="text-sm text-gray-600 leading-relaxed">
                     <h3 class="font-bold text-gray-900 mb-2">Apa itu IDM?</h3>
                     <p>Indeks Desa Membangun (IDM) adalah indikator yang dikembangkan oleh <strong>Kementerian Desa, PDT
-                            dan Transmigrasi</strong> untuk mengukur tingkat kemajuan dan kemandirian desa. IDM
+                            dan Transmigrasi</strong> untuk mengukur tingkat kemajuan dan kemandirian nagari. IDM
                         menggunakan dimensi utama dan tambahan:</p>
                     <ul class="mt-2 space-y-1">
                         <li class="flex items-start gap-2"><span
@@ -47,11 +47,11 @@
                         </li>
                         <li class="flex items-start gap-2"><span
                                 class="material-symbols-outlined text-indigo-500 text-sm mt-0.5">account_balance</span>
-                            <span><strong>Tata Kelola Pemdes:</strong> Kualitas penyelenggaraan pemerintahan desa</span>
+                            <span><strong>Tata Kelola Pemdes:</strong> Kualitas penyelenggaraan pemerintahan nagari</span>
                         </li>
                     </ul>
                     <p class="mt-2">Skor IDM berkisar antara <strong>0 sampai 1</strong>. Semakin tinggi skor, semakin
-                        maju desanya.</p>
+                        maju nagarinya.</p>
                 </div>
             </div>
         </div>
@@ -65,16 +65,16 @@
                     class="inline-block badge text-sm px-5 py-2 {{ $latest->status_color }}">{{ $latest->status_label }}</span>
                 <p class="mt-3 text-sm text-gray-500">
                     @if ($latest->status === 'mandiri')
-                        Selamat! Desa kita telah mencapai status <strong class="text-green-600">Mandiri</strong> —
+                        Selamat! Nagari kita telah mencapai status <strong class="text-green-600">Mandiri</strong> —
                         tingkat tertinggi dalam IDM.
                     @elseif($latest->status === 'maju')
-                        Desa kita berstatus <strong class="text-blue-600">Maju</strong> dan terus bergerak menuju
+                        Nagari kita berstatus <strong class="text-blue-600">Maju</strong> dan terus bergerak menuju
                         kemandirian.
                     @elseif($latest->status === 'berkembang')
-                        Desa kita berstatus <strong class="text-amber-600">Berkembang</strong> dan sedang dalam proses
+                        Nagari kita berstatus <strong class="text-amber-600">Berkembang</strong> dan sedang dalam proses
                         peningkatan.
                     @else
-                        Desa kita masih dalam tahap pembangunan dan memerlukan perhatian lebih.
+                        Nagari kita masih dalam tahap pembangunan dan memerlukan perhatian lebih.
                     @endif
                 </p>
             </div>
@@ -84,7 +84,7 @@
                 <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
                     <span class="material-symbols-outlined text-desa-500">info</span> Keterangan Status IDM
                 </h3>
-                <p class="text-sm text-gray-500 mb-4">Status desa ditetapkan berdasarkan rentang skor IDM menurut
+                <p class="text-sm text-gray-500 mb-4">Status nagari ditetapkan berdasarkan rentang skor IDM menurut
                     ketentuan Kementerian Desa, PDT dan Transmigrasi:</p>
                 <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
                     @foreach ([['status' => 'Sangat Tertinggal', 'range' => '< 0,491', 'color' => 'bg-red-100 text-red-800', 'icon' => 'warning'], ['status' => 'Tertinggal', 'range' => '0,491 – 0,599', 'color' => 'bg-orange-100 text-orange-800', 'icon' => 'trending_flat'], ['status' => 'Berkembang', 'range' => '0,600 – 0,707', 'color' => 'bg-amber-100 text-amber-800', 'icon' => 'trending_up'], ['status' => 'Maju', 'range' => '0,708 – 0,815', 'color' => 'bg-blue-100 text-blue-800', 'icon' => 'rocket_launch'], ['status' => 'Mandiri', 'range' => '> 0,815', 'color' => 'bg-green-100 text-green-800', 'icon' => 'stars']] as $info)
@@ -105,7 +105,7 @@
         ['label' => 'Indeks Ketahanan Lingkungan', 'short' => 'IKL', 'score' => $latest->environment_score, 'icon' => 'eco', 'color' => 'green', 'desc' => 'Lingkungan hidup, bencana'],
         ['label' => 'Skor Aksesibilitas', 'short' => 'Akses', 'score' => $latest->accessibility_score, 'icon' => 'route', 'color' => 'purple', 'desc' => 'Transportasi & komunikasi'],
         ['label' => 'Layanan Dasar', 'short' => 'LayDas', 'score' => $latest->basic_service_score, 'icon' => 'medical_services', 'color' => 'rose', 'desc' => 'Kesehatan, pendidikan, infrastruktur'],
-        ['label' => 'Tata Kelola Pemdes', 'short' => 'TKP', 'score' => $latest->governance_score, 'icon' => 'account_balance', 'color' => 'indigo', 'desc' => 'Penyelenggaraan pemerintahan desa'],
+        ['label' => 'Tata Kelola Pemdes', 'short' => 'TKP', 'score' => $latest->governance_score, 'icon' => 'account_balance', 'color' => 'indigo', 'desc' => 'Penyelenggaraan pemerintahan nagari'],
     ] as $dim)
                     <div class="card p-5">
                         <div class="flex items-center gap-3 mb-3">

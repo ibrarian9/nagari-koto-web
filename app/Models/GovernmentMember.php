@@ -12,6 +12,11 @@ class GovernmentMember extends Model
     protected $fillable = [
         'name',
         'position',
+        'nip',
+        'place_of_birth',
+        'date_of_birth',
+        'education_history',
+        'position_history',
         'photo',
         'order',
         'is_active',
@@ -25,6 +30,9 @@ class GovernmentMember extends Model
         return [
             'is_active' => 'boolean',
             'order' => 'integer',
+            'date_of_birth' => 'date',
+            'education_history' => 'array',
+            'position_history' => 'array',
         ];
     }
 
@@ -42,6 +50,6 @@ class GovernmentMember extends Model
 
     protected function getActivityModelLabel(): string
     {
-        return "Perangkat Desa: {$this->name}";
+        return "Perangkat Nagari: {$this->name}";
     }
 }

@@ -19,7 +19,7 @@
                 <div class="text-sm text-gray-600 leading-relaxed">
                     <h3 class="font-bold text-gray-900 mb-1">Tentang Layanan Ini</h3>
                     <p>Layanan surat online memudahkan warga untuk mengajukan permohonan surat keterangan dari
-                        pemerintah desa <strong>tanpa harus datang ke kantor</strong>. Cukup pilih jenis surat, isi
+                        pemerintah nagari <strong>tanpa harus datang ke kantor</strong>. Cukup pilih jenis surat, isi
                         data, dan ajukan secara online. Status surat dapat dipantau kapan saja.</p>
                 </div>
             </div>
@@ -142,7 +142,7 @@
                 Persyaratan Umum
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600">
-                @foreach (['Kartu Tanda Penduduk (KTP) asli dan fotokopi', 'Kartu Keluarga (KK) asli dan fotokopi', 'Surat pengantar dari Jorong', 'Pas foto 3×4 (untuk surat tertentu)', 'Dokumen pendukung sesuai jenis surat', 'Akun terdaftar di website desa'] as $req)
+                @foreach (['Kartu Tanda Penduduk (KTP) asli dan fotokopi', 'Kartu Keluarga (KK) asli dan fotokopi', 'Surat pengantar dari Jorong', 'Pas foto 3×4 (untuk surat tertentu)', 'Dokumen pendukung sesuai jenis surat', 'Akun terdaftar di website nagari'] as $req)
                     <div class="flex items-center gap-2 py-1.5">
                         <span class="material-symbols-outlined text-green-500 text-base">check_circle</span>
                         <span>{{ $req }}</span>

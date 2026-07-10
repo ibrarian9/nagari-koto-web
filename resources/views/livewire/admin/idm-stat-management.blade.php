@@ -3,7 +3,7 @@
         <div><h2 class="text-xl font-bold text-gray-900">Data IDM</h2><p class="text-sm text-gray-500 mt-0.5">Indeks Desa Membangun tahunan</p></div>
         <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span> Tambah</button>
     </div>
-    <x-page-guide title="Panduan Data IDM" description="Kelola data Indeks Desa Membangun (IDM) per tahun. Masukkan skor IDM, IKS (Sosial), IKE (Ekonomi), IKL (Lingkungan), serta skor Aksesibilitas, Layanan Dasar, dan Tata Kelola Pemerintahan Desa. Data ditampilkan di halaman IDM pada website publik." />
+    <x-page-guide title="Panduan Data IDM" description="Kelola data Indeks Desa Membangun (IDM) per tahun. Masukkan skor IDM, IKS (Sosial), IKE (Ekonomi), IKL (Lingkungan), serta skor Aksesibilitas, Layanan Dasar, dan Tata Kelola Pemerintahan Nagari. Data ditampilkan di halaman IDM pada website publik." />
 
     <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Data IDM'" subtitle="Indeks Desa Membangun" icon="trending_up" iconBg="bg-indigo-100" iconColor="text-indigo-600" maxWidth="max-w-3xl">
         <form wire:submit="save" class="space-y-5">
@@ -11,7 +11,7 @@
                 <ul class="list-disc list-inside space-y-1">
                     <li><strong>Tahun</strong> — Tahun data IDM (cth: 2024, 2025)</li>
                     <li><strong>Skor IDM</strong> — Skor total IDM dari Kemendes (format desimal, cth: 0.725)</li>
-                    <li><strong>Status</strong> — Kategori desa berdasarkan skor</li>
+                    <li><strong>Status</strong> — Kategori nagari berdasarkan skor</li>
                     <li><strong>Skor Dimensi</strong> — IKS, IKE, IKL, Aksesibilitas, Layanan Dasar, Tata Kelola Pemdes</li>
                 </ul>
             </x-form-guide>

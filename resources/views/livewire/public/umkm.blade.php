@@ -5,8 +5,8 @@
             <div class="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white/10 mb-4">
                 <span class="material-symbols-outlined text-white text-2xl">storefront</span>
             </div>
-            <h1 class="text-3xl md:text-4xl font-extrabold text-white">UMKM & Produk Desa</h1>
-            <p class="mt-2 text-amber-100 max-w-lg mx-auto">Dukung usaha lokal desa kami — temukan produk dan layanan dari warga</p>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white">UMKM & Produk Nagari</h1>
+            <p class="mt-2 text-amber-100 max-w-lg mx-auto">Dukung usaha lokal nagari kami — temukan produk dan layanan dari warga</p>
         </div>
     </x-hero-section>
 

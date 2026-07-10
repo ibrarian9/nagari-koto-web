@@ -5,7 +5,7 @@
             <div class="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-white/10 mb-4">
                 <span class="material-symbols-outlined text-white text-2xl">eco</span>
             </div>
-            <h1 class="text-3xl md:text-4xl font-extrabold text-white">Potensi Desa</h1>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white">Potensi Nagari</h1>
             <p class="mt-2 text-desa-100 max-w-lg mx-auto">Kekayaan alam, budaya, dan potensi unggulan yang menjadi kebanggaan desa</p>
         </div>
     </x-hero-section>
@@ -57,8 +57,8 @@
             @empty
                 <div class="col-span-3 card p-12 text-center">
                     <span class="material-symbols-outlined text-5xl text-gray-200 mb-3">eco</span>
-                    <p class="text-gray-400 font-medium">Belum ada data potensi desa.</p>
-                    <p class="text-xs text-gray-300 mt-1">Data akan ditampilkan setelah diinput oleh perangkat desa</p>
+                    <p class="text-gray-400 font-medium">Belum ada data potensi nagari.</p>
+                    <p class="text-xs text-gray-300 mt-1">Data akan ditampilkan setelah diinput oleh perangkat nagari</p>
                 </div>
             @endforelse
         </div>

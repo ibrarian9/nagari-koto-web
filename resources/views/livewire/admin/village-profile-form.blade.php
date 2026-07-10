@@ -1,15 +1,15 @@
 <div>
     {{-- ─── HEADER ─────────────────────────────────── --}}
     <div class="mb-6">
-        <h2 class="text-xl font-bold text-gray-900">Edit Profil Desa</h2>
-        <p class="text-sm text-gray-500 mt-0.5">Kelola informasi profil dan identitas desa</p>
+        <h2 class="text-xl font-bold text-gray-900">Edit Profil Nagari</h2>
+        <p class="text-sm text-gray-500 mt-0.5">Kelola informasi profil dan identitas nagari</p>
     </div>
-    <x-page-guide title="Panduan Profil Desa" description="Halaman ini mengelola identitas desa yang ditampilkan di seluruh website. Lengkapi informasi umum (nama, tagline, kode desa), upload logo dan foto desa, serta isi kontak dan media sosial. Data yang diisi di sini menjadi sumber informasi utama yang ditampilkan di halaman Profil Desa." />
+    <x-page-guide title="Panduan Profil Nagari" description="Halaman ini mengelola identitas nagari yang ditampilkan di seluruh website. Lengkapi informasi umum (nama, tagline, kode nagari), upload logo dan foto nagari, serta isi kontak dan media sosial. Data yang diisi di sini menjadi sumber informasi utama yang ditampilkan di halaman Profil Nagari." />
 
     <form wire:submit="save" class="space-y-6">
-        <x-form-guide title="Panduan Pengisian Profil Desa">
+        <x-form-guide title="Panduan Pengisian Profil Nagari">
             <ul class="list-disc list-inside space-y-1">
-                <li><strong>Informasi Umum</strong> — Nama resmi nagari, tagline, kode desa (dari Kemendagri), luas
+                <li><strong>Informasi Umum</strong> — Nama resmi nagari, tagline, kode nagari (dari Kemendagri), luas
                     wilayah, dan tahun berdiri</li>
                 <li><strong>Lokasi & Wilayah</strong> — Alamat administratif lengkap (provinsi, kabupaten, kecamatan),
                     alamat kantor, dan koordinat peta (latitude/longitude dari Google Maps)</li>
@@ -29,13 +29,13 @@
                 </div>
                 <div>
                     <h3 class="font-semibold text-gray-900">Informasi Umum</h3>
-                    <p class="text-xs text-gray-400">Nama, tagline, dan data dasar desa</p>
+                    <p class="text-xs text-gray-400">Nama, tagline, dan data dasar nagari</p>
                 </div>
             </div>
             <div class="p-6 space-y-5">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label class="form-label">Nama Desa <span class="text-red-400">*</span></label>
+                        <label class="form-label">Nama Nagari <span class="text-red-400">*</span></label>
                         <input type="text" wire:model="name" class="form-input w-full"
                             placeholder="cth: Nagari Duo Koto">
                         @error('name')
@@ -45,13 +45,13 @@
                     <div>
                         <label class="form-label">Tagline</label>
                         <input type="text" wire:model="tagline" class="form-input w-full"
-                            placeholder="cth: Desa Maju, Sejahtera, Berbudaya">
+                            placeholder="cth: Nagari Maju, Sejahtera, Berbudaya">
                         @error('tagline')
                             <p class="form-error">{{ $message }}</p>
                         @enderror
                     </div>
                     <div>
-                        <label class="form-label">Kode Desa</label>
+                        <label class="form-label">Kode Nagari</label>
                         <input type="text" wire:model="village_code" class="form-input w-full"
                             placeholder="cth: 1306040001">
                         @error('village_code')
@@ -86,7 +86,7 @@
                 </div>
                 <div>
                     <h3 class="font-semibold text-gray-900">Lokasi & Wilayah</h3>
-                    <p class="text-xs text-gray-400">Alamat administratif dan peta desa</p>
+                    <p class="text-xs text-gray-400">Alamat administratif dan peta nagari</p>
                 </div>
             </div>
             <div class="p-6 space-y-5">
@@ -109,7 +109,7 @@
                 </div>
                 <div>
                     <label class="form-label">Alamat Lengkap</label>
-                    <textarea wire:model="address" class="form-input w-full" rows="2" placeholder="Alamat lengkap kantor desa"></textarea>
+                    <textarea wire:model="address" class="form-input w-full" rows="2" placeholder="Alamat lengkap kantor nagari"></textarea>
                 </div>
                 <div>
                     <label class="form-label">Google Maps Embed URL</label>
@@ -129,7 +129,7 @@
                 </div>
                 <div>
                     <h3 class="font-semibold text-gray-900">Sejarah, Visi & Misi</h3>
-                    <p class="text-xs text-gray-400">Konten narasi desa — mendukung format rich text</p>
+                    <p class="text-xs text-gray-400">Konten narasi nagari — mendukung format rich text</p>
                 </div>
             </div>
             <div class="p-6 space-y-5">
@@ -147,26 +147,26 @@
                 </div>
                 <div>
                     <h3 class="font-semibold text-gray-900">Media</h3>
-                    <p class="text-xs text-gray-400">Logo dan foto/banner desa</p>
+                    <p class="text-xs text-gray-400">Logo dan foto/banner nagari</p>
                 </div>
             </div>
             <div class="p-6 space-y-8">
                 @php $profile = App\Models\VillageProfile::first(); @endphp
 
-                {{-- Logo Desa --}}
+                {{-- Logo Nagari --}}
                 <div>
                     <h4 class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base text-purple-500">shield</span> Logo Desa
+                        <span class="material-symbols-outlined text-base text-purple-500">shield</span> Logo Nagari
                     </h4>
-                    <x-admin-image-upload wireModel="newLogo" label="" :existingUrl="$profile?->logo ? Storage::url($profile->logo) : null" icon="shield" previewClass="h-28 w-28" hint="Logo resmi desa. Format: PNG/JPG, maks 2MB. Disarankan rasio 1:1." />
+                    <x-admin-image-upload wireModel="newLogo" label="" :existingUrl="$profile?->logo ? Storage::url($profile->logo) : null" icon="shield" previewClass="h-28 w-28" hint="Logo resmi nagari. Format: PNG/JPG, maks 2MB. Disarankan rasio 1:1." />
                 </div>
 
                 <hr class="border-gray-100">
 
-                {{-- Foto / Banner Desa --}}
+                {{-- Foto / Banner Nagari --}}
                 <div>
                     <h4 class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-base text-purple-500">landscape</span> Foto Desa / Banner
+                        <span class="material-symbols-outlined text-base text-purple-500">landscape</span> Foto Nagari / Banner
                     </h4>
                     <p class="text-xs text-gray-400 mb-3">Foto ini digunakan sebagai banner/header di halaman utama website. Gunakan foto landscape berkualitas tinggi (rekomendasi: 1200×400 px atau rasio 3:1).</p>
 

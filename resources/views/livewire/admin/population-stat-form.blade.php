@@ -2,7 +2,7 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div><h2 class="text-xl font-bold text-gray-900">Data Infografis Penduduk</h2><p class="text-sm text-gray-500 mt-0.5">Statistik dan demografi kependudukan</p></div>
     </div>
-    <x-page-guide title="Panduan Infografis Penduduk" description="Kelola data kependudukan desa per tahun. Masukkan total penduduk, jumlah KK, dan breakdown berdasarkan kelompok usia, pendidikan, dan pekerjaan. Gunakan tombol 'Tambah Baris' untuk menambah kategori baru. Data ditampilkan sebagai infografis interaktif di website publik." />
+    <x-page-guide title="Panduan Infografis Penduduk" description="Kelola data kependudukan nagari per tahun. Masukkan total penduduk, jumlah KK, dan breakdown berdasarkan kelompok usia, pendidikan, dan pekerjaan. Gunakan tombol 'Tambah Baris' untuk menambah kategori baru. Data ditampilkan sebagai infografis interaktif di website publik." />
     <div class="flex gap-4 mb-6">
         <select wire:model.live="year" wire:change="loadYear($event.target.value)" class="form-input w-40"><option value="{{ date('Y') }}">{{ date('Y') }}</option>@foreach($years as $y)<option value="{{ $y }}">{{ $y }}</option>@endforeach</select>
         <span class="text-sm text-gray-500 self-center">{{ $editingId ? 'Edit data tahun '.$year : 'Data baru untuk tahun '.$year }}</span>

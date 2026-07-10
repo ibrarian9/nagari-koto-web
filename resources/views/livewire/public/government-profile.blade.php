@@ -5,8 +5,8 @@
                 class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-desa-500 to-desa-700 mb-4 shadow-lg shadow-desa-500/20">
                 <span class="material-symbols-outlined text-white text-3xl">groups</span>
             </div>
-            <h1 data-aos="fade-up" data-aos-delay="100" class="section-title">Struktur Pemerintahan Desa</h1>
-            <p data-aos="fade-up" data-aos-delay="200" class="section-subtitle">Perangkat desa yang melayani masyarakat
+            <h1 data-aos="fade-up" data-aos-delay="100" class="section-title">Struktur Pemerintahan Nagari</h1>
+            <p data-aos="fade-up" data-aos-delay="200" class="section-subtitle">Perangkat nagari yang melayani masyarakat
             </p>
         </div>
 
@@ -19,7 +19,7 @@
                 $jorong = $members->filter(fn($m) => $m->order >= 8);
             @endphp
 
-            {{-- Tier 1: Kepala Desa --}}
+            {{-- Tier 1: Wali Nagari --}}
             @if ($kepala)
                 <div data-aos="zoom-in" class="flex justify-center mb-4">
                     <div
@@ -36,6 +36,10 @@
                         </div>
                         <h3 class="font-bold text-gray-900 text-lg">{{ $kepala->name }}</h3>
                         <p class="text-sm text-desa-600 font-semibold mt-1">{{ $kepala->position }}</p>
+                        <a href="{{ route('pemerintahan.detail', $kepala->id) }}" wire:navigate
+                            class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-desa-600 hover:text-desa-800 bg-desa-50 hover:bg-desa-100 px-3 py-1.5 rounded-lg transition-colors">
+                            <span class="material-symbols-outlined text-sm">visibility</span> Lihat Profil
+                        </a>
                     </div>
                 </div>
                 {{-- Connector line --}}
@@ -61,6 +65,10 @@
                         </div>
                         <h3 class="font-semibold text-gray-900">{{ $sekretaris->name }}</h3>
                         <p class="text-sm text-desa-600 font-medium mt-1">{{ $sekretaris->position }}</p>
+                        <a href="{{ route('pemerintahan.detail', $sekretaris->id) }}" wire:navigate
+                            class="inline-flex items-center gap-1 mt-2 text-[11px] font-semibold text-desa-600 hover:text-desa-800 bg-desa-50 hover:bg-desa-100 px-2.5 py-1 rounded-lg transition-colors">
+                            <span class="material-symbols-outlined text-xs">visibility</span> Lihat Profil
+                        </a>
                     </div>
                 </div>
                 <div class="flex justify-center mb-4">
@@ -93,6 +101,10 @@
                                     </div>
                                     <h3 class="font-semibold text-gray-900 text-sm">{{ $member->name }}</h3>
                                     <p class="text-xs text-desa-600 font-medium mt-1">{{ $member->position }}</p>
+                                    <a href="{{ route('pemerintahan.detail', $member->id) }}" wire:navigate
+                                        class="inline-flex items-center gap-1 mt-2 text-[11px] font-semibold text-desa-600 hover:text-desa-800 bg-desa-50 hover:bg-desa-100 px-2.5 py-1 rounded-lg transition-colors">
+                                        <span class="material-symbols-outlined text-xs">visibility</span> Profil
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
@@ -127,6 +139,10 @@
                                     </div>
                                     <h3 class="font-semibold text-gray-900 text-sm">{{ $member->name }}</h3>
                                     <p class="text-xs text-desa-600 font-medium mt-1">{{ $member->position }}</p>
+                                    <a href="{{ route('pemerintahan.detail', $member->id) }}" wire:navigate
+                                        class="inline-flex items-center gap-1 mt-2 text-[11px] font-semibold text-desa-600 hover:text-desa-800 bg-desa-50 hover:bg-desa-100 px-2.5 py-1 rounded-lg transition-colors">
+                                        <span class="material-symbols-outlined text-xs">visibility</span> Profil
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
@@ -159,13 +175,17 @@
                                 </div>
                                 <h3 class="font-semibold text-gray-900 text-sm">{{ $member->name }}</h3>
                                 <p class="text-xs text-desa-600 font-medium mt-1">{{ $member->position }}</p>
+                                <a href="{{ route('pemerintahan.detail', $member->id) }}" wire:navigate
+                                    class="inline-flex items-center gap-1 mt-2 text-[11px] font-semibold text-desa-600 hover:text-desa-800 bg-desa-50 hover:bg-desa-100 px-2.5 py-1 rounded-lg transition-colors">
+                                    <span class="material-symbols-outlined text-xs">visibility</span> Profil
+                                </a>
                             </div>
                         @endforeach
                     </div>
                 </div>
             @endif
         @else
-            <p class="text-center text-gray-400 py-12">Belum ada data perangkat desa.</p>
+            <p class="text-center text-gray-400 py-12">Belum ada data perangkat nagari.</p>
         @endif
     </section>
 </div>

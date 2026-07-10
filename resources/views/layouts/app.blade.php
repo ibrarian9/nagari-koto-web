@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description"
-        content="{{ $metaDescription ?? 'Website Profil Desa Digital — Informasi lengkap tentang desa, pemerintahan, berita, dan layanan publik.' }}">
+        content="{{ $metaDescription ?? 'Website Profil Nagari Digital — Informasi lengkap tentang nagari, pemerintahan, berita, dan layanan publik.' }}">
 
     <title>{{ ($title ?? 'Beranda') . ' — ' . config('app.name') }}</title>
     @include('partials.favicon')
@@ -20,6 +20,9 @@
 </head>
 
 <body class="min-h-screen flex flex-col bg-gray-50">
+
+    {{-- ─── ACCESSIBILITY WIDGET ─────────────────────────────── --}}
+    @include('partials.accessibility-widget')
 
     {{-- ─── NAVBAR ─────────────────────────────────────────── --}}
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/60 shadow-sm"
@@ -53,6 +56,32 @@
                             'route' => 'home',
                             'label' => 'Beranda',
                             'icon' => 'home',
+                        ],
+                        [
+                            'type' => 'dropdown',
+                            'label' => 'Informasi',
+                            'icon' => 'info',
+                            'activeRoutes' => ['berita.index', 'berita.show', 'agenda', 'kontak'],
+                            'items' => [
+                                [
+                                    'route' => 'berita.index',
+                                    'label' => 'Berita',
+                                    'icon' => 'newspaper',
+                                    'desc' => 'Berita & pengumuman',
+                                ],
+                                [
+                                    'route' => 'agenda',
+                                    'label' => 'Agenda',
+                                    'icon' => 'event',
+                                    'desc' => 'Jadwal kegiatan',
+                                ],
+                                [
+                                    'route' => 'kontak',
+                                    'label' => 'Kontak',
+                                    'icon' => 'call',
+                                    'desc' => 'Nomor penting nagari',
+                                ],
+                            ],
                         ],
                         [
                             'type' => 'dropdown',
@@ -193,11 +222,11 @@
                             'type' => 'dropdown',
                             'label' => 'Profil',
                             'icon' => 'info',
-                            'activeRoutes' => ['profil-desa', 'pemerintahan'],
+                            'activeRoutes' => ['profil-nagari', 'pemerintahan'],
                             'items' => [
                                 [
-                                    'route' => 'profil-desa',
-                                    'label' => 'Profil Desa',
+                                    'route' => 'profil-nagari',
+                                    'label' => 'Profil Nagari',
                                     'icon' => 'location_city',
                                     'desc' => 'Sejarah, visi & misi',
                                 ],
@@ -206,32 +235,6 @@
                                     'label' => 'Pemerintahan',
                                     'icon' => 'groups',
                                     'desc' => 'Struktur organisasi',
-                                ],
-                            ],
-                        ],
-                        [
-                            'type' => 'dropdown',
-                            'label' => 'Informasi',
-                            'icon' => 'info',
-                            'activeRoutes' => ['berita.index', 'berita.show', 'agenda', 'kontak'],
-                            'items' => [
-                                [
-                                    'route' => 'berita.index',
-                                    'label' => 'Berita',
-                                    'icon' => 'newspaper',
-                                    'desc' => 'Berita & pengumuman',
-                                ],
-                                [
-                                    'route' => 'agenda',
-                                    'label' => 'Agenda',
-                                    'icon' => 'event',
-                                    'desc' => 'Jadwal kegiatan',
-                                ],
-                                [
-                                    'route' => 'kontak',
-                                    'label' => 'Kontak',
-                                    'icon' => 'call',
-                                    'desc' => 'Nomor penting desa',
                                 ],
                             ],
                         ],
@@ -257,13 +260,13 @@
                                     'route' => 'anggaran',
                                     'label' => 'Anggaran',
                                     'icon' => 'account_balance',
-                                    'desc' => 'APBDes & transparansi',
+                                    'desc' => 'APBNag & transparansi',
                                 ],
                                 [
                                     'route' => 'kehutanan',
                                     'label' => 'Kehutanan',
                                     'icon' => 'forest',
-                                    'desc' => 'Data kawasan hutan desa',
+                                    'desc' => 'Data kawasan hutan nagari',
                                 ],
                             ],
                         ],
@@ -309,7 +312,7 @@
                             'items' => [
                                 [
                                     'route' => 'potensi',
-                                    'label' => 'Potensi Desa',
+                                    'label' => 'Potensi Nagari',
                                     'icon' => 'eco',
                                     'desc' => 'Kekayaan & unggulan',
                                 ],
@@ -610,12 +613,12 @@
                     @endif
                     <div>
                         <p class="font-bold text-sm leading-tight">{{ $village?->name ?? config('app.name') }}</p>
-                        <p class="text-xs text-desa-400">{{ $village?->tagline ?? 'Website Profil Desa Digital' }}</p>
+                        <p class="text-xs text-desa-400">{{ $village?->tagline ?? 'Website Profil Nagari Digital' }}</p>
                     </div>
                 </div>
                 {{-- Links --}}
                 <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-desa-300">
-                    <a href="{{ route('profil-desa') }}" class="hover:text-white transition-colors"
+                    <a href="{{ route('profil-nagari') }}" class="hover:text-white transition-colors"
                         wire:navigate>Profil</a>
                     <a href="{{ route('berita.index') }}" class="hover:text-white transition-colors"
                         wire:navigate>Berita</a>

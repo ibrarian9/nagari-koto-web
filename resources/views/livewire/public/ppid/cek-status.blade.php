@@ -72,7 +72,7 @@
                     @if($result->is_overdue)
                         <div class="rounded-lg bg-amber-50 border border-amber-200 p-3 flex items-start gap-2 text-sm text-amber-800">
                             <span class="material-symbols-outlined text-amber-500 text-base mt-0.5">warning</span>
-                            <p>Permohonan ini sudah melebihi batas waktu 10 hari kerja. Silakan hubungi kantor desa untuk informasi lebih lanjut.</p>
+                            <p>Permohonan ini sudah melebihi batas waktu 10 hari kerja. Silakan hubungi kantor nagari untuk informasi lebih lanjut.</p>
                         </div>
                     @endif
                 </div>

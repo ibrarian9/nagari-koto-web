@@ -3,14 +3,14 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
             <h2 class="text-xl font-bold text-gray-900">Kelola UMKM</h2>
-            <p class="text-sm text-gray-500 mt-0.5">Tambah, edit, dan kelola data UMKM desa</p>
+            <p class="text-sm text-gray-500 mt-0.5">Tambah, edit, dan kelola data UMKM nagari</p>
         </div>
         <button wire:click="create" class="btn-primary btn-sm">
             <span class="material-symbols-outlined text-base">add</span> Tambah
         </button>
     </div>
 
-    <x-page-guide title="Panduan Kelola UMKM" description="Kelola direktori UMKM dan usaha lokal desa. Tambahkan nama usaha, pemilik, deskripsi, kontak, dan foto produk. UMKM yang aktif akan tampil di halaman UMKM pada website publik untuk mempromosikan usaha warga desa." />
+    <x-page-guide title="Panduan Kelola UMKM" description="Kelola direktori UMKM dan usaha lokal nagari. Tambahkan nama usaha, pemilik, deskripsi, kontak, dan foto produk. UMKM yang aktif akan tampil di halaman UMKM pada website publik untuk mempromosikan usaha warga nagari." />
     <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' UMKM'" subtitle="Isi data usaha dengan lengkap" :icon="$editingId ? 'edit' : 'add_business'" iconBg="bg-amber-100" iconColor="text-amber-600" maxWidth="max-w-3xl">
         <form wire:submit="save" class="space-y-5">
             <x-form-guide>

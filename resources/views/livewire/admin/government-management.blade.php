@@ -1,26 +1,65 @@
 <div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div><h2 class="text-xl font-bold text-gray-900">Perangkat Desa</h2><p class="text-sm text-gray-500 mt-0.5">Kelola data perangkat dan aparatur nagari</p></div>
+        <div><h2 class="text-xl font-bold text-gray-900">Perangkat Nagari</h2><p class="text-sm text-gray-500 mt-0.5">Kelola data perangkat dan aparatur nagari</p></div>
         <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span> Tambah</button>
     </div>
-    <x-page-guide title="Panduan Perangkat Desa" description="Kelola data perangkat dan aparatur nagari. Tambahkan nama, jabatan (Wali Nagari, Sekretaris, dll), NIP jika ada, dan foto profil. Atur urutan tampil untuk mengatur hierarki di halaman Pemerintahan pada website publik." />
-    <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Perangkat'" subtitle="Isi data perangkat desa" :icon="$editingId ? 'edit' : 'person_add'" iconBg="bg-desa-100" iconColor="text-desa-600">
+    <x-page-guide title="Panduan Perangkat Nagari" description="Kelola data perangkat dan aparatur nagari. Tambahkan nama, jabatan, NIP, data lahir, riwayat pendidikan, dan riwayat jabatan. Data ini ditampilkan di halaman Pemerintahan dan masing-masing halaman detail profil pada website publik." />
+    <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Perangkat'" subtitle="Isi data perangkat nagari" :icon="$editingId ? 'edit' : 'person_add'" iconBg="bg-desa-100" iconColor="text-desa-600" maxWidth="max-w-3xl">
         <form wire:submit="save" class="space-y-5">
             <x-form-guide>
                 <ul class="list-disc list-inside space-y-1">
-                    <li><strong>Nama</strong> — Isi dengan nama lengkap beserta gelar (cth: H. Syafrizal, S.Pd)</li>
-                    <li><strong>Jabatan</strong> — Posisi resmi di pemerintahan nagari (cth: Wali Nagari, Sekretaris, Kaur Keuangan)</li>
-                    <li><strong>Urutan</strong> — Angka untuk menentukan urutan tampil di halaman publik (0 = paling atas)</li>
-                    <li><strong>Foto</strong> — Upload foto formal berukuran maks 2MB (format JPG/PNG/WebP)</li>
+                    <li><strong>Nama</strong> — Nama lengkap beserta gelar</li>
+                    <li><strong>Jabatan</strong> — Posisi resmi (cth: Wali Nagari, Sekretaris)</li>
+                    <li><strong>NIP</strong> — Nomor Induk Pegawai (opsional)</li>
+                    <li><strong>Riwayat Pendidikan</strong> — Jenjang, institusi, jurusan, tahun lulus</li>
+                    <li><strong>Riwayat Jabatan</strong> — Periode, jabatan, instansi</li>
                 </ul>
             </x-form-guide>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            {{-- Data Utama --}}
+            <p class="text-sm font-semibold text-gray-700 flex items-center gap-2 pb-2 border-b border-gray-100">
+                <span class="material-symbols-outlined text-lg text-desa-500">person</span> Data Utama
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div><label class="form-label">Nama <span class="text-red-400">*</span></label><input type="text" wire:model="name" class="form-input w-full" placeholder="Nama lengkap">@error('name')<p class="form-error">{{ $message }}</p>@enderror</div>
                 <div><label class="form-label">Jabatan <span class="text-red-400">*</span></label><input type="text" wire:model="position" class="form-input w-full" placeholder="cth: Wali Nagari">@error('position')<p class="form-error">{{ $message }}</p>@enderror</div>
+                <div><label class="form-label">NIP</label><input type="text" wire:model="nip" class="form-input w-full" placeholder="Nomor Induk Pegawai"></div>
                 <div><label class="form-label">Urutan</label><input type="number" wire:model="order" class="form-input w-full" placeholder="0"></div>
-                <div><x-admin-image-upload wireModel="photo" label="Foto" :existingUrl="$existingPhoto ? Storage::url($existingPhoto) : null" icon="person" /></div>
+                <div><label class="form-label">Tempat Lahir</label><input type="text" wire:model="place_of_birth" class="form-input w-full" placeholder="cth: Bukittinggi"></div>
+                <div><label class="form-label">Tanggal Lahir</label><input type="date" wire:model="date_of_birth" class="form-input w-full"></div>
             </div>
+            <div><x-admin-image-upload wireModel="photo" label="Foto" :existingUrl="$existingPhoto ? Storage::url($existingPhoto) : null" icon="person" /></div>
             <label class="inline-flex items-center gap-2.5 cursor-pointer select-none group"><input type="checkbox" wire:model="is_active" class="form-checkbox"><span class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Aktif</span></label>
+
+            {{-- Riwayat Pendidikan --}}
+            <p class="text-sm font-semibold text-gray-700 flex items-center gap-2 pb-2 border-b border-gray-100 pt-2">
+                <span class="material-symbols-outlined text-lg text-blue-500">school</span> Riwayat Pendidikan
+            </p>
+            @foreach($education_rows as $i => $row)
+                <div class="grid grid-cols-12 gap-2 items-end">
+                    <div class="col-span-3"><label class="form-label text-xs">Jenjang</label><input type="text" wire:model="education_rows.{{ $i }}.level" class="form-input w-full" placeholder="S1"></div>
+                    <div class="col-span-4"><label class="form-label text-xs">Institusi</label><input type="text" wire:model="education_rows.{{ $i }}.institution" class="form-input w-full" placeholder="Universitas..."></div>
+                    <div class="col-span-3"><label class="form-label text-xs">Jurusan</label><input type="text" wire:model="education_rows.{{ $i }}.major" class="form-input w-full" placeholder="Jurusan"></div>
+                    <div class="col-span-1"><label class="form-label text-xs">Tahun</label><input type="text" wire:model="education_rows.{{ $i }}.year" class="form-input w-full" placeholder="2020"></div>
+                    <div class="col-span-1"><button type="button" wire:click="removeEducationRow({{ $i }})" class="h-9 w-9 rounded-lg flex items-center justify-center text-red-400 hover:bg-red-50 hover:text-red-600 transition-colors"><span class="material-symbols-outlined text-lg">remove_circle</span></button></div>
+                </div>
+            @endforeach
+            <button type="button" wire:click="addEducationRow" class="btn-secondary btn-sm gap-1"><span class="material-symbols-outlined text-sm">add</span> Tambah Pendidikan</button>
+
+            {{-- Riwayat Jabatan --}}
+            <p class="text-sm font-semibold text-gray-700 flex items-center gap-2 pb-2 border-b border-gray-100 pt-2">
+                <span class="material-symbols-outlined text-lg text-amber-500">military_tech</span> Riwayat Jabatan
+            </p>
+            @foreach($position_rows as $i => $row)
+                <div class="grid grid-cols-12 gap-2 items-end">
+                    <div class="col-span-3"><label class="form-label text-xs">Periode</label><input type="text" wire:model="position_rows.{{ $i }}.period" class="form-input w-full" placeholder="2020 - 2024"></div>
+                    <div class="col-span-4"><label class="form-label text-xs">Jabatan</label><input type="text" wire:model="position_rows.{{ $i }}.position" class="form-input w-full" placeholder="Wali Nagari"></div>
+                    <div class="col-span-4"><label class="form-label text-xs">Instansi</label><input type="text" wire:model="position_rows.{{ $i }}.institution" class="form-input w-full" placeholder="Nagari Duo Koto"></div>
+                    <div class="col-span-1"><button type="button" wire:click="removePositionRow({{ $i }})" class="h-9 w-9 rounded-lg flex items-center justify-center text-red-400 hover:bg-red-50 hover:text-red-600 transition-colors"><span class="material-symbols-outlined text-lg">remove_circle</span></button></div>
+                </div>
+            @endforeach
+            <button type="button" wire:click="addPositionRow" class="btn-secondary btn-sm gap-1"><span class="material-symbols-outlined text-sm">add</span> Tambah Jabatan</button>
+
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
                 <button type="submit" class="btn-primary" wire:loading.attr="disabled" wire:target="save"><span wire:loading.remove wire:target="save" class="flex items-center gap-2"><span class="material-symbols-outlined text-base">save</span> Simpan</span><span wire:loading wire:target="save" class="flex items-center gap-2"><span class="material-symbols-outlined text-base animate-spin">progress_activity</span> Menyimpan...</span></button>
                 <button type="button" wire:click="$set('showForm', false)" class="btn-secondary">Batal</button>

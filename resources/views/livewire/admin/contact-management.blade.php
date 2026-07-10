@@ -1,9 +1,9 @@
 <div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div><h2 class="text-xl font-bold text-gray-900">Kelola Kontak</h2><p class="text-sm text-gray-500 mt-0.5">Nomor penting dan kontak desa</p></div>
+        <div><h2 class="text-xl font-bold text-gray-900">Kelola Kontak</h2><p class="text-sm text-gray-500 mt-0.5">Nomor penting dan kontak nagari</p></div>
         <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span> Tambah</button>
     </div>
-    <x-page-guide title="Panduan Kelola Kontak" description="Kelola daftar kontak penting desa seperti nomor kantor desa, puskesmas, kepolisian, dll. Atur urutan tampil dan kategori kontak. Kontak yang ditambahkan akan tampil di halaman Kontak pada website publik." />
+    <x-page-guide title="Panduan Kelola Kontak" description="Kelola daftar kontak penting nagari seperti nomor kantor nagari, puskesmas, kepolisian, dll. Atur urutan tampil dan kategori kontak. Kontak yang ditambahkan akan tampil di halaman Kontak pada website publik." />
 
     <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Kontak'" subtitle="Isi data kontak penting" icon="call" iconBg="bg-teal-100" iconColor="text-teal-600">
         <form wire:submit="save" class="space-y-5">

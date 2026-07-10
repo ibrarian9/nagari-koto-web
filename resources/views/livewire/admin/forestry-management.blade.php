@@ -2,14 +2,14 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
             <h2 class="text-xl font-bold text-gray-900">Data Kehutanan</h2>
-            <p class="text-sm text-gray-500 mt-0.5">Kelola data kawasan hutan dan lahan desa</p>
+            <p class="text-sm text-gray-500 mt-0.5">Kelola data kawasan hutan dan lahan nagari</p>
         </div>
         <button wire:click="create" class="btn-primary btn-sm">
             <span class="material-symbols-outlined text-base">add</span> Tambah
         </button>
     </div>
 
-    <x-page-guide title="Panduan Data Kehutanan" description="Kelola data kawasan hutan dan lahan desa. Masukkan nama kawasan, kategori (Hutan Lindung, Hutan Produksi, dll), luas area, lokasi, dan status kondisi. Data ini akan ditampilkan di halaman Kehutanan pada website publik sebagai informasi transparansi pengelolaan hutan desa." />
+    <x-page-guide title="Panduan Data Kehutanan" description="Kelola data kawasan hutan dan lahan nagari. Masukkan nama kawasan, kategori (Hutan Lindung, Hutan Produksi, dll), luas area, lokasi, dan status kondisi. Data ini akan ditampilkan di halaman Kehutanan pada website publik sebagai informasi transparansi pengelolaan hutan nagari." />
 
     {{-- Summary Cards --}}
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">

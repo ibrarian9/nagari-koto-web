@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', PublicSite\Home::class)->name('home');
-Route::get('/profil-desa', PublicSite\VillageProfile::class)->name('profil-desa');
+Route::get('/profil-nagari', PublicSite\VillageProfile::class)->name('profil-nagari');
 Route::get('/pemerintahan', PublicSite\GovernmentProfile::class)->name('pemerintahan');
+Route::get('/pemerintahan/{id}', PublicSite\GovernmentDetail::class)->name('pemerintahan.detail');
 Route::get('/berita', PublicSite\NewsIndex::class)->name('berita.index');
 Route::get('/berita/{slug}', PublicSite\NewsShow::class)->name('berita.show');
 Route::get('/potensi', PublicSite\VillagePotential::class)->name('potensi');
@@ -74,7 +75,7 @@ Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
         Route::get('/dashboard', Admin\Dashboard::class)->name('dashboard');
-        Route::get('/profil-desa', Admin\VillageProfileForm::class)->name('profil-desa');
+        Route::get('/profil-nagari', Admin\VillageProfileForm::class)->name('profil-nagari');
         Route::get('/pemerintahan', Admin\GovernmentManagement::class)->name('pemerintahan');
         Route::get('/berita', Admin\PostManagement::class)->name('berita');
         Route::get('/potensi', Admin\PotentialManagement::class)->name('potensi');

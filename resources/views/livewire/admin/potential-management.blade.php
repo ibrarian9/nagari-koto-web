@@ -1,21 +1,21 @@
 <div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div><h2 class="text-xl font-bold text-gray-900">Kelola Potensi Desa</h2><p class="text-sm text-gray-500 mt-0.5">Tambah dan kelola potensi desa</p></div>
+        <div><h2 class="text-xl font-bold text-gray-900">Kelola Potensi Nagari</h2><p class="text-sm text-gray-500 mt-0.5">Tambah dan kelola potensi nagari</p></div>
         <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span> Tambah</button>
     </div>
-    <x-page-guide title="Panduan Potensi Desa" description="Kelola data potensi dan kekayaan desa. Tambahkan potensi dengan judul, kategori (pertanian, perikanan, pariwisata, dll), dan deskripsi. Potensi yang ditambahkan akan ditampilkan di halaman Potensi Desa pada website publik." />
-    <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Potensi'" subtitle="Isi data potensi desa" :icon="$editingId ? 'edit' : 'eco'" iconBg="bg-green-100" iconColor="text-green-600">
+    <x-page-guide title="Panduan Potensi Nagari" description="Kelola data potensi dan kekayaan nagari. Tambahkan potensi dengan judul, kategori (pertanian, perikanan, pariwisata, dll), dan deskripsi. Potensi yang ditambahkan akan ditampilkan di halaman Potensi Nagari pada website publik." />
+    <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Potensi'" subtitle="Isi data potensi nagari" :icon="$editingId ? 'edit' : 'eco'" iconBg="bg-green-100" iconColor="text-green-600">
         <form wire:submit="save" class="space-y-5">
             <x-form-guide>
                 <ul class="list-disc list-inside space-y-1">
-                    <li><strong>Judul</strong> — Nama potensi desa yang akan ditampilkan (cth: Air Terjun Kacau)</li>
+                    <li><strong>Judul</strong> — Nama potensi nagari yang akan ditampilkan (cth: Air Terjun Kacau)</li>
                     <li><strong>Kategori</strong> — Pilih jenis potensi: Ekonomi, Pariwisata, Pertanian, Kreatif, atau Lingkungan</li>
                     <li><strong>Deskripsi</strong> — Jelaskan potensi secara detail: lokasi, keunggulan, manfaat bagi masyarakat</li>
                     <li><strong>Thumbnail</strong> — Foto representatif dari potensi, maks 2MB</li>
                 </ul>
             </x-form-guide>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div><label class="form-label">Judul <span class="text-red-400">*</span></label><input type="text" wire:model="title" class="form-input w-full" placeholder="Nama potensi desa">@error('title')<p class="form-error">{{ $message }}</p>@enderror</div>
+                <div><label class="form-label">Judul <span class="text-red-400">*</span></label><input type="text" wire:model="title" class="form-input w-full" placeholder="Nama potensi nagari">@error('title')<p class="form-error">{{ $message }}</p>@enderror</div>
                 <div><label class="form-label">Kategori <span class="text-red-400">*</span></label><select wire:model="category" class="form-input w-full"><option value="">— Pilih —</option>@foreach(['economy'=>'Ekonomi','tourism'=>'Pariwisata','agriculture'=>'Pertanian','creative'=>'Kreatif','environment'=>'Lingkungan'] as $k=>$v)<option value="{{ $k }}">{{ $v }}</option>@endforeach</select>@error('category')<p class="form-error">{{ $message }}</p>@enderror</div>
             </div>
             <x-trix-editor name="description" :value="$description" label="Deskripsi" />

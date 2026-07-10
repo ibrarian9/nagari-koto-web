@@ -3,14 +3,14 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
             <h2 class="text-xl font-bold text-gray-900">Kelola Berita</h2>
-            <p class="text-sm text-gray-500 mt-0.5">Tambah, edit, dan kelola berita desa</p>
+            <p class="text-sm text-gray-500 mt-0.5">Tambah, edit, dan kelola berita nagari</p>
         </div>
         <button wire:click="create" class="btn-primary btn-sm">
             <span class="material-symbols-outlined text-base">add</span> Tambah Berita
         </button>
     </div>
 
-    <x-page-guide title="Panduan Kelola Berita" description="Kelola berita dan pengumuman desa. Tulis judul, ringkasan, dan konten berita dengan editor teks. Upload gambar sampul untuk setiap berita. Berita yang dipublish akan tampil di halaman Berita pada website publik dengan format yang menarik." />
+    <x-page-guide title="Panduan Kelola Berita" description="Kelola berita dan pengumuman nagari. Tulis judul, ringkasan, dan konten berita dengan editor teks. Upload gambar sampul untuk setiap berita. Berita yang dipublish akan tampil di halaman Berita pada website publik dengan format yang menarik." />
 
     <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Berita'" subtitle="Isi formulir dengan lengkap" :icon="$editingId ? 'edit' : 'add'" iconBg="bg-desa-100" iconColor="text-desa-600" maxWidth="max-w-3xl">
         <form wire:submit="save" class="space-y-5">

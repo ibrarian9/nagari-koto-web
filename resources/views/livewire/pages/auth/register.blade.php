@@ -53,7 +53,7 @@ new #[Layout('layouts.guest')] class extends Component
             <h2 class="text-xl font-bold text-gray-900 mb-2">Pendaftaran Berhasil!</h2>
             <p class="text-sm text-gray-500 leading-relaxed mb-6">
                 Akun Anda telah dibuat dan sedang <strong>menunggu persetujuan admin</strong>.
-                Anda akan dapat login setelah akun diaktifkan oleh petugas desa.
+                Anda akan dapat login setelah akun diaktifkan oleh petugas nagari.
             </p>
             <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800 mb-6">
                 <div class="flex items-start gap-3">
@@ -130,7 +130,7 @@ new #[Layout('layouts.guest')] class extends Component
             {{-- Info Box --}}
             <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 text-xs text-blue-700 flex items-start gap-2">
                 <span class="material-symbols-outlined text-blue-400 text-sm mt-0.5">info</span>
-                <p>Setelah mendaftar, akun Anda perlu diverifikasi oleh admin desa sebelum dapat digunakan untuk mengajukan surat.</p>
+                <p>Setelah mendaftar, akun Anda perlu diverifikasi oleh admin nagari sebelum dapat digunakan untuk mengajukan surat.</p>
             </div>
 
             {{-- Submit --}}

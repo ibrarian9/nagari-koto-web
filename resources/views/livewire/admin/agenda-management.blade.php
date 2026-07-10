@@ -2,13 +2,13 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
             <h2 class="text-xl font-bold text-gray-900">Kelola Agenda</h2>
-            <p class="text-sm text-gray-500 mt-0.5">Jadwal kegiatan dan acara desa</p>
+            <p class="text-sm text-gray-500 mt-0.5">Jadwal kegiatan dan acara nagari</p>
         </div>
         <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span>
             Tambah</button>
     </div>
     <x-page-guide title="Panduan Kelola Agenda"
-        description="Kelola jadwal kegiatan dan acara desa. Tambahkan agenda dengan tanggal, waktu, lokasi, deskripsi, dan flyer. Centang 'Publik' agar agenda tampil di halaman website publik. Agenda yang sudah lewat tetap tersimpan sebagai arsip." />
+        description="Kelola jadwal kegiatan dan acara nagari. Tambahkan agenda dengan tanggal, waktu, lokasi, deskripsi, dan flyer. Centang 'Publik' agar agenda tampil di halaman website publik. Agenda yang sudah lewat tetap tersimpan sebagai arsip." />
 
     <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Agenda'" subtitle="Isi data kegiatan" icon="event" iconBg="bg-amber-100"
         iconColor="text-amber-600">

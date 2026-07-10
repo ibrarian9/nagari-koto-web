@@ -38,7 +38,7 @@
                     <div data-aos="fade-down" data-aos-delay="100"
                         class="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md px-4 py-1.5 text-xs md:text-sm text-amber-300 mb-6 shadow-inner tracking-wide">
                         <span class="material-symbols-outlined text-sm md:text-base text-amber-400 animate-pulse">location_city</span>
-                        Portal Resmi Pemerintahan Desa
+                        Portal Resmi Pemerintahan Nagari
                     </div>
                     <h1 data-aos="fade-right" data-aos-delay="200"
                         class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight tracking-tight text-white drop-shadow-md">
@@ -48,7 +48,7 @@
                     </h1>
                     <p data-aos="fade-right" data-aos-delay="300"
                         class="mt-6 text-base md:text-lg lg:text-xl text-desa-100/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-                        {{ $village?->tagline ?? 'Membangun desa maju, sejahtera, dan berbudaya dengan keterbukaan informasi.' }}
+                        {{ $village?->tagline ?? 'Membangun nagari maju, sejahtera, dan berbudaya dengan keterbukaan informasi.' }}
                     </p>
                     @if ($village?->address)
                         <div
@@ -59,10 +59,10 @@
                     @endif
                     <div data-aos="fade-up" data-aos-delay="400"
                         class="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
-                        <a href="{{ route('profil-desa') }}" wire:navigate
+                        <a href="{{ route('profil-nagari') }}" wire:navigate
                             class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 group">
                             <span class="material-symbols-outlined text-lg transition-transform group-hover:rotate-12">info</span>
-                            Profil Desa
+                            Profil Nagari
                         </a>
                         <a href="{{ route('surat.info') }}" wire:navigate
                             class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 shadow-md backdrop-blur-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 group">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                {{-- Kepala Desa Card --}}
+                {{-- Wali Nagari Card --}}
                 @if ($kepala)
                     <div data-aos="fade-left" data-aos-delay="500"
                         class="lg:col-span-5 hidden lg:flex justify-center xl:justify-end">
@@ -96,7 +96,7 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
                             </div>
                             <span
-                                class="text-[10px] uppercase tracking-widest text-amber-300 font-bold bg-amber-400/10 px-4 py-1 rounded-full border border-amber-400/20">{{ $kepala->position ?? 'Kepala Desa' }}</span>
+                                class="text-[10px] uppercase tracking-widest text-amber-300 font-bold bg-amber-400/10 px-4 py-1 rounded-full border border-amber-400/20">{{ $kepala->position ?? 'Wali Nagari' }}</span>
                             <h3 class="font-extrabold text-white text-xl mt-4 tracking-wide">{{ $kepala->name }}</h3>
                             
                             <div class="mt-8 pt-6 border-t border-white/10">
@@ -212,8 +212,8 @@
                 [
                     'route' => 'anggaran',
                     'icon' => 'account_balance_wallet',
-                    'label' => 'Anggaran Desa',
-                    'desc' => 'Transparansi APBDes dan laporan realisasi pembangunan',
+                    'label' => 'Anggaran Nagari',
+                    'desc' => 'Transparansi APBNag dan laporan realisasi pembangunan',
                     'grad' => 'from-purple-400 to-indigo-600',
                     'shadow' => 'hover:shadow-purple-500/10',
                     'text' => 'text-purple-600',
@@ -471,7 +471,7 @@
         <div class="flex items-end justify-between mb-12" data-aos="fade-up">
             <div>
                 <span class="text-xs uppercase tracking-widest text-desa-600 font-extrabold bg-desa-50 px-3 py-1 rounded-full border border-desa-100">Kekayaan Lokal</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mt-3">Potensi Desa</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mt-3">Potensi Nagari</h2>
                 <p class="text-xs md:text-sm text-gray-450 mt-1">Eksplorasi sumber daya alam, pariwisata, dan kebudayaan lokal Nagari</p>
             </div>
             <a href="{{ route('potensi') }}" wire:navigate
@@ -504,7 +504,7 @@
             @empty
                 <div class="col-span-4 bg-white border border-gray-150/60 rounded-3xl p-16 text-center shadow-sm">
                     <span class="material-symbols-outlined text-5xl text-gray-200 mb-3 block">eco</span>
-                    <p class="text-gray-450 font-medium">Belum ada data potensi desa terpublikasi.</p>
+                    <p class="text-gray-450 font-medium">Belum ada data potensi nagari terpublikasi.</p>
                 </div>
             @endforelse
         </div>
@@ -517,7 +517,7 @@
             <div class="flex items-end justify-between mb-12" data-aos="fade-up">
                 <div>
                     <span class="text-xs uppercase tracking-widest text-amber-700 font-extrabold bg-amber-50/80 px-3 py-1 rounded-full border border-amber-100">Ekonomi Mandiri</span>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mt-3">UMKM & Produk Desa</h2>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mt-3">UMKM & Produk Nagari</h2>
                     <p class="text-xs md:text-sm text-gray-500 mt-1">Dukung usaha lokal dengan membeli produk-produk unggulan warga Nagari</p>
                 </div>
                 <a href="{{ route('umkm') }}" wire:navigate
@@ -616,7 +616,7 @@
                             ['icon' => 'domain', 'label' => 'Kecamatan', 'value' => $village?->district ?? '-'], 
                             ['icon' => 'apartment', 'label' => 'Kabupaten', 'value' => $village?->regency ?? '-'], 
                             ['icon' => 'public', 'label' => 'Provinsi', 'value' => $village?->province ?? '-'], 
-                            ['icon' => 'tag', 'label' => 'Kode Desa/Nagari', 'value' => $village?->village_code ?? '-']
+                            ['icon' => 'tag', 'label' => 'Kode Nagari/Nagari', 'value' => $village?->village_code ?? '-']
                         ] as $info)
                             <div class="flex items-start gap-3.5 text-xs md:text-sm">
                                 <div
