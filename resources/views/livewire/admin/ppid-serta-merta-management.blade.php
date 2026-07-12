@@ -46,7 +46,7 @@
             <td class="text-xs text-gray-500">{{ $item->published_at?->format('d/m/Y H:i') }}</td>
             <td class="flex gap-1">
                 <button wire:click="edit({{ $item->id }})" class="text-desa-600"><span class="material-symbols-outlined text-lg">edit</span></button>
-                <button onclick="confirmAction({{ $item->id }}, 'delete', 'Hapus pengumuman ini?')" class="text-red-500"><span class="material-symbols-outlined text-lg">delete</span></button>
+                <button onclick="confirmAction({{ $item->id }}, 'deleteConfirmed', 'Hapus pengumuman ini?')" class="text-red-500"><span class="material-symbols-outlined text-lg">delete</span></button>
             </td>
         </tr>
         @empty<tr><td colspan="5" class="text-center text-gray-400 py-8">Belum ada data.</td></tr>@endforelse

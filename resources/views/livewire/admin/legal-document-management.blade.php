@@ -42,7 +42,7 @@
             <td><span class="badge {{ $item->is_published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500' }} text-xs">{{ $item->is_published ? 'Publik' : 'Draft' }}</span></td>
             <td class="flex gap-1">
                 <button wire:click="edit({{ $item->id }})" class="text-desa-600 hover:text-desa-800"><span class="material-symbols-outlined text-lg">edit</span></button>
-                <button onclick="confirmAction({{ $item->id }}, 'delete', 'Hapus dokumen ini?')" class="text-red-500 hover:text-red-700"><span class="material-symbols-outlined text-lg">delete</span></button>
+                <button onclick="confirmAction({{ $item->id }}, 'deleteConfirmed', 'Hapus dokumen &quot;{{ addslashes(Str::limit($item->title, 40)) }}&quot; ?')" class="text-red-500 hover:text-red-700"><span class="material-symbols-outlined text-lg">delete</span></button>
             </td>
         </tr>
         @empty<tr><td colspan="8" class="text-center text-gray-400 py-8">Belum ada data.</td></tr>@endforelse

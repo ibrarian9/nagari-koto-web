@@ -6,6 +6,7 @@ use App\Models\PpidSetiapSaat;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -122,6 +123,7 @@ class PpidSetiapSaatManagement extends Component
         }
     }
 
+    #[On('deleteConfirmed')]
     public function delete(int $id): void
     {
         $item = PpidSetiapSaat::findOrFail($id);

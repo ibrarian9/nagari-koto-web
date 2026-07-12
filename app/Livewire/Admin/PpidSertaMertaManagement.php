@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\PpidSertaMerta;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -56,6 +57,7 @@ class PpidSertaMertaManagement extends Component
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data disimpan.');
     }
 
+    #[On('deleteConfirmed')]
     public function delete(int $id): void
     {
         PpidSertaMerta::findOrFail($id)->delete();
