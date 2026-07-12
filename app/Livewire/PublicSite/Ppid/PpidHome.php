@@ -73,6 +73,17 @@ class PpidHome extends Component
     public function downloadBerkala(int $id)
     {
         $item = PpidBerkala::published()->findOrFail($id);
+
+        if (!$item->file_path) {
+            $this->dispatch('swal', icon: 'error', title: 'File tidak tersedia', text: 'Dokumen ini belum memiliki file');
+            return;
+        }
+
+        if (!$item->fileExists()) {
+            $this->dispatch('swal', icon: 'error', title: 'File tidak ditemukan', text: 'File tidak ditemukan di storage');
+            return;
+        }
+
         $item->increment('download_count');
         return Storage::disk('public')->download($item->file_path, $item->file_name);
     }
@@ -80,8 +91,68 @@ class PpidHome extends Component
     public function downloadSetiapSaat(int $id)
     {
         $item = PpidSetiapSaat::published()->findOrFail($id);
+
+        if (!$item->file_path) {
+            $this->dispatch('swal', icon: 'error', title: 'File tidak tersedia', text: 'Dokumen ini belum memiliki file');
+            return;
+        }
+
+        if (!$item->fileExists()) {
+            $this->dispatch('swal', icon: 'error', title: 'File tidak ditemukan', text: 'File tidak ditemukan di storage');
+            return;
+        }
+
         $item->increment('download_count');
         return Storage::disk('public')->download($item->file_path, $item->file_name);
+    }
+
+    public function viewBerkala(int $id)
+    {
+        $item = PpidBerkala::published()->findOrFail($id);
+        $this->processPdfViewing($item);
+    }
+
+    public function viewSetiapSaat(int $id)
+    {
+        $item = PpidSetiapSaat::published()->findOrFail($id);
+        $this->processPdfViewing($item);
+    }
+
+    /**
+     * Helper method untuk memproses validasi dan menampilkan PDF
+     */
+    private function processPdfViewing(PpidBerkala|PpidSetiapSaat $item): void
+    {
+        // 1. Cek apakah path file ada di database
+        if (!$item->file_path) {
+            $this->dispatch('swal', icon: 'error', title: 'File tidak tersedia', text: 'Dokumen ini belum memiliki file');
+            return;
+        }
+
+        // 2. Validasi ekstensi file dari path dan nama file untuk konsistensi
+        $pathExtension = pathinfo($item->file_path, PATHINFO_EXTENSION);
+        $nameExtension = $item->file_name ? pathinfo($item->file_name, PATHINFO_EXTENSION) : '';
+
+        if (strtolower($pathExtension) !== 'pdf') {
+            $this->dispatch('swal', icon: 'error', title: 'Format tidak didukung', text: 'Hanya file PDF yang dapat dilihat');
+            return;
+        }
+
+        // Validasi konsistensi ekstensi antara path dan nama file
+        if ($nameExtension && strtolower($nameExtension) !== strtolower($pathExtension)) {
+            $this->dispatch('swal', icon: 'error', title: 'Format tidak konsisten', text: 'Terjadi ketidaksesuaian format file. Silakan hubungi administrator.');
+            return;
+        }
+
+        // 3. Cek apakah file benar-benar ada di storage
+        if (!$item->fileExists()) {
+            $this->dispatch('swal', icon: 'error', title: 'File tidak ditemukan', text: 'File tidak ditemukan di storage');
+            return;
+        }
+
+        // 4. Jika lolos semua validasi, buka modal
+        $url = Storage::disk('public')->url($item->file_path);
+        $this->dispatch('open-pdf-modal', url: $url, title: $item->title);
     }
 
     public function generateCaptcha(): void

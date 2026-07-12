@@ -61,7 +61,7 @@
                             'type' => 'dropdown',
                             'label' => 'Informasi',
                             'icon' => 'info',
-                            'activeRoutes' => ['berita.index', 'berita.show', 'agenda', 'kontak'],
+                            'activeRoutes' => ['berita.index', 'berita.show', 'agenda', 'kontak', 'produk-hukum'],
                             'items' => [
                                 [
                                     'route' => 'berita.index',
@@ -80,6 +80,12 @@
                                     'label' => 'Kontak',
                                     'icon' => 'call',
                                     'desc' => 'Nomor penting nagari',
+                                ],
+                                [
+                                    'route' => 'produk-hukum',
+                                    'label' => 'Produk Hukum',
+                                    'icon' => 'gavel',
+                                    'desc' => 'Dokumen & peraturan nagari',
                                 ],
                             ],
                         ],

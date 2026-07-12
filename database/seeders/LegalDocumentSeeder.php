@@ -1,0 +1,163 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\LegalDocument;
+use Illuminate\Database\Seeder;
+
+class LegalDocumentSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $documents = [
+            [
+                'title' => 'Peraturan Nagari tentang Pengelolaan Aset Desa',
+                'category' => 'perdes',
+                'year' => 2024,
+                'number' => '1/2024',
+                'description' => 'Peraturan Nagari Duo Koto Nomor 1 Tahun 2024 tentang Pengelolaan Aset Desa',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subMonths(6),
+            ],
+            [
+                'title' => 'Peraturan Nagari tentang Tata Kelola Keuangan Nagari',
+                'category' => 'perdes',
+                'year' => 2024,
+                'number' => '2/2024',
+                'description' => 'Peraturan Nagari Duo Koto Nomor 2 Tahun 2024 tentang Tata Kelola Keuangan Nagari',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subMonths(5),
+            ],
+            [
+                'title' => 'SK Wali Nagari tentang Pembentukan Tim Pengelola Dana Desa',
+                'category' => 'sk_wali',
+                'year' => 2024,
+                'number' => '05/2024',
+                'description' => 'Surat Keputusan Wali Nagari tentang Pembentukan Tim Pengelola Dana Desa Tahun Anggaran 2024',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subMonths(4),
+            ],
+            [
+                'title' => 'SK Wali Nagari tentang Penetapan RKPDes Tahun 2024',
+                'category' => 'sk_wali',
+                'year' => 2024,
+                'number' => '10/2024',
+                'description' => 'Surat Keputusan Wali Nagari tentang Penetapan Rencana Kerja Pemerintah Nagari Tahun 2024',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subMonths(3),
+            ],
+            [
+                'title' => 'Peraturan Bupati tentang Pedoman Penyusunan APBDes',
+                'category' => 'perbup',
+                'year' => 2023,
+                'number' => '45/2023',
+                'description' => 'Peraturan Bupati Agam Nomor 45 Tahun 2023 tentang Pedoman Penyusunan APBDes',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subYear(),
+            ],
+            [
+                'title' => 'Peraturan Daerah tentang Nagari',
+                'category' => 'perda',
+                'year' => 2022,
+                'number' => '8/2022',
+                'description' => 'Peraturan Daerah Provinsi Sumatera Barat Nomor 8 Tahun 2022 tentang Nagari',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subYears(2),
+            ],
+            [
+                'title' => 'Undang-Undang Desa',
+                'category' => 'uu',
+                'year' => 2014,
+                'number' => '6/2014',
+                'description' => 'Undang-Undang Republik Indonesia Nomor 6 Tahun 2014 tentang Desa',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subYears(10),
+            ],
+            [
+                'title' => 'Peraturan Pemerintah tentang Tata Kelola Dana Desa',
+                'category' => 'pp',
+                'year' => 2015,
+                'number' => '60/2015',
+                'description' => 'Peraturan Pemerintah Republik Indonesia Nomor 60 Tahun 2015 tentang Dana Desa',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subYears(9),
+            ],
+            [
+                'title' => 'Instruksi Presiden tentang Percepatan Penggunaan Dana Desa',
+                'category' => 'inpres',
+                'year' => 2023,
+                'number' => '3/2023',
+                'description' => 'Instruksi Presiden Republik Indonesia Nomor 3 Tahun 2023 tentang Percepatan Penggunaan Dana Desa',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subYear(),
+            ],
+            [
+                'title' => 'Peraturan Nagari tentang Penyusunan RPJMDes',
+                'category' => 'perdes',
+                'year' => 2023,
+                'number' => '3/2023',
+                'description' => 'Peraturan Nagari Duo Koto Nomor 3 Tahun 2023 tentang Penyusunan RPJMDes 2024-2030',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subYears(1)->subMonths(6),
+            ],
+            [
+                'title' => 'SK Wali Nagari tentang Pembagian Dana Nagari',
+                'category' => 'sk_wali',
+                'year' => 2023,
+                'number' => '15/2023',
+                'description' => 'Surat Keputusan Wali Nagari tentang Pembagian Dana Nagari untuk Jorong Tahun 2023',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subYears(1)->subMonths(3),
+            ],
+            [
+                'title' => 'Peraturan Nagari tentang Kewajiban Pajak Nagari',
+                'category' => 'perdes',
+                'year' => 2022,
+                'number' => '5/2022',
+                'description' => 'Peraturan Nagari Duo Koto Nomor 5 Tahun 2022 tentang Kewajiban Pajak Nagari',
+                'file_path' => null,
+                'file_name' => null,
+                'file_size' => 0,
+                'is_published' => true,
+                'published_at' => now()->subYears(2)->subMonths(6),
+            ],
+        ];
+
+        foreach ($documents as $doc) {
+            LegalDocument::create($doc);
+        }
+    }
+}

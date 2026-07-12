@@ -4,12 +4,17 @@ namespace App\Models;
 
 use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class PpidSetiapSaat extends Model
 {
     use LogsActivity;
 
     protected $table = 'ppid_setiap_saat';
+
+    public const CACHE_TTL_MINUTES = 5;
+    public const CACHE_KEY_PREFIX = 'ppid_setiap_saat:file_exists:';
 
     protected $fillable = [
         'title', 'category', 'year', 'description',
@@ -61,9 +66,28 @@ class PpidSetiapSaat extends Model
 
     // ─── Helpers ───────────────────────────────────────────
 
+    public function fileExists(): bool
+    {
+        if (!$this->file_path) {
+            return false;
+        }
+
+        // Key cache dibuat unik berdasarkan MD5 dari file_path model ini dengan prefix model-specific
+        $cacheKey = self::CACHE_KEY_PREFIX . md5($this->file_path);
+
+        // Cache akan disimpan selama 15 menit untuk menghindari stale data
+        return Cache::remember($cacheKey, now()->addMinutes(self::CACHE_TTL_MINUTES), function () {
+            return Storage::disk('public')->exists($this->file_path);
+        });
+    }
+
     public function getFileSizeFormattedAttribute(): string
     {
-        $bytes = $this->file_size;
+        if (!$this->fileExists()) {
+            return 'N/A';
+        }
+
+        $bytes = $this->file_size ?? 0;
         if ($bytes >= 1048576) return round($bytes / 1048576, 1) . ' MB';
         if ($bytes >= 1024) return round($bytes / 1024, 1) . ' KB';
         return $bytes . ' B';
@@ -71,6 +95,9 @@ class PpidSetiapSaat extends Model
 
     public function getFileExtensionAttribute(): string
     {
+        if (!$this->file_name) {
+            return 'N/A';
+        }
         return strtoupper(pathinfo($this->file_name, PATHINFO_EXTENSION));
     }
 

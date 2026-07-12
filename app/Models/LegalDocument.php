@@ -7,17 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
-class PpidBerkala extends Model
+class LegalDocument extends Model
 {
     use LogsActivity;
 
-    protected $table = 'ppid_berkala';
-
-    public const CACHE_TTL_MINUTES = 5;
-    public const CACHE_KEY_PREFIX = 'ppid_berkala:file_exists:';
+    private const CACHE_TTL_MINUTES = 15;
+    public const CACHE_KEY_PREFIX = 'legal_document:file_exists:';
 
     protected $fillable = [
-        'title', 'category', 'year', 'description',
+        'title', 'category', 'year', 'number', 'description',
         'file_path', 'file_name', 'file_size',
         'download_count', 'is_published', 'published_at',
     ];
@@ -35,11 +33,13 @@ class PpidBerkala extends Model
     // ─── Categories ────────────────────────────────────────
 
     public const CATEGORIES = [
-        'apbdes' => 'APBDes',
-        'rpjmdes' => 'RPJMDes',
-        'rkpdes' => 'RKPDes',
         'perdes' => 'Peraturan Desa',
-        'laporan_pertanggungjawaban' => 'Laporan Pertanggungjawaban',
+        'sk_wali' => 'SK Wali Nagari',
+        'perbup' => 'Peraturan Bupati',
+        'perda' => 'Peraturan Daerah',
+        'uu' => 'Undang-Undang',
+        'pp' => 'Peraturan Pemerintah',
+        'inpres' => 'Instruksi Presiden',
         'lainnya' => 'Lainnya',
     ];
 
@@ -88,7 +88,7 @@ class PpidBerkala extends Model
             return 'N/A';
         }
 
-        $bytes = $this->file_size ?? 0;
+        $bytes = $this->file_size;
         if ($bytes >= 1048576) return round($bytes / 1048576, 1) . ' MB';
         if ($bytes >= 1024) return round($bytes / 1024, 1) . ' KB';
         return $bytes . ' B';
@@ -104,6 +104,6 @@ class PpidBerkala extends Model
 
     protected function getActivityModelLabel(): string
     {
-        return "PPID Berkala: {$this->title}";
+        return "Produk Hukum: {$this->title}";
     }
 }

@@ -79,18 +79,22 @@
                             @endif
                         </div>
                         <div class="flex items-center gap-2 flex-shrink-0">
-                            @if (strtolower($item->file_extension) === 'pdf')
-                                <a href="{{ Storage::url($item->file_path) }}" target="_blank"
-                                    title="Lihat PDF"
-                                    class="h-9 w-9 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200 flex items-center justify-center transition-colors group">
-                                    <span class="material-symbols-outlined text-lg text-blue-600 group-hover:text-blue-700">visibility</span>
-                                </a>
+                            @if($item->fileExists())
+                                @if (strtolower($item->file_extension) === 'pdf')
+                                    <button wire:click="viewBerkala({{ $item->id }})"
+                                            title="Lihat PDF"
+                                            class="h-9 w-9 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200 flex items-center justify-center transition-colors group">
+                                        <span class="material-symbols-outlined text-lg text-blue-600 group-hover:text-blue-700">visibility</span>
+                                    </button>
+                                @endif
+                                <button wire:click="downloadBerkala({{ $item->id }})"
+                                        class="btn-primary btn-sm whitespace-nowrap flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-sm">download</span>
+                                    Download
+                                </button>
+                            @else
+                                <span class="text-xs text-gray-400 italic">File tidak tersedia</span>
                             @endif
-                            <button wire:click="downloadBerkala({{ $item->id }})"
-                                class="btn-primary btn-sm whitespace-nowrap flex items-center gap-1.5">
-                                <span class="material-symbols-outlined text-sm">download</span>
-                                Download
-                            </button>
                         </div>
                     </div>
                 @empty
@@ -131,18 +135,22 @@
                             @endif
                         </div>
                         <div class="flex items-center gap-2 flex-shrink-0">
-                            @if (strtolower($item->file_extension) === 'pdf')
-                                <a href="{{ Storage::url($item->file_path) }}" target="_blank"
-                                    title="Lihat PDF"
-                                    class="h-9 w-9 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200 flex items-center justify-center transition-colors group">
-                                    <span class="material-symbols-outlined text-lg text-blue-600 group-hover:text-blue-700">visibility</span>
-                                </a>
+                            @if($item->fileExists())
+                                @if (strtolower($item->file_extension) === 'pdf')
+                                    <button wire:click="viewSetiapSaat({{ $item->id }})"
+                                            title="Lihat PDF"
+                                            class="h-9 w-9 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200 flex items-center justify-center transition-colors group">
+                                        <span class="material-symbols-outlined text-lg text-blue-600 group-hover:text-blue-700">visibility</span>
+                                    </button>
+                                @endif
+                                <button wire:click="downloadSetiapSaat({{ $item->id }})"
+                                        class="btn-primary btn-sm whitespace-nowrap flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-sm">download</span>
+                                    Download
+                                </button>
+                            @else
+                                <span class="text-xs text-gray-400 italic">File tidak tersedia</span>
                             @endif
-                            <button wire:click="downloadSetiapSaat({{ $item->id }})"
-                                class="btn-primary btn-sm whitespace-nowrap flex items-center gap-1.5">
-                                <span class="material-symbols-outlined text-sm">download</span>
-                                Download
-                            </button>
                         </div>
                     </div>
                 @empty

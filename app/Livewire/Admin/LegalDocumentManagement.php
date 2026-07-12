@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\PpidBerkala;
+use App\Models\LegalDocument;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
@@ -11,7 +11,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
-class PpidBerkalaManagement extends Component
+class LegalDocumentManagement extends Component
 {
     use WithFileUploads, WithPagination;
 
@@ -28,6 +28,9 @@ class PpidBerkalaManagement extends Component
 
     #[Validate('required|integer|min:2000|max:2099')]
     public int $year;
+
+    #[Validate('nullable|string|max:100')]
+    public string $number = '';
 
     #[Validate('nullable|string|max:2000')]
     public string $description = '';
@@ -50,11 +53,12 @@ class PpidBerkalaManagement extends Component
 
     public function edit(int $id): void
     {
-        $item = PpidBerkala::findOrFail($id);
+        $item = LegalDocument::findOrFail($id);
         $this->editingId = $id;
         $this->title = $item->title;
         $this->category = $item->category;
         $this->year = $item->year;
+        $this->number = $item->number ?? '';
         $this->description = $item->description ?? '';
         $this->is_published = $item->is_published;
         $this->showForm = true;
@@ -63,14 +67,15 @@ class PpidBerkalaManagement extends Component
     public function save(): void
     {
         $rules = $this->editingId
-            ? ['file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx|max:10240']
-            : ['file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:10240'];
+            ? ['file' => 'nullable|file|mimes:pdf|max:10240']
+            : ['file' => 'required|file|mimes:pdf|max:10240'];
         $this->validate(array_merge($this->rules(), $rules));
 
         $data = [
             'title' => $this->title,
             'category' => $this->category,
             'year' => $this->year,
+            'number' => $this->number ?: null,
             'description' => $this->description,
             'is_published' => $this->is_published,
             'published_at' => $this->is_published ? now() : null,
@@ -82,31 +87,25 @@ class PpidBerkalaManagement extends Component
         if ($this->file) {
             $extension = $this->file->getClientOriginalExtension();
             $fileName = $this->generateStandardFileName($this->title, $extension);
-            $newFilePath = $this->file->storeAs('ppid/berkala', $fileName, 'public');
+            $newFilePath = $this->file->storeAs('legal-documents', $fileName, 'public');
             $data['file_path'] = $newFilePath;
             $data['file_name'] = $fileName;
             $data['file_size'] = $this->file->getSize();
 
             // Get old file path for deletion after successful update
             if ($this->editingId) {
-                $old = PpidBerkala::find($this->editingId);
+                $old = LegalDocument::find($this->editingId);
                 $oldFilePath = $old?->file_path;
             }
-        } elseif ($this->editingId) {
-            // Preserve existing file data when editing without new file
-            $existing = PpidBerkala::findOrFail($this->editingId);
-            $data['file_path'] = $existing->file_path;
-            $data['file_name'] = $existing->file_name;
-            $data['file_size'] = $existing->file_size;
         }
 
         try {
             \DB::beginTransaction();
 
             if ($this->editingId) {
-                PpidBerkala::findOrFail($this->editingId)->update($data);
+                LegalDocument::findOrFail($this->editingId)->update($data);
             } else {
-                PpidBerkala::create($data);
+                LegalDocument::create($data);
             }
 
             \DB::commit();
@@ -115,7 +114,12 @@ class PpidBerkalaManagement extends Component
             if ($oldFilePath && Storage::disk('public')->exists($oldFilePath)) {
                 Storage::disk('public')->delete($oldFilePath);
                 // Invalidate cache for old file path using model-specific prefix
-                Cache::forget(PpidBerkala::CACHE_KEY_PREFIX . md5($oldFilePath));
+                Cache::forget(LegalDocument::CACHE_KEY_PREFIX . md5($oldFilePath));
+            }
+
+            // Invalidate cache for new file path using model-specific prefix
+            if ($newFilePath) {
+                Cache::forget(LegalDocument::CACHE_KEY_PREFIX . md5($newFilePath));
             }
 
             $this->showForm = false;
@@ -135,11 +139,11 @@ class PpidBerkalaManagement extends Component
 
     public function delete(int $id): void
     {
-        $item = PpidBerkala::findOrFail($id);
+        $item = LegalDocument::findOrFail($id);
         if ($item->file_path) {
             Storage::disk('public')->delete($item->file_path);
             // Invalidate cache for deleted file path using model-specific prefix
-            Cache::forget(PpidBerkala::CACHE_KEY_PREFIX . md5($item->file_path));
+            Cache::forget(LegalDocument::CACHE_KEY_PREFIX . md5($item->file_path));
         }
         $item->delete();
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data dihapus.');
@@ -151,6 +155,7 @@ class PpidBerkalaManagement extends Component
         $this->title = '';
         $this->category = '';
         $this->year = (int) date('Y');
+        $this->number = '';
         $this->description = '';
         $this->file = null;
         $this->is_published = true;
@@ -166,25 +171,26 @@ class PpidBerkalaManagement extends Component
     {
         return [
             'title' => 'required|string|max:255',
-            'category' => 'required|string|in:' . implode(',', array_keys(PpidBerkala::CATEGORIES)),
+            'category' => 'required|string|in:' . implode(',', array_keys(LegalDocument::CATEGORIES)),
             'year' => 'required|integer|min:2000|max:2099',
+            'number' => 'nullable|string|max:100',
             'description' => 'nullable|string|max:2000',
             'is_published' => 'required|boolean',
         ];
     }
 
-    #[Layout('layouts.admin', ['title' => 'PPID — Informasi Berkala'])]
+    #[Layout('layouts.admin', ['title' => 'Produk Hukum'])]
     public function render()
     {
-        $items = PpidBerkala::query()
+        $items = LegalDocument::query()
             ->when($this->search, fn($q) => $q->where('title', 'like', "%{$this->search}%"))
             ->when($this->filterCategory, fn($q) => $q->where('category', $this->filterCategory))
             ->latest()
             ->paginate(15);
 
-        return view('livewire.admin.ppid-berkala-management', [
+        return view('livewire.admin.legal-document-management', [
             'items' => $items,
-            'categories' => PpidBerkala::CATEGORIES,
+            'categories' => LegalDocument::CATEGORIES,
         ]);
     }
 }

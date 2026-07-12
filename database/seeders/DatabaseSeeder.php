@@ -42,14 +42,156 @@ class DatabaseSeeder extends Seeder
 
         // ─── Government Members ─────────────────────────────
         $positions = [
-            ['name' => 'H. Syafrizal, S.Pd', 'position' => 'Wali Nagari', 'order' => 1],
-            ['name' => 'Drs. Andi Rahman', 'position' => 'Sekretaris Nagari', 'order' => 2],
-            ['name' => 'Yuliana, S.E', 'position' => 'Kaur Keuangan', 'order' => 3],
-            ['name' => 'Rudi Hartono', 'position' => 'Kaur Umum', 'order' => 4],
-            ['name' => 'Siti Aminah, S.Sos', 'position' => 'Kasi Pemerintahan', 'order' => 5],
-            ['name' => 'Eko Prasetyo', 'position' => 'Kasi Kesejahteraan', 'order' => 6],
-            ['name' => 'Nur Hasanah', 'position' => 'Kasi Pelayanan', 'order' => 7],
-            ['name' => 'Bambang Widodo', 'position' => 'Kepala Jorong Koto', 'order' => 8],
+            [
+                'name' => 'H. Syafrizal, S.Pd',
+                'position' => 'Wali Nagari',
+                'nip' => '197503152000121001',
+                'place_of_birth' => 'Bukittinggi',
+                'date_of_birth' => '1975-03-15',
+                'order' => 1,
+                'education_history' => [
+                    ['level' => 'S1', 'institution' => 'Universitas Negeri Padang', 'major' => 'Pendidikan', 'year' => '2000']
+                ],
+                'position_history' => [
+                    ['period' => '2020 - Sekarang', 'position' => 'Wali Nagari', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2016 - 2020', 'position' => 'Kasi Pemerintahan', 'institution' => 'Nagari Duo Koto']
+                ]
+            ],
+            [
+                'name' => 'Drs. Andi Rahman',
+                'position' => 'Sekretaris Nagari',
+                'nip' => '197808202001011002',
+                'place_of_birth' => 'Padang',
+                'date_of_birth' => '1978-08-20',
+                'order' => 2,
+                'education_history' => [
+                    ['level' => 'S1', 'institution' => 'Universitas Andalas', 'major' => 'Administrasi Negara', 'year' => '2001']
+                ],
+                'position_history' => [
+                    ['period' => '2020 - Sekarang', 'position' => 'Sekretaris Nagari', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2015 - 2020', 'position' => 'Kaur Umum', 'institution' => 'Nagari Duo Koto']
+                ]
+            ],
+            [
+                'name' => 'Yuliana, S.E',
+                'position' => 'Kaur Keuangan',
+                'nip' => '198205152002122003',
+                'place_of_birth' => 'Agam',
+                'date_of_birth' => '1982-05-15',
+                'order' => 3,
+                'education_history' => [
+                    ['level' => 'S1', 'institution' => 'Universitas Bung Hatta', 'major' => 'Ekonomi', 'year' => '2002']
+                ],
+                'position_history' => [
+                    ['period' => '2021 - Sekarang', 'position' => 'Kaur Keuangan', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2018 - 2021', 'position' => 'Staf Keuangan', 'institution' => 'Nagari Duo Koto']
+                ]
+            ],
+            [
+                'name' => 'Rudi Hartono',
+                'position' => 'Kaur Umum',
+                'nip' => '198012102003011004',
+                'place_of_birth' => 'Padang Panjang',
+                'date_of_birth' => '1980-12-10',
+                'order' => 4,
+                'education_history' => [
+                    ['level' => 'D3', 'institution' => 'Politeknik Negeri Padang', 'major' => 'Manajemen', 'year' => '2003']
+                ],
+                'position_history' => [
+                    ['period' => '2021 - Sekarang', 'position' => 'Kaur Umum', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2017 - 2021', 'position' => 'Staf Umum', 'institution' => 'Nagari Duo Koto']
+                ]
+            ],
+            [
+                'name' => 'Siti Aminah, S.Sos',
+                'position' => 'Kasi Pemerintahan',
+                'nip' => '198503202004012005',
+                'place_of_birth' => 'Bukittinggi',
+                'date_of_birth' => '1985-03-20',
+                'order' => 5,
+                'education_history' => [
+                    ['level' => 'S1', 'institution' => 'Universitas Negeri Padang', 'major' => 'Sosiologi', 'year' => '2004']
+                ],
+                'position_history' => [
+                    ['period' => '2022 - Sekarang', 'position' => 'Kasi Pemerintahan', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2019 - 2022', 'position' => 'Staf Pemerintahan', 'institution' => 'Nagari Duo Koto']
+                ]
+            ],
+            [
+                'name' => 'Eko Prasetyo',
+                'position' => 'Kasi Kesejahteraan',
+                'nip' => '198707152005031006',
+                'place_of_birth' => 'Padang',
+                'date_of_birth' => '1987-07-15',
+                'order' => 6,
+                'education_history' => [
+                    ['level' => 'S1', 'institution' => 'Universitas Andalas', 'major' => 'Kesejahteraan Sosial', 'year' => '2005']
+                ],
+                'position_history' => [
+                    ['period' => '2022 - Sekarang', 'position' => 'Kasi Kesejahteraan', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2020 - 2022', 'position' => 'Staf Kesejahteraan', 'institution' => 'Nagari Duo Koto']
+                ]
+            ],
+            [
+                'name' => 'Nur Hasanah',
+                'position' => 'Kasi Pelayanan',
+                'nip' => '198810202006042007',
+                'place_of_birth' => 'Agam',
+                'date_of_birth' => '1988-10-20',
+                'order' => 7,
+                'education_history' => [
+                    ['level' => 'S1', 'institution' => 'Universitas Bung Hatta', 'major' => 'Ilmu Pemerintahan', 'year' => '2006']
+                ],
+                'position_history' => [
+                    ['period' => '2023 - Sekarang', 'position' => 'Kasi Pelayanan', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2021 - 2023', 'position' => 'Staf Pelayanan', 'institution' => 'Nagari Duo Koto']
+                ]
+            ],
+            [
+                'name' => 'Bambang Widodo',
+                'position' => 'Kepala Jorong Koto',
+                'nip' => '197205102007011008',
+                'place_of_birth' => 'Tanah Datar',
+                'date_of_birth' => '1972-05-10',
+                'order' => 8,
+                'education_history' => [
+                    ['level' => 'SMA', 'institution' => 'SMA Negeri 1 Bukittinggi', 'major' => 'IPA', 'year' => '1990']
+                ],
+                'position_history' => [
+                    ['period' => '2020 - Sekarang', 'position' => 'Kepala Jorong Koto', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2015 - 2020', 'position' => 'Wakil Kepala Jorong', 'institution' => 'Nagari Duo Koto']
+                ]
+            ],
+            [
+                'name' => 'Hj. Ratna Sari, S.Pd',
+                'position' => 'Kepala Jorong Mudiak',
+                'nip' => '197401152008012009',
+                'place_of_birth' => 'Padang',
+                'date_of_birth' => '1974-01-15',
+                'order' => 9,
+                'education_history' => [
+                    ['level' => 'S1', 'institution' => 'Universitas Negeri Padang', 'major' => 'Pendidikan Bahasa', 'year' => '2008']
+                ],
+                'position_history' => [
+                    ['period' => '2021 - Sekarang', 'position' => 'Kepala Jorong Mudiak', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2016 - 2021', 'position' => 'Guru Honorer', 'institution' => 'SDN 01 Duo Koto']
+                ]
+            ],
+            [
+                'name' => 'Ahmad Fauzi',
+                'position' => 'Kepala Jorong Pasar Ahad',
+                'nip' => '197609202009011010',
+                'place_of_birth' => 'Bukittinggi',
+                'date_of_birth' => '1976-09-20',
+                'order' => 10,
+                'education_history' => [
+                    ['level' => 'D3', 'institution' => 'Akademi Pemerintahan', 'major' => 'Administrasi', 'year' => '2009']
+                ],
+                'position_history' => [
+                    ['period' => '2022 - Sekarang', 'position' => 'Kepala Jorong Pasar Ahad', 'institution' => 'Nagari Duo Koto'],
+                    ['period' => '2018 - 2022', 'position' => 'Ketua RW 02', 'institution' => 'Jorong Pasar Ahad']
+                ]
+            ],
         ];
         foreach ($positions as $p) {
             GovernmentMember::create(array_merge($p, ['is_active' => true]));
@@ -191,6 +333,7 @@ class DatabaseSeeder extends Seeder
             BumnagSeeder::class,
             PpidSeeder::class,
             PpidContentSeeder::class,
+            LegalDocumentSeeder::class,
         ]);
     }
 }

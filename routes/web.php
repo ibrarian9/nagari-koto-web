@@ -34,6 +34,7 @@ Route::get('/bamus', PublicSite\BamusInfo::class)->name('bamus');
 Route::get('/lembaga', PublicSite\InstitutionInfo::class)->name('lembaga');
 Route::get('/donasi', PublicSite\DonationPage::class)->name('donasi');
 Route::get('/donasi/{slug}', PublicSite\DonationDetail::class)->name('donasi.detail');
+Route::get('/produk-hukum', PublicSite\LegalDocuments::class)->name('produk-hukum');
 
 // BUMNag (Badan Usaha Milik Nagari)
 Route::prefix('bumnag')->name('bumnag.')->group(function () {
@@ -91,6 +92,7 @@ Route::prefix('admin')
         Route::get('/lembaga', Admin\InstitutionManagement::class)->name('lembaga');
         Route::get('/donasi', Admin\CampaignManagement::class)->name('donasi');
         Route::get('/hero', Admin\HeroSettingManagement::class)->name('hero');
+        Route::get('/produk-hukum', Admin\LegalDocumentManagement::class)->name('produk-hukum');
 
         // PPID Admin
         Route::get('/ppid-berkala', Admin\PpidBerkalaManagement::class)->name('ppid-berkala');

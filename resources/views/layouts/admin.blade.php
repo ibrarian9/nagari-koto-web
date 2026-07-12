@@ -38,29 +38,23 @@
     <div class="admin-shell">
         {{-- ─── SIDEBAR ──────────────────────────────────────── --}}
         {{-- Mobile overlay --}}
-        @persist('admin-overlay')
         <div x-show="sidebarOpen" @click="sidebarOpen = false"
              x-transition:enter="transition-opacity ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
              x-transition:leave="transition-opacity ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
              class="fixed inset-0 z-40 bg-black/50 lg:hidden"></div>
-        @endpersist
 
         {{-- Desktop sidebar wrap --}}
-        @persist('admin-sidebar-desktop')
         <div class="admin-sidebar-wrap hidden lg:block" :class="collapsed && 'collapsed'">
             <aside class="admin-sidebar w-64 bg-gradient-to-b from-desa-800 to-desa-950">
                 @include('layouts.partials._admin-sidebar-content')
             </aside>
         </div>
-        @endpersist
 
         {{-- Mobile sidebar (slide-in) --}}
-        @persist('admin-sidebar-mobile')
         <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
                class="admin-sidebar fixed inset-y-0 left-0 z-50 w-72 bg-gradient-to-b from-desa-800 to-desa-950 transition-transform duration-300 lg:hidden">
             @include('layouts.partials._admin-sidebar-content', ['showClose' => true])
         </aside>
-        @endpersist
 
         {{-- ─── MAIN AREA ────────────────────────────────────── --}}
         <div class="admin-main">

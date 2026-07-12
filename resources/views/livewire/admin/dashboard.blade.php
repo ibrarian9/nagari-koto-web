@@ -1,6 +1,6 @@
 <div>
     {{-- ─── PREMIUM GREETING BANNER ─────────────────────────────────── --}}
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-desa-900 via-desa-800 to-desa-950 p-6 sm:p-8 text-white shadow-lg mb-8" data-aos="fade-down">
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-desa-900 via-desa-800 to-desa-950 p-6 sm:p-8 text-white shadow-lg mb-8">
         {{-- Decorative Glowing Orbs --}}
         <div class="absolute -right-10 -top-10 w-48 h-48 rounded-full bg-desa-400/20 blur-3xl"></div>
         <div class="absolute right-1/4 -bottom-10 w-36 h-36 rounded-full bg-amber-400/10 blur-3xl"></div>

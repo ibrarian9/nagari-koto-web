@@ -75,6 +75,10 @@
             ['route' => 'admin.surat', 'label' => 'Permohonan Surat', 'icon' => 'mail', 'badge' => $pendingSurat],
             ['route' => 'admin.donasi', 'label' => 'Donasi', 'icon' => 'favorite', 'badge' => $pendingDonasi],
 
+            // ── Produk Hukum
+            ['divider' => true, 'label' => 'Produk Hukum'],
+            ['route' => 'admin.produk-hukum', 'label' => 'Dokumen Hukum', 'icon' => 'gavel'],
+
             // ── PPID
             ['divider' => true, 'label' => 'PPID'],
             ['route' => 'admin.ppid-konten', 'label' => 'Konten PPID', 'icon' => 'article'],

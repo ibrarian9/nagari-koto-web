@@ -690,4 +690,30 @@
             </div>
         </div>
     </section>
+
+    {{-- PDF Viewer Modal --}}
+    <div x-data="{ isOpen: false, pdfUrl: '', pdfTitle: '' }"
+         @open-pdf-modal.window="if($event.detail.url) { isOpen = true; pdfUrl = $event.detail.url; pdfTitle = $event.detail.title; }"
+         x-show="isOpen"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4"
+         style="display: none;">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="isOpen = false"></div>
+        <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h3 class="font-semibold text-gray-900 text-lg truncate pr-4" x-text="pdfTitle"></h3>
+                <button @click="isOpen = false" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <span class="material-symbols-outlined text-gray-500">close</span>
+                </button>
+            </div>
+            <div class="flex-1 overflow-auto p-4 bg-gray-50">
+                <iframe :src="pdfUrl" class="w-full h-full min-h-[60vh] rounded-lg border border-gray-200" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
 </div>
