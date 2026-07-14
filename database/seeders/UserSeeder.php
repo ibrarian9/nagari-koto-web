@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
             ['email' => 'admin@nagari-koto.desa.id'],
             [
                 'name'      => 'Super Admin',
-                'password'  => Hash::make('password'),
+                'password'  => Hash::make('baiklah09'),
                 'role'      => 'super_admin',
                 'is_active' => true,
             ]
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             ['email' => 'operator@nagari-koto.desa.id'],
             [
                 'name'      => 'Operator Desa',
-                'password'  => Hash::make('password'),
+                'password'  => Hash::make('baiklah10'),
                 'role'      => 'operator',
                 'is_active' => true,
             ]
