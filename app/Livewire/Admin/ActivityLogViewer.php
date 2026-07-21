@@ -22,7 +22,7 @@ class ActivityLogViewer extends Component
     #[Layout('layouts.admin', ['title' => 'Log Aktivitas'])]
     public function render()
     {
-        $query = ActivityLog::with('user')->latest();
+        $query = ActivityLog::with('user')->orderByDesc('created_at')->orderByDesc('id');
 
         if ($this->search) {
             $query->where(function ($q) {

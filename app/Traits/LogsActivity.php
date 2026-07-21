@@ -44,11 +44,35 @@ trait LogsActivity
                 'model_type' => static::class,
                 'model_id' => $this->getKey(),
                 'description' => $description,
-                'ip_address' => request()?->ip(),
+                'ip_address' => $this->getClientIp(),
             ]);
         } catch (\Throwable) {
             // Silently fail — logging should never break the main operation
         }
+    }
+
+    /**
+     * Get real client IP address including proxy/Cloudflare support.
+     */
+    protected function getClientIp(): ?string
+    {
+        if (!request()) {
+            return null;
+        }
+
+        foreach (['HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP', 'REMOTE_ADDR'] as $key) {
+            $ip = request()->server($key);
+            if ($ip) {
+                foreach (explode(',', $ip) as $singleIp) {
+                    $singleIp = trim($singleIp);
+                    if (filter_var($singleIp, FILTER_VALIDATE_IP)) {
+                        return $singleIp;
+                    }
+                }
+            }
+        }
+
+        return request()->ip();
     }
 
     /**
