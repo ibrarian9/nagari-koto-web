@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\PpidBerkala;
-use App\Models\PpidDikecualikan;
 use App\Models\PpidPermohonan;
 use App\Models\PpidSetiapSaat;
 use App\Models\PpidSertaMerta;
@@ -84,9 +83,6 @@ class PpidSeeder extends Seeder
                 'published_at' => now()->subDays(rand(1, 30)),
             ]));
         }
-
-        // ─── Informasi Dikecualikan (default content) ──────
-        PpidDikecualikan::getContent(); // Creates default record if not exists
 
         // ─── Permohonan (sample) ───────────────────────────
         $permohonan = [

@@ -31,7 +31,8 @@ class BumnagBudgetManagement extends Component
         $m = BumnagBudget::findOrFail($id);
         $this->editingId = $m->id;
         $this->fill($m->only(['year', 'total_income', 'total_expenditure', 'realization_pct', 'keterangan']));
-        $this->apbdes_rows = collect($m->apbdes_data ?? [])->map(fn($v, $k) => ['label' => $k, 'value' => $v])->values()->toArray();
+        $data = is_string($m->apbdes_data) ? json_decode($m->apbdes_data, true) : ($m->apbdes_data ?? []);
+        $this->apbdes_rows = collect($data)->map(fn($v, $k) => ['label' => $k, 'value' => $v])->values()->toArray();
         $this->showForm = true;
     }
 
@@ -48,7 +49,7 @@ class BumnagBudgetManagement extends Component
             'total_expenditure' => $this->total_expenditure,
             'realization_pct' => $this->realization_pct,
             'keterangan' => $this->keterangan,
-            'apbdes_data' => json_encode($apbdes),
+            'apbdes_data' => $apbdes,
         ];
         if ($this->editingId) {
             BumnagBudget::findOrFail($this->editingId)->update($data);

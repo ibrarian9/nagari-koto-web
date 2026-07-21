@@ -294,33 +294,33 @@ class DatabaseSeeder extends Seeder
         // ─── Budget Stats ───────────────────────────────────
         BudgetStat::create([
             'year' => 2024, 'total_income' => 2150000000, 'total_expenditure' => 1980000000, 'realization_pct' => 92.09,
-            'apbdes_data' => json_encode([
+            'apbdes_data' => [
                 'Dana Desa' => 1200000000,
                 'Alokasi Dana Desa (ADD)' => 450000000,
                 'Pendapatan Asli Desa (PAD)' => 180000000,
                 'Bagi Hasil Pajak' => 120000000,
                 'Bantuan Provinsi' => 200000000,
-            ]),
+            ],
         ]);
         BudgetStat::create([
             'year' => 2023, 'total_income' => 1950000000, 'total_expenditure' => 1820000000, 'realization_pct' => 93.33,
-            'apbdes_data' => json_encode([
+            'apbdes_data' => [
                 'Dana Desa' => 1100000000,
                 'Alokasi Dana Desa (ADD)' => 400000000,
                 'Pendapatan Asli Desa (PAD)' => 150000000,
                 'Bagi Hasil Pajak' => 110000000,
                 'Bantuan Provinsi' => 190000000,
-            ]),
+            ],
         ]);
         BudgetStat::create([
             'year' => 2022, 'total_income' => 1780000000, 'total_expenditure' => 1650000000, 'realization_pct' => 89.50,
-            'apbdes_data' => json_encode([
+            'apbdes_data' => [
                 'Dana Desa' => 1000000000,
                 'Alokasi Dana Desa (ADD)' => 380000000,
                 'Pendapatan Asli Desa (PAD)' => 120000000,
                 'Bagi Hasil Pajak' => 100000000,
                 'Bantuan Provinsi' => 180000000,
-            ]),
+            ],
         ]);
 
         // ─── Call semua seeder tambahan ──────────────────────

@@ -60,13 +60,13 @@ class BumnagSeeder extends Seeder
             'total_income' => 485000000,
             'total_expenditure' => 420000000,
             'realization_pct' => 86.60,
-            'apbdes_data' => json_encode([
+            'apbdes_data' => [
                 'Pendapatan Unit Wisata' => 180000000,
                 'Pendapatan Simpan Pinjam' => 95000000,
                 'Pendapatan Pasar Nagari' => 120000000,
                 'Pendapatan Pertanian Organik' => 55000000,
                 'Pendapatan Jasa Sampah' => 35000000,
-            ]),
+            ],
             'keterangan' => "Pada tahun 2024, BUMNag Duo Koto Mandiri mencatatkan total pendapatan Rp 485 juta dengan realisasi belanja sebesar Rp 420 juta (86,60%).\n\nPendapatan terbesar berasal dari Unit Wisata (Linggai Park) yang menyumbang 37% dari total pendapatan berkat kenaikan jumlah pengunjung pasca-perbaikan fasilitas. Unit Pasar Nagari menjadi kontributor kedua terbesar (25%) setelah optimalisasi retribusi dan penataan kios.\n\nDari sisi belanja, sebagian besar dialokasikan untuk operasional unit usaha (40%), pemeliharaan aset (25%), gaji pengurus (20%), dan sisanya untuk pengembangan usaha baru serta dana cadangan.",
         ]);
 
@@ -75,13 +75,13 @@ class BumnagSeeder extends Seeder
             'total_income' => 380000000,
             'total_expenditure' => 340000000,
             'realization_pct' => 89.47,
-            'apbdes_data' => json_encode([
+            'apbdes_data' => [
                 'Pendapatan Unit Wisata' => 145000000,
                 'Pendapatan Simpan Pinjam' => 80000000,
                 'Pendapatan Pasar Nagari' => 95000000,
                 'Pendapatan Pertanian Organik' => 40000000,
                 'Pendapatan Jasa Sampah' => 20000000,
-            ]),
+            ],
             'keterangan' => "Tahun 2023 menjadi tahun konsolidasi bagi BUMNag setelah dampak pandemi. Pendapatan tumbuh 15% dibandingkan tahun sebelumnya, didorong oleh pulihnya sektor wisata dan dimulainya unit usaha pengelolaan sampah. Belanja operasional dioptimalkan melalui efisiensi penggunaan sumber daya dan digitalisasi administrasi keuangan.",
         ]);
 

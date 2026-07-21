@@ -40,6 +40,16 @@ class BudgetStat extends Model
         return $query->orderByDesc('year');
     }
 
+    public function getApbnagDataAttribute()
+    {
+        $val = $this->apbdes_data;
+        if (is_string($val)) {
+            $decoded = json_decode($val, true);
+            return is_array($decoded) ? $decoded : [];
+        }
+        return $val ?? [];
+    }
+
     protected function getActivityModelLabel(): string
     {
         return "Anggaran Tahun: {$this->year}";
