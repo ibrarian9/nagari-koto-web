@@ -49,7 +49,10 @@
         <div class="border-t border-gray-100 pt-4 space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div><label class="form-label">Update Status</label><select wire:model="updateStatus" class="form-input w-full"><option value="menunggu">Menunggu</option><option value="diproses">Diproses</option><option value="selesai">Selesai</option><option value="ditolak">Ditolak</option></select></div>
-                <div><label class="form-label">Dokumen Balasan (PDF)</label><input type="file" wire:model="dokumenBalasan" class="form-input w-full text-sm" accept=".pdf,.doc,.docx">@error('dokumenBalasan')<p class="form-error">{{ $message }}</p>@enderror</div>
+                <div><label class="form-label">Dokumen Balasan <span class="text-xs text-gray-400 font-normal">(PDF/DOC/XLS, maks 2MB)</span></label><input type="file" wire:model="dokumenBalasan" class="form-input w-full text-sm" accept=".pdf,.doc,.docx">@error('dokumenBalasan')<p class="form-error">{{ $message }}</p>@enderror</div>
+
+
+
             </div>
             <div><label class="form-label">Catatan Petugas</label><textarea wire:model="catatan" class="form-input w-full" rows="2" placeholder="Catatan untuk pemohon..."></textarea></div>
             <div class="flex gap-3"><button wire:click="updateRequest" class="btn-primary">Update</button><button wire:click="$set('viewingId', null)" class="btn-secondary">Tutup</button></div>

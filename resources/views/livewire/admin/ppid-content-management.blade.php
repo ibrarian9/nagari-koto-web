@@ -151,8 +151,9 @@
                         <div class="p-4 bg-blue-50/50 rounded-xl border border-blue-100">
                             <label class="form-label flex items-center gap-2">
                                 <span class="material-symbols-outlined text-blue-500 text-base">picture_as_pdf</span>
-                                Lampiran PDF <span class="text-xs text-gray-400 font-normal">(maks 10MB)</span>
+                                Lampiran PDF <span class="text-xs text-gray-400 font-normal">(maks 2MB)</span>
                             </label>
+
                             @if($existingAttachment)
                                 <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-blue-200 mb-3">
                                     <span class="material-symbols-outlined text-blue-500">picture_as_pdf</span>
@@ -175,8 +176,9 @@
                                 <span class="material-symbols-outlined text-emerald-500 text-base">image</span>
                                 Gambar
                                 @if ($activeTab === 'struktur') Bagan Struktur @else Ilustrasi @endif
-                                <span class="text-xs text-gray-400 font-normal">(opsional, maks 5MB)</span>
+                                <span class="text-xs text-gray-400 font-normal">(opsional, maks 2MB)</span>
                             </label>
+
                             @if($existingImage)
                                 <div class="mb-3 relative inline-block">
                                     <img src="{{ Storage::url($existingImage) }}" alt="Preview" class="max-w-full max-h-48 rounded-lg border border-gray-200 shadow-sm">

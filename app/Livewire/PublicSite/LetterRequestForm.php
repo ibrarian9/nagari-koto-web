@@ -36,7 +36,7 @@ class LetterRequestForm extends Component
 
         if ($this->letter_type === 'surat_pengantar_nikah') {
             $rules['ktp_image_2'] = 'required|image|max:2048';
-            $rules['nikah_form_image'] = 'required|image|max:4096';
+            $rules['nikah_form_image'] = 'required|file|mimes:jpg,jpeg,png,webp,pdf|max:2048';
         }
 
         return $rules;
@@ -51,11 +51,13 @@ class LetterRequestForm extends Component
             'ktp_image_2.required' => 'Foto KTP Calon Mempelai Wanita wajib diunggah.',
             'ktp_image_2.image' => 'File harus berupa gambar.',
             'ktp_image_2.max' => 'Ukuran foto maks. 2MB.',
-            'nikah_form_image.required' => 'Foto formulir nikah wajib diunggah.',
-            'nikah_form_image.image' => 'File harus berupa gambar.',
-            'nikah_form_image.max' => 'Ukuran foto formulir maks. 4MB.',
+            'nikah_form_image.required' => 'Formulir nikah wajib diunggah.',
+            'nikah_form_image.file' => 'File formulir tidak valid.',
+            'nikah_form_image.mimes' => 'Format file harus JPG, PNG, WebP, atau PDF.',
+            'nikah_form_image.max' => 'Ukuran file formulir maks. 2MB.',
         ];
     }
+
 
     /**
      * Reset upload fields when letter type changes.

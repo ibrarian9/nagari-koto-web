@@ -34,7 +34,10 @@ class PpidPermohonanManagement extends Component
         $this->validate([
             'updateStatus' => 'required|in:menunggu,diproses,selesai,ditolak',
             'catatan' => 'nullable|string|max:2000',
-            'dokumenBalasan' => 'nullable|file|mimes:pdf,doc,docx|max:10240',
+            'dokumenBalasan' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+
+
+
         ]);
 
         $r = PpidPermohonan::findOrFail($this->viewingId);

@@ -64,8 +64,11 @@ class PpidBerkalaManagement extends Component
     public function save(): void
     {
         $rules = $this->editingId
-            ? ['file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx|max:10240']
-            : ['file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:10240'];
+            ? ['file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx|max:2048']
+            : ['file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:2048'];
+
+
+
         $this->validate(array_merge($this->rules(), $rules));
 
         $data = [

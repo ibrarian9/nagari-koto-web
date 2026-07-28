@@ -619,7 +619,8 @@
                     @endif
                     <div>
                         <p class="font-bold text-sm leading-tight">{{ $village?->name ?? config('app.name') }}</p>
-                        <p class="text-xs text-desa-400">{{ $village?->tagline ?? 'Website Profil Nagari Digital' }}</p>
+                        <p class="text-xs text-desa-400">{{ $village?->tagline ?? 'Website Profil Nagari Digital' }}
+                        </p>
                     </div>
                 </div>
                 {{-- Links --}}

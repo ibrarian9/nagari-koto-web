@@ -72,7 +72,8 @@
                             @error('newImage')
                                 <p class="text-xs text-red-500">{{ $message }}</p>
                             @enderror
-                            <p class="text-xs text-gray-400">Rekomendasi: 1920×600px. JPG/PNG/WebP. Maks 3MB.</p>
+                            <p class="text-xs text-gray-400">Rekomendasi: 1920×600px. JPG/PNG/WebP. Maks 2MB.</p>
+
                             <div class="flex gap-2">
                                 <button type="submit"
                                     class="btn-primary btn-sm flex-1"
@@ -92,12 +93,12 @@
                                 {{ $hero->image ? 'Ganti Foto' : 'Upload Foto' }}
                             </button>
                             @if ($hero->image)
-                                <button wire:click="removeImage({{ $hero->id }})"
-                                    wire:confirm="Hapus foto hero {{ $hero->page_label }}?"
-                                    class="btn-secondary btn-sm text-red-500 hover:text-red-700">
+                                <button type="button" onclick="confirmAction({{ $hero->id }}, 'removeImageConfirmed', 'Kembalikan foto hero {{ addslashes($hero->page_label) }} ke foto default?')"
+                                    class="btn-secondary btn-sm text-red-500 hover:text-red-700" title="Hapus Foto / Kembalikan ke Default">
                                     <span class="material-symbols-outlined text-sm">delete</span>
                                 </button>
                             @endif
+
                         </div>
                     @endif
                 </div>

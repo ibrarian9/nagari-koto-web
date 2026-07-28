@@ -46,11 +46,11 @@ class LetterRequestManagement extends Component
     public function uploadTemplate(): void
     {
         $this->validate([
-            'nikahTemplate' => 'required|file|mimes:pdf|max:5120',
+            'nikahTemplate' => 'required|file|mimes:pdf|max:2048',
         ], [
             'nikahTemplate.required' => 'Pilih file PDF terlebih dahulu.',
             'nikahTemplate.mimes' => 'File harus berformat PDF.',
-            'nikahTemplate.max' => 'Ukuran file maks. 5MB.',
+            'nikahTemplate.max' => 'Ukuran file maks. 2MB.',
         ]);
 
         // Ensure directory exists

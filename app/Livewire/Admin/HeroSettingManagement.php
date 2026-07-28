@@ -5,7 +5,9 @@ namespace App\Livewire\Admin;
 use App\Models\HeroSetting;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Component;
+
 use Livewire\WithFileUploads;
 
 class HeroSettingManagement extends Component
@@ -26,7 +28,8 @@ class HeroSettingManagement extends Component
     public function uploadImage(int $id): void
     {
         $this->validate([
-            'newImage' => 'required|image|max:3072', // 3MB max for hero images
+            'newImage' => 'required|image|max:2048', // 2MB max for hero images
+
         ]);
 
         $hero = HeroSetting::findOrFail($id);
@@ -44,6 +47,7 @@ class HeroSettingManagement extends Component
         session()->flash('message', "Hero \"{$hero->page_label}\" berhasil diperbarui.");
     }
 
+    #[On('removeImageConfirmed')]
     public function removeImage(int $id): void
     {
         $hero = HeroSetting::findOrFail($id);
@@ -54,8 +58,9 @@ class HeroSettingManagement extends Component
             HeroSetting::clearCache($hero->page_slug);
         }
 
-        session()->flash('message', "Hero \"{$hero->page_label}\" dikembalikan ke default.");
+        $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: "Foto hero \"{$hero->page_label}\" dikembalikan ke default.");
     }
+
 
     public function startEdit(int $id): void
     {

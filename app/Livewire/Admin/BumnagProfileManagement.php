@@ -41,8 +41,11 @@ class BumnagProfileManagement extends Component
     public $logo = null;
     public ?string $existingLogo = null;
 
-    #[Validate('nullable|file|mimes:pdf|max:10240')]
+    #[Validate('nullable|file|mimes:pdf|max:2048')]
     public $badan_hukum_file_upload = null;
+
+
+
     public ?string $existingBadanHukum = null;
 
     // Unit Usaha (dynamic list)

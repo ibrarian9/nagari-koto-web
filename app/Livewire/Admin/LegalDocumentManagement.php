@@ -68,8 +68,11 @@ class LegalDocumentManagement extends Component
     public function save(): void
     {
         $rules = $this->editingId
-            ? ['file' => 'nullable|file|mimes:pdf|max:10240']
-            : ['file' => 'required|file|mimes:pdf|max:10240'];
+            ? ['file' => 'nullable|file|mimes:pdf|max:2048']
+            : ['file' => 'required|file|mimes:pdf|max:2048'];
+
+
+
         $this->validate(array_merge($this->rules(), $rules));
 
         $data = [
@@ -169,7 +172,8 @@ class LegalDocumentManagement extends Component
         return "{$cleanTitle}-" . uniqid() . ".{$extension}";
     }
 
-    private function rules(): array
+    protected function rules(): array
+
     {
         return [
             'title' => 'required|string|max:255',

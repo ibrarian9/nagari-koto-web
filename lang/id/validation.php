@@ -69,7 +69,7 @@ return [
     ],
     'max'                  => [
         'numeric' => ':attribute tidak boleh lebih dari :max.',
-        'file'    => ':attribute tidak boleh lebih dari :max kilobyte.',
+        'file'    => ':attribute tidak boleh lebih dari :max KB.',
         'string'  => ':attribute tidak boleh lebih dari :max karakter.',
         'array'   => ':attribute tidak boleh lebih dari :max item.',
     ],
@@ -77,7 +77,7 @@ return [
     'mimetypes'            => ':attribute harus berupa file bertipe: :values.',
     'min'                  => [
         'numeric' => ':attribute minimal :min.',
-        'file'    => ':attribute minimal :min kilobyte.',
+        'file'    => ':attribute minimal :min KB.',
         'string'  => ':attribute minimal :min karakter.',
         'array'   => ':attribute minimal :min item.',
     ],
@@ -96,7 +96,7 @@ return [
     'same'                 => ':attribute dan :other harus sama.',
     'size'                 => [
         'numeric' => ':attribute harus :size.',
-        'file'    => ':attribute harus :size kilobyte.',
+        'file'    => ':attribute harus :size KB.',
         'string'  => ':attribute harus :size karakter.',
         'array'   => ':attribute harus :size item.',
     ],
@@ -104,7 +104,7 @@ return [
     'string'               => ':attribute harus berupa teks.',
     'timezone'             => ':attribute harus zona waktu yang valid.',
     'unique'               => ':attribute sudah digunakan.',
-    'uploaded'             => ':attribute gagal diunggah. Pastikan ukuran file tidak melebihi batas.',
+    'uploaded'             => ':attribute gagal diunggah. Pastikan ukuran file tidak melebihi batas maksimal.',
     'url'                  => ':attribute harus berupa URL yang valid.',
     'uuid'                 => ':attribute harus berupa UUID yang valid.',
 
@@ -124,6 +124,44 @@ return [
             'mimes' => 'Format logo harus JPG, PNG, atau WebP.',
             'max'   => 'Ukuran logo maksimal 2MB.',
         ],
+        'photo' => [
+            'image' => 'File foto harus berupa gambar.',
+            'mimes' => 'Format foto harus JPG, PNG, atau WebP.',
+            'max'   => 'Ukuran foto maksimal 2MB.',
+        ],
+        'logo' => [
+            'image' => 'File logo harus berupa gambar.',
+            'mimes' => 'Format logo harus JPG, PNG, atau WebP.',
+            'max'   => 'Ukuran logo maksimal 2MB.',
+        ],
+        'thumbnail' => [
+            'image' => 'File thumbnail harus berupa gambar.',
+            'mimes' => 'Format gambar harus JPG, PNG, atau WebP.',
+            'max'   => 'Ukuran gambar maksimal 2MB.',
+        ],
+        'file' => [
+            'max'      => 'Ukuran file dokumen maksimal 2MB.',
+            'mimes'    => 'Format file tidak sesuai.',
+            'uploaded' => 'File gagal diunggah. Ukuran file melebihi batas server.',
+        ],
+        'attachmentUpload' => [
+            'max' => 'Ukuran dokumen lampiran maksimal 2MB.',
+            'mimes' => 'Lampiran harus berformat PDF.',
+        ],
+        'imageUpload' => [
+            'max' => 'Ukuran foto maksimal 2MB.',
+        ],
+        'dokumenBalasan' => [
+            'max' => 'Ukuran dokumen balasan maksimal 2MB.',
+        ],
+        'badan_hukum_file_upload' => [
+            'max' => 'Ukuran dokumen badan hukum maksimal 2MB.',
+        ],
+        'nikahTemplate' => [
+            'max' => 'Ukuran file template maksimal 2MB.',
+        ],
+
+
         'nik' => [
             'required' => 'NIK wajib diisi.',
             'digits'   => 'NIK harus 16 digit.',

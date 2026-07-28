@@ -12,7 +12,10 @@
                 <div><label class="form-label">Judul</label><input type="text" wire:model="title" class="form-input w-full">@error('title')<p class="form-error">{{ $message }}</p>@enderror</div>
                 <div><label class="form-label">Kategori</label><select wire:model="category" class="form-input w-full"><option value="">Pilih</option>@foreach($categories as $k => $v)<option value="{{ $k }}">{{ $v }}</option>@endforeach</select>@error('category')<p class="form-error">{{ $message }}</p>@enderror</div>
                 <div><label class="form-label">Tahun</label><input type="number" wire:model="year" class="form-input w-full" min="2000" max="2099">@error('year')<p class="form-error">{{ $message }}</p>@enderror</div>
-                <div><label class="form-label">File {{ $editingId ? '(opsional)' : '' }}</label><input type="file" wire:model="file" class="form-input w-full text-sm" accept=".pdf,.doc,.docx,.xls,.xlsx">@error('file')<p class="form-error">{{ $message }}</p>@enderror</div>
+                <div><label class="form-label">File Dokumen <span class="text-xs text-gray-400 font-normal">(PDF/DOC/XLS, maks 2MB)</span> {{ $editingId ? '(opsional)' : '' }}</label><input type="file" wire:model="file" class="form-input w-full text-sm" accept=".pdf,.doc,.docx,.xls,.xlsx">@error('file')<p class="form-error">{{ $message }}</p>@enderror</div>
+
+
+
             </div>
             <div><label class="form-label">Deskripsi</label><textarea wire:model="description" class="form-input w-full" rows="2"></textarea></div>
             <div class="flex items-center gap-2"><input type="checkbox" wire:model="is_published" id="pub2" class="rounded border-gray-300 text-desa-600"><label for="pub2" class="text-sm text-gray-700">Publikasikan</label></div>

@@ -45,6 +45,7 @@
                 </div>
                 <input type="file" wire:model="{{ $wireModel }}" accept="{{ $accept }}" class="sr-only"
                     x-on:change="const f = $event.target.files[0]; if(f) { const r = new FileReader(); r.onload = e => previewUrl = e.target.result; r.readAsDataURL(f); }">
+
             </label>
             <p class="text-xs text-gray-400 mt-1.5">{{ $hint }}</p>
             @error($wireModel)

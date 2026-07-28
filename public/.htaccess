@@ -23,3 +23,18 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<IfModule php_module>
+    php_value upload_max_filesize 32M
+    php_value post_max_size 35M
+    php_value memory_limit 256M
+</IfModule>
+<IfModule php7_module>
+    php_value upload_max_filesize 32M
+    php_value post_max_size 35M
+    php_value memory_limit 256M
+</IfModule>
+
+
+
+

@@ -83,7 +83,9 @@
             <div class="mt-5 p-4 bg-blue-50/50 rounded-xl border border-blue-100">
                 <label class="form-label flex items-center gap-2">
                     <span class="material-symbols-outlined text-blue-600 text-base">picture_as_pdf</span>
-                    Dokumen Badan Hukum — PDF untuk halaman publik (maks 10MB)
+                    Dokumen Badan Hukum — PDF untuk halaman publik (maks 2MB)
+
+
                 </label>
                 <p class="text-xs text-gray-500 mb-3">File ini yang akan ditampilkan langsung di halaman Badan Hukum BUMNag pada website.</p>
                 <input type="file" wire:model="badan_hukum_file_upload" accept=".pdf" class="form-input w-full text-sm">

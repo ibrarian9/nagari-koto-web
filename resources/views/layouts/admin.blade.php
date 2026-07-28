@@ -104,7 +104,17 @@
                     customClass: { popup: 'swal-toast' }
                 });
             });
+
+            Livewire.hook('upload:error', (component, name, error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Upload Gagal',
+                    text: 'Gagal mengunggah file. Pastikan ukuran file tidak melebihi batas yang ditentukan.',
+                    confirmButtonColor: '#2D6A4F'
+                });
+            });
         });
+
 
         function confirmAction(id, action, message) {
             Swal.fire({

@@ -18,12 +18,15 @@ class PpidContentManagement extends Component
     public string $content = '';
     public string $contentExtra = '';
 
-    #[Validate('nullable|file|mimes:pdf|max:10240')]
+    #[Validate('nullable|file|mimes:pdf|max:2048')]
     public $attachmentUpload = null;
+
+
     public ?string $existingAttachment = null;
 
-    #[Validate('nullable|image|mimes:jpg,jpeg,png,webp|max:5120')]
+    #[Validate('nullable|image|mimes:jpg,jpeg,png,webp|max:2048')]
     public $imageUpload = null;
+
     public ?string $existingImage = null;
 
     // Members for struktur tab
@@ -75,7 +78,14 @@ class PpidContentManagement extends Component
 
     public function updatedMemberPhotoUploads($value, $key): void
     {
-        // $key is the array index, e.g. "0", "1", etc.
+        $this->validate([
+            "memberPhotoUploads.{$key}" => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ], [
+            "memberPhotoUploads.{$key}.max" => 'Ukuran foto anggota maksimal 2MB.',
+            "memberPhotoUploads.{$key}.image" => 'File foto harus berupa gambar.',
+            "memberPhotoUploads.{$key}.mimes" => 'Format foto harus JPG, PNG, atau WebP.',
+        ]);
+
         $index = (int) $key;
 
         if ($value && $value->isValid()) {
@@ -92,7 +102,10 @@ class PpidContentManagement extends Component
 
     public function save(): void
     {
+        $this->validate();
+
         $item = PpidContent::getByType($this->activeTab);
+
 
         $data = [
             'title'         => $this->title,

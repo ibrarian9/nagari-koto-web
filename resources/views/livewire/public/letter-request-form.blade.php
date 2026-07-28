@@ -190,27 +190,33 @@
                         </div>
 
                         {{-- Formulir Nikah --}}
-                        <div x-data="{ previewUrl: null }" class="space-y-2">
+                        <div x-data="{ previewUrl: null, isPdf: false }" class="space-y-2">
                             <label class="form-label text-sm">Formulir Nikah (N1) yang Sudah Diisi <span class="text-red-500">*</span></label>
                             <label class="block cursor-pointer">
                                 <div class="flex items-center gap-3 px-4 py-3 rounded-xl border-2 border-dashed border-amber-200 hover:border-amber-400 bg-amber-50/30 hover:bg-amber-50 transition-all text-sm text-gray-500">
                                     <span class="material-symbols-outlined text-xl text-amber-500">description</span>
                                     <div>
-                                        <span class="font-medium text-gray-700" x-text="previewUrl ? 'Ganti foto formulir' : 'Upload Formulir Nikah (foto/scan)'">Upload Formulir Nikah (foto/scan)</span>
-                                        <p class="text-xs text-gray-400 mt-0.5">JPG, PNG, WebP. Maks 4MB</p>
+                                        <span class="font-medium text-gray-700" x-text="previewUrl ? 'Ganti file formulir' : 'Upload Formulir Nikah (foto/scan/PDF)'">Upload Formulir Nikah (foto/scan/PDF)</span>
+                                        <p class="text-xs text-gray-400 mt-0.5">JPG, PNG, WebP, PDF. Maks 2MB</p>
                                     </div>
                                 </div>
-                                <input type="file" wire:model="nikah_form_image" accept="image/*" class="sr-only"
-                                    x-on:change="const f=$event.target.files[0]; if(f){const r=new FileReader(); r.onload=e=>previewUrl=e.target.result; r.readAsDataURL(f);}">
+                                <input type="file" wire:model="nikah_form_image" accept="image/*,.pdf" class="sr-only"
+                                    x-on:change="const f=$event.target.files[0]; if(f){ isPdf = f.type==='application/pdf'; const r=new FileReader(); r.onload=e=>previewUrl=e.target.result; r.readAsDataURL(f); }">
                             </label>
-                            <template x-if="previewUrl">
+                            <template x-if="previewUrl && !isPdf">
                                 <img :src="previewUrl" class="w-full max-h-40 object-contain rounded-lg border border-gray-200 bg-white p-1" alt="Preview Formulir">
+                            </template>
+                            <template x-if="previewUrl && isPdf">
+                                <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-base">picture_as_pdf</span> File PDF Formulir Nikah siap diunggah.
+                                </div>
                             </template>
                             <div wire:loading wire:target="nikah_form_image" class="text-xs text-desa-600 flex items-center gap-1">
                                 <span class="material-symbols-outlined text-sm animate-spin">progress_activity</span> Mengunggah...
                             </div>
                             @error('nikah_form_image')<p class="form-error">{{ $message }}</p>@enderror
                         </div>
+
                     @endif
                 </div>
 
