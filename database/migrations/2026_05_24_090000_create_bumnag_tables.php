@@ -38,7 +38,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('position');
             $table->string('photo')->nullable();
-            $table->enum('role_type', ['pengurus', 'pengawas'])->default('pengurus');
+            $table->string('role_type', 50)->default('pengurus');
+
             $table->string('period')->nullable();
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);

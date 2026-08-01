@@ -20,8 +20,9 @@ class BumnagBudgetManagement extends Component
     public $total_expenditure = 0;
     #[Validate('required|numeric|min:0|max:100')]
     public $realization_pct = 0;
-    #[Validate('nullable|string')]
+    #[Validate('nullable|string|max:65000')]
     public ?string $keterangan = '';
+
     public array $apbdes_rows = [];
 
     public function create(): void { $this->resetForm(); $this->showForm = true; }
