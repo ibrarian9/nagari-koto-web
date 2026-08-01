@@ -3,11 +3,11 @@
 namespace App\Livewire\Admin;
 
 use App\Models\HeroSetting;
+use Database\Seeders\HeroSettingSeeder;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
-
 use Livewire\WithFileUploads;
 
 class HeroSettingManagement extends Component
@@ -17,9 +17,30 @@ class HeroSettingManagement extends Component
     public ?int $editingId = null;
     public $newImage;
 
+    public function mount(): void
+    {
+        $this->ensureHeroesExist();
+    }
+
+    public function seedHeroes(): void
+    {
+        (new HeroSettingSeeder())->run();
+        $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data hero halaman berhasil diperbarui.');
+    }
+
+
+    private function ensureHeroesExist(): void
+    {
+        if (HeroSetting::count() === 0) {
+            (new HeroSettingSeeder())->run();
+        }
+    }
+
     #[Layout('layouts.admin', ['title' => 'Hero Halaman'])]
     public function render()
     {
+        $this->ensureHeroesExist();
+
         return view('livewire.admin.hero-setting-management', [
             'heroes' => HeroSetting::orderBy('page_label')->get(),
         ]);
@@ -29,7 +50,6 @@ class HeroSettingManagement extends Component
     {
         $this->validate([
             'newImage' => 'required|image|max:2048', // 2MB max for hero images
-
         ]);
 
         $hero = HeroSetting::findOrFail($id);
@@ -60,7 +80,6 @@ class HeroSettingManagement extends Component
 
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: "Foto hero \"{$hero->page_label}\" dikembalikan ke default.");
     }
-
 
     public function startEdit(int $id): void
     {

@@ -23,8 +23,10 @@ class BumnagMember extends Model
 
     public function scopeActive($query) { return $query->where('is_active', true); }
     public function scopeOrdered($query) { return $query->orderBy('order'); }
+    public function scopePembina($query) { return $query->where('role_type', 'pembina'); }
     public function scopePengurus($query) { return $query->where('role_type', 'pengurus'); }
     public function scopePengawas($query) { return $query->where('role_type', 'pengawas'); }
+
 
     protected function getActivityModelLabel(): string
     {

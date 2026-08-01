@@ -26,6 +26,7 @@
                     <select wire:model="role_type" class="form-input w-full">
                         <option value="pengurus">Pengurus</option>
                         <option value="pengawas">Pengawas</option>
+                        <option value="pembina">Pembina</option>
                     </select>
                     @error('role_type')<p class="form-error">{{ $message }}</p>@enderror
                 </div>
@@ -49,7 +50,18 @@
                     <td><div class="h-10 w-10 rounded-full bg-gray-100 overflow-hidden">@if($m->photo)<img src="{{ Storage::url($m->photo) }}" class="h-full w-full object-cover">@else<div class="h-full w-full flex items-center justify-center"><span class="material-symbols-outlined text-gray-300">person</span></div>@endif</div></td>
                     <td class="font-medium">{{ $m->name }}</td>
                     <td>{{ $m->position }}</td>
-                    <td><span class="badge {{ $m->role_type === 'pengurus' ? 'bg-blue-50 text-blue-700' : 'bg-amber-50 text-amber-700' }}">{{ ucfirst($m->role_type) }}</span></td>
+                    <td>
+                        @php
+                            $badgeClass = match($m->role_type) {
+                                'pengurus' => 'bg-blue-50 text-blue-700 border-blue-200',
+                                'pengawas' => 'bg-amber-50 text-amber-700 border-amber-200',
+                                'pembina' => 'bg-purple-50 text-purple-700 border-purple-200',
+                                default => 'bg-gray-50 text-gray-700 border-gray-200',
+                            };
+                        @endphp
+                        <span class="badge {{ $badgeClass }}">{{ ucfirst($m->role_type) }}</span>
+                    </td>
+
                     <td class="text-sm text-gray-500">{{ $m->period ?? '-' }}</td>
                     <td><span class="badge {{ $m->is_active ? 'badge-success' : 'badge-danger' }}">{{ $m->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>
                     <td><div class="flex justify-end gap-1"><button wire:click="edit({{ $m->id }})" class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-desa-50 hover:text-desa-600 transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button><button onclick="confirmAction({{ $m->id }}, 'deleteConfirmed', 'Yakin ingin menghapus data ini?')" class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-red-50 hover:text-red-600 transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button></div></td>

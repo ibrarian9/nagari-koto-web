@@ -14,8 +14,10 @@ class BumnagStruktur extends Component
     {
         return view('livewire.public.bumnag.struktur', [
             'profile' => BumnagProfile::getContent(),
+            'pembina' => BumnagMember::active()->pembina()->ordered()->get(),
             'pengurus' => BumnagMember::active()->pengurus()->ordered()->get(),
             'pengawas' => BumnagMember::active()->pengawas()->ordered()->get(),
         ]);
+
     }
 }

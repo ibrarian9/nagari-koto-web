@@ -107,8 +107,9 @@
         if (auth()->user()?->isSuperAdmin() || auth()->user()?->isAdmin()) {
             $adminNav[] = ['divider' => true, 'label' => 'Sistem'];
             $adminNav[] = ['route' => 'admin.users', 'label' => 'Manajemen User', 'icon' => 'manage_accounts'];
-            $adminNav[] = ['route' => 'admin.activity-log', 'label' => 'Log Aktivitas', 'icon' => 'history'];
+            $adminNav[] = ['route' => 'admin.system-logs', 'label' => 'Log Error & Aktivitas', 'icon' => 'terminal'];
         }
+
     @endphp
     @foreach ($adminNav as $item)
         @if (isset($item['divider']))

@@ -20,8 +20,9 @@ class BumnagMemberManagement extends Component
     public string $name = '';
     #[Validate('required|string|max:255')]
     public string $position = '';
-    #[Validate('required|in:pengurus,pengawas')]
+    #[Validate('required|in:pengurus,pengawas,pembina')]
     public string $role_type = 'pengurus';
+
     #[Validate('nullable|string|max:100')]
     public ?string $period = '';
     #[Validate('nullable|integer|min:0')]

@@ -114,10 +114,15 @@ Route::prefix('admin')
             ->middleware('role:super_admin,admin')
             ->name('users');
 
-        // Activity Log
-        Route::get('/activity-log', Admin\ActivityLogViewer::class)
+        // System & Activity Logs
+        Route::get('/system-logs', Admin\ActivityLogViewer::class)
+            ->middleware('role:super_admin,admin')
+            ->name('system-logs');
+
+        Route::get('/activity-log', fn() => redirect()->route('admin.system-logs'))
             ->middleware('role:super_admin,admin')
             ->name('activity-log');
     });
+
 
 require __DIR__.'/auth.php';

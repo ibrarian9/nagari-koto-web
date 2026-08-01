@@ -18,7 +18,46 @@
             @include('livewire.public.bumnag._subnav')
         </div>
 
-        @if ($pengurus->count() || $pengawas->count())
+        @if ($pembina->count() || $pengurus->count() || $pengawas->count())
+            {{-- PEMBINA / PENASEHAT --}}
+            @if ($pembina->count())
+                <div class="max-w-5xl mx-auto mb-12 space-y-6">
+                    <div class="flex items-center gap-3 border-b border-gray-150 pb-3">
+                        <div class="h-9 w-9 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600">
+                            <span class="material-symbols-outlined text-lg">workspace_premium</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-extrabold text-gray-900 tracking-tight">Pembina / Penasehat</h2>
+                            <p class="text-xs text-gray-400">Pembina dan pengarah kebijakan pengembangan BUMNag</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                        @foreach ($pembina as $member)
+                            <div class="card group p-5 bg-purple-50/20 hover:bg-white border border-purple-150 hover:border-purple-300 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center">
+                                <div class="h-20 w-20 rounded-full overflow-hidden ring-4 ring-purple-100 group-hover:ring-purple-200 transition-all mb-4">
+                                    @if ($member->photo)
+                                        <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}"
+                                            class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                    @else
+                                        <div class="h-full w-full flex items-center justify-center bg-purple-50">
+                                            <span class="material-symbols-outlined text-3xl text-purple-300">person</span>
+                                        </div>
+                                    @endif
+                                </div>
+                                <h3 class="font-bold text-gray-900 text-sm leading-snug min-h-[40px] flex items-center justify-center">{{ $member->name }}</h3>
+                                <p class="text-xs text-purple-700 font-semibold uppercase mt-2 px-2.5 py-0.5 bg-purple-100/60 rounded-full tracking-wide">
+                                    {{ $member->position }}
+                                </p>
+                                @if ($member->period)
+                                    <p class="text-xs text-gray-400 mt-1.5">{{ $member->period }}</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             {{-- PENGURUS (Pengelola) --}}
             @if ($pengurus->count())
                 @php
