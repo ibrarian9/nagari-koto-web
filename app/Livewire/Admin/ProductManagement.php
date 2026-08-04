@@ -11,8 +11,17 @@ class ProductManagement extends Component
 {
     use WithFileUploads;
     public bool $showForm = false;
+    public bool $showDetailModal = false;
+    public ?Product $detailProduct = null;
     public ?int $editingId = null;
     public string $search = '';
+
+    public function viewDetail(int $id): void
+    {
+        $this->detailProduct = Product::findOrFail($id);
+        $this->showDetailModal = true;
+    }
+
     #[Validate('required|string|max:255')] public string $owner_name = '';
     #[Validate('required|string|max:255')] public string $business_name = '';
     #[Validate('nullable|string|max:100')] public string $category = '';

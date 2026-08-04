@@ -21,6 +21,8 @@ Route::get('/berita', PublicSite\NewsIndex::class)->name('berita.index');
 Route::get('/berita/{slug}', PublicSite\NewsShow::class)->name('berita.show');
 Route::get('/potensi', PublicSite\VillagePotential::class)->name('potensi');
 Route::get('/umkm', PublicSite\Umkm::class)->name('umkm');
+Route::get('/umkm/{id}', PublicSite\UmkmDetail::class)->name('umkm.show');
+
 Route::get('/kontak', PublicSite\Contacts::class)->name('kontak');
 Route::get('/agenda', PublicSite\Agenda::class)->name('agenda');
 Route::get('/infografis', PublicSite\PopulationInfographic::class)->name('infografis');

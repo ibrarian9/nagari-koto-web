@@ -42,6 +42,89 @@
         </form>
     </x-admin-modal>
 
+    {{-- Detail Modal --}}
+    @if($detailProduct)
+        <x-admin-modal :show="$showDetailModal" title="Detail UMKM" subtitle="{{ $detailProduct->business_name }}" icon="storefront" iconBg="bg-amber-100" iconColor="text-amber-600" maxWidth="max-w-2xl">
+            <div class="space-y-6">
+                {{-- Banner Photo --}}
+                <div class="aspect-video rounded-xl bg-gray-100 overflow-hidden border border-gray-200">
+                    @if($detailProduct->photo)
+                        <img src="{{ Storage::url($detailProduct->photo) }}" alt="{{ $detailProduct->business_name }}" class="w-full h-full object-cover">
+                    @else
+                        <div class="w-full h-full flex flex-col items-center justify-center bg-amber-50 text-amber-300">
+                            <span class="material-symbols-outlined text-6xl mb-1">storefront</span>
+                            <span class="text-xs text-amber-500 font-medium">Foto Belum Diunggah</span>
+                        </div>
+                    @endif
+                </div>
+
+                {{-- Detail Table Info --}}
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <div class="p-3.5 bg-gray-50 rounded-xl border border-gray-100">
+                        <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-0.5">Nama Usaha</span>
+                        <span class="font-bold text-gray-900 text-base">{{ $detailProduct->business_name }}</span>
+                    </div>
+                    <div class="p-3.5 bg-gray-50 rounded-xl border border-gray-100">
+                        <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-0.5">Pemilik Usaha</span>
+                        <span class="font-bold text-gray-900 text-base">{{ $detailProduct->owner_name }}</span>
+                    </div>
+                    <div class="p-3.5 bg-gray-50 rounded-xl border border-gray-100">
+                        <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-0.5">Kategori</span>
+                        <span class="font-bold text-amber-700">{{ $detailProduct->category ?? '-' }}</span>
+                    </div>
+                    <div class="p-3.5 bg-gray-50 rounded-xl border border-gray-100">
+                        <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-0.5">Status Tampil</span>
+                        <span class="badge {{ $detailProduct->is_active ? 'badge-success' : 'badge-danger' }}">
+                            {{ $detailProduct->is_active ? 'Aktif (Tampil Publik)' : 'Nonaktif' }}
+                        </span>
+                    </div>
+                </div>
+
+                @if($detailProduct->whatsapp)
+                    <div class="p-3.5 bg-emerald-50/60 rounded-xl border border-emerald-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-emerald-700 uppercase tracking-wider block mb-0.5">Kontak WhatsApp</span>
+                            <span class="font-bold text-emerald-900 text-sm">{{ $detailProduct->whatsapp }}</span>
+                        </div>
+                        @php
+                            $waNum = preg_replace('/[^0-9]/', '', $detailProduct->whatsapp);
+                            if (str_starts_with($waNum, '0')) {
+                                $waNum = '62' . substr($waNum, 1);
+                            }
+                        @endphp
+                        <a href="https://wa.me/{{ $waNum }}" target="_blank" rel="noopener" class="btn-primary btn-sm bg-emerald-600 hover:bg-emerald-700 text-xs">
+                            <span class="material-symbols-outlined text-sm">chat</span> Buka WA
+                        </a>
+                    </div>
+                @endif
+
+                @if($detailProduct->address)
+                    <div>
+                        <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-1">Alamat Usaha</span>
+                        <p class="text-sm text-gray-700 bg-gray-50 p-3 rounded-xl border border-gray-100">{{ $detailProduct->address }}</p>
+                    </div>
+                @endif
+
+                @if($detailProduct->description)
+                    <div>
+                        <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-1">Deskripsi & Produk</span>
+                        <div class="text-sm text-gray-700 bg-gray-50 p-4 rounded-xl border border-gray-100 leading-relaxed whitespace-pre-line">
+                            {{ $detailProduct->description }}
+                        </div>
+                    </div>
+                @endif
+
+                <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <a href="{{ route('umkm.show', $detailProduct->id) }}" target="_blank" class="text-xs font-semibold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span> Lihat Tampilan Publik
+                    </a>
+                    <button type="button" wire:click="$set('showDetailModal', false)" class="btn-secondary btn-sm">Tutup</button>
+                </div>
+            </div>
+        </x-admin-modal>
+    @endif
+
+
 
     {{-- ─── SEARCH ─────────────────────────────────── --}}
     <div class="card p-4 mb-6">
@@ -79,15 +162,20 @@
                             </td>
                             <td>
                                 <div class="flex justify-end gap-1">
+                                    <button wire:click="viewDetail({{ $p->id }})"
+                                        class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-amber-50 hover:text-amber-600 transition-colors" title="Lihat Detail">
+                                        <span class="material-symbols-outlined text-lg">visibility</span>
+                                    </button>
                                     <button wire:click="edit({{ $p->id }})"
-                                        class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-desa-50 hover:text-desa-600 transition-colors">
+                                        class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-desa-50 hover:text-desa-600 transition-colors" title="Edit">
                                         <span class="material-symbols-outlined text-lg">edit</span>
                                     </button>
                                     <button onclick="confirmAction({{ $p->id }}, 'deleteConfirmed', 'Yakin ingin menghapus data ini?')"
-                                        class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-red-50 hover:text-red-600 transition-colors">
+                                        class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-red-50 hover:text-red-600 transition-colors" title="Hapus">
                                         <span class="material-symbols-outlined text-lg">delete</span>
                                     </button>
                                 </div>
+
                             </td>
                         </tr>
                     @empty

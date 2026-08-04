@@ -55,8 +55,12 @@
                             {{ Str::limit(strip_tags($p->description), 120) }}
                         </p>
                         @if ($p->description)
-                            <button data-title="{{ $p->title }}"
-                                data-description="{{ Str::markdown($p->description) }}" onclick="showDetail(this)"
+                            <button
+                                data-potential="{{ json_encode([
+                                    'title' => $p->title,
+                                    'description' => Str::markdown($p->description),
+                                ]) }}"
+                                onclick="showPotentialDetail(this)"
                                 class="mt-3 inline-flex items-center gap-1 text-xs text-desa-600 hover:text-desa-800 font-medium transition-colors">
                                 Baca Selengkapnya <span class="material-symbols-outlined text-xs">arrow_forward</span>
                             </button>
@@ -76,12 +80,21 @@
 </div>
 
 <script>
-    function showDetail(button) {
+    function showPotentialDetail(button) {
+        let data = {};
+        try {
+            data = JSON.parse(button.dataset.potential);
+        } catch (e) {
+            console.error('Failed to parse potential JSON:', e);
+            return;
+        }
+
         Swal.fire({
-            title: button.dataset.title,
-            html: button.dataset.description,
+            title: data.title,
+            html: data.description,
             width: 700,
             confirmButtonColor: '#059669'
         });
     }
 </script>
+

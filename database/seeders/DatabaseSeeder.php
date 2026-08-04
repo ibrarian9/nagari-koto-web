@@ -214,16 +214,20 @@ class DatabaseSeeder extends Seeder
             ['title' => 'Musyawarah Nagari Tetapkan Prioritas Pembangunan 2025', 'excerpt' => 'Musyawarah nagari menetapkan 5 program prioritas pembangunan untuk tahun 2025.', 'body' => '<p>Musyawarah Nagari (Musnag) Duo Koto yang dihadiri seluruh unsur masyarakat telah menetapkan lima program prioritas pembangunan tahun 2025, meliputi: (1) pembangunan drainase Jorong Railia, (2) rehabilitasi jalan usaha tani, (3) pengadaan alat pertanian modern, (4) pembangunan PAUD di Jorong Tanjuang Batuang, dan (5) pengembangan kawasan wisata Air Terjun Kacau.</p>'],
             ['title' => 'Vaksinasi Hewan Ternak Gratis di Seluruh Jorong', 'excerpt' => 'Dinas Peternakan Kab. Agam melaksanakan vaksinasi gratis untuk ternak sapi dan kerbau.', 'body' => '<p>Dinas Peternakan Kabupaten Agam bersama Pemerintah Nagari Duo Koto melaksanakan program vaksinasi hewan ternak gratis di seluruh jorong. Program ini menargetkan 500 ekor sapi dan kerbau milik warga untuk pencegahan penyakit mulut dan kuku (PMK).</p>'],
         ];
+        $adminUser = \App\Models\User::first();
+        $adminUserId = $adminUser ? $adminUser->id : 1;
+
         foreach ($posts as $i => $p) {
             Post::create(array_merge($p, [
                 'category_id' => $categories[$i % count($categories)]->id,
-                'user_id' => 1,
+                'user_id' => $adminUserId,
                 'slug' => Str::slug($p['title']),
                 'status' => 'published',
                 'published_at' => now()->subDays($i * 4),
                 'views' => rand(80, 800),
             ]));
         }
+
 
         // ─── Potentials (6 potensi) ─────────────────────────
         $potentials = [
