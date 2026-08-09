@@ -67,65 +67,83 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10" x-data x-init="$nextTick(() => {
-                new Chart(document.getElementById('incExpChart'), {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Pendapatan', 'Belanja'],
-                        datasets: [{
-                            data: [{{ $stat->total_income }}, {{ $stat->total_expenditure }}],
-                            backgroundColor: ['#22c55e', '#ef4444'],
-                            borderWidth: 0,
-                            hoverOffset: 8
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } }
-                        }
-                    }
-                });
-            
-                const apbnag = @js($stat->apbnag_data ?? []);
-                if (Object.keys(apbnag).length) {
-                    const colors = ['#2D6A4F', '#4daf68', '#7ac58e', '#f59e0b', '#3b82f6', '#8b5cf6', '#ec4899'];
-                    new Chart(document.getElementById('apbnagChart'), {
-                        type: 'bar',
-                        data: {
-                            labels: Object.keys(apbnag),
-                            datasets: [{
-                                label: 'Jumlah (Rp)',
-                                data: Object.values(apbnag),
-                                backgroundColor: colors.slice(0, Object.keys(apbnag).length),
-                                borderRadius: 6,
-                                borderSkipped: false
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: { display: false },
-                                tooltip: {
-                                    callbacks: {
-                                        label: (ctx) => 'Rp ' + ctx.raw.toLocaleString('id-ID')
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10"
+                wire:key="nagari-budget-charts-{{ $stat->id }}-{{ $selectedYear }}"
+                x-data="{
+                    initCharts() {
+                        this.$nextTick(() => {
+                            const incExpCanvas = document.getElementById('incExpChart');
+                            const apbnagCanvas = document.getElementById('apbnagChart');
+
+                            if (incExpCanvas && typeof Chart !== 'undefined') {
+                                const oldIncExp = Chart.getChart(incExpCanvas);
+                                if (oldIncExp) oldIncExp.destroy();
+
+                                new Chart(incExpCanvas, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['Pendapatan', 'Belanja'],
+                                        datasets: [{
+                                            data: [{{ $stat->total_income }}, {{ $stat->total_expenditure }}],
+                                            backgroundColor: ['#22c55e', '#ef4444'],
+                                            borderWidth: 0,
+                                            hoverOffset: 8
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        maintainAspectRatio: false,
+                                        plugins: {
+                                            legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } }
+                                        }
                                     }
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    ticks: {
-                                        callback: (v) => 'Rp ' + (v / 1000000).toFixed(0) + ' Jt'
-                                    }
-                                }
+                                });
                             }
-                        }
-                    });
-                }
-            })">
+
+                            const apbnag = @js(is_string($stat->apbnag_data) ? json_decode($stat->apbnag_data, true) : ($stat->apbnag_data ?? []));
+                            if (apbnagCanvas && typeof Chart !== 'undefined' && apbnag && Object.keys(apbnag).length) {
+                                const oldApbnag = Chart.getChart(apbnagCanvas);
+                                if (oldApbnag) oldApbnag.destroy();
+
+                                const colors = ['#2D6A4F', '#4daf68', '#7ac58e', '#f59e0b', '#3b82f6', '#8b5cf6', '#ec4899'];
+                                new Chart(apbnagCanvas, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: Object.keys(apbnag),
+                                        datasets: [{
+                                            label: 'Jumlah (Rp)',
+                                            data: Object.values(apbnag),
+                                            backgroundColor: colors.slice(0, Object.keys(apbnag).length),
+                                            borderRadius: 6,
+                                            borderSkipped: false
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        maintainAspectRatio: false,
+                                        plugins: {
+                                            legend: { display: false },
+                                            tooltip: {
+                                                callbacks: {
+                                                    label: (ctx) => 'Rp ' + ctx.raw.toLocaleString('id-ID')
+                                                }
+                                            }
+                                        },
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                ticks: {
+                                                    callback: (v) => 'Rp ' + (v / 1000000).toFixed(0) + ' Jt'
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }"
+                x-init="initCharts()">
                 <div class="card p-6">
                     <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
                         <span class="material-symbols-outlined text-desa-500">donut_large</span>

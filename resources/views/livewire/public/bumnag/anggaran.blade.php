@@ -57,38 +57,56 @@
             </div>
 
             {{-- Charts --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10" x-data x-init="$nextTick(() => {
-                new Chart(document.getElementById('bumnagIncExpChart'), {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Pendapatan', 'Belanja'],
-                        datasets: [{
-                            data: [{{ $stat->total_income }}, {{ $stat->total_expenditure }}],
-                            backgroundColor: ['#22c55e', '#ef4444'],
-                            borderWidth: 0,
-                            hoverOffset: 8
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } } } }
-                });
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10"
+                wire:key="bumnag-charts-{{ $stat->id }}-{{ $selectedYear }}"
+                x-data="{
+                    initCharts() {
+                        this.$nextTick(() => {
+                            const incExpCanvas = document.getElementById('bumnagIncExpChart');
+                            const apbdesCanvas = document.getElementById('bumnagApbdesChart');
 
-                const apbdes = @js($stat->apbdes_data ?? []);
-                if (Object.keys(apbdes).length) {
-                    const colors = ['#3b82f6', '#22c55e', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#f97316'];
-                    new Chart(document.getElementById('bumnagApbdesChart'), {
-                        type: 'bar',
-                        data: {
-                            labels: Object.keys(apbdes),
-                            datasets: [{ label: 'Jumlah (Rp)', data: Object.values(apbdes), backgroundColor: colors.slice(0, Object.keys(apbdes).length), borderRadius: 6, borderSkipped: false }]
-                        },
-                        options: {
-                            responsive: true, maintainAspectRatio: false,
-                            plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => 'Rp ' + ctx.raw.toLocaleString('id-ID') } } },
-                            scales: { y: { beginAtZero: true, ticks: { callback: (v) => 'Rp ' + (v / 1000000).toFixed(0) + ' Jt' } } }
-                        }
-                    });
-                }
-            })">
+                            if (incExpCanvas && typeof Chart !== 'undefined') {
+                                const oldIncExp = Chart.getChart(incExpCanvas);
+                                if (oldIncExp) oldIncExp.destroy();
+
+                                new Chart(incExpCanvas, {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ['Pendapatan', 'Belanja'],
+                                        datasets: [{
+                                            data: [{{ $stat->total_income }}, {{ $stat->total_expenditure }}],
+                                            backgroundColor: ['#22c55e', '#ef4444'],
+                                            borderWidth: 0,
+                                            hoverOffset: 8
+                                        }]
+                                    },
+                                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } } } }
+                                });
+                            }
+
+                            const apbdes = @js(is_string($stat->apbdes_data) ? json_decode($stat->apbdes_data, true) : ($stat->apbdes_data ?? []));
+                            if (apbdesCanvas && typeof Chart !== 'undefined' && apbdes && Object.keys(apbdes).length) {
+                                const oldApbdes = Chart.getChart(apbdesCanvas);
+                                if (oldApbdes) oldApbdes.destroy();
+
+                                const colors = ['#3b82f6', '#22c55e', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#f97316'];
+                                new Chart(apbdesCanvas, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: Object.keys(apbdes),
+                                        datasets: [{ label: 'Jumlah (Rp)', data: Object.values(apbdes), backgroundColor: colors.slice(0, Object.keys(apbdes).length), borderRadius: 6, borderSkipped: false }]
+                                    },
+                                    options: {
+                                        responsive: true, maintainAspectRatio: false,
+                                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => 'Rp ' + ctx.raw.toLocaleString('id-ID') } } },
+                                        scales: { y: { beginAtZero: true, ticks: { callback: (v) => 'Rp ' + (v / 1000000).toFixed(0) + ' Jt' } } }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }"
+                x-init="initCharts()">
                 <div class="card p-6">
                     <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
                         <span class="material-symbols-outlined text-blue-500">donut_large</span>
@@ -104,6 +122,7 @@
                     <div class="relative w-full h-72"><canvas id="bumnagApbdesChart"></canvas></div>
                 </div>
             </div>
+
 
             @php
                 $apbdes = is_string($stat->apbdes_data) ? json_decode($stat->apbdes_data, true) : $stat->apbdes_data;

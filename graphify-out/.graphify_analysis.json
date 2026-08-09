@@ -1,0 +1,2139 @@
+{
+  "communities": {
+    "0": [
+      "app_livewire_admin_bumnagbudgetmanagement",
+      "app_livewire_admin_bumnagbudgetmanagement_bumnagbudgetmanagement",
+      "app_livewire_admin_bumnagbudgetmanagement_bumnagbudgetmanagement_addrow",
+      "app_livewire_admin_bumnagbudgetmanagement_bumnagbudgetmanagement_create",
+      "app_livewire_admin_bumnagbudgetmanagement_bumnagbudgetmanagement_delete",
+      "app_livewire_admin_bumnagbudgetmanagement_bumnagbudgetmanagement_edit",
+      "app_livewire_admin_bumnagbudgetmanagement_bumnagbudgetmanagement_removerow",
+      "app_livewire_admin_bumnagbudgetmanagement_bumnagbudgetmanagement_render",
+      "app_livewire_admin_bumnagbudgetmanagement_bumnagbudgetmanagement_resetform",
+      "app_livewire_admin_bumnagbudgetmanagement_bumnagbudgetmanagement_save",
+      "app_livewire_admin_bumnagmembermanagement",
+      "app_livewire_admin_bumnagmembermanagement_bumnagmembermanagement",
+      "app_livewire_admin_bumnagmembermanagement_bumnagmembermanagement_create",
+      "app_livewire_admin_bumnagmembermanagement_bumnagmembermanagement_delete",
+      "app_livewire_admin_bumnagmembermanagement_bumnagmembermanagement_edit",
+      "app_livewire_admin_bumnagmembermanagement_bumnagmembermanagement_movedown",
+      "app_livewire_admin_bumnagmembermanagement_bumnagmembermanagement_moveup",
+      "app_livewire_admin_bumnagmembermanagement_bumnagmembermanagement_render",
+      "app_livewire_admin_bumnagmembermanagement_bumnagmembermanagement_resetform",
+      "app_livewire_admin_bumnagmembermanagement_bumnagmembermanagement_save",
+      "app_livewire_admin_bumnagprogrammanagement",
+      "app_livewire_admin_bumnagprogrammanagement_bumnagprogrammanagement",
+      "app_livewire_admin_bumnagprogrammanagement_bumnagprogrammanagement_create",
+      "app_livewire_admin_bumnagprogrammanagement_bumnagprogrammanagement_delete",
+      "app_livewire_admin_bumnagprogrammanagement_bumnagprogrammanagement_edit",
+      "app_livewire_admin_bumnagprogrammanagement_bumnagprogrammanagement_render",
+      "app_livewire_admin_bumnagprogrammanagement_bumnagprogrammanagement_resetform",
+      "app_livewire_admin_bumnagprogrammanagement_bumnagprogrammanagement_save",
+      "app_models_bumnagbudget",
+      "app_models_bumnagbudget_bumnagbudget",
+      "app_models_bumnagbudget_bumnagbudget_casts",
+      "app_models_bumnagbudget_bumnagbudget_getactivitymodellabel",
+      "app_models_bumnagbudget_bumnagbudget_scopelatestyear",
+      "app_models_bumnagmember",
+      "app_models_bumnagmember_bumnagmember",
+      "app_models_bumnagmember_bumnagmember_casts",
+      "app_models_bumnagmember_bumnagmember_getactivitymodellabel",
+      "app_models_bumnagmember_bumnagmember_scopeactive",
+      "app_models_bumnagmember_bumnagmember_scopeordered",
+      "app_models_bumnagmember_bumnagmember_scopepembina",
+      "app_models_bumnagmember_bumnagmember_scopepengawas",
+      "app_models_bumnagmember_bumnagmember_scopepengurus",
+      "app_models_bumnagprogram",
+      "app_models_bumnagprogram_bumnagprogram",
+      "app_models_bumnagprogram_bumnagprogram_casts",
+      "app_models_bumnagprogram_bumnagprogram_getactivitymodellabel",
+      "app_models_bumnagprogram_bumnagprogram_scopeactive",
+      "app_models_bumnagprogram_bumnagprogram_scopeordered",
+      "config_livewire",
+      "database_seeders_bumnagseeder",
+      "database_seeders_bumnagseeder_bumnagseeder",
+      "database_seeders_bumnagseeder_bumnagseeder_run",
+      "tests_feature_bumnagbudgettest",
+      "tests_feature_bumnagmembertest"
+    ],
+    "1": [
+      "app_livewire_admin_campaignmanagement",
+      "app_livewire_admin_campaignmanagement_campaignmanagement",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_addbankaccount",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_create",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_delete",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_deletedonation",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_edit",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_loadbanksettings",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_mount",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_openadddonation",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_openbanksettings",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_removebankaccount",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_render",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_resetform",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_save",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_savebanksettings",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_savemanualdonation",
+      "app_livewire_admin_campaignmanagement_campaignmanagement_viewdonations",
+      "app_livewire_publicsite_donationdetail",
+      "app_livewire_publicsite_donationdetail_donationdetail",
+      "app_livewire_publicsite_donationdetail_donationdetail_mount",
+      "app_livewire_publicsite_donationdetail_donationdetail_render",
+      "app_livewire_publicsite_donationpage",
+      "app_livewire_publicsite_donationpage_donationpage",
+      "app_livewire_publicsite_donationpage_donationpage_render",
+      "app_models_donation",
+      "app_models_donation_donation",
+      "app_models_donation_donation_campaign",
+      "app_models_donation_donation_casts",
+      "app_models_donation_donation_getdisplaynameattribute",
+      "app_models_donation_donation_scopesuccessful",
+      "app_models_donationcampaign",
+      "app_models_donationcampaign_donationcampaign",
+      "app_models_donationcampaign_donationcampaign_casts",
+      "app_models_donationcampaign_donationcampaign_creator",
+      "app_models_donationcampaign_donationcampaign_donations",
+      "app_models_donationcampaign_donationcampaign_getactivitymodellabel",
+      "app_models_donationcampaign_donationcampaign_getdonorcountattribute",
+      "app_models_donationcampaign_donationcampaign_getisexpiredattribute",
+      "app_models_donationcampaign_donationcampaign_getprogresspercentattribute",
+      "app_models_donationcampaign_donationcampaign_recalculatecollected",
+      "app_models_donationcampaign_donationcampaign_scopeactive",
+      "app_models_donationsetting",
+      "app_models_donationsetting_donationsetting",
+      "app_models_donationsetting_donationsetting_casts",
+      "app_models_donationsetting_donationsetting_getactivitymodellabel",
+      "app_models_letterrequest_letterrequest_user",
+      "app_models_post_post_category",
+      "app_models_post_post_user",
+      "database_seeders_donationcampaignseeder",
+      "database_seeders_donationcampaignseeder_donationcampaignseeder",
+      "database_seeders_donationcampaignseeder_donationcampaignseeder_createsampledonations",
+      "database_seeders_donationcampaignseeder_donationcampaignseeder_run",
+      "illuminate_database_eloquent_relations_belongsto"
+    ],
+    "2": [
+      "app_livewire_admin_bamusmanagement",
+      "app_livewire_admin_bamusmanagement_bamusmanagement",
+      "app_livewire_admin_bamusmanagement_bamusmanagement_create",
+      "app_livewire_admin_bamusmanagement_bamusmanagement_delete",
+      "app_livewire_admin_bamusmanagement_bamusmanagement_edit",
+      "app_livewire_admin_bamusmanagement_bamusmanagement_movedown",
+      "app_livewire_admin_bamusmanagement_bamusmanagement_moveup",
+      "app_livewire_admin_bamusmanagement_bamusmanagement_render",
+      "app_livewire_admin_bamusmanagement_bamusmanagement_resetform",
+      "app_livewire_admin_bamusmanagement_bamusmanagement_save",
+      "app_livewire_admin_institutionmanagement",
+      "app_livewire_admin_institutionmanagement_institutionmanagement",
+      "app_livewire_admin_institutionmanagement_institutionmanagement_create",
+      "app_livewire_admin_institutionmanagement_institutionmanagement_delete",
+      "app_livewire_admin_institutionmanagement_institutionmanagement_edit",
+      "app_livewire_admin_institutionmanagement_institutionmanagement_render",
+      "app_livewire_admin_institutionmanagement_institutionmanagement_resetform",
+      "app_livewire_admin_institutionmanagement_institutionmanagement_save",
+      "app_models_bamusmember",
+      "app_models_bamusmember_bamusmember",
+      "app_models_bamusmember_bamusmember_casts",
+      "app_models_bamusmember_bamusmember_getactivitymodellabel",
+      "app_models_bamusmember_bamusmember_scopeactive",
+      "app_models_bamusmember_bamusmember_scopeordered",
+      "app_models_villageinstitution",
+      "app_models_villageinstitution_villageinstitution",
+      "app_models_villageinstitution_villageinstitution_casts",
+      "app_models_villageinstitution_villageinstitution_getactivitymodellabel",
+      "app_models_villageinstitution_villageinstitution_gettypelabelattribute",
+      "app_models_villageinstitution_villageinstitution_scopeactive",
+      "app_models_villageinstitution_villageinstitution_scopebytype",
+      "app_models_villageinstitution_villageinstitution_scopeordered",
+      "database_seeders_bamusmemberseeder",
+      "database_seeders_bamusmemberseeder_bamusmemberseeder",
+      "database_seeders_bamusmemberseeder_bamusmemberseeder_run",
+      "database_seeders_legaldocumentseeder",
+      "database_seeders_legaldocumentseeder_legaldocumentseeder",
+      "database_seeders_legaldocumentseeder_legaldocumentseeder_run",
+      "database_seeders_ppidcontentseeder",
+      "database_seeders_ppidcontentseeder_ppidcontentseeder",
+      "database_seeders_ppidcontentseeder_ppidcontentseeder_run",
+      "database_seeders_userseeder",
+      "database_seeders_userseeder_userseeder",
+      "database_seeders_userseeder_userseeder_run",
+      "database_seeders_villageinstitutionseeder",
+      "database_seeders_villageinstitutionseeder_villageinstitutionseeder",
+      "database_seeders_villageinstitutionseeder_villageinstitutionseeder_run",
+      "illuminate_database_seeder"
+    ],
+    "3": [
+      "app_livewire_admin_ppidpermohonanmanagement",
+      "app_livewire_admin_ppidpermohonanmanagement_ppidpermohonanmanagement",
+      "app_livewire_admin_ppidpermohonanmanagement_ppidpermohonanmanagement_render",
+      "app_livewire_admin_ppidpermohonanmanagement_ppidpermohonanmanagement_updaterequest",
+      "app_livewire_admin_ppidpermohonanmanagement_ppidpermohonanmanagement_view",
+      "app_livewire_admin_ppidsertamertamanagement",
+      "app_livewire_admin_ppidsertamertamanagement_ppidsertamertamanagement",
+      "app_livewire_admin_ppidsertamertamanagement_ppidsertamertamanagement_create",
+      "app_livewire_admin_ppidsertamertamanagement_ppidsertamertamanagement_delete",
+      "app_livewire_admin_ppidsertamertamanagement_ppidsertamertamanagement_edit",
+      "app_livewire_admin_ppidsertamertamanagement_ppidsertamertamanagement_render",
+      "app_livewire_admin_ppidsertamertamanagement_ppidsertamertamanagement_resetform",
+      "app_livewire_admin_ppidsertamertamanagement_ppidsertamertamanagement_save",
+      "app_livewire_publicsite_ppid_ppidcekstatus",
+      "app_livewire_publicsite_ppid_ppidcekstatus_ppidcekstatus",
+      "app_livewire_publicsite_ppid_ppidcekstatus_ppidcekstatus_cekstatus",
+      "app_livewire_publicsite_ppid_ppidcekstatus_ppidcekstatus_render",
+      "app_models_ppidpermohonan",
+      "app_models_ppidpermohonan_ppidpermohonan",
+      "app_models_ppidpermohonan_ppidpermohonan_casts",
+      "app_models_ppidpermohonan_ppidpermohonan_getactivitymodellabel",
+      "app_models_ppidpermohonan_ppidpermohonan_getisoverdueattribute",
+      "app_models_ppidpermohonan_ppidpermohonan_getstatuscolorattribute",
+      "app_models_ppidpermohonan_ppidpermohonan_getstatuslabelattribute",
+      "app_models_ppidpermohonan_ppidpermohonan_scopebystatus",
+      "app_models_ppidpermohonan_ppidpermohonan_scopeoverdue",
+      "app_models_ppidsertamerta",
+      "app_models_ppidsertamerta_ppidsertamerta",
+      "app_models_ppidsertamerta_ppidsertamerta_casts",
+      "app_models_ppidsertamerta_ppidsertamerta_getactivitymodellabel",
+      "app_models_ppidsertamerta_ppidsertamerta_geturgencycolorattribute",
+      "app_models_ppidsertamerta_ppidsertamerta_geturgencyiconattribute",
+      "app_models_ppidsertamerta_ppidsertamerta_geturgencylabelattribute",
+      "app_models_ppidsertamerta_ppidsertamerta_scopeactive",
+      "app_models_ppidsertamerta_ppidsertamerta_scopebyurgency",
+      "database_seeders_ppidseeder",
+      "database_seeders_ppidseeder_ppidseeder",
+      "database_seeders_ppidseeder_ppidseeder_run",
+      "illuminate_database_eloquent_softdeletes"
+    ],
+    "4": [
+      "app_livewire_admin_budgetstatmanagement",
+      "app_livewire_admin_budgetstatmanagement_budgetstatmanagement",
+      "app_livewire_admin_budgetstatmanagement_budgetstatmanagement_addrow",
+      "app_livewire_admin_budgetstatmanagement_budgetstatmanagement_create",
+      "app_livewire_admin_budgetstatmanagement_budgetstatmanagement_delete",
+      "app_livewire_admin_budgetstatmanagement_budgetstatmanagement_edit",
+      "app_livewire_admin_budgetstatmanagement_budgetstatmanagement_removerow",
+      "app_livewire_admin_budgetstatmanagement_budgetstatmanagement_render",
+      "app_livewire_admin_budgetstatmanagement_budgetstatmanagement_resetform",
+      "app_livewire_admin_budgetstatmanagement_budgetstatmanagement_save",
+      "app_livewire_admin_contactmanagement",
+      "app_livewire_admin_contactmanagement_contactmanagement",
+      "app_livewire_admin_contactmanagement_contactmanagement_create",
+      "app_livewire_admin_contactmanagement_contactmanagement_delete",
+      "app_livewire_admin_contactmanagement_contactmanagement_edit",
+      "app_livewire_admin_contactmanagement_contactmanagement_render",
+      "app_livewire_admin_contactmanagement_contactmanagement_resetform",
+      "app_livewire_admin_contactmanagement_contactmanagement_save",
+      "app_livewire_publicsite_budgetstats",
+      "app_livewire_publicsite_budgetstats_budgetstats",
+      "app_livewire_publicsite_budgetstats_budgetstats_mount",
+      "app_livewire_publicsite_budgetstats_budgetstats_render",
+      "app_models_budgetstat",
+      "app_models_budgetstat_budgetstat",
+      "app_models_budgetstat_budgetstat_casts",
+      "app_models_budgetstat_budgetstat_getactivitymodellabel",
+      "app_models_budgetstat_budgetstat_getapbnagdataattribute",
+      "app_models_budgetstat_budgetstat_scopelatestyear",
+      "app_models_contact",
+      "app_models_contact_contact",
+      "app_models_contact_contact_casts",
+      "app_models_contact_contact_getactivitymodellabel",
+      "app_models_contact_contact_scopeofcategory",
+      "app_models_contact_contact_scopeordered",
+      "database_seeders_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder_run"
+    ],
+    "5": [
+      "aos",
+      "chart_js",
+      "concurrently",
+      "cropperjs",
+      "fontsource_inter",
+      "laravel_vite_plugin",
+      "package",
+      "package_dependencies",
+      "package_dependencies_aos",
+      "package_dependencies_chart_js",
+      "package_dependencies_cropperjs",
+      "package_dependencies_fontsource_inter",
+      "package_dependencies_sweetalert2",
+      "package_dependencies_trix",
+      "package_devdependencies",
+      "package_devdependencies_concurrently",
+      "package_devdependencies_laravel_vite_plugin",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_forms",
+      "package_devdependencies_tailwindcss_vite",
+      "package_devdependencies_vite",
+      "package_private",
+      "package_schema",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_type",
+      "sweetalert2",
+      "tailwindcss",
+      "tailwindcss_forms",
+      "tailwindcss_vite",
+      "trix",
+      "vite"
+    ],
+    "6": [
+      "app_livewire_admin_usermanagement",
+      "app_livewire_admin_usermanagement_usermanagement",
+      "app_livewire_admin_usermanagement_usermanagement_create",
+      "app_livewire_admin_usermanagement_usermanagement_delete",
+      "app_livewire_admin_usermanagement_usermanagement_edit",
+      "app_livewire_admin_usermanagement_usermanagement_render",
+      "app_livewire_admin_usermanagement_usermanagement_resetform",
+      "app_livewire_admin_usermanagement_usermanagement_save",
+      "app_livewire_admin_usermanagement_usermanagement_toggleactive",
+      "app_models_category_category_posts",
+      "app_models_user",
+      "app_models_user_user",
+      "app_models_user_user_activitylogs",
+      "app_models_user_user_casts",
+      "app_models_user_user_isadmin",
+      "app_models_user_user_isoperator",
+      "app_models_user_user_isstaff",
+      "app_models_user_user_issuperadmin",
+      "app_models_user_user_iswarga",
+      "app_models_user_user_letterrequests",
+      "app_models_user_user_posts",
+      "config_auth",
+      "illuminate_database_eloquent_relations_hasmany",
+      "illuminate_foundation_auth_user",
+      "illuminate_notifications_notifiable",
+      "tests_feature_auth_authenticationtest",
+      "tests_feature_auth_emailverificationtest",
+      "tests_feature_auth_passwordconfirmationtest",
+      "tests_feature_auth_passwordresettest",
+      "tests_feature_auth_passwordupdatetest",
+      "tests_feature_profiletest"
+    ],
+    "7": [
+      "app_livewire_admin_ppidkeberatanmanagement_ppidkeberatanmanagement",
+      "app_livewire_admin_ppidkeberatanmanagement_ppidkeberatanmanagement_delete",
+      "app_livewire_admin_ppidkeberatanmanagement_ppidkeberatanmanagement_render",
+      "app_livewire_admin_ppidkeberatanmanagement_ppidkeberatanmanagement_showdetail",
+      "app_livewire_admin_ppidkeberatanmanagement_ppidkeberatanmanagement_updatestatus",
+      "app_livewire_admin_villageprofileform_villageprofileform_render",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_submitkeberatan",
+      "app_models_bumnagprofile_bumnagprofile_getcontent",
+      "app_models_bumnagprofile_php_self",
+      "app_models_donationsetting_donationsetting_getcontent",
+      "app_models_donationsetting_php_self",
+      "app_models_herosetting_herosetting_getimageurl",
+      "app_models_ppidcontent_php_self",
+      "app_models_ppidcontent_ppidcontent_getbytype",
+      "app_models_ppidkeberatan_ppidkeberatan",
+      "app_models_ppidkeberatan_ppidkeberatan_generatekode",
+      "app_models_ppidkeberatan_ppidkeberatan_getactivitymodellabel",
+      "app_models_ppidkeberatan_ppidkeberatan_getalasanlabelattribute",
+      "app_models_ppidkeberatan_ppidkeberatan_getstatuscolorattribute",
+      "app_models_ppidkeberatan_ppidkeberatan_getstatuslabelattribute",
+      "app_models_ppidpermohonan_ppidpermohonan_generatenomorpermohonan",
+      "app_models_villageprofile_php_self",
+      "app_models_villageprofile_villageprofile_getcached",
+      "database_factories_userfactory",
+      "database_factories_userfactory_userfactory",
+      "database_factories_userfactory_userfactory_definition",
+      "database_factories_userfactory_userfactory_unverified",
+      "illuminate_database_eloquent_factories_factory",
+      "static"
+    ],
+    "8": [
+      "app_livewire_admin_postmanagement",
+      "app_livewire_admin_postmanagement_postmanagement",
+      "app_livewire_admin_postmanagement_postmanagement_create",
+      "app_livewire_admin_postmanagement_postmanagement_delete",
+      "app_livewire_admin_postmanagement_postmanagement_edit",
+      "app_livewire_admin_postmanagement_postmanagement_render",
+      "app_livewire_admin_postmanagement_postmanagement_resetform",
+      "app_livewire_admin_postmanagement_postmanagement_save",
+      "app_livewire_admin_postmanagement_postmanagement_togglestatus",
+      "app_livewire_publicsite_newsindex",
+      "app_livewire_publicsite_newsindex_newsindex",
+      "app_livewire_publicsite_newsindex_newsindex_render",
+      "app_livewire_publicsite_newsindex_newsindex_updatingcategory",
+      "app_livewire_publicsite_newsindex_newsindex_updatingsearch",
+      "app_livewire_publicsite_newsshow",
+      "app_livewire_publicsite_newsshow_newsshow",
+      "app_livewire_publicsite_newsshow_newsshow_mount",
+      "app_livewire_publicsite_newsshow_newsshow_render",
+      "app_models_category",
+      "app_models_category_category",
+      "app_models_category_category_scopeoftype",
+      "app_models_post",
+      "app_models_post_post",
+      "app_models_post_post_casts",
+      "app_models_post_post_getactivitymodellabel",
+      "app_models_post_post_scopedraft",
+      "app_models_post_post_scopepublished",
+      "illuminate_database_eloquent_factories_hasfactory"
+    ],
+    "9": [
+      "app_livewire_admin_bumnagprofilemanagement",
+      "app_livewire_admin_bumnagprofilemanagement_bumnagprofilemanagement",
+      "app_livewire_admin_bumnagprofilemanagement_bumnagprofilemanagement_addunit",
+      "app_livewire_admin_bumnagprofilemanagement_bumnagprofilemanagement_mount",
+      "app_livewire_admin_bumnagprofilemanagement_bumnagprofilemanagement_removeunit",
+      "app_livewire_admin_bumnagprofilemanagement_bumnagprofilemanagement_render",
+      "app_livewire_admin_bumnagprofilemanagement_bumnagprofilemanagement_save",
+      "app_livewire_publicsite_bumnag_bumnaganggaran",
+      "app_livewire_publicsite_bumnag_bumnaganggaran_bumnaganggaran",
+      "app_livewire_publicsite_bumnag_bumnaganggaran_bumnaganggaran_mount",
+      "app_livewire_publicsite_bumnag_bumnaganggaran_bumnaganggaran_render",
+      "app_livewire_publicsite_bumnag_bumnaghome",
+      "app_livewire_publicsite_bumnag_bumnaghome_bumnaghome",
+      "app_livewire_publicsite_bumnag_bumnaghome_bumnaghome_render",
+      "app_livewire_publicsite_bumnag_bumnaghukum",
+      "app_livewire_publicsite_bumnag_bumnaghukum_bumnaghukum",
+      "app_livewire_publicsite_bumnag_bumnaghukum_bumnaghukum_render",
+      "app_livewire_publicsite_bumnag_bumnagprogramkerja",
+      "app_livewire_publicsite_bumnag_bumnagprogramkerja_bumnagprogramkerja",
+      "app_livewire_publicsite_bumnag_bumnagprogramkerja_bumnagprogramkerja_render",
+      "app_livewire_publicsite_bumnag_bumnagstruktur",
+      "app_livewire_publicsite_bumnag_bumnagstruktur_bumnagstruktur",
+      "app_livewire_publicsite_bumnag_bumnagstruktur_bumnagstruktur_render",
+      "app_models_bumnagprofile",
+      "app_models_bumnagprofile_bumnagprofile",
+      "app_models_bumnagprofile_bumnagprofile_casts",
+      "app_models_bumnagprofile_bumnagprofile_getactivitymodellabel"
+    ],
+    "10": [
+      "app_livewire_admin_governmentmanagement",
+      "app_livewire_admin_governmentmanagement_governmentmanagement",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_addeducationrow",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_addpositionrow",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_create",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_delete",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_edit",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_movedown",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_moveup",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_removeeducationrow",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_removepositionrow",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_render",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_resetform",
+      "app_livewire_admin_governmentmanagement_governmentmanagement_save",
+      "app_livewire_publicsite_governmentdetail",
+      "app_livewire_publicsite_governmentdetail_governmentdetail",
+      "app_livewire_publicsite_governmentdetail_governmentdetail_mount",
+      "app_livewire_publicsite_governmentdetail_governmentdetail_render",
+      "app_livewire_publicsite_governmentprofile",
+      "app_livewire_publicsite_governmentprofile_governmentprofile",
+      "app_livewire_publicsite_governmentprofile_governmentprofile_render",
+      "app_models_governmentmember",
+      "app_models_governmentmember_governmentmember",
+      "app_models_governmentmember_governmentmember_casts",
+      "app_models_governmentmember_governmentmember_getactivitymodellabel",
+      "app_models_governmentmember_governmentmember_scopeactive",
+      "app_models_governmentmember_governmentmember_scopeordered"
+    ],
+    "11": [
+      "composer_scripts",
+      "composer_scripts_dev",
+      "composer_scripts_post_autoload_dump",
+      "composer_scripts_post_create_project_cmd",
+      "composer_scripts_post_root_package_install",
+      "composer_scripts_post_update_cmd",
+      "composer_scripts_pre_package_uninstall",
+      "composer_scripts_setup",
+      "composer_scripts_test",
+      "ref_composer_config_disableprocesstimeout",
+      "ref_composer_install",
+      "ref_illuminate_foundation_composerscripts_postautoloaddump",
+      "ref_illuminate_foundation_composerscripts_prepackageuninstall",
+      "ref_npm_install_ignore_scripts",
+      "ref_npm_run_build",
+      "ref_npx_concurrently_c_93c5fd_c4b5fd_fb7185_fdba74_phprc_php_ini_php_artisan_serve_php_artisan_queue_listen_tries_1_timeout_0_php_artisan_pail_timeout_0_npm_run_dev_names_server_queue_logs_vite_kill_others",
+      "ref_php_artisan_config_clear_ansi_no_additional_args",
+      "ref_php_artisan_key_generate",
+      "ref_php_artisan_key_generate_ansi",
+      "ref_php_artisan_migrate_force",
+      "ref_php_artisan_migrate_graceful_ansi",
+      "ref_php_artisan_package_discover_ansi",
+      "ref_php_artisan_test",
+      "ref_php_artisan_vendor_publish_tag_laravel_assets_ansi_force",
+      "ref_php_r_file_exists_database_database_sqlite_touch_database_database_sqlite",
+      "ref_php_r_file_exists_env_copy_env_example_env"
+    ],
+    "12": [
+      "app_livewire_admin_productmanagement",
+      "app_livewire_admin_productmanagement_productmanagement",
+      "app_livewire_admin_productmanagement_productmanagement_create",
+      "app_livewire_admin_productmanagement_productmanagement_delete",
+      "app_livewire_admin_productmanagement_productmanagement_edit",
+      "app_livewire_admin_productmanagement_productmanagement_render",
+      "app_livewire_admin_productmanagement_productmanagement_resetform",
+      "app_livewire_admin_productmanagement_productmanagement_save",
+      "app_livewire_admin_productmanagement_productmanagement_toggleactive",
+      "app_livewire_admin_productmanagement_productmanagement_viewdetail",
+      "app_livewire_publicsite_umkm",
+      "app_livewire_publicsite_umkm_umkm",
+      "app_livewire_publicsite_umkm_umkm_render",
+      "app_livewire_publicsite_umkmdetail",
+      "app_livewire_publicsite_umkmdetail_umkmdetail",
+      "app_livewire_publicsite_umkmdetail_umkmdetail_mount",
+      "app_livewire_publicsite_umkmdetail_umkmdetail_render",
+      "app_models_product",
+      "app_models_product_product",
+      "app_models_product_product_casts",
+      "app_models_product_product_getactivitymodellabel",
+      "app_models_product_product_scopeactive",
+      "tests_feature_umkmdetailtest"
+    ],
+    "13": [
+      "app_livewire_admin_agendamanagement",
+      "app_livewire_admin_agendamanagement_agendamanagement",
+      "app_livewire_admin_agendamanagement_agendamanagement_create",
+      "app_livewire_admin_agendamanagement_agendamanagement_delete",
+      "app_livewire_admin_agendamanagement_agendamanagement_edit",
+      "app_livewire_admin_agendamanagement_agendamanagement_removeflyer",
+      "app_livewire_admin_agendamanagement_agendamanagement_render",
+      "app_livewire_admin_agendamanagement_agendamanagement_resetform",
+      "app_livewire_admin_agendamanagement_agendamanagement_save",
+      "app_livewire_publicsite_agenda",
+      "app_livewire_publicsite_agenda_agenda",
+      "app_livewire_publicsite_agenda_agenda_render",
+      "app_services_imageoptimizer",
+      "app_services_imageoptimizer_imageoptimizer",
+      "app_services_imageoptimizer_imageoptimizer_construct",
+      "app_services_imageoptimizer_imageoptimizer_optimize",
+      "app_services_imageoptimizer_imageoptimizer_optimizebase64",
+      "app_services_imageoptimizer_imageoptimizer_scaledown",
+      "illuminate_http_uploadedfile",
+      "intervention_image_imagemanager",
+      "intervention_image_interfaces_imageinterface"
+    ],
+    "14": [
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement",
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement_create",
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement_delete",
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement_edit",
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement_generatestandardfilename",
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement_mount",
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement_render",
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement_resetform",
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement_rules",
+      "app_livewire_admin_legaldocumentmanagement_legaldocumentmanagement_save",
+      "app_livewire_publicsite_legaldocuments_legaldocuments_download",
+      "app_models_legaldocument_legaldocument",
+      "app_models_legaldocument_legaldocument_casts",
+      "app_models_legaldocument_legaldocument_fileexists",
+      "app_models_legaldocument_legaldocument_getactivitymodellabel",
+      "app_models_legaldocument_legaldocument_getcategorylabelattribute",
+      "app_models_legaldocument_legaldocument_getfileextensionattribute",
+      "app_models_legaldocument_legaldocument_getfilesizeformattedattribute",
+      "app_models_legaldocument_legaldocument_scopebycategory",
+      "app_models_legaldocument_legaldocument_scopebyyear",
+      "app_models_legaldocument_legaldocument_scopepublished"
+    ],
+    "15": [
+      "app_livewire_admin_populationstatform",
+      "app_livewire_publicsite_bamusinfo",
+      "app_livewire_publicsite_bamusinfo_bamusinfo",
+      "app_livewire_publicsite_contacts",
+      "app_livewire_publicsite_contacts_contacts",
+      "app_livewire_publicsite_contacts_contacts_render",
+      "app_livewire_publicsite_idmstats",
+      "app_livewire_publicsite_idmstats_idmstats",
+      "app_livewire_publicsite_idmstats_idmstats_render",
+      "app_livewire_publicsite_letterinfo",
+      "app_livewire_publicsite_letterinfo_letterinfo",
+      "app_livewire_publicsite_letterinfo_letterinfo_render",
+      "app_livewire_publicsite_letterrequeststatus",
+      "app_livewire_publicsite_letterrequeststatus_letterrequeststatus",
+      "app_livewire_publicsite_letterrequeststatus_letterrequeststatus_render",
+      "app_livewire_publicsite_populationinfographic",
+      "app_livewire_publicsite_populationinfographic_populationinfographic",
+      "app_livewire_publicsite_populationinfographic_populationinfographic_render",
+      "app_livewire_publicsite_villageprofile",
+      "app_models_populationstat",
+      "livewire_component"
+    ],
+    "16": [
+      "app_livewire_admin_forestrymanagement",
+      "app_livewire_admin_forestrymanagement_forestrymanagement",
+      "app_livewire_admin_forestrymanagement_forestrymanagement_create",
+      "app_livewire_admin_forestrymanagement_forestrymanagement_delete",
+      "app_livewire_admin_forestrymanagement_forestrymanagement_edit",
+      "app_livewire_admin_forestrymanagement_forestrymanagement_render",
+      "app_livewire_admin_forestrymanagement_forestrymanagement_resetform",
+      "app_livewire_admin_forestrymanagement_forestrymanagement_save",
+      "app_models_forestryrecord",
+      "app_models_forestryrecord_forestryrecord",
+      "app_models_forestryrecord_forestryrecord_casts",
+      "app_models_forestryrecord_forestryrecord_getactivitymodellabel",
+      "app_models_forestryrecord_forestryrecord_getcategorylabelattribute",
+      "app_models_forestryrecord_forestryrecord_getstatuslabelattribute",
+      "app_models_forestryrecord_forestryrecord_scopebycategory",
+      "app_models_forestryrecord_forestryrecord_scopebystatus",
+      "app_models_forestryrecord_forestryrecord_scopebyyear",
+      "database_seeders_forestryrecordseeder",
+      "database_seeders_forestryrecordseeder_forestryrecordseeder",
+      "database_seeders_forestryrecordseeder_forestryrecordseeder_run"
+    ],
+    "17": [
+      "app_livewire_admin_legaldocumentmanagement",
+      "app_livewire_admin_letterrequestmanagement",
+      "app_livewire_admin_ppidberkalamanagement",
+      "app_livewire_admin_ppidcontentmanagement",
+      "app_livewire_admin_ppidkeberatanmanagement",
+      "app_livewire_admin_ppidsetiapsaatmanagement",
+      "app_livewire_publicsite_legaldocuments",
+      "app_livewire_publicsite_letterrequestform",
+      "app_livewire_publicsite_ppid_ppidhome",
+      "app_models_legaldocument",
+      "app_models_letterrequest",
+      "app_models_ppidberkala",
+      "app_models_ppidcontent",
+      "app_models_ppidkeberatan",
+      "app_models_ppidsetiapsaat",
+      "config_cache",
+      "illuminate_database_eloquent_model",
+      "livewire_withfileuploads",
+      "livewire_withpagination",
+      "tests_feature_fileuploadtest"
+    ],
+    "18": [
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement",
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement_create",
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement_delete",
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement_edit",
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement_generatestandardfilename",
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement_mount",
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement_render",
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement_resetform",
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement_rules",
+      "app_livewire_admin_ppidberkalamanagement_ppidberkalamanagement_save",
+      "app_models_ppidberkala_ppidberkala",
+      "app_models_ppidberkala_ppidberkala_casts",
+      "app_models_ppidberkala_ppidberkala_fileexists",
+      "app_models_ppidberkala_ppidberkala_getactivitymodellabel",
+      "app_models_ppidberkala_ppidberkala_getcategorylabelattribute",
+      "app_models_ppidberkala_ppidberkala_getfileextensionattribute",
+      "app_models_ppidberkala_ppidberkala_getfilesizeformattedattribute",
+      "app_models_ppidberkala_ppidberkala_scopebycategory",
+      "app_models_ppidberkala_ppidberkala_scopebyyear",
+      "app_models_ppidberkala_ppidberkala_scopepublished"
+    ],
+    "19": [
+      "app_livewire_admin_activitylogviewer",
+      "app_livewire_admin_activitylogviewer_activitylogviewer",
+      "app_livewire_admin_activitylogviewer_activitylogviewer_clearerrorlogs",
+      "app_livewire_admin_activitylogviewer_activitylogviewer_clearoldactivitylogs",
+      "app_livewire_admin_activitylogviewer_activitylogviewer_downloaderrorlog",
+      "app_livewire_admin_activitylogviewer_activitylogviewer_getparsederrorlogs",
+      "app_livewire_admin_activitylogviewer_activitylogviewer_render",
+      "app_livewire_admin_activitylogviewer_activitylogviewer_updatingactionfilter",
+      "app_livewire_admin_activitylogviewer_activitylogviewer_updatingmodelfilter",
+      "app_livewire_admin_activitylogviewer_activitylogviewer_updatingsearch",
+      "app_livewire_admin_dashboard",
+      "app_livewire_admin_dashboard_dashboard",
+      "app_livewire_admin_dashboard_dashboard_render",
+      "app_models_activitylog",
+      "app_models_activitylog_activitylog",
+      "app_models_activitylog_activitylog_user",
+      "app_models_idmstat",
+      "illuminate_support_facades_response",
+      "tests_feature_activitylogtest"
+    ],
+    "20": [
+      "app_livewire_admin_potentialmanagement",
+      "app_livewire_admin_potentialmanagement_potentialmanagement",
+      "app_livewire_admin_potentialmanagement_potentialmanagement_create",
+      "app_livewire_admin_potentialmanagement_potentialmanagement_delete",
+      "app_livewire_admin_potentialmanagement_potentialmanagement_edit",
+      "app_livewire_admin_potentialmanagement_potentialmanagement_render",
+      "app_livewire_admin_potentialmanagement_potentialmanagement_resetform",
+      "app_livewire_admin_potentialmanagement_potentialmanagement_save",
+      "app_livewire_publicsite_home",
+      "app_livewire_publicsite_home_home",
+      "app_livewire_publicsite_home_home_render",
+      "app_livewire_publicsite_villagepotential",
+      "app_livewire_publicsite_villagepotential_villagepotential",
+      "app_livewire_publicsite_villagepotential_villagepotential_render",
+      "app_models_potential",
+      "app_models_potential_potential",
+      "app_models_potential_potential_getactivitymodellabel",
+      "app_models_potential_potential_scopeofcategory"
+    ],
+    "21": [
+      "app_livewire_publicsite_bamusinfo_bamusinfo_render",
+      "app_livewire_publicsite_bansoslink",
+      "app_livewire_publicsite_bansoslink_bansoslink",
+      "app_livewire_publicsite_bansoslink_bansoslink_render",
+      "app_livewire_publicsite_forestryinfo",
+      "app_livewire_publicsite_forestryinfo_forestryinfo",
+      "app_livewire_publicsite_forestryinfo_forestryinfo_render",
+      "app_livewire_publicsite_institutioninfo",
+      "app_livewire_publicsite_institutioninfo_institutioninfo",
+      "app_livewire_publicsite_institutioninfo_institutioninfo_render",
+      "app_livewire_publicsite_legaldocuments_legaldocuments",
+      "app_livewire_publicsite_legaldocuments_legaldocuments_render",
+      "app_livewire_publicsite_legaldocuments_legaldocuments_updatingfiltercategory",
+      "app_livewire_publicsite_legaldocuments_legaldocuments_updatingfilteryear",
+      "app_livewire_publicsite_legaldocuments_legaldocuments_updatingsearch",
+      "app_livewire_publicsite_legaldocuments_legaldocuments_view",
+      "app_livewire_publicsite_villageprofile_villageprofile",
+      "app_livewire_publicsite_villageprofile_villageprofile_render"
+    ],
+    "22": [
+      "app_livewire_admin_herosettingmanagement",
+      "app_livewire_admin_herosettingmanagement_herosettingmanagement",
+      "app_livewire_admin_herosettingmanagement_herosettingmanagement_canceledit",
+      "app_livewire_admin_herosettingmanagement_herosettingmanagement_ensureheroesexist",
+      "app_livewire_admin_herosettingmanagement_herosettingmanagement_mount",
+      "app_livewire_admin_herosettingmanagement_herosettingmanagement_removeimage",
+      "app_livewire_admin_herosettingmanagement_herosettingmanagement_render",
+      "app_livewire_admin_herosettingmanagement_herosettingmanagement_seedheroes",
+      "app_livewire_admin_herosettingmanagement_herosettingmanagement_startedit",
+      "app_livewire_admin_herosettingmanagement_herosettingmanagement_uploadimage",
+      "app_models_herosetting",
+      "app_models_herosetting_herosetting",
+      "app_models_herosetting_herosetting_clearcache",
+      "app_models_herosetting_herosetting_getactivitymodellabel",
+      "database_seeders_herosettingseeder",
+      "database_seeders_herosettingseeder_herosettingseeder",
+      "database_seeders_herosettingseeder_herosettingseeder_run"
+    ],
+    "23": [
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_addmember",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_loadtab",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_mount",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_removeattachment",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_removeimage",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_removemember",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_removememberphoto",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_render",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_save",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_switchtab",
+      "app_livewire_admin_ppidcontentmanagement_ppidcontentmanagement_updatedmemberphotouploads",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_render",
+      "app_models_ppidcontent_ppidcontent",
+      "app_models_ppidcontent_ppidcontent_casts",
+      "app_models_ppidcontent_ppidcontent_getactivitymodellabel"
+    ],
+    "24": [
+      "app_models_agenda",
+      "app_models_agenda_agenda",
+      "app_models_agenda_agenda_casts",
+      "app_models_agenda_agenda_getactivitymodellabel",
+      "app_models_agenda_agenda_scopepast",
+      "app_models_agenda_agenda_scopepubliconly",
+      "app_models_agenda_agenda_scopeupcoming",
+      "app_models_villageprofile",
+      "app_models_villageprofile_villageprofile",
+      "app_models_villageprofile_villageprofile_casts",
+      "app_models_villageprofile_villageprofile_getactivitymodellabel",
+      "app_traits_logsactivity",
+      "app_traits_logsactivity_bootlogsactivity",
+      "app_traits_logsactivity_getactivitymodellabel",
+      "app_traits_logsactivity_getclientip",
+      "app_traits_logsactivity_logactivity"
+    ],
+    "25": [
+      "app_livewire_admin_idmstatmanagement",
+      "app_livewire_admin_idmstatmanagement_idmstatmanagement",
+      "app_livewire_admin_idmstatmanagement_idmstatmanagement_create",
+      "app_livewire_admin_idmstatmanagement_idmstatmanagement_delete",
+      "app_livewire_admin_idmstatmanagement_idmstatmanagement_edit",
+      "app_livewire_admin_idmstatmanagement_idmstatmanagement_render",
+      "app_livewire_admin_idmstatmanagement_idmstatmanagement_resetform",
+      "app_livewire_admin_idmstatmanagement_idmstatmanagement_save",
+      "app_models_idmstat_idmstat",
+      "app_models_idmstat_idmstat_casts",
+      "app_models_idmstat_idmstat_getactivitymodellabel",
+      "app_models_idmstat_idmstat_getstatuscolorattribute",
+      "app_models_idmstat_idmstat_getstatuslabelattribute",
+      "app_models_idmstat_idmstat_scopelatestyear"
+    ],
+    "26": [
+      "app_livewire_admin_populationstatform_populationstatform",
+      "app_livewire_admin_populationstatform_populationstatform_addrow",
+      "app_livewire_admin_populationstatform_populationstatform_createnewyear",
+      "app_livewire_admin_populationstatform_populationstatform_deleteyear",
+      "app_livewire_admin_populationstatform_populationstatform_loadyear",
+      "app_livewire_admin_populationstatform_populationstatform_mount",
+      "app_livewire_admin_populationstatform_populationstatform_opennewyearmodal",
+      "app_livewire_admin_populationstatform_populationstatform_removerow",
+      "app_livewire_admin_populationstatform_populationstatform_render",
+      "app_livewire_admin_populationstatform_populationstatform_save",
+      "app_models_populationstat_populationstat",
+      "app_models_populationstat_populationstat_casts",
+      "app_models_populationstat_populationstat_getactivitymodellabel",
+      "app_models_populationstat_populationstat_scopelatestyear"
+    ],
+    "27": [
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_downloadberkala",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_downloadsetiapsaat",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_generatecaptcha",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_mount",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_processpdfviewing",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_resetcommentform",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_resetkeberatanform",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_resetpermohonanform",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_submitcomment",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_submitpermohonan",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_updatinginfosearch",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_viewberkala",
+      "app_livewire_publicsite_ppid_ppidhome_ppidhome_viewsetiapsaat"
+    ],
+    "28": [
+      "app_livewire_admin_letterrequestmanagement_letterrequestmanagement",
+      "app_livewire_admin_letterrequestmanagement_letterrequestmanagement_deletetemplate",
+      "app_livewire_admin_letterrequestmanagement_letterrequestmanagement_hasnikahtemplate",
+      "app_livewire_admin_letterrequestmanagement_letterrequestmanagement_render",
+      "app_livewire_admin_letterrequestmanagement_letterrequestmanagement_updaterequest",
+      "app_livewire_admin_letterrequestmanagement_letterrequestmanagement_uploadtemplate",
+      "app_livewire_admin_letterrequestmanagement_letterrequestmanagement_view",
+      "app_models_letterrequest_letterrequest",
+      "app_models_letterrequest_letterrequest_casts",
+      "app_models_letterrequest_letterrequest_getactivitymodellabel",
+      "app_models_letterrequest_letterrequest_getlettertypelabelattribute",
+      "app_models_letterrequest_letterrequest_getstatuscolorattribute",
+      "app_models_letterrequest_letterrequest_getstatuslabelattribute"
+    ],
+    "29": [
+      "app_livewire_admin_ppidcommentmanagement",
+      "app_livewire_admin_ppidcommentmanagement_ppidcommentmanagement",
+      "app_livewire_admin_ppidcommentmanagement_ppidcommentmanagement_approve",
+      "app_livewire_admin_ppidcommentmanagement_ppidcommentmanagement_delete",
+      "app_livewire_admin_ppidcommentmanagement_ppidcommentmanagement_reject",
+      "app_livewire_admin_ppidcommentmanagement_ppidcommentmanagement_render",
+      "app_models_ppidcomment",
+      "app_models_ppidcomment_ppidcomment",
+      "app_models_ppidcomment_ppidcomment_casts",
+      "app_models_ppidcomment_ppidcomment_getactivitymodellabel",
+      "app_models_ppidcomment_ppidcomment_scopeapproved",
+      "app_models_ppidcomment_ppidcomment_scopepending"
+    ],
+    "30": [
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement_edit",
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement_render",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat_casts",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat_fileexists",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat_getactivitymodellabel",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat_getcategorylabelattribute",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat_getfileextensionattribute",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat_getfilesizeformattedattribute",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat_scopebycategory",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat_scopebyyear",
+      "app_models_ppidsetiapsaat_ppidsetiapsaat_scopepublished"
+    ],
+    "31": [
+      "addbankaccount",
+      "openadddonation",
+      "openadddonation_c_id",
+      "openbanksettings",
+      "removebankaccount_index",
+      "resources_views_livewire_admin_campaign_management_blade",
+      "resources_views_livewire_admin_campaign_management_blade_php_create",
+      "resources_views_livewire_admin_campaign_management_blade_php_edit_c_id",
+      "resources_views_livewire_admin_campaign_management_blade_php_set",
+      "savebanksettings",
+      "viewdonations_c_id"
+    ],
+    "32": [
+      "composer_require_dev",
+      "composer_require_dev_fakerphp_faker",
+      "composer_require_dev_laramint_laravel_brain",
+      "composer_require_dev_laravel_breeze",
+      "composer_require_dev_laravel_pail",
+      "composer_require_dev_laravel_pao",
+      "composer_require_dev_laravel_pint",
+      "composer_require_dev_mockery_mockery",
+      "composer_require_dev_nunomaduro_collision",
+      "composer_require_dev_pestphp_pest",
+      "composer_require_dev_pestphp_pest_plugin_laravel"
+    ],
+    "33": [
+      "addeducationrow",
+      "addpositionrow",
+      "removeeducationrow_i",
+      "removepositionrow_i",
+      "resources_views_livewire_admin_government_management_blade",
+      "resources_views_livewire_admin_government_management_blade_php_create",
+      "resources_views_livewire_admin_government_management_blade_php_edit_m_id",
+      "resources_views_livewire_admin_government_management_blade_php_movedown_m_id",
+      "resources_views_livewire_admin_government_management_blade_php_moveup_m_id",
+      "resources_views_livewire_admin_government_management_blade_php_set"
+    ],
+    "34": [
+      "composer_require",
+      "composer_require_barryvdh_laravel_dompdf",
+      "composer_require_intervention_image",
+      "composer_require_intervention_image_laravel",
+      "composer_require_laravel_framework",
+      "composer_require_laravel_pulse",
+      "composer_require_laravel_tinker",
+      "composer_require_livewire_livewire",
+      "composer_require_livewire_volt",
+      "composer_require_php"
+    ],
+    "35": [
+      "pulse_cache",
+      "pulse_exceptions",
+      "pulse_queues",
+      "pulse_servers",
+      "pulse_slow_jobs",
+      "pulse_slow_outgoing_requests",
+      "pulse_slow_queries",
+      "pulse_slow_requests",
+      "pulse_usage",
+      "resources_views_vendor_pulse_dashboard_blade"
+    ],
+    "36": [
+      "app_providers_appserviceprovider",
+      "app_providers_appserviceprovider_appserviceprovider",
+      "app_providers_appserviceprovider_appserviceprovider_boot",
+      "app_providers_appserviceprovider_appserviceprovider_register",
+      "app_providers_voltserviceprovider",
+      "app_providers_voltserviceprovider_voltserviceprovider",
+      "app_providers_voltserviceprovider_voltserviceprovider_boot",
+      "app_providers_voltserviceprovider_voltserviceprovider_register",
+      "illuminate_support_serviceprovider"
+    ],
+    "37": [
+      "app_http_controllers_auth_verifyemailcontroller",
+      "app_http_controllers_auth_verifyemailcontroller_verifyemailcontroller",
+      "app_http_controllers_auth_verifyemailcontroller_verifyemailcontroller_invoke",
+      "app_http_controllers_controller",
+      "app_http_controllers_controller_controller",
+      "illuminate_foundation_auth_emailverificationrequest",
+      "illuminate_http_redirectresponse",
+      "routes_auth"
+    ],
+    "38": [
+      "app_http_middleware_ensurerole",
+      "app_http_middleware_ensurerole_ensurerole",
+      "app_http_middleware_ensurerole_ensurerole_handle",
+      "bootstrap_app",
+      "closure",
+      "illuminate_http_request",
+      "public_index",
+      "symfony_component_httpfoundation_response"
+    ],
+    "39": [
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement",
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement_create",
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement_delete",
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement_generatestandardfilename",
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement_mount",
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement_resetform",
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement_rules",
+      "app_livewire_admin_ppidsetiapsaatmanagement_ppidsetiapsaatmanagement_save"
+    ],
+    "40": [
+      "app_view_components_applayout",
+      "app_view_components_applayout_applayout",
+      "app_view_components_applayout_applayout_render",
+      "app_view_components_guestlayout",
+      "app_view_components_guestlayout_guestlayout",
+      "app_view_components_guestlayout_guestlayout_render",
+      "illuminate_view_component",
+      "illuminate_view_view"
+    ],
+    "41": [
+      "composer",
+      "composer_description",
+      "composer_license",
+      "composer_minimum_stability",
+      "composer_name",
+      "composer_prefer_stable",
+      "composer_schema",
+      "composer_type"
+    ],
+    "42": [
+      "addmember",
+      "removeattachment",
+      "removeimage",
+      "removemember_i",
+      "removememberphoto_i",
+      "resources_views_livewire_admin_ppid_content_management_blade",
+      "switchtab"
+    ],
+    "43": [
+      "app_livewire_admin_villageprofileform",
+      "app_livewire_admin_villageprofileform_villageprofileform",
+      "app_livewire_admin_villageprofileform_villageprofileform_addsocialmedia",
+      "app_livewire_admin_villageprofileform_villageprofileform_mount",
+      "app_livewire_admin_villageprofileform_villageprofileform_removesocialmedia",
+      "app_livewire_admin_villageprofileform_villageprofileform_save",
+      "app_livewire_admin_villageprofileform_villageprofileform_socialplatforms"
+    ],
+    "44": [
+      "app_livewire_publicsite_letterrequestform_letterrequestform",
+      "app_livewire_publicsite_letterrequestform_letterrequestform_hasnikahtemplate",
+      "app_livewire_publicsite_letterrequestform_letterrequestform_messages",
+      "app_livewire_publicsite_letterrequestform_letterrequestform_render",
+      "app_livewire_publicsite_letterrequestform_letterrequestform_rules",
+      "app_livewire_publicsite_letterrequestform_letterrequestform_submit",
+      "app_livewire_publicsite_letterrequestform_letterrequestform_updatedlettertype"
+    ],
+    "45": [
+      "composer_allow_plugins_pestphp_pest_plugin",
+      "composer_allow_plugins_php_http_discovery",
+      "composer_config",
+      "composer_config_allow_plugins",
+      "composer_config_optimize_autoloader",
+      "composer_config_preferred_install",
+      "composer_config_sort_packages"
+    ],
+    "46": [
+      "downloadberkala_item_id",
+      "downloadsetiapsaat_item_id",
+      "resetkeberatanform",
+      "resetpermohonanform",
+      "resources_views_livewire_public_ppid_tabs_new_blade",
+      "viewberkala_item_id",
+      "viewsetiapsaat_item_id"
+    ],
+    "47": [
+      "app_livewire_forms_loginform",
+      "app_livewire_forms_loginform_loginform",
+      "app_livewire_forms_loginform_loginform_authenticate",
+      "app_livewire_forms_loginform_loginform_ensureisnotratelimited",
+      "app_livewire_forms_loginform_loginform_throttlekey",
+      "livewire_form"
+    ],
+    "48": [
+      "resources_views_livewire_admin_bamus_management_blade",
+      "resources_views_livewire_admin_bamus_management_blade_php_create",
+      "resources_views_livewire_admin_bamus_management_blade_php_edit_m_id",
+      "resources_views_livewire_admin_bamus_management_blade_php_movedown_m_id",
+      "resources_views_livewire_admin_bamus_management_blade_php_moveup_m_id",
+      "resources_views_livewire_admin_bamus_management_blade_php_set"
+    ],
+    "49": [
+      "resources_views_livewire_admin_budget_stat_management_blade",
+      "resources_views_livewire_admin_budget_stat_management_blade_php_addrow",
+      "resources_views_livewire_admin_budget_stat_management_blade_php_create",
+      "resources_views_livewire_admin_budget_stat_management_blade_php_edit_s_id",
+      "resources_views_livewire_admin_budget_stat_management_blade_php_removerow_i",
+      "resources_views_livewire_admin_budget_stat_management_blade_php_set"
+    ],
+    "50": [
+      "resources_views_livewire_admin_bumnag_budget_management_blade",
+      "resources_views_livewire_admin_bumnag_budget_management_blade_php_addrow",
+      "resources_views_livewire_admin_bumnag_budget_management_blade_php_create",
+      "resources_views_livewire_admin_bumnag_budget_management_blade_php_edit_s_id",
+      "resources_views_livewire_admin_bumnag_budget_management_blade_php_removerow_i",
+      "resources_views_livewire_admin_bumnag_budget_management_blade_php_set"
+    ],
+    "51": [
+      "resources_views_livewire_admin_bumnag_member_management_blade",
+      "resources_views_livewire_admin_bumnag_member_management_blade_php_create",
+      "resources_views_livewire_admin_bumnag_member_management_blade_php_edit_m_id",
+      "resources_views_livewire_admin_bumnag_member_management_blade_php_movedown_m_id",
+      "resources_views_livewire_admin_bumnag_member_management_blade_php_moveup_m_id",
+      "resources_views_livewire_admin_bumnag_member_management_blade_php_set"
+    ],
+    "52": [
+      "resources_views_livewire_admin_ppid_dip_management_blade",
+      "resources_views_livewire_admin_ppid_dip_management_blade_php_create",
+      "resources_views_livewire_admin_ppid_dip_management_blade_php_delete_item_id",
+      "resources_views_livewire_admin_ppid_dip_management_blade_php_edit_item_id",
+      "resources_views_livewire_admin_ppid_dip_management_blade_php_set",
+      "togglepublish_item_id"
+    ],
+    "53": [
+      "resources_views_livewire_admin_product_management_blade",
+      "resources_views_livewire_admin_product_management_blade_php_create",
+      "resources_views_livewire_admin_product_management_blade_php_edit_p_id",
+      "resources_views_livewire_admin_product_management_blade_php_set",
+      "toggleactive_p_id",
+      "viewdetail_p_id"
+    ],
+    "54": [
+      "clearerrorlogs",
+      "clearoldactivitylogs",
+      "downloaderrorlog",
+      "resources_views_livewire_admin_activity_log_viewer_blade",
+      "resources_views_livewire_admin_activity_log_viewer_blade_php_set"
+    ],
+    "55": [
+      "composer_autoload",
+      "composer_autoload_psr_4",
+      "composer_psr_4_app",
+      "composer_psr_4_database_factories",
+      "composer_psr_4_database_seeders"
+    ],
+    "56": [
+      "deletetemplate",
+      "resources_views_livewire_admin_letter_request_management_blade",
+      "resources_views_livewire_admin_letter_request_management_blade_php_set",
+      "resources_views_livewire_admin_letter_request_management_blade_php_updaterequest",
+      "resources_views_livewire_admin_letter_request_management_blade_php_view_r_id"
+    ],
+    "57": [
+      "edit_a_id",
+      "removeflyer",
+      "resources_views_livewire_admin_agenda_management_blade",
+      "resources_views_livewire_admin_agenda_management_blade_php_create",
+      "resources_views_livewire_admin_agenda_management_blade_php_set"
+    ],
+    "58": [
+      "edit_post_id",
+      "resources_views_livewire_admin_post_management_blade",
+      "resources_views_livewire_admin_post_management_blade_php_create",
+      "resources_views_livewire_admin_post_management_blade_php_set",
+      "togglestatus_post_id"
+    ],
+    "59": [
+      "illuminate_foundation_testing_testcase",
+      "tests_pest",
+      "tests_pest_something",
+      "tests_testcase",
+      "tests_testcase_testcase"
+    ],
+    "60": [
+      "opennewyearmodal",
+      "removerow",
+      "resources_views_livewire_admin_population_stat_form_blade",
+      "resources_views_livewire_admin_population_stat_form_blade_php_addrow",
+      "resources_views_livewire_admin_population_stat_form_blade_php_set"
+    ],
+    "61": [
+      "resources_views_livewire_admin_ppid_keberatan_management_blade",
+      "resources_views_livewire_admin_ppid_keberatan_management_blade_php_delete_item_id",
+      "resources_views_livewire_admin_ppid_keberatan_management_blade_php_set",
+      "showdetail_item_id",
+      "updatestatus"
+    ],
+    "62": [
+      "app_livewire_actions_logout",
+      "app_livewire_actions_logout_logout",
+      "app_livewire_actions_logout_logout_invoke",
+      "config_session"
+    ],
+    "63": [
+      "approve_item_id",
+      "reject_item_id",
+      "resources_views_livewire_admin_ppid_comment_management_blade",
+      "resources_views_livewire_admin_ppid_comment_management_blade_php_delete_item_id"
+    ],
+    "64": [
+      "canceledit",
+      "resources_views_livewire_admin_hero_setting_management_blade",
+      "seedheroes",
+      "startedit_hero_id"
+    ],
+    "65": [
+      "edit_inst_id",
+      "resources_views_livewire_admin_institution_management_blade",
+      "resources_views_livewire_admin_institution_management_blade_php_create",
+      "resources_views_livewire_admin_institution_management_blade_php_set"
+    ],
+    "66": [
+      "edit_r_id",
+      "resources_views_livewire_admin_forestry_management_blade",
+      "resources_views_livewire_admin_forestry_management_blade_php_create",
+      "resources_views_livewire_admin_forestry_management_blade_php_set"
+    ],
+    "67": [
+      "edit_u_id",
+      "resources_views_livewire_admin_user_management_blade",
+      "resources_views_livewire_admin_user_management_blade_php_create",
+      "resources_views_livewire_admin_user_management_blade_php_set"
+    ],
+    "68": [
+      "profile_delete_user_form",
+      "profile_update_password_form",
+      "profile_update_profile_information_form",
+      "resources_views_profile_blade"
+    ],
+    "69": [
+      "resources_views_livewire_admin_bumnag_program_management_blade",
+      "resources_views_livewire_admin_bumnag_program_management_blade_php_create",
+      "resources_views_livewire_admin_bumnag_program_management_blade_php_edit_p_id",
+      "resources_views_livewire_admin_bumnag_program_management_blade_php_set"
+    ],
+    "70": [
+      "resources_views_livewire_admin_contact_management_blade",
+      "resources_views_livewire_admin_contact_management_blade_php_create",
+      "resources_views_livewire_admin_contact_management_blade_php_edit_c_id",
+      "resources_views_livewire_admin_contact_management_blade_php_set"
+    ],
+    "71": [
+      "resources_views_livewire_admin_idm_stat_management_blade",
+      "resources_views_livewire_admin_idm_stat_management_blade_php_create",
+      "resources_views_livewire_admin_idm_stat_management_blade_php_edit_s_id",
+      "resources_views_livewire_admin_idm_stat_management_blade_php_set"
+    ],
+    "72": [
+      "resources_views_livewire_admin_legal_document_management_blade",
+      "resources_views_livewire_admin_legal_document_management_blade_php_create",
+      "resources_views_livewire_admin_legal_document_management_blade_php_edit_item_id",
+      "resources_views_livewire_admin_legal_document_management_blade_php_set"
+    ],
+    "73": [
+      "resources_views_livewire_admin_potential_management_blade",
+      "resources_views_livewire_admin_potential_management_blade_php_create",
+      "resources_views_livewire_admin_potential_management_blade_php_edit_p_id",
+      "resources_views_livewire_admin_potential_management_blade_php_set"
+    ],
+    "74": [
+      "resources_views_livewire_admin_ppid_berkala_management_blade",
+      "resources_views_livewire_admin_ppid_berkala_management_blade_php_create",
+      "resources_views_livewire_admin_ppid_berkala_management_blade_php_edit_item_id",
+      "resources_views_livewire_admin_ppid_berkala_management_blade_php_set"
+    ],
+    "75": [
+      "resources_views_livewire_admin_ppid_permohonan_management_blade",
+      "resources_views_livewire_admin_ppid_permohonan_management_blade_php_set",
+      "resources_views_livewire_admin_ppid_permohonan_management_blade_php_updaterequest",
+      "resources_views_livewire_admin_ppid_permohonan_management_blade_php_view_r_id"
+    ],
+    "76": [
+      "resources_views_livewire_admin_ppid_serta_merta_management_blade",
+      "resources_views_livewire_admin_ppid_serta_merta_management_blade_php_create",
+      "resources_views_livewire_admin_ppid_serta_merta_management_blade_php_edit_item_id",
+      "resources_views_livewire_admin_ppid_serta_merta_management_blade_php_set"
+    ],
+    "77": [
+      "resources_views_livewire_admin_ppid_setiap_saat_management_blade",
+      "resources_views_livewire_admin_ppid_setiap_saat_management_blade_php_create",
+      "resources_views_livewire_admin_ppid_setiap_saat_management_blade_php_edit_item_id",
+      "resources_views_livewire_admin_ppid_setiap_saat_management_blade_php_set"
+    ],
+    "78": [
+      "addsocialmedia",
+      "removesocialmedia_index",
+      "resources_views_livewire_admin_village_profile_form_blade"
+    ],
+    "79": [
+      "addunit",
+      "removeunit_i",
+      "resources_views_livewire_admin_bumnag_profile_management_blade"
+    ],
+    "80": [
+      "composer_autoload_dev",
+      "composer_autoload_dev_psr_4",
+      "composer_psr_4_tests"
+    ],
+    "81": [
+      "composer_extra",
+      "composer_extra_laravel",
+      "composer_laravel_dont_discover"
+    ],
+    "82": [
+      "composer_keywords",
+      "ref_framework",
+      "ref_laravel"
+    ],
+    "83": [
+      "database_migrations_0001_01_01_000000_create_users_table",
+      "database_migrations_0001_01_01_000000_create_users_table_down",
+      "database_migrations_0001_01_01_000000_create_users_table_up"
+    ],
+    "84": [
+      "database_migrations_0001_01_01_000001_create_cache_table",
+      "database_migrations_0001_01_01_000001_create_cache_table_down",
+      "database_migrations_0001_01_01_000001_create_cache_table_up"
+    ],
+    "85": [
+      "database_migrations_0001_01_01_000002_create_jobs_table",
+      "database_migrations_0001_01_01_000002_create_jobs_table_down",
+      "database_migrations_0001_01_01_000002_create_jobs_table_up"
+    ],
+    "86": [
+      "database_migrations_2024_01_01_000010_create_categories_table",
+      "database_migrations_2024_01_01_000010_create_categories_table_down",
+      "database_migrations_2024_01_01_000010_create_categories_table_up"
+    ],
+    "87": [
+      "database_migrations_2024_01_01_000020_create_posts_table",
+      "database_migrations_2024_01_01_000020_create_posts_table_down",
+      "database_migrations_2024_01_01_000020_create_posts_table_up"
+    ],
+    "88": [
+      "database_migrations_2024_01_01_000030_create_village_profiles_table",
+      "database_migrations_2024_01_01_000030_create_village_profiles_table_down",
+      "database_migrations_2024_01_01_000030_create_village_profiles_table_up"
+    ],
+    "89": [
+      "database_migrations_2024_01_01_000040_create_government_members_table",
+      "database_migrations_2024_01_01_000040_create_government_members_table_down",
+      "database_migrations_2024_01_01_000040_create_government_members_table_up"
+    ],
+    "90": [
+      "database_migrations_2024_01_01_000041_add_profile_details_to_government_members",
+      "database_migrations_2024_01_01_000041_add_profile_details_to_government_members_down",
+      "database_migrations_2024_01_01_000041_add_profile_details_to_government_members_up"
+    ],
+    "91": [
+      "database_migrations_2024_01_01_000050_create_potentials_table",
+      "database_migrations_2024_01_01_000050_create_potentials_table_down",
+      "database_migrations_2024_01_01_000050_create_potentials_table_up"
+    ],
+    "92": [
+      "database_migrations_2024_01_01_000060_create_products_table",
+      "database_migrations_2024_01_01_000060_create_products_table_down",
+      "database_migrations_2024_01_01_000060_create_products_table_up"
+    ],
+    "93": [
+      "database_migrations_2024_01_01_000070_create_contacts_table",
+      "database_migrations_2024_01_01_000070_create_contacts_table_down",
+      "database_migrations_2024_01_01_000070_create_contacts_table_up"
+    ],
+    "94": [
+      "database_migrations_2024_01_01_000080_create_agendas_table",
+      "database_migrations_2024_01_01_000080_create_agendas_table_down",
+      "database_migrations_2024_01_01_000080_create_agendas_table_up"
+    ],
+    "95": [
+      "database_migrations_2024_01_01_000090_create_population_stats_table",
+      "database_migrations_2024_01_01_000090_create_population_stats_table_down",
+      "database_migrations_2024_01_01_000090_create_population_stats_table_up"
+    ],
+    "96": [
+      "database_migrations_2024_01_01_000100_create_idm_stats_table",
+      "database_migrations_2024_01_01_000100_create_idm_stats_table_down",
+      "database_migrations_2024_01_01_000100_create_idm_stats_table_up"
+    ],
+    "97": [
+      "database_migrations_2024_01_01_000110_create_budget_stats_table",
+      "database_migrations_2024_01_01_000110_create_budget_stats_table_down",
+      "database_migrations_2024_01_01_000110_create_budget_stats_table_up"
+    ],
+    "98": [
+      "database_migrations_2024_01_01_000120_create_letter_requests_table",
+      "database_migrations_2024_01_01_000120_create_letter_requests_table_down",
+      "database_migrations_2024_01_01_000120_create_letter_requests_table_up"
+    ],
+    "99": [
+      "database_migrations_2024_01_01_000130_create_pbb_records_table",
+      "database_migrations_2024_01_01_000130_create_pbb_records_table_down",
+      "database_migrations_2024_01_01_000130_create_pbb_records_table_up"
+    ],
+    "100": [
+      "database_migrations_2024_01_01_000140_create_bansos_recipients_table",
+      "database_migrations_2024_01_01_000140_create_bansos_recipients_table_down",
+      "database_migrations_2024_01_01_000140_create_bansos_recipients_table_up"
+    ],
+    "101": [
+      "database_migrations_2024_01_01_000150_create_activity_logs_table",
+      "database_migrations_2024_01_01_000150_create_activity_logs_table_down",
+      "database_migrations_2024_01_01_000150_create_activity_logs_table_up"
+    ],
+    "102": [
+      "database_migrations_2026_05_08_091001_create_pulse_tables",
+      "database_migrations_2026_05_08_091001_create_pulse_tables_down",
+      "database_migrations_2026_05_08_091001_create_pulse_tables_up"
+    ],
+    "103": [
+      "database_migrations_2026_05_09_104524_add_nik_to_users_table",
+      "database_migrations_2026_05_09_104524_add_nik_to_users_table_down",
+      "database_migrations_2026_05_09_104524_add_nik_to_users_table_up"
+    ],
+    "104": [
+      "database_migrations_2026_05_11_111202_create_bansos_programs_table",
+      "database_migrations_2026_05_11_111202_create_bansos_programs_table_down",
+      "database_migrations_2026_05_11_111202_create_bansos_programs_table_up"
+    ],
+    "105": [
+      "database_migrations_2026_05_13_091859_add_performance_indexes",
+      "database_migrations_2026_05_13_091859_add_performance_indexes_down",
+      "database_migrations_2026_05_13_091859_add_performance_indexes_up"
+    ],
+    "106": [
+      "database_migrations_2026_05_15_123144_create_forestry_records_table",
+      "database_migrations_2026_05_15_123144_create_forestry_records_table_down",
+      "database_migrations_2026_05_15_123144_create_forestry_records_table_up"
+    ],
+    "107": [
+      "database_migrations_2026_05_15_144841_create_bamus_members_and_village_institutions_tables",
+      "database_migrations_2026_05_15_144841_create_bamus_members_and_village_institutions_tables_down",
+      "database_migrations_2026_05_15_144841_create_bamus_members_and_village_institutions_tables_up"
+    ],
+    "108": [
+      "database_migrations_2026_05_16_064653_create_donation_tables",
+      "database_migrations_2026_05_16_064653_create_donation_tables_down",
+      "database_migrations_2026_05_16_064653_create_donation_tables_up"
+    ],
+    "109": [
+      "database_migrations_2026_05_16_100725_add_flyer_to_agendas_table",
+      "database_migrations_2026_05_16_100725_add_flyer_to_agendas_table_down",
+      "database_migrations_2026_05_16_100725_add_flyer_to_agendas_table_up"
+    ],
+    "110": [
+      "database_migrations_2026_05_19_024500_create_hero_settings_table",
+      "database_migrations_2026_05_19_024500_create_hero_settings_table_down",
+      "database_migrations_2026_05_19_024500_create_hero_settings_table_up"
+    ],
+    "111": [
+      "database_migrations_2026_05_19_165600_add_ktp_image_to_letter_requests_table",
+      "database_migrations_2026_05_19_165600_add_ktp_image_to_letter_requests_table_down",
+      "database_migrations_2026_05_19_165600_add_ktp_image_to_letter_requests_table_up"
+    ],
+    "112": [
+      "database_migrations_2026_05_21_023300_add_nikah_uploads_to_letter_requests_table",
+      "database_migrations_2026_05_21_023300_add_nikah_uploads_to_letter_requests_table_down",
+      "database_migrations_2026_05_21_023300_add_nikah_uploads_to_letter_requests_table_up"
+    ],
+    "113": [
+      "database_migrations_2026_05_21_025800_create_ppid_berkala_table",
+      "database_migrations_2026_05_21_025800_create_ppid_berkala_table_down",
+      "database_migrations_2026_05_21_025800_create_ppid_berkala_table_up"
+    ],
+    "114": [
+      "database_migrations_2026_05_21_025801_create_ppid_setiap_saat_table",
+      "database_migrations_2026_05_21_025801_create_ppid_setiap_saat_table_down",
+      "database_migrations_2026_05_21_025801_create_ppid_setiap_saat_table_up"
+    ],
+    "115": [
+      "database_migrations_2026_05_21_025802_create_ppid_serta_merta_table",
+      "database_migrations_2026_05_21_025802_create_ppid_serta_merta_table_down",
+      "database_migrations_2026_05_21_025802_create_ppid_serta_merta_table_up"
+    ],
+    "116": [
+      "database_migrations_2026_05_21_025803_create_ppid_dikecualikan_table",
+      "database_migrations_2026_05_21_025803_create_ppid_dikecualikan_table_down",
+      "database_migrations_2026_05_21_025803_create_ppid_dikecualikan_table_up"
+    ],
+    "117": [
+      "database_migrations_2026_05_21_025804_create_ppid_permohonan_table",
+      "database_migrations_2026_05_21_025804_create_ppid_permohonan_table_down",
+      "database_migrations_2026_05_21_025804_create_ppid_permohonan_table_up"
+    ],
+    "118": [
+      "database_migrations_2026_05_24_090000_create_bumnag_tables",
+      "database_migrations_2026_05_24_090000_create_bumnag_tables_down",
+      "database_migrations_2026_05_24_090000_create_bumnag_tables_up"
+    ],
+    "119": [
+      "database_migrations_2026_05_24_095500_add_bumnag_budget_and_programs",
+      "database_migrations_2026_05_24_095500_add_bumnag_budget_and_programs_down",
+      "database_migrations_2026_05_24_095500_add_bumnag_budget_and_programs_up"
+    ],
+    "120": [
+      "database_migrations_2026_05_24_120417_add_badan_hukum_file_to_bumnag_profiles",
+      "database_migrations_2026_05_24_120417_add_badan_hukum_file_to_bumnag_profiles_down",
+      "database_migrations_2026_05_24_120417_add_badan_hukum_file_to_bumnag_profiles_up"
+    ],
+    "121": [
+      "database_migrations_2026_05_24_122033_add_idm_extra_scores",
+      "database_migrations_2026_05_24_122033_add_idm_extra_scores_down",
+      "database_migrations_2026_05_24_122033_add_idm_extra_scores_up"
+    ],
+    "122": [
+      "database_migrations_2026_05_24_143137_remove_unused_bumnag_fields",
+      "database_migrations_2026_05_24_143137_remove_unused_bumnag_fields_down",
+      "database_migrations_2026_05_24_143137_remove_unused_bumnag_fields_up"
+    ],
+    "123": [
+      "database_migrations_2026_06_01_163619_convert_donations_to_manual_transfer",
+      "database_migrations_2026_06_01_163619_convert_donations_to_manual_transfer_down",
+      "database_migrations_2026_06_01_163619_convert_donations_to_manual_transfer_up"
+    ],
+    "124": [
+      "database_migrations_2026_06_02_120230_create_ppid_contents_table",
+      "database_migrations_2026_06_02_120230_create_ppid_contents_table_down",
+      "database_migrations_2026_06_02_120230_create_ppid_contents_table_up"
+    ],
+    "125": [
+      "database_migrations_2026_06_03_051800_add_members_data_to_ppid_contents",
+      "database_migrations_2026_06_03_051800_add_members_data_to_ppid_contents_down",
+      "database_migrations_2026_06_03_051800_add_members_data_to_ppid_contents_up"
+    ],
+    "126": [
+      "database_migrations_2026_06_03_130000_alter_ppid_contents_type_to_string",
+      "database_migrations_2026_06_03_130000_alter_ppid_contents_type_to_string_down",
+      "database_migrations_2026_06_03_130000_alter_ppid_contents_type_to_string_up"
+    ],
+    "127": [
+      "database_migrations_2026_06_03_130100_create_ppid_dip_table",
+      "database_migrations_2026_06_03_130100_create_ppid_dip_table_down",
+      "database_migrations_2026_06_03_130100_create_ppid_dip_table_up"
+    ],
+    "128": [
+      "database_migrations_2026_06_03_130200_create_ppid_keberatan_table",
+      "database_migrations_2026_06_03_130200_create_ppid_keberatan_table_down",
+      "database_migrations_2026_06_03_130200_create_ppid_keberatan_table_up"
+    ],
+    "129": [
+      "database_migrations_2026_06_03_135200_create_ppid_comments_table",
+      "database_migrations_2026_06_03_135200_create_ppid_comments_table_down",
+      "database_migrations_2026_06_03_135200_create_ppid_comments_table_up"
+    ],
+    "130": [
+      "database_migrations_2026_06_05_144514_add_content_extra_to_ppid_contents",
+      "database_migrations_2026_06_05_144514_add_content_extra_to_ppid_contents_down",
+      "database_migrations_2026_06_05_144514_add_content_extra_to_ppid_contents_up"
+    ],
+    "131": [
+      "database_migrations_2026_06_05_150651_split_visi_misi_tugas_fungsi_data",
+      "database_migrations_2026_06_05_150651_split_visi_misi_tugas_fungsi_data_down",
+      "database_migrations_2026_06_05_150651_split_visi_misi_tugas_fungsi_data_up"
+    ],
+    "132": [
+      "database_migrations_2026_06_05_164500_drop_payment_proof_from_donations",
+      "database_migrations_2026_06_05_164500_drop_payment_proof_from_donations_down",
+      "database_migrations_2026_06_05_164500_drop_payment_proof_from_donations_up"
+    ],
+    "133": [
+      "database_migrations_2026_06_07_144200_add_social_media_to_village_profiles",
+      "database_migrations_2026_06_07_144200_add_social_media_to_village_profiles_down",
+      "database_migrations_2026_06_07_144200_add_social_media_to_village_profiles_up"
+    ],
+    "134": [
+      "database_migrations_2026_07_11_000001_create_legal_documents_table",
+      "database_migrations_2026_07_11_000001_create_legal_documents_table_down",
+      "database_migrations_2026_07_11_000001_create_legal_documents_table_up"
+    ],
+    "135": [
+      "database_migrations_2026_08_01_130000_add_pembina_to_bumnag_members_role_type",
+      "database_migrations_2026_08_01_130000_add_pembina_to_bumnag_members_role_type_down",
+      "database_migrations_2026_08_01_130000_add_pembina_to_bumnag_members_role_type_up"
+    ],
+    "136": [
+      "download_item_id",
+      "resources_views_livewire_public_legal_documents_blade",
+      "view_item_id"
+    ],
+    "137": [
+      "generatecaptcha",
+      "resetcommentform",
+      "resources_views_livewire_public_ppid_comments_blade"
+    ],
+    "138": [
+      "layouts_partials_admin_sidebar_content",
+      "resources_views_layouts_admin_blade",
+      "resources_views_layouts_admin_blade_php_partials_favicon"
+    ],
+    "139": [
+      "livewire_public_ppid_comments",
+      "livewire_public_ppid_tabs_new",
+      "resources_views_livewire_public_ppid_home_blade"
+    ],
+    "140": [
+      "partials_accessibility_widget",
+      "resources_views_layouts_app_blade",
+      "resources_views_layouts_app_blade_php_partials_favicon"
+    ],
+    "141": [
+      "resources_views_livewire_pages_auth_verify_email_blade",
+      "resources_views_livewire_pages_auth_verify_email_blade_php_logout",
+      "sendverification"
+    ],
+    "142": [
+      "artisan",
+      "routes_console"
+    ],
+    "143": [
+      "resources_views_components_admin_modal_blade",
+      "resources_views_components_admin_modal_blade_php_set"
+    ],
+    "144": [
+      "resources_views_layouts_guest_blade",
+      "resources_views_layouts_guest_blade_php_partials_favicon"
+    ],
+    "145": [
+      "resources_views_livewire_layout_navigation_blade",
+      "resources_views_livewire_layout_navigation_blade_php_logout"
+    ],
+    "146": [
+      "resources_views_livewire_public_bumnag_anggaran_blade",
+      "resources_views_livewire_public_bumnag_anggaran_blade_php_livewire_public_bumnag_subnav"
+    ],
+    "147": [
+      "resources_views_livewire_public_bumnag_home_blade",
+      "resources_views_livewire_public_bumnag_home_blade_php_livewire_public_bumnag_subnav"
+    ],
+    "148": [
+      "resources_views_livewire_public_bumnag_hukum_blade",
+      "resources_views_livewire_public_bumnag_hukum_blade_php_livewire_public_bumnag_subnav"
+    ],
+    "149": [
+      "resources_views_livewire_public_bumnag_program_kerja_blade",
+      "resources_views_livewire_public_bumnag_program_kerja_blade_php_livewire_public_bumnag_subnav"
+    ],
+    "150": [
+      "resources_views_livewire_public_bumnag_struktur_blade",
+      "resources_views_livewire_public_bumnag_struktur_blade_php_livewire_public_bumnag_subnav"
+    ],
+    "151": [
+      "resources_views_livewire_public_forestry_info_blade",
+      "resources_views_livewire_public_forestry_info_blade_php_set"
+    ],
+    "152": [
+      "resources_views_livewire_public_institution_info_blade",
+      "resources_views_livewire_public_institution_info_blade_php_set"
+    ],
+    "153": [
+      "resources_views_livewire_public_umkm_blade",
+      "resources_views_livewire_public_umkm_blade_php_set"
+    ],
+    "154": [
+      "resources_views_livewire_public_village_potential_blade",
+      "resources_views_livewire_public_village_potential_blade_php_set"
+    ],
+    "155": [
+      "resources_views_welcome_blade",
+      "welcome_navigation"
+    ],
+    "156": [
+      "bootstrap_providers"
+    ],
+    "157": [
+      "config_app"
+    ],
+    "158": [
+      "config_database"
+    ],
+    "159": [
+      "config_filesystems"
+    ],
+    "160": [
+      "config_letters"
+    ],
+    "161": [
+      "config_logging"
+    ],
+    "162": [
+      "config_mail"
+    ],
+    "163": [
+      "config_pulse"
+    ],
+    "164": [
+      "config_queue"
+    ],
+    "165": [
+      "config_services"
+    ],
+    "166": [
+      "lang_id_validation"
+    ],
+    "167": [
+      "resources_js_app"
+    ],
+    "168": [
+      "resources_views_components_action_message_blade"
+    ],
+    "169": [
+      "resources_views_components_admin_image_upload_blade"
+    ],
+    "170": [
+      "resources_views_components_application_logo_blade"
+    ],
+    "171": [
+      "resources_views_components_auth_session_status_blade"
+    ],
+    "172": [
+      "resources_views_components_danger_button_blade"
+    ],
+    "173": [
+      "resources_views_components_dropdown_blade"
+    ],
+    "174": [
+      "resources_views_components_dropdown_link_blade"
+    ],
+    "175": [
+      "resources_views_components_form_guide_blade"
+    ],
+    "176": [
+      "resources_views_components_hero_section_blade"
+    ],
+    "177": [
+      "resources_views_components_input_error_blade"
+    ],
+    "178": [
+      "resources_views_components_input_label_blade"
+    ],
+    "179": [
+      "resources_views_components_modal_blade"
+    ],
+    "180": [
+      "resources_views_components_nav_link_blade"
+    ],
+    "181": [
+      "resources_views_components_page_guide_blade"
+    ],
+    "182": [
+      "resources_views_components_primary_button_blade"
+    ],
+    "183": [
+      "resources_views_components_responsive_nav_link_blade"
+    ],
+    "184": [
+      "resources_views_components_secondary_button_blade"
+    ],
+    "185": [
+      "resources_views_components_text_input_blade"
+    ],
+    "186": [
+      "resources_views_components_trix_editor_blade"
+    ],
+    "187": [
+      "resources_views_dashboard_blade"
+    ],
+    "188": [
+      "resources_views_layouts_partials_admin_sidebar_content_blade"
+    ],
+    "189": [
+      "resources_views_livewire_admin_dashboard_blade"
+    ],
+    "190": [
+      "resources_views_livewire_admin_ppid_dikecualikan_management_blade"
+    ],
+    "191": [
+      "resources_views_livewire_pages_auth_confirm_password_blade"
+    ],
+    "192": [
+      "resources_views_livewire_pages_auth_forgot_password_blade"
+    ],
+    "193": [
+      "resources_views_livewire_pages_auth_login_blade"
+    ],
+    "194": [
+      "resources_views_livewire_pages_auth_register_blade"
+    ],
+    "195": [
+      "resources_views_livewire_pages_auth_reset_password_blade"
+    ],
+    "196": [
+      "resources_views_livewire_profile_delete_user_form_blade"
+    ],
+    "197": [
+      "resources_views_livewire_profile_update_password_form_blade"
+    ],
+    "198": [
+      "resources_views_livewire_profile_update_profile_information_form_blade"
+    ],
+    "199": [
+      "resources_views_livewire_public_agenda_blade"
+    ],
+    "200": [
+      "resources_views_livewire_public_bamus_info_blade"
+    ],
+    "201": [
+      "resources_views_livewire_public_bansos_link_blade"
+    ],
+    "202": [
+      "resources_views_livewire_public_budget_stats_blade"
+    ],
+    "203": [
+      "resources_views_livewire_public_bumnag_subnav_blade"
+    ],
+    "204": [
+      "resources_views_livewire_public_contacts_blade"
+    ],
+    "205": [
+      "resources_views_livewire_public_donation_detail_blade"
+    ],
+    "206": [
+      "resources_views_livewire_public_donation_page_blade"
+    ],
+    "207": [
+      "resources_views_livewire_public_government_detail_blade"
+    ],
+    "208": [
+      "resources_views_livewire_public_government_profile_blade"
+    ],
+    "209": [
+      "resources_views_livewire_public_home_blade"
+    ],
+    "210": [
+      "resources_views_livewire_public_idm_stats_blade"
+    ],
+    "211": [
+      "resources_views_livewire_public_letter_info_blade"
+    ],
+    "212": [
+      "resources_views_livewire_public_letter_request_form_blade"
+    ],
+    "213": [
+      "resources_views_livewire_public_letter_request_status_blade"
+    ],
+    "214": [
+      "resources_views_livewire_public_news_index_blade"
+    ],
+    "215": [
+      "resources_views_livewire_public_news_show_blade"
+    ],
+    "216": [
+      "resources_views_livewire_public_population_infographic_blade"
+    ],
+    "217": [
+      "resources_views_livewire_public_ppid_cek_status_blade"
+    ],
+    "218": [
+      "resources_views_livewire_public_umkm_detail_blade"
+    ],
+    "219": [
+      "resources_views_livewire_public_village_profile_blade"
+    ],
+    "220": [
+      "resources_views_livewire_welcome_navigation_blade"
+    ],
+    "221": [
+      "resources_views_partials_accessibility_widget_blade"
+    ],
+    "222": [
+      "resources_views_partials_favicon_blade"
+    ],
+    "223": [
+      "routes_web"
+    ],
+    "224": [
+      "tests_feature_auth_registrationtest"
+    ],
+    "225": [
+      "tests_feature_exampletest"
+    ],
+    "226": [
+      "tests_unit_exampletest"
+    ],
+    "227": [
+      "vite_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.05520614954577219,
+    "1": 0.06079664570230608,
+    "2": 0.06028368794326241,
+    "3": 0.07152496626180836,
+    "4": 0.07807807807807808,
+    "5": 0.06060606060606061,
+    "6": 0.08817204301075268,
+    "7": 0.0812807881773399,
+    "8": 0.1111111111111111,
+    "9": 0.09401709401709402,
+    "10": 0.10541310541310542,
+    "11": 0.08,
+    "12": 0.14624505928853754,
+    "13": 0.14761904761904762,
+    "14": 0.1380952380952381,
+    "15": 0.13333333333333333,
+    "16": 0.1368421052631579,
+    "17": 0.20526315789473684,
+    "18": 0.14736842105263157,
+    "19": 0.13450292397660818,
+    "20": 0.16339869281045752,
+    "21": 0.1437908496732026,
+    "22": 0.17647058823529413,
+    "23": 0.16666666666666666,
+    "24": 0.16666666666666666,
+    "25": 0.1978021978021978,
+    "26": 0.24175824175824176,
+    "27": 0.1978021978021978,
+    "28": 0.20512820512820512,
+    "29": 0.22727272727272727,
+    "30": 0.18181818181818182,
+    "31": 0.18181818181818182,
+    "32": 0.18181818181818182,
+    "33": 0.2,
+    "34": 0.2,
+    "35": 0.2,
+    "36": 0.2777777777777778,
+    "37": 0.35714285714285715,
+    "38": 0.35714285714285715,
+    "39": 0.42857142857142855,
+    "40": 0.42857142857142855,
+    "41": 0.25,
+    "42": 0.2857142857142857,
+    "43": 0.2857142857142857,
+    "44": 0.3333333333333333,
+    "45": 0.2857142857142857,
+    "46": 0.2857142857142857,
+    "47": 0.6,
+    "48": 0.3333333333333333,
+    "49": 0.3333333333333333,
+    "50": 0.3333333333333333,
+    "51": 0.3333333333333333,
+    "52": 0.3333333333333333,
+    "53": 0.3333333333333333,
+    "54": 0.4,
+    "55": 0.4,
+    "56": 0.4,
+    "57": 0.4,
+    "58": 0.4,
+    "59": 0.4,
+    "60": 0.4,
+    "61": 0.4,
+    "62": 0.5,
+    "63": 0.5,
+    "64": 0.5,
+    "65": 0.5,
+    "66": 0.5,
+    "67": 0.5,
+    "68": 0.5,
+    "69": 0.5,
+    "70": 0.5,
+    "71": 0.5,
+    "72": 0.5,
+    "73": 0.5,
+    "74": 0.5,
+    "75": 0.5,
+    "76": 0.5,
+    "77": 0.5,
+    "78": 0.6666666666666666,
+    "79": 0.6666666666666666,
+    "80": 0.6666666666666666,
+    "81": 0.6666666666666666,
+    "82": 0.6666666666666666,
+    "83": 0.6666666666666666,
+    "84": 0.6666666666666666,
+    "85": 0.6666666666666666,
+    "86": 0.6666666666666666,
+    "87": 0.6666666666666666,
+    "88": 0.6666666666666666,
+    "89": 0.6666666666666666,
+    "90": 0.6666666666666666,
+    "91": 0.6666666666666666,
+    "92": 0.6666666666666666,
+    "93": 0.6666666666666666,
+    "94": 0.6666666666666666,
+    "95": 0.6666666666666666,
+    "96": 0.6666666666666666,
+    "97": 0.6666666666666666,
+    "98": 0.6666666666666666,
+    "99": 0.6666666666666666,
+    "100": 0.6666666666666666,
+    "101": 0.6666666666666666,
+    "102": 0.6666666666666666,
+    "103": 0.6666666666666666,
+    "104": 0.6666666666666666,
+    "105": 0.6666666666666666,
+    "106": 0.6666666666666666,
+    "107": 0.6666666666666666,
+    "108": 0.6666666666666666,
+    "109": 0.6666666666666666,
+    "110": 0.6666666666666666,
+    "111": 0.6666666666666666,
+    "112": 0.6666666666666666,
+    "113": 0.6666666666666666,
+    "114": 0.6666666666666666,
+    "115": 0.6666666666666666,
+    "116": 0.6666666666666666,
+    "117": 0.6666666666666666,
+    "118": 0.6666666666666666,
+    "119": 0.6666666666666666,
+    "120": 0.6666666666666666,
+    "121": 0.6666666666666666,
+    "122": 0.6666666666666666,
+    "123": 0.6666666666666666,
+    "124": 0.6666666666666666,
+    "125": 0.6666666666666666,
+    "126": 0.6666666666666666,
+    "127": 0.6666666666666666,
+    "128": 0.6666666666666666,
+    "129": 0.6666666666666666,
+    "130": 0.6666666666666666,
+    "131": 0.6666666666666666,
+    "132": 0.6666666666666666,
+    "133": 0.6666666666666666,
+    "134": 0.6666666666666666,
+    "135": 0.6666666666666666,
+    "136": 0.6666666666666666,
+    "137": 0.6666666666666666,
+    "138": 0.6666666666666666,
+    "139": 0.6666666666666666,
+    "140": 0.6666666666666666,
+    "141": 0.6666666666666666,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0,
+    "190": 1.0,
+    "191": 1.0,
+    "192": 1.0,
+    "193": 1.0,
+    "194": 1.0,
+    "195": 1.0,
+    "196": 1.0,
+    "197": 1.0,
+    "198": 1.0,
+    "199": 1.0,
+    "200": 1.0,
+    "201": 1.0,
+    "202": 1.0,
+    "203": 1.0,
+    "204": 1.0,
+    "205": 1.0,
+    "206": 1.0,
+    "207": 1.0,
+    "208": 1.0,
+    "209": 1.0,
+    "210": 1.0,
+    "211": 1.0,
+    "212": 1.0,
+    "213": 1.0,
+    "214": 1.0,
+    "215": 1.0,
+    "216": 1.0,
+    "217": 1.0,
+    "218": 1.0,
+    "219": 1.0,
+    "220": 1.0,
+    "221": 1.0,
+    "222": 1.0,
+    "223": 1.0,
+    "224": 1.0,
+    "225": 1.0,
+    "226": 1.0,
+    "227": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_models_post_post",
+      "label": "Post",
+      "degree": 28
+    },
+    {
+      "id": "app_models_governmentmember_governmentmember",
+      "label": "GovernmentMember",
+      "degree": 25
+    },
+    {
+      "id": "app_models_donationcampaign_donationcampaign",
+      "label": "DonationCampaign",
+      "degree": 24
+    },
+    {
+      "id": "app_models_ppidberkala_ppidberkala",
+      "label": "PpidBerkala",
+      "degree": 24
+    },
+    {
+      "id": "app_models_ppidpermohonan_ppidpermohonan",
+      "label": "PpidPermohonan",
+      "degree": 24
+    },
+    {
+      "id": "app_models_ppidsetiapsaat_ppidsetiapsaat",
+      "label": "PpidSetiapSaat",
+      "degree": 24
+    },
+    {
+      "id": "app_models_product_product",
+      "label": "Product",
+      "degree": 22
+    },
+    {
+      "id": "app_models_user_user",
+      "label": "User",
+      "degree": 21
+    },
+    {
+      "id": "app_livewire_admin_campaignmanagement_campaignmanagement",
+      "label": "CampaignManagement",
+      "degree": 20
+    },
+    {
+      "id": "app_models_legaldocument_legaldocument",
+      "label": "LegalDocument",
+      "degree": 20
+    }
+  ],
+  "surprises": [
+    {
+      "source": "logActivity()",
+      "target": "ActivityLog",
+      "source_files": [
+        "app/Traits/LogsActivity.php",
+        "app/Models/ActivityLog.php"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "VerifyEmailController",
+      "target": "Controller",
+      "source_files": [
+        "app/Http/Controllers/Auth/VerifyEmailController.php",
+        "app/Http/Controllers/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "ProductManagement",
+      "target": "Product",
+      "source_files": [
+        "app/Livewire/Admin/ProductManagement.php",
+        "app/Models/Product.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "DonationDetail",
+      "target": "DonationCampaign",
+      "source_files": [
+        "app/Livewire/PublicSite/DonationDetail.php",
+        "app/Models/DonationCampaign.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "GovernmentDetail",
+      "target": "GovernmentMember",
+      "source_files": [
+        "app/Livewire/PublicSite/GovernmentDetail.php",
+        "app/Models/GovernmentMember.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

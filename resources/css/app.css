@@ -389,3 +389,26 @@ html.acc-highlight-text [role="button"] {
     }
 }
 
+/* ─── Native View Transitions & Smooth Livewire SPA Page Transition ─── */
+@view-transition {
+    navigation: auto;
+}
+
+@keyframes wirePageFadeIn {
+    from {
+        opacity: 0.85;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main {
+    animation: wirePageFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+
+

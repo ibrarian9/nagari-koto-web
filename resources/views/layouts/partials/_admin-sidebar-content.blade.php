@@ -116,7 +116,7 @@
             <p class="px-3 pt-4 pb-1 text-[10px] font-bold uppercase tracking-widest text-desa-400/80">
                 {{ $item['label'] }}</p>
         @else
-            <a href="{{ route($item['route']) }}" wire:navigate
+            <a href="{{ route($item['route']) }}" wire:navigate.hover
                 @if (!empty($showClose)) @click="sidebarOpen = false" @endif
                 x-bind:data-active="isActive($el) ? '' : null"
                 class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150"
@@ -137,8 +137,9 @@
 <div class="border-t border-white/10 p-3 flex-shrink-0">
     <a href="{{ route('home') }}"
         class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-desa-300 hover:bg-white/10 hover:text-white transition-colors"
-        wire:navigate>
+        wire:navigate.hover>
         <span class="material-symbols-outlined text-lg">public</span>
         Lihat Situs Publik
     </a>
 </div>
+

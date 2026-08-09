@@ -423,31 +423,33 @@
                 @forelse($upcomingAgendas as $agenda)
                     <div data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}"
                         class="group bg-white border border-gray-150/60 rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-desa-200">
-                        <div class="flex items-start gap-5">
+                        <div class="flex items-start gap-4">
                             <div
-                                class="flex-shrink-0 flex flex-col items-center rounded-2xl bg-gradient-to-br from-desa-550 to-desa-700 text-white px-4 py-3 min-w-[72px] shadow-lg shadow-desa-650/15">
-                                <span class="text-3xl font-black leading-none tracking-tight">{{ $agenda->start_date->format('d') }}</span>
-                                <span class="text-[10px] uppercase font-extrabold tracking-widest mt-1.5 opacity-90">{{ $agenda->start_date->translatedFormat('M') }}</span>
+                                class="flex-shrink-0 flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-desa-550 to-desa-700 text-white px-3 py-2.5 min-w-[76px] shadow-lg shadow-desa-650/15">
+                                <span class="text-[10px] uppercase font-extrabold tracking-wider bg-white/20 px-1.5 py-0.5 rounded-full mb-1">{{ $agenda->start_date->translatedFormat('l') }}</span>
+                                <span class="text-2xl font-black leading-none tracking-tight">{{ $agenda->start_date->format('d') }}</span>
+                                <span class="text-[10px] uppercase font-extrabold tracking-widest mt-1 opacity-90">{{ $agenda->start_date->translatedFormat('M Y') }}</span>
                             </div>
                             <div class="min-w-0">
                                 <h3 class="font-extrabold text-gray-900 leading-snug text-base line-clamp-2 group-hover:text-desa-650 transition-colors">
                                     {{ $agenda->title }}
                                 </h3>
                                 @if ($agenda->location)
-                                    <p class="mt-2.5 flex items-center gap-1.5 text-xs text-gray-400">
-                                        <span class="material-symbols-outlined text-sm text-desa-500">location_on</span>
+                                    <p class="mt-2 flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                                        <span class="material-symbols-outlined text-sm text-desa-600">location_on</span>
                                         <span class="truncate">{{ $agenda->location }}</span>
                                     </p>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between text-2xs text-gray-400 font-semibold uppercase tracking-wider">
+                        <div class="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between text-2xs text-gray-500 font-bold tracking-wide">
                             <span class="flex items-center gap-1.5">
-                                <span class="material-symbols-outlined text-sm text-gray-300">schedule</span>
-                                {{ $agenda->start_date->translatedFormat('l, d F Y') }}
+                                <span class="material-symbols-outlined text-sm text-desa-600">schedule</span>
+                                {{ $agenda->start_date->translatedFormat('l, d F Y — H:i') }} WIB
                             </span>
                         </div>
+
                     </div>
                 @empty
                     <div class="col-span-3 bg-white border border-gray-150/60 rounded-3xl p-16 text-center shadow-sm">

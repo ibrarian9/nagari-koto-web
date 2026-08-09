@@ -35,6 +35,12 @@
           toggle() { this.collapsed = !this.collapsed; localStorage.setItem('admin_sidebar_collapsed', this.collapsed); }
       }">
 
+    {{-- ─── GREEN TOP LOADING PROGRESS BAR (WIRE:NAVIGATE) ────────────── --}}
+    <div id="admin-page-progress-bar"
+        class="fixed top-0 left-0 right-0 z-[99999] h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-green-500 shadow-[0_0_12px_rgba(16,185,129,0.9)] transition-all duration-300 ease-out opacity-0 pointer-events-none"
+        style="width: 0%;"></div>
+
+
     <div class="admin-shell">
         {{-- ─── SIDEBAR ──────────────────────────────────────── --}}
         {{-- Mobile overlay --}}
@@ -44,11 +50,14 @@
              class="fixed inset-0 z-40 bg-black/50 lg:hidden"></div>
 
         {{-- Desktop sidebar wrap --}}
+        @persist('admin-sidebar')
         <div class="admin-sidebar-wrap hidden lg:block" :class="collapsed && 'collapsed'">
             <aside class="admin-sidebar w-64 bg-gradient-to-b from-desa-800 to-desa-950">
                 @include('layouts.partials._admin-sidebar-content')
             </aside>
         </div>
+        @endpersist
+
 
         {{-- Mobile sidebar (slide-in) --}}
         <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
@@ -113,7 +122,38 @@
                     confirmButtonColor: '#2D6A4F'
                 });
             });
+
+            // ─── GREEN TOP LOADING PROGRESS BAR HANDLER ───────────
+            const progressBar = document.getElementById('admin-page-progress-bar');
+            let progressTimer;
+
+            document.addEventListener('livewire:navigating', () => {
+                if (!progressBar) return;
+                clearTimeout(progressTimer);
+                progressBar.style.transition = 'width 0.3s ease-out, opacity 0.15s ease-in';
+                progressBar.style.opacity = '1';
+                progressBar.style.width = '35%';
+
+                progressTimer = setTimeout(() => {
+                    progressBar.style.width = '75%';
+                }, 100);
+            });
+
+            document.addEventListener('livewire:navigated', () => {
+                if (!progressBar) return;
+                clearTimeout(progressTimer);
+                progressBar.style.width = '100%';
+
+                progressTimer = setTimeout(() => {
+                    progressBar.style.opacity = '0';
+                    setTimeout(() => {
+                        progressBar.style.transition = 'none';
+                        progressBar.style.width = '0%';
+                    }, 200);
+                }, 250);
+            });
         });
+
 
 
         function confirmAction(id, action, message) {
@@ -134,22 +174,23 @@
             });
         }
 
-        // ── Auto-scroll sidebar to active item ──
-        function scrollSidebarToActive() {
+        // ── Smart Auto-scroll sidebar (Only scroll if active item is out of view on initial load) ──
+        function scrollSidebarToActiveIfNeeded() {
             document.querySelectorAll('.admin-sidebar-nav').forEach(nav => {
                 const active = nav.querySelector('[data-active]');
                 if (active) {
-                    active.scrollIntoView({ block: 'center', behavior: 'instant' });
+                    const navRect = nav.getBoundingClientRect();
+                    const activeRect = active.getBoundingClientRect();
+                    // Only scroll if active item is hidden above or below the scroll viewport
+                    if (activeRect.top < navRect.top || activeRect.bottom > navRect.bottom) {
+                        active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                    }
                 }
             });
         }
-        // Initial load — wait for Alpine to set data-active
-        setTimeout(scrollSidebarToActive, 50);
-        // After wire:navigate — wait for Alpine to re-evaluate :data-active bindings
-        document.addEventListener('livewire:navigated', () => {
-            setTimeout(scrollSidebarToActive, 150);
-            setTimeout(scrollSidebarToActive, 400);
-        });
+        // Only run on initial full page load
+        setTimeout(scrollSidebarToActiveIfNeeded, 150);
+
     </script>
     @stack('scripts')
 </body>

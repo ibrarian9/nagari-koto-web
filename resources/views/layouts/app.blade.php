@@ -21,10 +21,17 @@
 
 <body class="min-h-screen flex flex-col bg-gray-50">
 
+    {{-- ─── GREEN TOP LOADING PROGRESS BAR (WIRE:NAVIGATE) ────────────── --}}
+    <div id="page-progress-bar"
+        class="fixed top-0 left-0 right-0 z-[99999] h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-green-500 shadow-[0_0_12px_rgba(16,185,129,0.9)] transition-all duration-300 ease-out opacity-0 pointer-events-none"
+        style="width: 0%;"></div>
+
     {{-- ─── ACCESSIBILITY WIDGET ─────────────────────────────── --}}
+
     @include('partials.accessibility-widget')
 
     {{-- ─── NAVBAR ─────────────────────────────────────────── --}}
+    @persist('navbar')
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/60 shadow-sm"
         x-data="{ open: false }">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -32,7 +39,7 @@
 
                 {{-- Logo / Brand --}}
                 @php $navVillage = \App\Models\VillageProfile::first(); @endphp
-                <a href="{{ route('home') }}" class="flex items-center gap-3 group" wire:navigate>
+                <a href="{{ route('home') }}" class="flex items-center gap-3 group" wire:navigate.hover>
                     @if ($navVillage?->logo)
                         <img src="{{ Storage::url($navVillage->logo) }}" alt="{{ config('app.name') }}"
                             class="h-10 w-10 rounded-xl object-contain bg-white p-0.5 shadow-md shadow-desa-500/20 transition-transform group-hover:scale-105">
@@ -335,7 +342,7 @@
                 <div class="hidden lg:flex items-center gap-0.5">
                     @foreach ($navGroups as $group)
                         @if ($group['type'] === 'link')
-                            <a href="{{ route($group['route']) }}" wire:navigate
+                            <a href="{{ route($group['route']) }}" wire:navigate.hover
                                 class="px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ request()->routeIs($group['route']) ? 'text-desa-600 bg-desa-50' : 'text-gray-600 hover:text-desa-600 hover:bg-gray-50' }}">
                                 {{ $group['label'] }}
                             </a>
@@ -394,7 +401,7 @@
                                                                     ));
                                                         @endphp
                                                         <a href="{{ route($subItem['route'], $subItem['params'] ?? []) }}"
-                                                            wire:navigate
+                                                            wire:navigate.hover
                                                             class="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors {{ $isSubActive ? 'bg-desa-50 text-desa-600 font-medium' : 'text-gray-700' }}">
                                                             <span
                                                                 class="material-symbols-outlined text-base {{ $isSubActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $subItem['icon'] }}</span>
@@ -413,7 +420,7 @@
                                                             fn($val, $key) => request()->query($key) == $val,
                                                         ));
                                             @endphp
-                                            <a href="{{ route($item['route'], $item['params'] ?? []) }}" wire:navigate
+                                            <a href="{{ route($item['route'], $item['params'] ?? []) }}" wire:navigate.hover
                                                 class="flex items-start gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors {{ $isActive ? 'bg-desa-50' : '' }}">
                                                 <span
                                                     class="material-symbols-outlined text-lg mt-0.5 {{ $isActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $item['icon'] }}</span>
@@ -431,6 +438,7 @@
                         @endif
                     @endforeach
                 </div>
+
 
                 {{-- Right side --}}
                 <div class="flex items-center gap-3">
@@ -596,8 +604,10 @@
             </div>
         </div>
     </nav>
+    @endpersist
 
     {{-- ─── MAIN CONTENT ──────────────────────────────────── --}}
+
     <main class="flex-1">
         {{ $slot }}
     </main>
@@ -725,6 +735,45 @@
         document.addEventListener('livewire:init', () => {
             Livewire.on('swal', (params) => {
                 const p = params[0] || params;
+                Livewire.hook('upload:error', (component, name, error) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Upload Gagal',
+                        text: 'Gagal mengunggah file. Pastikan ukuran file tidak melebihi batas yang ditentukan.',
+                        confirmButtonColor: '#2D6A4F'
+                    });
+                });
+
+                // ─── GREEN TOP LOADING PROGRESS BAR HANDLER ───────────
+                const progressBar = document.getElementById('page-progress-bar');
+                let progressTimer;
+
+                document.addEventListener('livewire:navigating', () => {
+                    if (!progressBar) return;
+                    clearTimeout(progressTimer);
+                    progressBar.style.transition = 'width 0.3s ease-out, opacity 0.15s ease-in';
+                    progressBar.style.opacity = '1';
+                    progressBar.style.width = '35%';
+
+                    progressTimer = setTimeout(() => {
+                        progressBar.style.width = '75%';
+                    }, 100);
+                });
+
+                document.addEventListener('livewire:navigated', () => {
+                    if (!progressBar) return;
+                    clearTimeout(progressTimer);
+                    progressBar.style.width = '100%';
+
+                    progressTimer = setTimeout(() => {
+                        progressBar.style.opacity = '0';
+                        setTimeout(() => {
+                            progressBar.style.transition = 'none';
+                            progressBar.style.width = '0%';
+                        }, 200);
+                    }, 250);
+                });
+
                 Swal.fire({
                     icon: p.icon || 'success',
                     title: p.title || 'Berhasil',
