@@ -141,7 +141,8 @@
                         <table class="data-table">
                             <thead><tr><th>No</th><th>Komponen</th><th class="text-right">Jumlah (Rp)</th><th class="text-right">Persentase</th></tr></thead>
                             <tbody>
-                                @php $totalApbdes = array_sum($apbdes); @endphp
+                                @php $totalApbdes = is_array($apbdes) ? array_sum(array_map(fn($v) => is_numeric($v) ? (float)$v : 0, $apbdes)) : 0; @endphp
+
                                 @foreach ($apbdes as $label => $amount)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>

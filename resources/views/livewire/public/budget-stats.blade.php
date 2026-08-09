@@ -187,7 +187,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $totalApbdes = array_sum($apbnag); @endphp
+                                @php $totalApbdes = is_array($apbnag) ? array_sum(array_map(fn($v) => is_numeric($v) ? (float)$v : 0, $apbnag)) : 0; @endphp
+
                                 @foreach ($apbnag as $label => $amount)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>

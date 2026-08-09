@@ -40,10 +40,15 @@
             </div>
 
             @php
-                $ageData = is_string($stats->age_group_data) ? json_decode($stats->age_group_data, true) : $stats->age_group_data;
-                $eduData = is_string($stats->education_data) ? json_decode($stats->education_data, true) : $stats->education_data;
-                $occData = is_string($stats->occupation_data) ? json_decode($stats->occupation_data, true) : $stats->occupation_data;
+                $rawAge = is_string($stats->age_group_data) ? json_decode($stats->age_group_data, true) : $stats->age_group_data;
+                $rawEdu = is_string($stats->education_data) ? json_decode($stats->education_data, true) : $stats->education_data;
+                $rawOcc = is_string($stats->occupation_data) ? json_decode($stats->occupation_data, true) : $stats->occupation_data;
+
+                $ageData = is_array($rawAge) ? array_map(fn($v) => is_numeric($v) ? (float) $v : 0, $rawAge) : [];
+                $eduData = is_array($rawEdu) ? array_map(fn($v) => is_numeric($v) ? (float) $v : 0, $rawEdu) : [];
+                $occData = is_array($rawOcc) ? array_map(fn($v) => is_numeric($v) ? (float) $v : 0, $rawOcc) : [];
             @endphp
+
 
             {{-- Charts --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8" x-data x-init="$nextTick(() => {
