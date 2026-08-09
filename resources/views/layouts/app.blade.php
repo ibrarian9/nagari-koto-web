@@ -27,13 +27,43 @@
         style="width: 0%;"></div>
 
     {{-- ─── ACCESSIBILITY WIDGET ─────────────────────────────── --}}
-
     @include('partials.accessibility-widget')
 
     {{-- ─── NAVBAR ─────────────────────────────────────────── --}}
     @persist('navbar')
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/60 shadow-sm"
-        x-data="{ open: false }">
+        x-data="{
+            open: false,
+            currentUrl: window.location.href,
+            _navHandler: null,
+            init() {
+                this._navHandler = () => {
+                    this.currentUrl = window.location.href;
+                    this.open = false;
+                };
+                document.addEventListener('livewire:navigated', this._navHandler);
+            },
+            isActiveLink(url) {
+                if (!url) return false;
+                try {
+                    const target = new URL(url, window.location.origin);
+                    const current = new URL(this.currentUrl, window.location.origin);
+                    if (target.pathname === '/') {
+                        return current.pathname === '/' || current.pathname === '';
+                    }
+                    if (url.includes('?')) {
+                        return current.pathname === target.pathname && current.search === target.search;
+                    }
+                    return current.pathname.startsWith(target.pathname);
+                } catch {
+                    return false;
+                }
+            },
+            isActiveGroup(urls) {
+                if (!Array.isArray(urls)) return false;
+                return urls.some(u => this.isActiveLink(u));
+            }
+        }">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
 
@@ -68,7 +98,6 @@
                             'type' => 'dropdown',
                             'label' => 'Informasi',
                             'icon' => 'info',
-                            'activeRoutes' => ['berita.index', 'berita.show', 'agenda', 'kontak', 'produk-hukum'],
                             'items' => [
                                 [
                                     'route' => 'berita.index',
@@ -100,7 +129,6 @@
                             'type' => 'dropdown',
                             'label' => 'Layanan',
                             'icon' => 'handshake',
-                            'activeRoutes' => ['surat.info', 'donasi', 'donasi.detail', 'bansos'],
                             'items' => [
                                 [
                                     'route' => 'surat.info',
@@ -126,7 +154,6 @@
                             'type' => 'dropdown',
                             'label' => 'PPID',
                             'icon' => 'policy',
-                            'activeRoutes' => ['ppid.home'],
                             'items' => [
                                 [
                                     'route' => 'ppid.home',
@@ -235,7 +262,6 @@
                             'type' => 'dropdown',
                             'label' => 'Profil',
                             'icon' => 'info',
-                            'activeRoutes' => ['profil-nagari', 'pemerintahan'],
                             'items' => [
                                 [
                                     'route' => 'profil-nagari',
@@ -255,7 +281,6 @@
                             'type' => 'dropdown',
                             'label' => 'Data',
                             'icon' => 'bar_chart',
-                            'activeRoutes' => ['infografis', 'idm', 'anggaran', 'kehutanan'],
                             'items' => [
                                 [
                                     'route' => 'infografis',
@@ -287,15 +312,6 @@
                             'type' => 'dropdown',
                             'label' => 'Lembaga Nagari',
                             'icon' => 'info',
-                            'activeRoutes' => [
-                                'bamus',
-                                'lembaga',
-                                'bumnag.home',
-                                'bumnag.struktur',
-                                'bumnag.hukum',
-                                'bumnag.anggaran',
-                                'bumnag.program-kerja',
-                            ],
                             'items' => [
                                 [
                                     'route' => 'bamus',
@@ -321,7 +337,6 @@
                             'type' => 'dropdown',
                             'label' => 'Potensi',
                             'icon' => 'eco',
-                            'activeRoutes' => ['potensi', 'umkm'],
                             'items' => [
                                 [
                                     'route' => 'potensi',
@@ -342,15 +357,30 @@
                 <div class="hidden lg:flex items-center gap-0.5">
                     @foreach ($navGroups as $group)
                         @if ($group['type'] === 'link')
-                            <a href="{{ route($group['route']) }}" wire:navigate.hover
-                                class="px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ request()->routeIs($group['route']) ? 'text-desa-600 bg-desa-50' : 'text-gray-600 hover:text-desa-600 hover:bg-gray-50' }}">
+                            @php $linkUrl = route($group['route']); @endphp
+                            <a href="{{ $linkUrl }}" wire:navigate.hover
+                                :class="isActiveLink('{{ $linkUrl }}') ? 'text-desa-600 bg-desa-50 font-bold' : 'text-gray-600 hover:text-desa-600 hover:bg-gray-50'"
+                                class="px-3 py-2 text-sm font-medium rounded-lg transition-colors">
                                 {{ $group['label'] }}
                             </a>
                         @else
+                            @php
+                                $groupUrls = [];
+                                foreach ($group['items'] as $it) {
+                                    if (($it['type'] ?? '') === 'sub_dropdown') {
+                                        foreach ($it['sub_items'] as $sIt) {
+                                            $groupUrls[] = route($sIt['route'], $sIt['params'] ?? []);
+                                        }
+                                    } else {
+                                        $groupUrls[] = route($it['route'], $it['params'] ?? []);
+                                    }
+                                }
+                            @endphp
                             <div class="relative" x-data="{ dd: false }" @mouseenter="dd = true"
                                 @mouseleave="dd = false">
                                 <button @click="dd = !dd"
-                                    class="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ request()->routeIs($group['activeRoutes']) ? 'text-desa-600 bg-desa-50' : 'text-gray-600 hover:text-desa-600 hover:bg-gray-50' }}">
+                                    :class="isActiveGroup({{ json_encode($groupUrls) }}) ? 'text-desa-600 bg-desa-50 font-bold' : 'text-gray-600 hover:text-desa-600 hover:bg-gray-50'"
+                                    class="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors">
                                     {{ $group['label'] }}
                                     <span class="material-symbols-outlined text-sm transition-transform duration-200"
                                         :class="dd ? 'rotate-180' : ''">expand_more</span>
@@ -391,20 +421,13 @@
                                                     x-transition:leave-end="opacity-0 translate-x-1"
                                                     class="absolute left-full top-0 ml-1 w-56 rounded-xl bg-white shadow-xl ring-1 ring-gray-200/70 py-2 z-50">
                                                     @foreach ($item['sub_items'] as $subItem)
-                                                        @php
-                                                            $isSubActive =
-                                                                request()->routeIs($subItem['route']) &&
-                                                                (empty($subItem['params']) ||
-                                                                    collect($subItem['params'])->every(
-                                                                        fn($val, $key) => request()->query($key) ==
-                                                                            $val,
-                                                                    ));
-                                                        @endphp
-                                                        <a href="{{ route($subItem['route'], $subItem['params'] ?? []) }}"
-                                                            wire:navigate.hover
-                                                            class="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors {{ $isSubActive ? 'bg-desa-50 text-desa-600 font-medium' : 'text-gray-700' }}">
+                                                        @php $subUrl = route($subItem['route'], $subItem['params'] ?? []); @endphp
+                                                        <a href="{{ $subUrl }}" wire:navigate.hover
+                                                            :class="isActiveLink('{{ $subUrl }}') ? 'bg-desa-50 text-desa-600 font-semibold' : 'text-gray-700'"
+                                                            class="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors">
                                                             <span
-                                                                class="material-symbols-outlined text-base {{ $isSubActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $subItem['icon'] }}</span>
+                                                                class="material-symbols-outlined text-base"
+                                                                :class="isActiveLink('{{ $subUrl }}') ? 'text-desa-600' : 'text-gray-400'">{{ $subItem['icon'] }}</span>
                                                             <span
                                                                 class="text-xs font-semibold">{{ $subItem['label'] }}</span>
                                                         </a>
@@ -412,21 +435,17 @@
                                                 </div>
                                             </div>
                                         @else
-                                            @php
-                                                $isActive =
-                                                    request()->routeIs($item['route']) &&
-                                                    (empty($item['params']) ||
-                                                        collect($item['params'])->every(
-                                                            fn($val, $key) => request()->query($key) == $val,
-                                                        ));
-                                            @endphp
-                                            <a href="{{ route($item['route'], $item['params'] ?? []) }}" wire:navigate.hover
-                                                class="flex items-start gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors {{ $isActive ? 'bg-desa-50' : '' }}">
+                                            @php $itemUrl = route($item['route'], $item['params'] ?? []); @endphp
+                                            <a href="{{ $itemUrl }}" wire:navigate.hover
+                                                :class="isActiveLink('{{ $itemUrl }}') ? 'bg-desa-50' : ''"
+                                                class="flex items-start gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors">
                                                 <span
-                                                    class="material-symbols-outlined text-lg mt-0.5 {{ $isActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $item['icon'] }}</span>
+                                                    class="material-symbols-outlined text-lg mt-0.5"
+                                                    :class="isActiveLink('{{ $itemUrl }}') ? 'text-desa-600' : 'text-gray-400'">{{ $item['icon'] }}</span>
                                                 <div>
                                                     <p
-                                                        class="text-sm font-medium {{ $isActive ? 'text-desa-600' : 'text-gray-800' }}">
+                                                        class="text-sm font-medium"
+                                                        :class="isActiveLink('{{ $itemUrl }}') ? 'text-desa-600' : 'text-gray-800'">
                                                         {{ $item['label'] }}</p>
                                                     <p class="text-xs text-gray-400">{{ $item['desc'] }}</p>
                                                 </div>
@@ -438,7 +457,6 @@
                         @endif
                     @endforeach
                 </div>
-
 
                 {{-- Right side --}}
                 <div class="flex items-center gap-3">
@@ -520,17 +538,32 @@
             <div class="px-4 py-3 space-y-1">
                 @foreach ($navGroups as $gi => $group)
                     @if ($group['type'] === 'link')
-                        <a href="{{ route($group['route']) }}" wire:navigate @click="open = false"
-                            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs($group['route']) ? 'text-desa-600 bg-desa-50' : 'text-gray-600 hover:bg-gray-50' }}">
+                        @php $mLinkUrl = route($group['route']); @endphp
+                        <a href="{{ $mLinkUrl }}" wire:navigate.hover @click="open = false"
+                            :class="isActiveLink('{{ $mLinkUrl }}') ? 'text-desa-600 bg-desa-50 font-bold' : 'text-gray-600 hover:bg-gray-50'"
+                            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">
                             <span class="material-symbols-outlined text-lg">{{ $group['icon'] }}</span>
                             {{ $group['label'] }}
                         </a>
                     @else
                         {{-- Mobile accordion group --}}
+                        @php
+                            $mGroupUrls = [];
+                            foreach ($group['items'] as $it) {
+                                if (($it['type'] ?? '') === 'sub_dropdown') {
+                                    foreach ($it['sub_items'] as $sIt) {
+                                        $mGroupUrls[] = route($sIt['route'], $sIt['params'] ?? []);
+                                    }
+                                } else {
+                                    $mGroupUrls[] = route($it['route'], $it['params'] ?? []);
+                                }
+                            }
+                        @endphp
                         <div>
                             <button
                                 @click="mobileGroup === {{ $gi }} ? mobileGroup = null : mobileGroup = {{ $gi }}"
-                                class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs($group['activeRoutes']) ? 'text-desa-600 bg-desa-50' : 'text-gray-600 hover:bg-gray-50' }}">
+                                :class="isActiveGroup({{ json_encode($mGroupUrls) }}) ? 'text-desa-600 bg-desa-50 font-bold' : 'text-gray-600 hover:bg-gray-50'"
+                                class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors">
                                 <span class="flex items-center gap-3">
                                     <span class="material-symbols-outlined text-lg">{{ $group['icon'] }}</span>
                                     {{ $group['label'] }}
@@ -558,20 +591,14 @@
                                                 <div x-show="subOpen" x-collapse>
                                                     <div class="ml-4 pl-3 border-l border-gray-100 space-y-0.5 py-1">
                                                         @foreach ($item['sub_items'] as $subItem)
-                                                            @php
-                                                                $isSubActive =
-                                                                    request()->routeIs($subItem['route']) &&
-                                                                    (empty($subItem['params']) ||
-                                                                        collect($subItem['params'])->every(
-                                                                            fn($val, $key) => request()->query($key) ==
-                                                                                $val,
-                                                                        ));
-                                                            @endphp
-                                                            <a href="{{ route($subItem['route'], $subItem['params'] ?? []) }}"
-                                                                wire:navigate @click="open = false"
-                                                                class="flex items-center gap-3 px-3 py-1.5 rounded-lg text-xs transition-colors {{ $isSubActive ? 'text-desa-600 bg-desa-50 font-semibold' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50' }}">
+                                                            @php $mSubUrl = route($subItem['route'], $subItem['params'] ?? []); @endphp
+                                                            <a href="{{ $mSubUrl }}"
+                                                                wire:navigate.hover @click="open = false"
+                                                                :class="isActiveLink('{{ $mSubUrl }}') ? 'text-desa-600 bg-desa-50 font-semibold' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'"
+                                                                class="flex items-center gap-3 px-3 py-1.5 rounded-lg text-xs transition-colors">
                                                                 <span
-                                                                    class="material-symbols-outlined text-sm {{ $isSubActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $subItem['icon'] }}</span>
+                                                                    class="material-symbols-outlined text-sm"
+                                                                    :class="isActiveLink('{{ $mSubUrl }}') ? 'text-desa-600' : 'text-gray-400'">{{ $subItem['icon'] }}</span>
                                                                 {{ $subItem['label'] }}
                                                             </a>
                                                         @endforeach
@@ -579,19 +606,14 @@
                                                 </div>
                                             </div>
                                         @else
-                                            @php
-                                                $isActive =
-                                                    request()->routeIs($item['route']) &&
-                                                    (empty($item['params']) ||
-                                                        collect($item['params'])->every(
-                                                            fn($val, $key) => request()->query($key) == $val,
-                                                        ));
-                                            @endphp
-                                            <a href="{{ route($item['route'], $item['params'] ?? []) }}" wire:navigate
+                                            @php $mItemUrl = route($item['route'], $item['params'] ?? []); @endphp
+                                            <a href="{{ $mItemUrl }}" wire:navigate.hover
                                                 @click="open = false"
-                                                class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors {{ $isActive ? 'text-desa-600 bg-desa-50 font-medium' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50' }}">
+                                                :class="isActiveLink('{{ $mItemUrl }}') ? 'text-desa-600 bg-desa-50 font-bold' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'"
+                                                class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors">
                                                 <span
-                                                    class="material-symbols-outlined text-base {{ $isActive ? 'text-desa-600' : 'text-gray-400' }}">{{ $item['icon'] }}</span>
+                                                    class="material-symbols-outlined text-base"
+                                                    :class="isActiveLink('{{ $mItemUrl }}') ? 'text-desa-600' : 'text-gray-400'">{{ $item['icon'] }}</span>
                                                 {{ $item['label'] }}
                                             </a>
                                         @endif
@@ -607,7 +629,6 @@
     @endpersist
 
     {{-- ─── MAIN CONTENT ──────────────────────────────────── --}}
-
     <main class="flex-1">
         {{ $slot }}
     </main>
@@ -636,15 +657,15 @@
                 {{-- Links --}}
                 <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-desa-300">
                     <a href="{{ route('profil-nagari') }}" class="hover:text-white transition-colors"
-                        wire:navigate>Profil</a>
+                        wire:navigate.hover>Profil</a>
                     <a href="{{ route('berita.index') }}" class="hover:text-white transition-colors"
-                        wire:navigate>Berita</a>
+                        wire:navigate.hover>Berita</a>
                     <a href="{{ route('anggaran') }}" class="hover:text-white transition-colors"
-                        wire:navigate>Anggaran</a>
+                        wire:navigate.hover>Anggaran</a>
                     <a href="{{ route('surat.info') }}" class="hover:text-white transition-colors"
-                        wire:navigate>Layanan Surat</a>
+                        wire:navigate.hover>Layanan Surat</a>
                     <a href="{{ route('kontak') }}" class="hover:text-white transition-colors"
-                        wire:navigate>Kontak</a>
+                        wire:navigate.hover>Kontak</a>
                 </nav>
             </div>
 
@@ -694,21 +715,7 @@
                                 @case('whatsapp')
                                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                         <path
-                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                                    </svg>
-                                @break
-
-                                @case('telegram')
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-                                    </svg>
-                                @break
-
-                                @case('email')
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                                     </svg>
                                 @break
                             @endswitch
@@ -717,19 +724,13 @@
                 </div>
             @endif
 
-            <hr class="my-6 border-white/10">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-desa-500">
-                <p>&copy; {{ date('Y') }} {{ $village?->name ?? config('app.name') }}. Hak cipta dilindungi.</p>
-                @if ($village?->address)
-                    <p class="flex items-center gap-1">
-                        <span class="material-symbols-outlined text-xs">location_on</span>
-                        {{ $village->address }}
-                    </p>
-                @endif
+            <div class="mt-8 border-t border-desa-800 pt-6 text-center text-xs text-desa-400">
+                <p>&copy; {{ date('Y') }} {{ config('app.name') }}. Hak Cipta Dilindungi Undang-Undang.</p>
             </div>
         </div>
     </footer>
 
+    {{-- All scripts initialized --}}
     @livewireScripts
     <script>
         document.addEventListener('livewire:init', () => {
