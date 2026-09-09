@@ -11,26 +11,36 @@
     <title>{{ ($title ?? 'Beranda') . ' — ' . config('app.name') }}</title>
     @include('partials.favicon')
 
-    {{-- Open Graph & Twitter Card Meta Tags --}}
-    @if (trim($__env->yieldContent('meta')) === '')
-        @php
+    {{-- Open Graph & Twitter Card Meta Tags (WhatsApp / Social Media Share) --}}
+    @php
+        $siteName = config('app.name');
+        $resolvedTitle = ($title ?? 'Beranda') . ' — ' . $siteName;
+        $resolvedDesc = $metaDescription ?? 'Website Profil Nagari Digital — Informasi lengkap tentang nagari, pemerintahan, berita, dan layanan publik.';
+        $resolvedUrl = url()->current();
+        
+        if (!empty($ogImage)) {
+            $resolvedOgImage = $ogImage;
+        } else {
             $defaultVillageLogo = \App\Models\VillageProfile::getCached()?->logo;
-            $defaultOgImage = $defaultVillageLogo ? url(Storage::url($defaultVillageLogo)) : url(asset('favicon.ico'));
-            $defaultOgTitle = ($title ?? 'Beranda') . ' — ' . config('app.name');
-            $defaultOgDesc = $metaDescription ?? 'Website Profil Nagari Digital — Informasi lengkap tentang nagari, pemerintahan, berita, dan layanan publik.';
-        @endphp
-        <meta property="og:type" content="website">
-        <meta property="og:site_name" content="{{ config('app.name') }}">
-        <meta property="og:title" content="{{ $defaultOgTitle }}">
-        <meta property="og:description" content="{{ $defaultOgDesc }}">
-        <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="og:image" content="{{ $defaultOgImage }}">
+            $resolvedOgImage = $defaultVillageLogo ? url(Storage::url($defaultVillageLogo)) : url(asset('favicon.ico'));
+        }
 
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{ $defaultOgTitle }}">
-        <meta name="twitter:description" content="{{ $defaultOgDesc }}">
-        <meta name="twitter:image" content="{{ $defaultOgImage }}">
-    @endif
+        $resolvedOgType = $ogType ?? 'website';
+    @endphp
+    <meta property="og:type" content="{{ $resolvedOgType }}">
+    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:title" content="{{ $resolvedTitle }}">
+    <meta property="og:description" content="{{ $resolvedDesc }}">
+    <meta property="og:url" content="{{ $resolvedUrl }}">
+    <meta property="og:image" content="{{ $resolvedOgImage }}">
+    <meta property="og:image:secure_url" content="{{ $resolvedOgImage }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $resolvedTitle }}">
+    <meta name="twitter:description" content="{{ $resolvedDesc }}">
+    <meta name="twitter:image" content="{{ $resolvedOgImage }}">
     @stack('meta')
 
     {{-- LCP image preload (diisi per-halaman) --}}

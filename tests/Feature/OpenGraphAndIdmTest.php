@@ -63,6 +63,7 @@ test('news detail page renders open graph and whatsapp meta tags dynamically', f
 
     $response->assertStatus(200);
     $response->assertSee('og:image', false);
+    $response->assertSee('posts/pengumuman.jpg', false);
     $response->assertSee('og:image:secure_url', false);
     $response->assertSee('og:title', false);
     $response->assertSee('og:description', false);

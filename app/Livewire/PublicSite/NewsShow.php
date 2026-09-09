@@ -29,9 +29,16 @@ class NewsShow extends Component
             ->take(3)
             ->get();
 
+        $ogDescription = $this->post->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($this->post->body), 150);
+
         return view('livewire.public.news-show', [
             'post' => $this->post, 
             'relatedPosts' => $relatedPosts
-        ])->layout('layouts.app', ['title' => $this->post->title]);
+        ])->layout('layouts.app', [
+            'title' => $this->post->title,
+            'metaDescription' => $ogDescription,
+            'ogImage' => $this->post->og_image_url,
+            'ogType' => 'article',
+        ]);
     }
 }
