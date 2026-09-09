@@ -246,10 +246,10 @@
             data: {
                 labels: idmData.map(d => d.year),
                 datasets: [
-                    { label: 'Skor IDM', data: idmData.map(d => d.score), borderColor: '#2D6A4F', backgroundColor: 'rgba(45,106,79,0.04)', fill: true, tension: 0.4, borderWidth: 3, pointRadius: 4, pointHoverRadius: 6 },
-                    { label: 'IKS', data: idmData.map(d => d.social_score), borderColor: '#2563eb', borderWidth: 1.5, tension: 0.4, borderDash: [4, 4], pointRadius: 0 },
-                    { label: 'IKE', data: idmData.map(d => d.economic_score), borderColor: '#f59e0b', borderWidth: 1.5, tension: 0.4, borderDash: [4, 4], pointRadius: 0 },
-                    { label: 'IKL', data: idmData.map(d => d.environment_score), borderColor: '#10b981', borderWidth: 1.5, tension: 0.4, borderDash: [4, 4], pointRadius: 0 },
+                    { label: 'Skor IDM', data: idmData.map(d => d.formatted_score ?? (d.score < 1 ? Math.round(d.score * 1000) : d.score)), borderColor: '#2D6A4F', backgroundColor: 'rgba(45,106,79,0.04)', fill: true, tension: 0.4, borderWidth: 3, pointRadius: 4, pointHoverRadius: 6 },
+                    { label: 'IKS', data: idmData.map(d => d.social_score < 1 && d.social_score > 0 ? Math.round(d.social_score * 1000) : d.social_score), borderColor: '#2563eb', borderWidth: 1.5, tension: 0.4, borderDash: [4, 4], pointRadius: 0 },
+                    { label: 'IKE', data: idmData.map(d => d.economic_score < 1 && d.economic_score > 0 ? Math.round(d.economic_score * 1000) : d.economic_score), borderColor: '#f59e0b', borderWidth: 1.5, tension: 0.4, borderDash: [4, 4], pointRadius: 0 },
+                    { label: 'IKL', data: idmData.map(d => d.environment_score < 1 && d.environment_score > 0 ? Math.round(d.environment_score * 1000) : d.environment_score), borderColor: '#10b981', borderWidth: 1.5, tension: 0.4, borderDash: [4, 4], pointRadius: 0 },
                 ]
             },
             options: {

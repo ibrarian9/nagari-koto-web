@@ -75,6 +75,23 @@ class Post extends Model
 
     // ─── Helpers ────────────────────────────────────────────
 
+    /**
+     * Get absolute Open Graph image URL for social media sharing.
+     */
+    public function getOgImageUrlAttribute(): string
+    {
+        if ($this->thumbnail) {
+            return url(\Illuminate\Support\Facades\Storage::url($this->thumbnail));
+        }
+
+        $villageLogo = \App\Models\VillageProfile::getCached()?->logo;
+        if ($villageLogo) {
+            return url(\Illuminate\Support\Facades\Storage::url($villageLogo));
+        }
+
+        return url(asset('favicon.ico'));
+    }
+
     protected function getActivityModelLabel(): string
     {
         return "Berita: {$this->title}";

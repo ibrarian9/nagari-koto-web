@@ -11,6 +11,28 @@
     <title>{{ ($title ?? 'Beranda') . ' — ' . config('app.name') }}</title>
     @include('partials.favicon')
 
+    {{-- Open Graph & Twitter Card Meta Tags --}}
+    @if (trim($__env->yieldContent('meta')) === '')
+        @php
+            $defaultVillageLogo = \App\Models\VillageProfile::getCached()?->logo;
+            $defaultOgImage = $defaultVillageLogo ? url(Storage::url($defaultVillageLogo)) : url(asset('favicon.ico'));
+            $defaultOgTitle = ($title ?? 'Beranda') . ' — ' . config('app.name');
+            $defaultOgDesc = $metaDescription ?? 'Website Profil Nagari Digital — Informasi lengkap tentang nagari, pemerintahan, berita, dan layanan publik.';
+        @endphp
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="{{ config('app.name') }}">
+        <meta property="og:title" content="{{ $defaultOgTitle }}">
+        <meta property="og:description" content="{{ $defaultOgDesc }}">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:image" content="{{ $defaultOgImage }}">
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $defaultOgTitle }}">
+        <meta name="twitter:description" content="{{ $defaultOgDesc }}">
+        <meta name="twitter:image" content="{{ $defaultOgImage }}">
+    @endif
+    @stack('meta')
+
     {{-- LCP image preload (diisi per-halaman) --}}
     @stack('preload')
 

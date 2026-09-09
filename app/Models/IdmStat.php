@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class IdmStat extends Model
@@ -10,6 +11,12 @@ class IdmStat extends Model
     use LogsActivity;
 
     protected $table = 'idm_stats';
+
+    protected $appends = [
+        'status_label',
+        'status_color',
+        'formatted_score',
+    ];
 
     protected $fillable = [
         'year',
@@ -78,6 +85,28 @@ class IdmStat extends Model
             'mandiri' => 'bg-green-100 text-green-800',
             default => 'bg-gray-100 text-gray-800',
         };
+    }
+
+    /**
+     * Helper to format IDM score (e.g., 0.170 becomes 170).
+     */
+    public static function formatIdmScore($value): string
+    {
+        $floatVal = (float) $value;
+        if ($floatVal > 0 && $floatVal < 1) {
+            return (string) (int) round($floatVal * 1000);
+        }
+        return (string) (int) round($floatVal);
+    }
+
+    /**
+     * Get formatted IDM score attribute (e.g. 0.170 -> 170).
+     */
+    protected function formattedScore(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value, array $attributes) => static::formatIdmScore($attributes['score'] ?? 0)
+        );
     }
 
     protected function getActivityModelLabel(): string

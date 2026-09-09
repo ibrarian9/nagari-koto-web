@@ -50,7 +50,7 @@
                             <span><strong>Tata Kelola Pemdes:</strong> Kualitas penyelenggaraan pemerintahan nagari</span>
                         </li>
                     </ul>
-                    <p class="mt-2">Skor IDM berkisar antara <strong>0 sampai 1</strong>. Semakin tinggi skor, semakin
+                    <p class="mt-2">Skor IDM berkisar antara <strong>0 sampai 1000</strong>. Semakin tinggi skor, semakin
                         maju nagarinya.</p>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             {{-- Current Score Hero --}}
             <div class="card p-8 mb-8 text-center bg-gradient-to-br from-desa-50 to-white border-2 border-desa-100">
                 <p class="text-sm text-gray-500 mb-2">Skor IDM Tahun {{ $latest->year }}</p>
-                <p class="text-6xl font-extrabold text-desa-600 mb-3">{{ number_format($latest->score, 3) }}</p>
+                <p class="text-6xl font-extrabold text-desa-600 mb-3">{{ $latest->formatted_score }}</p>
                 <span
                     class="inline-block badge text-sm px-5 py-2 {{ $latest->status_color }}">{{ $latest->status_label }}</span>
                 <p class="mt-3 text-sm text-gray-500">
@@ -87,7 +87,7 @@
                 <p class="text-sm text-gray-500 mb-4">Status nagari ditetapkan berdasarkan rentang skor IDM menurut
                     ketentuan Kementerian Desa, PDT dan Transmigrasi:</p>
                 <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
-                    @foreach ([['status' => 'Sangat Tertinggal', 'range' => '< 0,491', 'color' => 'bg-red-100 text-red-800', 'icon' => 'warning'], ['status' => 'Tertinggal', 'range' => '0,491 – 0,599', 'color' => 'bg-orange-100 text-orange-800', 'icon' => 'trending_flat'], ['status' => 'Berkembang', 'range' => '0,600 – 0,707', 'color' => 'bg-amber-100 text-amber-800', 'icon' => 'trending_up'], ['status' => 'Maju', 'range' => '0,708 – 0,815', 'color' => 'bg-blue-100 text-blue-800', 'icon' => 'rocket_launch'], ['status' => 'Mandiri', 'range' => '> 0,815', 'color' => 'bg-green-100 text-green-800', 'icon' => 'stars']] as $info)
+                    @foreach ([['status' => 'Sangat Tertinggal', 'range' => '< 491', 'color' => 'bg-red-100 text-red-800', 'icon' => 'warning'], ['status' => 'Tertinggal', 'range' => '491 – 599', 'color' => 'bg-orange-100 text-orange-800', 'icon' => 'trending_flat'], ['status' => 'Berkembang', 'range' => '600 – 707', 'color' => 'bg-amber-100 text-amber-800', 'icon' => 'trending_up'], ['status' => 'Maju', 'range' => '708 – 815', 'color' => 'bg-blue-100 text-blue-800', 'icon' => 'rocket_launch'], ['status' => 'Mandiri', 'range' => '> 815', 'color' => 'bg-green-100 text-green-800', 'icon' => 'stars']] as $info)
                         <div class="rounded-xl p-4 text-center {{ $info['color'] }}">
                             <span class="material-symbols-outlined text-2xl mb-1">{{ $info['icon'] }}</span>
                             <p class="font-bold text-sm">{{ $info['status'] }}</p>
@@ -121,8 +121,8 @@
                         </div>
                         <div class="flex items-end gap-2">
                             <span
-                                class="text-3xl font-extrabold text-gray-900">{{ number_format($dim['score'], 3) }}</span>
-                            <span class="text-xs text-gray-400 mb-1">/ 1.000</span>
+                                class="text-3xl font-extrabold text-gray-900">{{ \App\Models\IdmStat::formatIdmScore($dim['score']) }}</span>
+                            <span class="text-xs text-gray-400 mb-1">/ 1000</span>
                         </div>
                         <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                             <div class="bg-{{ $dim['color'] }}-500 h-2 rounded-full transition-all duration-500"
@@ -140,7 +140,7 @@
                         labels: ['Sosial (IKS)', 'Ekonomi (IKE)', 'Lingkungan (IKL)', 'Aksesibilitas', 'Layanan Dasar', 'Tata Kelola'],
                         datasets: [{
                             label: 'Skor IDM {{ $latest->year }}',
-                            data: [{{ $latest->social_score }}, {{ $latest->economic_score }}, {{ $latest->environment_score }}, {{ $latest->accessibility_score }}, {{ $latest->basic_service_score }}, {{ $latest->governance_score }}],
+                            data: [{{ \App\Models\IdmStat::formatIdmScore($latest->social_score) }}, {{ \App\Models\IdmStat::formatIdmScore($latest->economic_score) }}, {{ \App\Models\IdmStat::formatIdmScore($latest->environment_score) }}, {{ \App\Models\IdmStat::formatIdmScore($latest->accessibility_score) }}, {{ \App\Models\IdmStat::formatIdmScore($latest->basic_service_score) }}, {{ \App\Models\IdmStat::formatIdmScore($latest->governance_score) }}],
                             backgroundColor: 'rgba(45,106,79,0.15)',
                             borderColor: '#2D6A4F',
                             pointBackgroundColor: '#2D6A4F',
@@ -151,13 +151,13 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        scales: { r: { beginAtZero: true, max: 1, ticks: { stepSize: 0.2 } } },
+                        scales: { r: { beginAtZero: true, max: 1000, ticks: { stepSize: 200 } } },
                         plugins: { legend: { position: 'bottom' } }
                     }
                 });
             
                 const years = @js($allStats->pluck('year')->reverse()->values());
-                const scores = @js($allStats->pluck('score')->reverse()->values());
+                const scores = @js($allStats->pluck('formatted_score')->reverse()->values());
                 new Chart(document.getElementById('trendChart'), {
                     type: 'line',
                     data: {
@@ -176,7 +176,7 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        scales: { y: { min: 0.5, max: 1, ticks: { stepSize: 0.05 } } },
+                        scales: { y: { min: 0, max: 1000 } },
                         plugins: { legend: { position: 'bottom' } }
                     }
                 });
@@ -223,27 +223,27 @@
                             @foreach ($allStats as $i => $stat)
                                 @php
                                     $prev = $allStats[$i + 1] ?? null;
-                                    $change = $prev ? $stat->score - $prev->score : null;
+                                    $change = $prev ? ((int) $stat->formatted_score - (int) $prev->formatted_score) : null;
                                 @endphp
                                 <tr>
                                     <td class="font-bold">{{ $stat->year }}</td>
-                                    <td class="font-mono font-bold text-desa-600">{{ number_format($stat->score, 3) }}
+                                    <td class="font-mono font-bold text-desa-600">{{ $stat->formatted_score }}
                                     </td>
                                     <td><span class="badge {{ $stat->status_color }}">{{ $stat->status_label }}</span>
                                     </td>
-                                    <td class="font-mono">{{ number_format($stat->social_score, 3) }}</td>
-                                    <td class="font-mono">{{ number_format($stat->economic_score, 3) }}</td>
-                                    <td class="font-mono">{{ number_format($stat->environment_score, 3) }}</td>
-                                    <td class="font-mono">{{ number_format($stat->accessibility_score, 3) }}</td>
-                                    <td class="font-mono">{{ number_format($stat->basic_service_score, 3) }}</td>
-                                    <td class="font-mono">{{ number_format($stat->governance_score, 3) }}</td>
+                                    <td class="font-mono">{{ \App\Models\IdmStat::formatIdmScore($stat->social_score) }}</td>
+                                    <td class="font-mono">{{ \App\Models\IdmStat::formatIdmScore($stat->economic_score) }}</td>
+                                    <td class="font-mono">{{ \App\Models\IdmStat::formatIdmScore($stat->environment_score) }}</td>
+                                    <td class="font-mono">{{ \App\Models\IdmStat::formatIdmScore($stat->accessibility_score) }}</td>
+                                    <td class="font-mono">{{ \App\Models\IdmStat::formatIdmScore($stat->basic_service_score) }}</td>
+                                    <td class="font-mono">{{ \App\Models\IdmStat::formatIdmScore($stat->governance_score) }}</td>
                                     <td>
                                         @if ($change !== null)
                                             <span
                                                 class="inline-flex items-center gap-1 text-sm font-medium {{ $change >= 0 ? 'text-green-600' : 'text-red-600' }}">
                                                 <span
                                                     class="material-symbols-outlined text-sm">{{ $change >= 0 ? 'arrow_upward' : 'arrow_downward' }}</span>
-                                                {{ $change >= 0 ? '+' : '' }}{{ number_format($change, 3) }}
+                                                {{ $change >= 0 ? '+' : '' }}{{ $change }}
                                             </span>
                                         @else
                                             <span class="text-gray-400">—</span>

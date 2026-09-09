@@ -343,7 +343,7 @@
 
                         <div class="flex items-baseline gap-3 mb-10">
                             <span
-                                class="text-5xl font-black text-desa-600 tracking-tight">{{ number_format($idm->score, 4) }}</span>
+                                class="text-5xl font-black text-desa-600 tracking-tight">{{ $idm->formatted_score }}</span>
                             <span
                                 class="px-4 py-1.5 rounded-xl text-[10px] font-extrabold uppercase tracking-widest border {{ $idm->status_color }}">{{ $idm->status_label }}</span>
                         </div>
@@ -357,7 +357,7 @@
                                 <div class="bg-gray-50/50 rounded-2xl p-4 border border-gray-150/40">
                                     <div class="flex items-center justify-between">
                                         <span class="text-2xs font-extrabold uppercase tracking-widest text-gray-400">{{ $dim['label'] }}</span>
-                                        <span class="text-xs font-bold text-gray-700">{{ number_format($dim['score'], 4) }}</span>
+                                        <span class="text-xs font-bold text-gray-700">{{ \App\Models\IdmStat::formatIdmScore($dim['score']) }}</span>
                                     </div>
                                     <p class="text-[10px] text-gray-400 font-bold uppercase mt-1">Dimensi {{ $dim['full'] }}</p>
                                     <div class="w-full bg-gray-200/70 rounded-full h-1.5 mt-3">

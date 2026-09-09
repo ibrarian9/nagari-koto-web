@@ -1,4 +1,28 @@
 <div>
+    @push('meta')
+        @php
+            $ogDescription = $post->excerpt ?: Str::limit(strip_tags($post->body), 150);
+            $ogTitle = $post->title . ' — ' . config('app.name');
+            $ogUrl = url()->current();
+            $ogImage = $post->og_image_url;
+        @endphp
+        <meta property="og:type" content="article">
+        <meta property="og:site_name" content="{{ config('app.name') }}">
+        <meta property="og:title" content="{{ $ogTitle }}">
+        <meta property="og:description" content="{{ $ogDescription }}">
+        <meta property="og:url" content="{{ $ogUrl }}">
+        <meta property="og:image" content="{{ $ogImage }}">
+        <meta property="og:image:secure_url" content="{{ $ogImage }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="{{ $post->title }}">
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $ogTitle }}">
+        <meta name="twitter:description" content="{{ $ogDescription }}">
+        <meta name="twitter:image" content="{{ $ogImage }}">
+    @endpush
+
     @if($post->thumbnail)
         @push('preload')
             <link rel="preload" as="image" href="{{ Storage::url($post->thumbnail) }}">
