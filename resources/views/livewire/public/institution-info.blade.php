@@ -44,11 +44,11 @@
                     'lainnya' => 'category',
                 ];
             @endphp
-            @foreach (\App\Models\VillageInstitution::TYPES as $key => $label)
-                <button wire:click="$set('typeFilter', '{{ $typeFilter === $key ? '' : $key }}')"
-                    class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border shadow-sm flex items-center gap-1.5 {{ $typeFilter === $key ? 'bg-desa-600 text-white border-desa-600 shadow-desa-200' : 'bg-white text-gray-600 border-gray-200 hover:border-desa-300 hover:text-desa-700' }}">
-                    <span class="material-symbols-outlined text-sm">{{ $typeIcons[$key] ?? 'category' }}</span>
-                    {{ $label }}
+            @foreach ($categories as $cat)
+                <button wire:click="$set('typeFilter', '{{ (string)$typeFilter === (string)$cat->id ? '' : $cat->id }}')"
+                    class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border shadow-sm flex items-center gap-1.5 {{ (string)$typeFilter === (string)$cat->id ? 'bg-desa-600 text-white border-desa-600 shadow-desa-200' : 'bg-white text-gray-600 border-gray-200 hover:border-desa-300 hover:text-desa-700' }}">
+                    <span class="material-symbols-outlined text-sm">category</span>
+                    {{ $cat->name }}
                 </button>
             @endforeach
         </div>
@@ -95,7 +95,7 @@
                                         class="inline-flex items-center gap-1 mt-1 text-xs font-semibold text-gray-500">
                                         <span
                                             class="material-symbols-outlined text-xs">{{ $typeIcons[$inst->type] ?? 'category' }}</span>
-                                        {{ $inst->type_label }}
+                                        {{ $inst->category?->name ?? $inst->type_label }}
                                     </span>
                                 </div>
                             </div>

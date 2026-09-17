@@ -78,61 +78,17 @@
     </x-admin-modal>
 
     {{-- ─── MODAL KELOLA KATEGORI ─────────────────────── --}}
-    <x-admin-modal :show="$showCategoryModal" title="Kelola Kategori Berita" subtitle="Tambah atau edit daftar kategori berita" icon="category" iconBg="bg-amber-100" iconColor="text-amber-700" maxWidth="max-w-xl">
-        <div class="space-y-6">
-            {{-- Form Tambah Kategori Baru --}}
-            <div class="bg-gray-50/80 p-4 rounded-xl border border-gray-200">
-                <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Tambah Kategori Baru</h4>
-                <form wire:submit="addCategory" class="flex gap-2">
-                    <div class="flex-1">
-                        <input type="text" wire:model="newCategoryName" class="form-input w-full text-sm" placeholder="Nama kategori baru (cth: Pengumuman, Pembangunan)">
-                        @error('newCategoryName')<p class="form-error text-xs mt-1">{{ $message }}</p>@enderror
-                    </div>
-                    <button type="submit" class="btn-primary btn-sm flex-shrink-0" wire:loading.attr="disabled" wire:target="addCategory">
-                        <span class="material-symbols-outlined text-base">add</span> Simpan
-                    </button>
-                </form>
-            </div>
-
-            {{-- List Kategori --}}
-            <div>
-                <h4 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Daftar Kategori Berita ({{ $categories->count() }})</h4>
-                <div class="border border-gray-200 rounded-xl overflow-hidden divide-y divide-gray-100 max-h-60 overflow-y-auto">
-                    @forelse($categories as $cat)
-                        <div class="p-3 flex items-center justify-between bg-white hover:bg-gray-50/80 transition-colors">
-                            @if($editingCategoryId === $cat->id)
-                                {{-- Inline edit form --}}
-                                <form wire:submit="updateCategory" class="flex items-center gap-2 flex-1 mr-2">
-                                    <input type="text" wire:model="editingCategoryName" class="form-input py-1 px-2.5 text-xs flex-1">
-                                    <button type="submit" class="btn-primary btn-sm px-2.5 py-1 text-xs">Simpan</button>
-                                    <button type="button" wire:click="cancelEditCategory" class="btn-secondary btn-sm px-2.5 py-1 text-xs">Batal</button>
-                                </form>
-                            @else
-                                <div>
-                                    <p class="text-sm font-bold text-gray-800">{{ $cat->name }}</p>
-                                    <p class="text-xs text-gray-400">{{ $cat->posts()->count() }} Berita</p>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <button wire:click="editCategory({{ $cat->id }})" title="Edit Name" class="h-7 w-7 rounded-lg flex items-center justify-center text-gray-400 hover:bg-desa-50 hover:text-desa-600 transition-colors">
-                                        <span class="material-symbols-outlined text-base">edit</span>
-                                    </button>
-                                    <button wire:click="deleteCategory({{ $cat->id }})" title="Hapus Kategori" class="h-7 w-7 rounded-lg flex items-center justify-center text-gray-400 hover:bg-red-50 hover:text-red-600 transition-colors">
-                                        <span class="material-symbols-outlined text-base">delete</span>
-                                    </button>
-                                </div>
-                            @endif
-                        </div>
-                    @empty
-                        <div class="p-6 text-center text-gray-400 text-xs">Belum ada kategori.</div>
-                    @endforelse
-                </div>
-            </div>
-
-            <div class="pt-3 border-t border-gray-100 flex justify-end">
-                <button type="button" wire:click="$set('showCategoryModal', false)" class="btn-secondary btn-sm">Tutup</button>
-            </div>
-        </div>
-    </x-admin-modal>
+    <x-admin-category-modal
+        :show="$showCategoryModal"
+        title="Kelola Kategori Berita"
+        subtitle="Tambah, ubah, atau hapus kategori berita"
+        :categories="$categories"
+        :editingCategoryId="$editingCategoryId"
+        :editingCategoryName="$editingCategoryName"
+        :newCategoryName="$newCategoryName"
+        iconBg="bg-amber-100"
+        iconColor="text-amber-700"
+    />
 
     {{-- ─── SEARCH & FILTER ──────────────────────────── --}}
     <div class="card p-4 mb-6">

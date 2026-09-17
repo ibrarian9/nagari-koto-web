@@ -31,12 +31,7 @@
                 </div>
                 <div class="text-sm text-gray-600 leading-relaxed">
                     <h3 class="font-bold text-gray-900 mb-1">Apa itu APB Nagari?</h3>
-                    <p><strong>Anggaran Pendapatan dan Belanja Nagari (APB Nagari)</strong> adalah rencana keuangan
-                        tahunan
-                        pemerintahan Nagari. APB Nagari memuat seluruh rencana pendapatan, belanja, dan pembiayaan
-                        Nagari dalam
-                        satu tahun anggaran. Transparansi ini bertujuan agar masyarakat dapat mengawasi pengelolaan
-                        keuangan Nagari secara terbuka dan akuntabel.</p>
+                    <p><strong>Anggaran Pendapatan dan Belanja Nagari (APB Nagari)</strong> adalah Rencana Keuangan tahunan pemerintahan Nagari. APB Nagari memuat seluruh Rencana Pendapatan dan Belanja, dan pembiayaan Nagari dalam satu tahun anggaran. Transparansi ini bertujuan agar masyarakat dapat mengawasi dan memantau secara langsung progres pengelolaan keuangan Nagari secara Transparansi dan Akuntabel.</p>
                 </div>
             </div>
         </div>

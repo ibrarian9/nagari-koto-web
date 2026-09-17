@@ -28,15 +28,6 @@ class ActivityLogViewer extends Component
     public function updatingActionFilter(): void { $this->resetPage('activityPage'); }
     public function updatingModelFilter(): void { $this->resetPage('activityPage'); }
 
-    public function clearErrorLogs(): void
-    {
-        $logFile = storage_path('logs/laravel.log');
-        if (File::exists($logFile)) {
-            File::put($logFile, '');
-        }
-        $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Log error Laravel telah dibersihkan.');
-    }
-
     public function downloadErrorLog()
     {
         $logFile = storage_path('logs/laravel.log');
@@ -46,12 +37,6 @@ class ActivityLogViewer extends Component
         }
 
         return Response::download($logFile, 'laravel-error-' . date('Y-m-d') . '.log');
-    }
-
-    public function clearOldActivityLogs(): void
-    {
-        ActivityLog::where('created_at', '<', now()->subDays(30))->delete();
-        $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Log aktivitas lebih dari 30 hari telah dibersihkan.');
     }
 
     private function getParsedErrorLogs(): array

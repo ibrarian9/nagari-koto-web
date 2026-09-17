@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,10 +16,15 @@ class LegalDocument extends Model
     public const CACHE_KEY_PREFIX = 'legal_document:file_exists:';
 
     protected $fillable = [
-        'title', 'category', 'year', 'number', 'description',
+        'category_id', 'title', 'category', 'year', 'number', 'description',
         'file_path', 'file_name', 'file_size',
         'download_count', 'is_published', 'published_at',
     ];
+
+    public function categoryRef(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 
     protected function casts(): array
     {

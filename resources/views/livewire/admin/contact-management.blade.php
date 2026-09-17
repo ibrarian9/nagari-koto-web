@@ -1,9 +1,25 @@
 <div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div><h2 class="text-xl font-bold text-gray-900">Kelola Kontak</h2><p class="text-sm text-gray-500 mt-0.5">Nomor penting dan kontak nagari</p></div>
-        <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span> Tambah</button>
+        <div class="flex items-center gap-2">
+            <button wire:click="openCategoryModal" class="btn-secondary btn-sm"><span class="material-symbols-outlined text-base">category</span> Kelola Kategori</button>
+            <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span> Tambah</button>
+        </div>
     </div>
     <x-page-guide title="Panduan Kelola Kontak" description="Kelola daftar kontak penting nagari seperti nomor kantor nagari, puskesmas, kepolisian, dll. Atur urutan tampil dan kategori kontak. Kontak yang ditambahkan akan tampil di halaman Kontak pada website publik." />
+
+    {{-- Modal Kelola Kategori --}}
+    <x-admin-category-modal
+        :show="$showCategoryModal"
+        title="Kelola Kategori Kontak"
+        subtitle="Tambah, ubah, atau hapus kategori kontak"
+        :categories="$categories"
+        :editingCategoryId="$editingCategoryId"
+        :editingCategoryName="$editingCategoryName"
+        :newCategoryName="$newCategoryName"
+        iconBg="bg-teal-100"
+        iconColor="text-teal-600"
+    />
 
     <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Kontak'" subtitle="Isi data kontak penting" icon="call" iconBg="bg-teal-100" iconColor="text-teal-600">
         <form wire:submit="save" class="space-y-5">
@@ -11,14 +27,26 @@
                 <ul class="list-disc list-inside space-y-1">
                     <li><strong>Label</strong> — Nama instansi atau layanan (cth: Kantor Wali Nagari, Puskesmas)</li>
                     <li><strong>Telepon</strong> — Nomor telepon yang bisa dihubungi (format: 0752-xxx atau 08xxx)</li>
-                    <li><strong>Kategori</strong> — Darurat (polisi, ambulans), Pemerintahan, Kesehatan, atau Sosial</li>
+                    <li><strong>Kategori</strong> — Pilih kategori kontak yang sudah dikelola</li>
                     <li><strong>Urutan</strong> — Angka untuk mengurutkan tampilan (0 = paling atas)</li>
                 </ul>
             </x-form-guide>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div><label class="form-label">Label <span class="text-red-400">*</span></label><input type="text" wire:model="label" class="form-input w-full" placeholder="cth: Kantor Wali Nagari">@error('label')<p class="form-error">{{ $message }}</p>@enderror</div>
                 <div><label class="form-label">Telepon <span class="text-red-400">*</span></label><input type="text" wire:model="phone" class="form-input w-full" placeholder="0752-123456">@error('phone')<p class="form-error">{{ $message }}</p>@enderror</div>
-                <div><label class="form-label">Kategori <span class="text-red-400">*</span></label><select wire:model="category" class="form-input w-full"><option value="">— Pilih —</option><option value="emergency">Darurat</option><option value="government">Pemerintahan</option><option value="health">Kesehatan</option><option value="social">Sosial</option></select>@error('category')<p class="form-error">{{ $message }}</p>@enderror</div>
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="form-label mb-0">Kategori <span class="text-red-400">*</span></label>
+                        <button type="button" wire:click="openCategoryModal" class="text-xs text-desa-600 hover:underline">+ Kelola Kategori</button>
+                    </div>
+                    <select wire:model="category" class="form-input w-full">
+                        <option value="">— Pilih Kategori —</option>
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->slug }}">{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category')<p class="form-error">{{ $message }}</p>@enderror
+                </div>
                 <div><label class="form-label">Urutan</label><input type="number" wire:model="order" class="form-input w-full"></div>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">

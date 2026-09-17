@@ -1,8 +1,24 @@
 <div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div><h2 class="text-xl font-bold text-gray-900">Produk Hukum</h2><p class="text-sm text-gray-500 mt-0.5">Kelola dokumen produk hukum Nagari</p></div>
-        <button wire:click="create" class="btn-primary"><span class="material-symbols-outlined text-sm">add</span> Tambah Dokumen</button>
+        <div class="flex items-center gap-2">
+            <button wire:click="openCategoryModal" class="btn-secondary btn-sm"><span class="material-symbols-outlined text-base">category</span> Kelola Kategori</button>
+            <button wire:click="create" class="btn-primary"><span class="material-symbols-outlined text-sm">add</span> Tambah Dokumen</button>
+        </div>
     </div>
+
+    {{-- Modal Kelola Kategori --}}
+    <x-admin-category-modal
+        :show="$showCategoryModal"
+        title="Kelola Kategori Produk Hukum"
+        subtitle="Tambah, ubah, atau hapus kategori produk hukum"
+        :categories="$dynamicCategories"
+        :editingCategoryId="$editingCategoryId"
+        :editingCategoryName="$editingCategoryName"
+        :newCategoryName="$newCategoryName"
+        iconBg="bg-blue-100"
+        iconColor="text-blue-600"
+    />
 
     {{-- Form --}}
     @if($showForm)
@@ -11,13 +27,22 @@
         <form wire:submit="save" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div><label class="form-label">Judul</label><input type="text" wire:model="title" class="form-input w-full">@error('title')<p class="form-error">{{ $message }}</p>@enderror</div>
-                <div><label class="form-label">Kategori</label><select wire:model="category" class="form-input w-full"><option value="">Pilih Kategori</option>@foreach($categories as $k => $v)<option value="{{ $k }}">{{ $v }}</option>@endforeach</select>@error('category')<p class="form-error">{{ $message }}</p>@enderror</div>
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="form-label mb-0">Kategori Produk Hukum</label>
+                        <button type="button" wire:click="openCategoryModal" class="text-xs text-desa-600 hover:underline">+ Kelola Kategori</button>
+                    </div>
+                    <select wire:model="category_id" class="form-input w-full">
+                        <option value="">Pilih Kategori Dinamis</option>
+                        @foreach($dynamicCategories as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')<p class="form-error">{{ $message }}</p>@enderror
+                </div>
                 <div><label class="form-label">Tahun</label><input type="number" wire:model="year" class="form-input w-full" min="2000" max="2099">@error('year')<p class="form-error">{{ $message }}</p>@enderror</div>
                 <div><label class="form-label">Nomor</label><input type="text" wire:model="number" class="form-input w-full" placeholder="cth: 1/2024">@error('number')<p class="form-error">{{ $message }}</p>@enderror</div>
                 <div class="sm:col-span-2"><label class="form-label">File Dokumen <span class="text-xs text-gray-400 font-normal">(PDF, maks 2MB)</span> {{ $editingId ? '(kosongkan jika tidak ganti)' : '' }}</label><input type="file" wire:model="file" class="form-input w-full text-sm" accept=".pdf">@error('file')<p class="form-error">{{ $message }}</p>@enderror</div>
-
-
-
             </div>
             <div><label class="form-label">Deskripsi</label><textarea wire:model="description" class="form-input w-full" rows="2"></textarea>@error('description')<p class="form-error">{{ $message }}</p>@enderror</div>
             <div class="flex items-center gap-2"><input type="checkbox" wire:model="is_published" id="pub" class="rounded border-gray-300 text-desa-600"><label for="pub" class="text-sm text-gray-700">Publikasikan</label></div>
@@ -29,7 +54,15 @@
     {{-- Filters --}}
     <div class="flex flex-wrap gap-3 mb-6">
         <input type="text" wire:model.live.debounce.300ms="search" class="form-input w-60" placeholder="Cari dokumen...">
-        <select wire:model.live="filterCategory" class="form-input w-48"><option value="">Semua Kategori</option>@foreach($categories as $k => $v)<option value="{{ $k }}">{{ $v }}</option>@endforeach</select>
+        <select wire:model.live="filterCategory" class="form-input w-56">
+            <option value="">Semua Kategori</option>
+            @foreach($dynamicCategories as $cat)
+                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+            @endforeach
+            @foreach($categories as $k => $v)
+                <option value="{{ $k }}">{{ $v }}</option>
+            @endforeach
+        </select>
     </div>
 
     {{-- Table --}}
@@ -37,7 +70,7 @@
         @forelse($items as $item)
         <tr>
             <td class="font-medium text-sm">{{ Str::limit($item->title, 40) }}</td>
-            <td><span class="badge bg-desa-50 text-desa-700 text-xs">{{ $item->category_label }}</span></td>
+            <td><span class="badge bg-desa-50 text-desa-700 text-xs">{{ $item->categoryRef?->name ?? $item->category_label }}</span></td>
             <td class="text-sm">{{ $item->number ?? '-' }}</td>
             <td class="text-sm">{{ $item->year }}</td>
             <td><span class="badge {{ $item->file_extension === 'PDF' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700' }} text-xs">{{ $item->file_extension }}</span> <span class="text-xs text-gray-400">{{ $item->file_size_formatted }}</span></td>

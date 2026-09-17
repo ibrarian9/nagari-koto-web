@@ -5,19 +5,38 @@
             <h2 class="text-xl font-bold text-gray-900">Kelola UMKM</h2>
             <p class="text-sm text-gray-500 mt-0.5">Tambah, edit, dan kelola data UMKM nagari</p>
         </div>
-        <button wire:click="create" class="btn-primary btn-sm">
-            <span class="material-symbols-outlined text-base">add</span> Tambah
-        </button>
+        <div class="flex items-center gap-2">
+            <button wire:click="openCategoryModal" class="btn-secondary btn-sm">
+                <span class="material-symbols-outlined text-base">category</span> Kelola Kategori
+            </button>
+            <button wire:click="create" class="btn-primary btn-sm">
+                <span class="material-symbols-outlined text-base">add</span> Tambah
+            </button>
+        </div>
     </div>
 
     <x-page-guide title="Panduan Kelola UMKM" description="Kelola direktori UMKM dan usaha lokal nagari. Tambahkan nama usaha, pemilik, deskripsi, kontak, dan foto produk. UMKM yang aktif akan tampil di halaman UMKM pada website publik untuk mempromosikan usaha warga nagari." />
+
+    {{-- Modal Kelola Kategori --}}
+    <x-admin-category-modal
+        :show="$showCategoryModal"
+        title="Kelola Kategori UMKM"
+        subtitle="Tambah, ubah, atau hapus kategori UMKM"
+        :categories="$categories"
+        :editingCategoryId="$editingCategoryId"
+        :editingCategoryName="$editingCategoryName"
+        :newCategoryName="$newCategoryName"
+        iconBg="bg-amber-100"
+        iconColor="text-amber-600"
+    />
+
     <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' UMKM'" subtitle="Isi data usaha dengan lengkap" :icon="$editingId ? 'edit' : 'add_business'" iconBg="bg-amber-100" iconColor="text-amber-600" maxWidth="max-w-3xl">
         <form wire:submit="save" class="space-y-5">
             <x-form-guide>
                 <ul class="list-disc list-inside space-y-1">
                     <li><strong>Nama Pemilik</strong> — Nama lengkap pemilik usaha</li>
                     <li><strong>Nama Usaha</strong> — Nama brand/toko yang dikenal masyarakat</li>
-                    <li><strong>Kategori</strong> — Jenis usaha (cth: Kuliner, Kerajinan, Minuman, Pertanian)</li>
+                    <li><strong>Kategori</strong> — Pilih kategori (bisa ditambahkan via tombol Kelola Kategori)</li>
                     <li><strong>WhatsApp</strong> — Nomor WA aktif untuk pemesanan (format: 08xxx)</li>
                     <li><strong>Deskripsi</strong> — Ceritakan produk unggulan, harga kisaran, dan jam buka</li>
                     <li><strong>Foto</strong> — Foto produk atau tampak depan usaha, maks 2MB</li>
@@ -26,7 +45,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div><label class="form-label">Nama Pemilik <span class="text-red-400">*</span></label><input type="text" wire:model="owner_name" class="form-input w-full" placeholder="Nama lengkap pemilik">@error('owner_name')<p class="form-error">{{ $message }}</p>@enderror</div>
                 <div><label class="form-label">Nama Usaha <span class="text-red-400">*</span></label><input type="text" wire:model="business_name" class="form-input w-full" placeholder="Nama usaha / toko">@error('business_name')<p class="form-error">{{ $message }}</p>@enderror</div>
-                <div><label class="form-label">Kategori</label><input type="text" wire:model="category" class="form-input w-full" placeholder="cth: Makanan, Kerajinan"></div>
+                <div>
+                    <div class="flex items-center justify-between mb-1"><label class="form-label mb-0">Kategori</label><button type="button" wire:click="openCategoryModal" class="text-xs text-amber-600 hover:underline flex items-center gap-1"><span class="material-symbols-outlined text-xs">add</span> Kelola</button></div>
+                    <select wire:model="category" class="form-input w-full">
+                        <option value="">— Pilih Kategori —</option>
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->name }}">{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div><label class="form-label">WhatsApp</label><input type="text" wire:model="whatsapp" class="form-input w-full" placeholder="08xxxxxxxxxx"></div>
             </div>
             <div><label class="form-label">Deskripsi</label><textarea wire:model="description" class="form-input w-full" rows="3" placeholder="Deskripsikan usaha dan produk"></textarea></div>

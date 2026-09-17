@@ -39,6 +39,9 @@
                     <select wire:model.live="filterCategory" 
                             class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-desa-500 focus:border-desa-500 transition-all">
                         <option value="">Semua Kategori</option>
+                        @foreach($dynamicCategories as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                        @endforeach
                         @foreach($categories as $k => $v)
                             <option value="{{ $k }}">{{ $v }}</option>
                         @endforeach
@@ -66,7 +69,7 @@
                     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all group">
                         <div class="p-6">
                             <div class="flex items-start justify-between mb-4">
-                                <span class="badge bg-desa-50 text-desa-700 text-xs">{{ $item->category_label }}</span>
+                                <span class="badge bg-desa-50 text-desa-700 text-xs">{{ $item->categoryRef?->name ?? $item->category_label }}</span>
                                 <span class="text-xs text-gray-400">{{ $item->year }}</span>
                             </div>
                             <h3 class="font-bold text-gray-900 text-lg mb-2 line-clamp-2 group-hover:text-desa-600 transition-colors">

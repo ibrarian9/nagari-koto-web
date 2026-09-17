@@ -135,7 +135,7 @@ class PostManagement extends Component
 
         $cat = Category::create([
             'name' => trim($this->newCategoryName),
-            'slug' => Str::slug($this->newCategoryName),
+            'slug' => Category::generateUniqueSlug($this->newCategoryName, 'berita'),
             'type' => 'berita',
         ]);
 
@@ -160,7 +160,7 @@ class PostManagement extends Component
         $cat = Category::findOrFail($this->editingCategoryId);
         $cat->update([
             'name' => trim($this->editingCategoryName),
-            'slug' => Str::slug($this->editingCategoryName),
+            'slug' => Category::generateUniqueSlug($this->editingCategoryName, 'berita', $cat->id),
         ]);
 
         $this->editingCategoryId = null;
@@ -174,11 +174,12 @@ class PostManagement extends Component
         $this->editingCategoryName = '';
     }
 
+    #[On('deleteCategoryConfirmed')]
     public function deleteCategory(int $id): void
     {
         $cat = Category::findOrFail($id);
         if ($cat->posts()->count() > 0) {
-            $this->dispatch('swal', icon: 'error', title: 'Gagal', text: 'Kategori tidak dapat dihapus karena masih digunakan oleh berita.');
+            $this->dispatch('swal', icon: 'error', title: 'Gagal Hapus Kategori', text: 'Kategori tidak dapat dihapus karena masih terikat dengan data yang ada.');
             return;
         }
         $cat->delete();
@@ -208,7 +209,7 @@ class PostManagement extends Component
             foreach ($defaults as $name) {
                 Category::firstOrCreate(
                     ['name' => $name, 'type' => 'berita'],
-                    ['slug' => Str::slug($name)]
+                    ['slug' => Category::generateUniqueSlug($name, 'berita')]
                 );
             }
         }
@@ -223,7 +224,7 @@ class PostManagement extends Component
             ->when($this->categoryFilter, fn ($q) => $q->where('category_id', $this->categoryFilter))
             ->latest()->paginate(10);
 
-        $categories = Category::where('type', 'berita')->orderBy('name')->get();
+        $categories = Category::where('type', 'berita')->orderByDesc('id')->get();
 
         return view('livewire.admin.post-management', compact('posts', 'categories'))
             ->layout('layouts.admin', ['title' => 'Berita']);

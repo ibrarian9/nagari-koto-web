@@ -4,12 +4,18 @@ namespace App\Models;
 
 use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class VillageInstitution extends Model
 {
     use LogsActivity;
 
-    protected $fillable = ['name', 'type', 'head_name', 'description', 'logo', 'contact', 'established_year', 'is_active', 'order'];
+    protected $fillable = ['category_id', 'name', 'type', 'head_name', 'description', 'logo', 'contact', 'established_year', 'is_active', 'order'];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     protected function casts(): array
     {

@@ -18,11 +18,14 @@ class Umkm extends Component
     #[Layout('layouts.app', ['title' => 'UMKM & Produk Desa'])]
     public function render()
     {
-        $categories = Product::active()
+        $dbCategories = \App\Models\Category::where('type', 'umkm')->orderBy('name')->pluck('name')->toArray();
+        $productCategories = Product::active()
             ->whereNotNull('category')
             ->where('category', '!=', '')
             ->distinct()
-            ->pluck('category');
+            ->pluck('category')
+            ->toArray();
+        $categories = array_values(array_unique(array_merge($dbCategories, $productCategories)));
 
         $products = Product::active()
             ->when($this->search, fn ($q) => $q->where(function ($query) {

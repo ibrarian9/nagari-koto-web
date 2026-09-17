@@ -50,7 +50,7 @@
                             <span><strong>Tata Kelola Pemdes:</strong> Kualitas penyelenggaraan pemerintahan nagari</span>
                         </li>
                     </ul>
-                    <p class="mt-2">Skor IDM berkisar antara <strong>0 sampai 1000</strong>. Semakin tinggi skor, semakin
+                    <p class="mt-2">Skor IDM berkisar antara <strong>0 sampai 635</strong>. Semakin tinggi skor, semakin
                         maju nagarinya.</p>
                 </div>
             </div>
@@ -122,11 +122,11 @@
                         <div class="flex items-end gap-2">
                             <span
                                 class="text-3xl font-extrabold text-gray-900">{{ \App\Models\IdmStat::formatIdmScore($dim['score']) }}</span>
-                            <span class="text-xs text-gray-400 mb-1">/ 1000</span>
+                            <span class="text-xs text-gray-400 mb-1">/ 635</span>
                         </div>
                         <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
                             <div class="bg-{{ $dim['color'] }}-500 h-2 rounded-full transition-all duration-500"
-                                style="width: {{ $dim['score'] * 100 }}%"></div>
+                                style="width: {{ min(100, round(( (float) \App\Models\IdmStat::formatIdmScore($dim['score']) / 635 ) * 100, 1)) }}%"></div>
                         </div>
                     </div>
                 @endforeach
@@ -151,7 +151,7 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        scales: { r: { beginAtZero: true, max: 1000, ticks: { stepSize: 200 } } },
+                        scales: { r: { beginAtZero: true, max: 635, ticks: { stepSize: 100 } } },
                         plugins: { legend: { position: 'bottom' } }
                     }
                 });
@@ -176,7 +176,7 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        scales: { y: { min: 0, max: 1000 } },
+                        scales: { y: { min: 0, max: 635 } },
                         plugins: { legend: { position: 'bottom' } }
                     }
                 });

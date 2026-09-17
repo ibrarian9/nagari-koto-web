@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Category;
 use App\Models\PpidSetiapSaat;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -21,10 +22,16 @@ class PpidSetiapSaatManagement extends Component
     public string $search = '';
     public string $filterCategory = '';
 
+    // Modal Kelola Kategori
+    public bool $showCategoryModal = false;
+    public string $newCategoryName = '';
+    public ?int $editingCategoryId = null;
+    public string $editingCategoryName = '';
+
     #[Validate('required|string|max:255')]
     public string $title = '';
 
-    #[Validate('required|string')]
+    #[Validate('required|string|max:100')]
     public string $category = '';
 
     #[Validate('required|integer|min:2000|max:2099')]
@@ -38,12 +45,22 @@ class PpidSetiapSaatManagement extends Component
     #[Validate('required|boolean')]
     public bool $is_published = true;
 
-    public function mount(): void { $this->year = (int) date('Y'); }
+    public function mount(): void
+    {
+        $this->year = (int) date('Y');
+        $this->ensureDefaultCategoriesExist();
+    }
 
-    public function create(): void { $this->resetForm(); $this->showForm = true; }
+    public function create(): void
+    {
+        $this->resetForm();
+        $this->ensureDefaultCategoriesExist();
+        $this->showForm = true;
+    }
 
     public function edit(int $id): void
     {
+        $this->ensureDefaultCategoriesExist();
         $item = PpidSetiapSaat::findOrFail($id);
         $this->editingId = $id;
         $this->title = $item->title;
@@ -59,8 +76,6 @@ class PpidSetiapSaatManagement extends Component
         $rules = $this->editingId
             ? ['file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx|max:2048']
             : ['file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:2048'];
-
-
 
         $this->validate(array_merge($this->rules(), $rules));
 
@@ -84,13 +99,11 @@ class PpidSetiapSaatManagement extends Component
             $data['file_name'] = $fileName;
             $data['file_size'] = $this->file->getSize();
 
-            // Get old file path for deletion after successful update
             if ($this->editingId) {
                 $old = PpidSetiapSaat::find($this->editingId);
                 $oldFilePath = $old?->file_path;
             }
         } elseif ($this->editingId) {
-            // Preserve existing file data when editing without new file
             $existing = PpidSetiapSaat::findOrFail($this->editingId);
             $data['file_path'] = $existing->file_path;
             $data['file_name'] = $existing->file_name;
@@ -104,10 +117,8 @@ class PpidSetiapSaatManagement extends Component
 
             \DB::commit();
 
-            // Delete old file only after successful database update
             if ($oldFilePath && Storage::disk('public')->exists($oldFilePath)) {
                 Storage::disk('public')->delete($oldFilePath);
-                // Invalidate cache for old file path using model-specific prefix
                 Cache::forget(PpidSetiapSaat::CACHE_KEY_PREFIX . md5($oldFilePath));
             }
 
@@ -117,7 +128,6 @@ class PpidSetiapSaatManagement extends Component
         } catch (\Exception $e) {
             \DB::rollBack();
 
-            // Delete newly uploaded file if database update failed
             if ($newFilePath && Storage::disk('public')->exists($newFilePath)) {
                 Storage::disk('public')->delete($newFilePath);
             }
@@ -132,18 +142,119 @@ class PpidSetiapSaatManagement extends Component
         $item = PpidSetiapSaat::findOrFail($id);
         if ($item->file_path) {
             Storage::disk('public')->delete($item->file_path);
-            // Invalidate cache for deleted file path using model-specific prefix
             Cache::forget(PpidSetiapSaat::CACHE_KEY_PREFIX . md5($item->file_path));
         }
         $item->delete();
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data dihapus.');
     }
 
+    // ─── Kategori Management ───────────────────────────────
+
+    public function openCategoryModal(): void
+    {
+        $this->ensureDefaultCategoriesExist();
+        $this->resetCategoryForm();
+        $this->showCategoryModal = true;
+    }
+
+    public function addCategory(): void
+    {
+        $this->validate([
+            'newCategoryName' => 'required|string|max:100|unique:categories,name,NULL,id,type,ppid_setiap_saat',
+        ], [
+            'newCategoryName.required' => 'Nama kategori wajib diisi.',
+            'newCategoryName.unique' => 'Nama kategori sudah ada.',
+        ]);
+
+        $cat = Category::create([
+            'name' => trim($this->newCategoryName),
+            'slug' => Category::generateUniqueSlug($this->newCategoryName, 'ppid_setiap_saat'),
+            'type' => 'ppid_setiap_saat',
+        ]);
+
+        $this->category = $cat->slug;
+        $this->newCategoryName = '';
+        $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Kategori baru berhasil ditambahkan.');
+    }
+
+    public function editCategory(int $id): void
+    {
+        $cat = Category::findOrFail($id);
+        $this->editingCategoryId = $cat->id;
+        $this->editingCategoryName = $cat->name;
+    }
+
+    public function updateCategory(): void
+    {
+        $this->validate([
+            'editingCategoryName' => 'required|string|max:100|unique:categories,name,' . $this->editingCategoryId . ',id,type,ppid_setiap_saat',
+        ]);
+
+        $cat = Category::findOrFail($this->editingCategoryId);
+        $oldSlug = $cat->slug;
+        $newSlug = Category::generateUniqueSlug($this->editingCategoryName, 'ppid_setiap_saat', $cat->id);
+
+        $cat->update([
+            'name' => trim($this->editingCategoryName),
+            'slug' => $newSlug,
+        ]);
+
+        PpidSetiapSaat::where('category', $oldSlug)->update(['category' => $newSlug]);
+
+        $this->editingCategoryId = null;
+        $this->editingCategoryName = '';
+        $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Kategori berhasil diperbarui.');
+    }
+
+    public function cancelEditCategory(): void
+    {
+        $this->editingCategoryId = null;
+        $this->editingCategoryName = '';
+    }
+
+    #[On('deleteCategoryConfirmed')]
+    public function deleteCategory(int $id): void
+    {
+        $cat = Category::findOrFail($id);
+        if (PpidSetiapSaat::where('category', $cat->slug)->orWhere('category', $cat->name)->count() > 0) {
+            $this->dispatch('swal', icon: 'error', title: 'Gagal Hapus Kategori', text: 'Kategori tidak dapat dihapus karena masih terikat dengan data yang ada.');
+            return;
+        }
+        $cat->delete();
+        $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Kategori berhasil dihapus.');
+    }
+
+    private function resetCategoryForm(): void
+    {
+        $this->newCategoryName = '';
+        $this->editingCategoryId = null;
+        $this->editingCategoryName = '';
+    }
+
+    public function ensureDefaultCategoriesExist(): void
+    {
+        if (Category::where('type', 'ppid_setiap_saat')->count() === 0) {
+            $defaults = PpidSetiapSaat::CATEGORIES;
+            foreach ($defaults as $name) {
+                Category::firstOrCreate([
+                    'type' => 'ppid_setiap_saat',
+                    'name' => $name,
+                ], [
+                    'slug' => Category::generateUniqueSlug($name, 'ppid_setiap_saat'),
+                ]);
+            }
+        }
+    }
+
     private function resetForm(): void
     {
-        $this->editingId = null; $this->title = ''; $this->category = '';
-        $this->year = (int) date('Y'); $this->description = '';
-        $this->file = null; $this->is_published = true;
+        $this->editingId = null;
+        $this->title = '';
+        $this->category = '';
+        $this->year = (int) date('Y');
+        $this->description = '';
+        $this->file = null;
+        $this->is_published = true;
     }
 
     private function generateStandardFileName(string $title, string $extension): string
@@ -156,7 +267,7 @@ class PpidSetiapSaatManagement extends Component
     {
         return [
             'title' => 'required|string|max:255',
-            'category' => 'required|string|in:' . implode(',', array_keys(PpidSetiapSaat::CATEGORIES)),
+            'category' => 'required|string|max:100',
             'year' => 'required|integer|min:2000|max:2099',
             'description' => 'nullable|string|max:2000',
             'is_published' => 'required|boolean',
@@ -166,13 +277,18 @@ class PpidSetiapSaatManagement extends Component
     #[Layout('layouts.admin', ['title' => 'PPID — Informasi Setiap Saat'])]
     public function render()
     {
+        $this->ensureDefaultCategoriesExist();
+        $dynamicCategories = Category::where('type', 'ppid_setiap_saat')->orderByDesc('id')->get();
+
         $items = PpidSetiapSaat::query()
             ->when($this->search, fn($q) => $q->where('title', 'like', "%{$this->search}%"))
             ->when($this->filterCategory, fn($q) => $q->where('category', $this->filterCategory))
             ->latest()->paginate(15);
 
         return view('livewire.admin.ppid-setiap-saat-management', [
-            'items' => $items, 'categories' => PpidSetiapSaat::CATEGORIES,
+            'items' => $items,
+            'categories' => PpidSetiapSaat::CATEGORIES,
+            'dynamicCategories' => $dynamicCategories,
         ]);
     }
 }

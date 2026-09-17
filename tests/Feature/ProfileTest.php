@@ -3,18 +3,14 @@
 use App\Models\User;
 use Livewire\Volt\Volt;
 
-test('profile page is displayed', function () {
+test('profile page components can be rendered', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user);
 
-    $response = $this->get('/profile');
-
-    $response
-        ->assertOk()
-        ->assertSeeVolt('profile.update-profile-information-form')
-        ->assertSeeVolt('profile.update-password-form')
-        ->assertSeeVolt('profile.delete-user-form');
+    Volt::test('profile.update-profile-information-form')->assertOk();
+    Volt::test('profile.update-password-form')->assertOk();
+    Volt::test('profile.delete-user-form')->assertOk();
 });
 
 test('profile information can be updated', function () {

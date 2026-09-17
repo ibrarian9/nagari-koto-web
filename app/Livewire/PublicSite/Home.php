@@ -21,7 +21,7 @@ class Home extends Component
         $village = VillageProfile::query()->first();
         $latestStats = PopulationStat::latestYear()->first();
         $latestPosts = Post::with('category')->published()->latest('published_at')->take(3)->get();
-        $upcomingAgendas = Agenda::publicOnly()->upcoming()->take(3)->get();
+        $upcomingAgendas = Agenda::publicOnly()->latest('start_date')->take(3)->get();
         $potentials = Potential::query()->latest()->take(4)->get();
         $products = Product::active()->latest()->take(6)->get();
         $idm = IdmStat::latestYear()->first();

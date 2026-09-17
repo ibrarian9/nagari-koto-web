@@ -59,12 +59,6 @@
                         </select>
                     </div>
                 </div>
-
-                <button onclick="confirmAction(null, 'clearOldActivityLogsConfirmed', 'Hapus semua log aktivitas yang berusia lebih dari 30 hari?')"
-                    wire:click="clearOldActivityLogs"
-                    class="btn-secondary btn-sm text-red-600 hover:bg-red-50 hover:text-red-700 flex items-center gap-1.5 self-start md:self-auto">
-                    <span class="material-symbols-outlined text-base">auto_delete</span> Bersihkan Log >30 Hari
-                </button>
             </div>
         </div>
 
@@ -178,9 +172,6 @@
                 <div class="flex flex-wrap gap-2">
                     <button wire:click="downloadErrorLog" class="btn-secondary btn-sm flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-base">download</span> Download File Log
-                    </button>
-                    <button wire:click="clearErrorLogs" onclick="return confirm('Kosongkan seluruh log error Laravel?')" class="btn-secondary btn-sm text-red-600 hover:bg-red-50 flex items-center gap-1.5">
-                        <span class="material-symbols-outlined text-base">delete_sweep</span> Bersihkan Log Error
                     </button>
                 </div>
             </div>

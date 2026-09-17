@@ -72,9 +72,14 @@ class LegalDocuments extends Component
     #[Layout('layouts.app', ['title' => 'Produk Hukum'])]
     public function render()
     {
-        $query = LegalDocument::published()
+        $dynamicCategories = \App\Models\Category::where('type', 'produk_hukum')->orderBy('name')->get();
+
+        $query = LegalDocument::with('categoryRef')->published()
             ->when($this->search, fn($q) => $q->where('title', 'like', "%{$this->search}%"))
-            ->when($this->filterCategory, fn($q) => $q->where('category', $this->filterCategory))
+            ->when($this->filterCategory, fn($q) => $q->where(function ($sub) {
+                $sub->where('category', $this->filterCategory)
+                    ->orWhere('category_id', $this->filterCategory);
+            }))
             ->when($this->filterYear, fn($q) => $q->where('year', $this->filterYear))
             ->latest('published_at');
 
@@ -90,6 +95,7 @@ class LegalDocuments extends Component
         return view('livewire.public.legal-documents', [
             'items' => $items,
             'categories' => LegalDocument::CATEGORIES,
+            'dynamicCategories' => $dynamicCategories,
             'availableYears' => $availableYears,
         ]);
     }

@@ -291,7 +291,7 @@
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
                                 <h3
-                                    class="font-extrabold text-gray-900 group-hover:text-desa-650 transition-colors leading-snug text-base line-clamp-2">
+                                    class="font-extrabold text-gray-900 group-hover:text-desa-650 transition-colors leading-snug text-base line-clamp-2 capitalize">
                                     {{ $post->title }}
                                 </h3>
                                 <p class="mt-2.5 text-xs text-gray-450 line-clamp-2 leading-relaxed">
@@ -431,7 +431,7 @@
                                 <span class="text-[10px] uppercase font-extrabold tracking-widest mt-1 opacity-90">{{ $agenda->start_date->translatedFormat('M Y') }}</span>
                             </div>
                             <div class="min-w-0">
-                                <h3 class="font-extrabold text-gray-900 leading-snug text-base line-clamp-2 group-hover:text-desa-650 transition-colors">
+                                <h3 class="font-extrabold text-gray-900 leading-snug text-base line-clamp-2 group-hover:text-desa-650 transition-colors capitalize">
                                     {{ $agenda->title }}
                                 </h3>
                                 @if ($agenda->location)
@@ -448,6 +448,11 @@
                                 <span class="material-symbols-outlined text-sm text-desa-600">schedule</span>
                                 {{ $agenda->start_date->translatedFormat('l, d F Y — H:i') }} WIB
                             </span>
+                            @if ($agenda->start_date->isPast())
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-2xs font-semibold bg-gray-100 text-gray-600">Selesai</span>
+                            @else
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-2xs font-semibold bg-emerald-100 text-emerald-700">Mendatang</span>
+                            @endif
                         </div>
 
                     </div>
@@ -498,7 +503,7 @@
                     <div class="absolute inset-0 p-6 flex flex-col justify-end z-10">
                         <span
                             class="bg-amber-400/20 text-amber-300 font-extrabold px-3 py-1 rounded-lg text-[9px] uppercase tracking-widest self-start border border-amber-400/30 mb-3 shadow-inner">{{ $p->category }}</span>
-                        <h3 class="font-extrabold text-white text-base leading-snug drop-shadow-md group-hover:text-amber-200 transition-colors">
+                        <h3 class="font-extrabold text-white text-base leading-snug drop-shadow-md group-hover:text-amber-200 transition-colors capitalize">
                             {{ $p->title }}
                         </h3>
                     </div>
@@ -547,7 +552,7 @@
                         </div>
                         <div class="min-w-0 flex-1 flex flex-col justify-between">
                             <div>
-                                <h3 class="font-extrabold text-gray-900 text-base truncate">
+                                <h3 class="font-extrabold text-gray-900 text-base truncate capitalize">
                                     {{ $product->business_name }}</h3>
                                 <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
                                     <span class="material-symbols-outlined text-xs text-gray-300">person</span>
@@ -580,6 +585,9 @@
             </div>
         </div>
     </section>
+
+    {{-- ─── STATISTIK PENGUNJUNG WEBSITE ─────────────────────── --}}
+    <livewire:public-site.visitor-counter />
 
     {{-- ─── PETA LOKASI & DETAIL KONTAK ─────────────────────── --}}
     <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">

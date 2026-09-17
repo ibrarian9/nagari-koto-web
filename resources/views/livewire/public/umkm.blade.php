@@ -12,7 +12,7 @@
 
     <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         {{-- Category Filter --}}
-        @if($categories->count())
+        @if(count($categories))
             <div class="flex flex-wrap justify-center gap-2 mb-6">
                 <button wire:click="$set('category', '')"
                     class="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all {{ $category === '' ? 'bg-amber-600 text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50' }}">

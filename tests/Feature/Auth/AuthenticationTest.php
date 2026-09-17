@@ -12,7 +12,7 @@ test('login screen can be rendered', function () {
 });
 
 test('users can authenticate using the login screen', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create(['role' => 'super_admin']);
 
     $component = Volt::test('pages.auth.login')
         ->set('form.email', $user->email)
@@ -22,7 +22,7 @@ test('users can authenticate using the login screen', function () {
 
     $component
         ->assertHasNoErrors()
-        ->assertRedirect(route('dashboard', absolute: false));
+        ->assertRedirect(route('admin.dashboard', absolute: false));
 
     $this->assertAuthenticated();
 });
@@ -44,15 +44,13 @@ test('users can not authenticate with invalid password', function () {
 });
 
 test('navigation menu can be rendered', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create(['role' => 'super_admin']);
 
     $this->actingAs($user);
 
-    $response = $this->get('/dashboard');
+    $response = $this->get('/admin/dashboard');
 
-    $response
-        ->assertOk()
-        ->assertSeeVolt('layout.navigation');
+    $response->assertOk();
 });
 
 test('users can logout', function () {

@@ -1,17 +1,33 @@
 <div>
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div><h2 class="text-xl font-bold text-gray-900">Lembaga Nagari</h2><p class="text-sm text-gray-500 mt-0.5">Kelola daftar lembaga dan organisasi di nagari</p></div>
-        <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span> Tambah</button>
+        <div class="flex items-center gap-2">
+            <button wire:click="openCategoryModal" class="btn-secondary btn-sm"><span class="material-symbols-outlined text-base">category</span> Kelola Kategori</button>
+            <button wire:click="create" class="btn-primary btn-sm"><span class="material-symbols-outlined text-base">add</span> Tambah</button>
+        </div>
     </div>
 
     <x-page-guide title="Panduan Lembaga Nagari" description="Kelola data lembaga dan organisasi yang ada di nagari, seperti KAN, PKK, Karang Taruna, LPMN, dan lainnya. Isi nama lembaga, kategori, ketua, deskripsi singkat, dan logo. Data akan ditampilkan di halaman Lembaga Nagari pada website publik." />
+
+    {{-- Modal Kelola Kategori --}}
+    <x-admin-category-modal
+        :show="$showCategoryModal"
+        title="Kelola Kategori Lembaga"
+        subtitle="Tambah, ubah, atau hapus kategori lembaga"
+        :categories="$categories"
+        :editingCategoryId="$editingCategoryId"
+        :editingCategoryName="$editingCategoryName"
+        :newCategoryName="$newCategoryName"
+        iconBg="bg-indigo-100"
+        iconColor="text-indigo-600"
+    />
 
     <x-admin-modal :show="$showForm" :title="($editingId ? 'Edit' : 'Tambah') . ' Lembaga'" subtitle="Informasi lembaga nagari" :icon="$editingId ? 'edit' : 'domain_add'" iconBg="bg-purple-100" iconColor="text-purple-600" maxWidth="max-w-3xl">
         <form wire:submit="save" class="space-y-5">
             <x-form-guide>
                 <ul class="list-disc list-inside space-y-1">
                     <li><strong>Nama Lembaga</strong> — Nama resmi lembaga (cth: Kerapatan Adat Nagari, PKK, Karang Taruna)</li>
-                    <li><strong>Kategori</strong> — Jenis lembaga: Adat, Kepemudaan, Perempuan, Keagamaan, Sosial, Pendidikan</li>
+                    <li><strong>Kategori</strong> — Pilih kategori lembaga yang sudah dikelola</li>
                     <li><strong>Ketua</strong> — Nama pimpinan/ketua lembaga saat ini</li>
                     <li><strong>Deskripsi</strong> — Penjelasan singkat tentang lembaga, tugas, dan fungsinya</li>
                     <li><strong>Kontak</strong> — Nomor HP atau email lembaga (opsional)</li>
@@ -21,10 +37,18 @@
             </x-form-guide>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div><label class="form-label">Nama Lembaga <span class="text-red-400">*</span></label><input type="text" wire:model="name" class="form-input w-full" placeholder="Nama lembaga">@error('name')<p class="form-error">{{ $message }}</p>@enderror</div>
-                <div><label class="form-label">Kategori <span class="text-red-400">*</span></label>
-                    <select wire:model="type" class="form-input w-full">
-                        @foreach(\App\Models\VillageInstitution::TYPES as $k => $v)<option value="{{ $k }}">{{ $v }}</option>@endforeach
-                    </select>@error('type')<p class="form-error">{{ $message }}</p>@enderror
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="form-label mb-0">Kategori Lembaga <span class="text-red-400">*</span></label>
+                        <button type="button" wire:click="openCategoryModal" class="text-xs text-desa-600 hover:underline">+ Kelola Kategori</button>
+                    </div>
+                    <select wire:model="category_id" class="form-input w-full">
+                        <option value="">-- Pilih Kategori --</option>
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')<p class="form-error">{{ $message }}</p>@enderror
                 </div>
                 <div><label class="form-label">Ketua / Pimpinan</label><input type="text" wire:model="head_name" class="form-input w-full" placeholder="Nama ketua lembaga"></div>
                 <div><label class="form-label">Kontak</label><input type="text" wire:model="contact" class="form-input w-full" placeholder="No HP / Email"></div>
@@ -50,7 +74,7 @@
                         <div><span class="font-medium">{{ $inst->name }}</span></div>
                         @if($inst->established_year)<span class="text-xs text-gray-400">Berdiri {{ $inst->established_year }}</span>@endif
                     </td>
-                    <td><span class="badge badge-success">{{ $inst->type_label }}</span></td>
+                    <td><span class="badge badge-success">{{ $inst->category?->name ?? $inst->type_label }}</span></td>
                     <td class="text-sm">{{ $inst->head_name ?? '-' }}</td>
                     <td><span class="badge {{ $inst->is_active ? 'badge-success' : 'badge-danger' }}">{{ $inst->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>
                     <td><div class="flex justify-end gap-1"><button wire:click="edit({{ $inst->id }})" class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-desa-50 hover:text-desa-600 transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button><button onclick="confirmAction({{ $inst->id }}, 'deleteConfirmed', 'Yakin ingin menghapus data ini?')" class="h-8 w-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-red-50 hover:text-red-600 transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button></div></td>

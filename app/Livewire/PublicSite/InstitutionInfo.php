@@ -13,12 +13,15 @@ class InstitutionInfo extends Component
     #[Layout]
     public function render()
     {
-        $institutions = VillageInstitution::active()->ordered()
-            ->when($this->typeFilter, fn($q) => $q->byType($this->typeFilter))
+        $institutions = VillageInstitution::with('category')->active()->ordered()
+            ->when($this->typeFilter, fn($q) => $q->where(function ($sub) {
+                $sub->where('type', $this->typeFilter)->orWhere('category_id', $this->typeFilter);
+            }))
             ->get();
+        $categories = \App\Models\Category::where('type', 'lembaga')->orderBy('name')->get();
         $village = VillageProfile::first();
 
-        return view('livewire.public.institution-info', compact('institutions', 'village'))
+        return view('livewire.public.institution-info', compact('institutions', 'categories', 'village'))
             ->layout('layouts.app', ['title' => 'Lembaga Nagari']);
     }
 }

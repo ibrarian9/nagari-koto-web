@@ -14,8 +14,10 @@ class VillagePotential extends Component
     #[Layout('layouts.app', ['title' => 'Potensi Desa'])]
     public function render()
     {
-        $potentials = Potential::query()->when($this->category, fn ($q) => $q->ofCategory($this->category))->latest()->get();
-        $categories = ['economy' => 'Ekonomi', 'tourism' => 'Pariwisata', 'agriculture' => 'Pertanian', 'creative' => 'Kreatif', 'environment' => 'Lingkungan'];
+        $potentials = Potential::query()->when($this->category, fn ($q) => $q->where('category', $this->category))->latest()->get();
+        $categoriesList = \App\Models\Category::where('type', 'potensi')->orderBy('name')->get();
+        $categories = $categoriesList->pluck('name', 'slug')->toArray();
+
         return view('livewire.public.village-potential', compact('potentials', 'categories'));
     }
 }

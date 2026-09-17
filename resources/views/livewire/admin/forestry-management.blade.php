@@ -4,12 +4,30 @@
             <h2 class="text-xl font-bold text-gray-900">Data Kehutanan</h2>
             <p class="text-sm text-gray-500 mt-0.5">Kelola data kawasan hutan dan lahan nagari</p>
         </div>
-        <button wire:click="create" class="btn-primary btn-sm">
-            <span class="material-symbols-outlined text-base">add</span> Tambah
-        </button>
+        <div class="flex items-center gap-2">
+            <button wire:click="openCategoryModal" class="btn-secondary btn-sm">
+                <span class="material-symbols-outlined text-base">category</span> Kelola Kategori
+            </button>
+            <button wire:click="create" class="btn-primary btn-sm">
+                <span class="material-symbols-outlined text-base">add</span> Tambah
+            </button>
+        </div>
     </div>
 
     <x-page-guide title="Panduan Data Kehutanan" description="Kelola data kawasan hutan dan lahan nagari. Masukkan nama kawasan, kategori (Hutan Lindung, Hutan Produksi, dll), luas area, lokasi, dan status kondisi. Data ini akan ditampilkan di halaman Kehutanan pada website publik sebagai informasi transparansi pengelolaan hutan nagari." />
+
+    {{-- Modal Kelola Kategori --}}
+    <x-admin-category-modal
+        :show="$showCategoryModal"
+        title="Kelola Kategori Kehutanan"
+        subtitle="Tambah, ubah, atau hapus kategori kehutanan"
+        :categories="$categories"
+        :editingCategoryId="$editingCategoryId"
+        :editingCategoryName="$editingCategoryName"
+        :newCategoryName="$newCategoryName"
+        iconBg="bg-green-100"
+        iconColor="text-green-600"
+    />
 
     {{-- Summary Cards --}}
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
@@ -37,7 +55,7 @@
             <x-form-guide>
                 <ul class="list-disc list-inside space-y-1">
                     <li><strong>Nama Kawasan</strong> — Nama resmi atau populer kawasan hutan (cth: Hutan Rimba Panti)</li>
-                    <li><strong>Kategori</strong> — Jenis kawasan: Hutan Lindung, Produksi, Rakyat, Lahan Kritis, atau Rehabilitasi</li>
+                    <li><strong>Kategori</strong> — Jenis kawasan (bisa ditambahkan via tombol Kelola Kategori)</li>
                     <li><strong>Luas</strong> — Luas area dalam satuan hektar (Ha)</li>
                     <li><strong>Lokasi</strong> — Nama jorong, nagari, atau titik lokasi kawasan</li>
                     <li><strong>Tahun Data</strong> — Tahun pencatatan atau pendataan terakhir</li>
@@ -53,11 +71,11 @@
                     @error('title')<p class="form-error">{{ $message }}</p>@enderror
                 </div>
                 <div>
-                    <label class="form-label">Kategori <span class="text-red-400">*</span></label>
+                    <div class="flex items-center justify-between mb-1"><label class="form-label mb-0">Kategori <span class="text-red-400">*</span></label><button type="button" wire:click="openCategoryModal" class="text-xs text-green-600 hover:underline flex items-center gap-1"><span class="material-symbols-outlined text-xs">add</span> Kelola</button></div>
                     <select wire:model="category" class="form-input w-full">
                         <option value="">— Pilih Kategori —</option>
-                        @foreach(\App\Models\ForestryRecord::CATEGORIES as $k => $v)
-                            <option value="{{ $k }}">{{ $v }}</option>
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->slug }}">{{ $cat->name }}</option>
                         @endforeach
                     </select>
                     @error('category')<p class="form-error">{{ $message }}</p>@enderror
@@ -116,8 +134,8 @@
         </div>
         <select wire:model.live="categoryFilter" class="form-input w-full sm:w-44 flex-shrink-0">
             <option value="">Semua Kategori</option>
-            @foreach(\App\Models\ForestryRecord::CATEGORIES as $k => $v)
-                <option value="{{ $k }}">{{ $v }}</option>
+            @foreach($categories as $cat)
+                <option value="{{ $cat->slug }}">{{ $cat->name }}</option>
             @endforeach
         </select>
         <select wire:model.live="yearFilter" class="form-input w-full sm:w-32 flex-shrink-0">

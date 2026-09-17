@@ -1,0 +1,125 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - complementary [ref=f3e3]:
+      - generic [ref=f3e9]:
+        - heading "SIAKAD DIGITAL" [level=2] [ref=f3e10]
+        - paragraph [ref=f3e11]: Kepala Yayasan
+      - navigation [ref=f3e12]:
+        - link "Dashboard Utama" [ref=f3e13] [cursor=pointer]:
+          - /url: http://127.0.0.1:8001/super-admin/dashboard
+        - button "Keuangan & Persetujuan 1" [ref=f3e19]:
+          - generic [ref=f3e20]: Keuangan & Persetujuan
+          - generic [ref=f3e24]: "1"
+        - button "Supervisi & Akademik" [ref=f3e29]
+        - button "Data Master & SDM" [ref=f3e39]
+        - button "Pusat Laporan" [ref=f3e51]
+        - button "Manajemen Sistem" [ref=f3e59]
+      - generic [ref=f3e68]:
+        - link "Panduan & FAQ" [ref=f3e69] [cursor=pointer]:
+          - /url: http://127.0.0.1:8001/tutorial-faq
+        - generic [ref=f3e74]:
+          - generic [ref=f3e75]: H.
+          - generic [ref=f3e76]:
+            - paragraph [ref=f3e77]: H. Ahmad Syarifuddin
+            - paragraph [ref=f3e78]: Kepala Yayasan
+          - button "Keluar dari sistem" [ref=f3e80]
+    - generic [ref=f3e84]:
+      - banner [ref=f3e85]:
+        - heading "Dashboard Super Admin" [level=1] [ref=f3e87]
+        - generic [ref=f3e88]:
+          - button "Cari menu... Ctrl K" [ref=f3e89] [cursor=pointer]:
+            - generic [ref=f3e93]: Cari menu...
+            - generic [ref=f3e94]: Ctrl K
+          - button "99" [ref=f3e96]
+          - generic [ref=f3e102]:
+            - generic [ref=f3e103]: H.
+            - generic [ref=f3e104]:
+              - paragraph [ref=f3e105]: H. Ahmad Syarifuddin
+              - paragraph [ref=f3e106]: super admin
+      - main [ref=f3e107]:
+        - generic [ref=f3e109]:
+          - generic [ref=f3e111]:
+            - generic [ref=f3e112]: PANEL SUPER ADMIN
+            - heading "Selamat Datang, H. Ahmad Syarifuddin" [level=1] [ref=f3e115]
+            - paragraph [ref=f3e120]: Pusat kendali eksekutif, rekapitulasi data akademik yayasan, dan tata kelola sistem terpadu.
+          - generic [ref=f3e122] [cursor=pointer]:
+            - generic [ref=f3e127]:
+              - heading "Petunjuk Super Admin & Pengendalian Sistem" [level=4] [ref=f3e128]
+              - paragraph [ref=f3e130]: Klik untuk menyembunyikan / menampilkan petunjuk penggunaan.
+            - button "Tampilkan" [ref=f3e131]
+          - generic [ref=f3e135]:
+            - generic [ref=f3e136]:
+              - generic [ref=f3e137]: Total Siswa Aktif
+              - heading "46" [level=3] [ref=f3e146]
+            - generic [ref=f3e147]:
+              - generic [ref=f3e148]: Total Guru & Staf
+              - heading "12" [level=3] [ref=f3e156]
+            - generic [ref=f3e157]:
+              - generic [ref=f3e158]: Total Kelas
+              - heading "9" [level=3] [ref=f3e164]
+            - generic [ref=f3e165]:
+              - generic [ref=f3e166]: Tunggakan SPP
+              - heading "Rp 3.150.000" [level=3] [ref=f3e173]
+          - generic [ref=f3e174]:
+            - generic [ref=f3e177]:
+              - generic [ref=f3e178]:
+                - heading "Sebaran Santri per Rombel Kelas" [level=3] [ref=f3e182]
+                - paragraph [ref=f3e183]: Populasi siswa aktif yang terdaftar di masing-masing kelas.
+              - generic [ref=f3e184]: SEBARAN ROMBEL
+            - generic [ref=f3e190]:
+              - generic [ref=f3e191]:
+                - heading "Distribusi Akun & Hak Akses" [level=3] [ref=f3e197]
+                - paragraph [ref=f3e198]: Komposisi pengguna terdaftar berdasarkan peran.
+              - generic [ref=f3e199]: ROLE PENGGUNA
+          - generic [ref=f3e203]:
+            - generic [ref=f3e204]:
+              - heading "Akses Cepat Pengelolaan" [level=3] [ref=f3e205]
+              - generic [ref=f3e206]:
+                - link [ref=f3e207] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8001/super-admin/user
+                  - generic [ref=f3e214]:
+                    - heading "Manajemen User" [level=4] [ref=f3e215]
+                    - paragraph [ref=f3e216]: Kelola akun pengguna, hak akses & role.
+                - link [ref=f3e217] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8001/super-admin/capaian-guru
+                  - generic [ref=f3e222]:
+                    - heading "Evaluasi Capaian Guru" [level=4] [ref=f3e223]
+                    - paragraph [ref=f3e224]: Penilaian portofolio & sertifikasi guru.
+                - link [ref=f3e225] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8001/super-admin/audit-log
+                  - generic [ref=f3e229]:
+                    - heading "Audit Log" [level=4] [ref=f3e230]
+                    - paragraph [ref=f3e231]: Monitor seluruh riwayat aktivitas sistem.
+                - link [ref=f3e232] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8001/super-admin/pengaturan
+                  - generic [ref=f3e237]:
+                    - heading "Pengaturan Sistem" [level=4] [ref=f3e238]
+                    - paragraph [ref=f3e239]: Konfigurasi instansi & identitas dokumen.
+            - generic [ref=f3e240]:
+              - heading "Status Sistem & Server" [level=3] [ref=f3e241]
+              - generic [ref=f3e242]:
+                - generic [ref=f3e243]:
+                  - generic [ref=f3e244]: Database Engine
+                  - generic [ref=f3e247]: MariaDB Connected
+                - generic [ref=f3e249]:
+                  - generic [ref=f3e250]: Versi Framework
+                  - generic [ref=f3e253]: Laravel 13.20.0
+                - generic [ref=f3e254]:
+                  - generic [ref=f3e255]: Versi PHP
+                  - generic [ref=f3e258]: PHP 8.4.21
+                - generic [ref=f3e259]:
+                  - generic [ref=f3e260]: Zona Waktu
+                  - generic [ref=f3e263]: Asia/Jakarta
+  - button "Buka menu aksesibilitas" [ref=f3e265]
+  - generic [ref=f3e273]:
+    - generic "Klik untuk Jeda/Putar" [ref=f3e274] [cursor=pointer]
+    - generic [ref=f3e279]:
+      - generic [ref=f3e280]: Surah Al-Fatihah
+      - paragraph [ref=f3e282]: Misyari Rasyid Al-Afasy
+      - generic [ref=f3e283]:
+        - slider "Atur Volume Suara" [ref=f3e287] [cursor=pointer]: "0.15"
+        - generic [ref=f3e288]: 30%
+    - generic [ref=f3e289]:
+      - button "Jeda Lantunan" [ref=f3e364]
+      - button "Kecilkan Tampilan" [ref=f3e293]
+      - button "Matikan Lantunan Suci" [ref=f3e299]
