@@ -19,8 +19,6 @@ class BumnagMember extends Model
         ];
     }
 
-    // ─── Scopes ─────────────────────────────────────────────
-
     public function scopeActive($query) { return $query->where('is_active', true); }
     public function scopeOrdered($query) { return $query->orderBy('order'); }
     public function scopePembina($query) { return $query->where('role_type', 'pembina'); }

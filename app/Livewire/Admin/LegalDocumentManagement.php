@@ -163,8 +163,6 @@ class LegalDocumentManagement extends Component
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data dihapus.');
     }
 
-    // ─── Kategori Management ───────────────────────────────
-
     public function openCategoryModal(): void
     {
         $this->ensureDefaultCategoriesExist();

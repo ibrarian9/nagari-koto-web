@@ -32,8 +32,6 @@ class PpidSetiapSaat extends Model
         ];
     }
 
-    // ─── Categories ────────────────────────────────────────
-
     public const CATEGORIES = [
         'dip' => 'Daftar Informasi Publik',
         'statistik_desa' => 'Statistik Desa',
@@ -46,8 +44,6 @@ class PpidSetiapSaat extends Model
     {
         return self::CATEGORIES[$this->category] ?? $this->category;
     }
-
-    // ─── Scopes ────────────────────────────────────────────
 
     public function scopePublished($query)
     {
@@ -63,8 +59,6 @@ class PpidSetiapSaat extends Model
     {
         return $query->where('year', $year);
     }
-
-    // ─── Helpers ───────────────────────────────────────────
 
     public function fileExists(): bool
     {

@@ -17,8 +17,6 @@ class Potential extends Model
         'thumbnail',
     ];
 
-    // ─── Scopes ─────────────────────────────────────────────
-
     public function scopeOfCategory($query, string $category)
     {
         return $query->where('category', $category);

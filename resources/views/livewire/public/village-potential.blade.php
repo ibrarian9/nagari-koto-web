@@ -44,7 +44,7 @@
                         @endif
                         <div class="absolute top-3 left-3">
                             <span
-                                class="badge bg-white/90 backdrop-blur-sm text-desa-700 shadow-sm">{{ $categories[$p->category] ?? ucfirst($p->category) }}</span>
+                                class="badge bg-white text-desa-700 border border-gray-200 shadow-sm">{{ $categories[$p->category] ?? ucfirst($p->category) }}</span>
                         </div>
                     </div>
                     <div class="card-body">

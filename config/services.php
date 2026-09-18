@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'bansos' => [
+        'url' => env('BANSOS_URL'),
+    ],
+
 ];

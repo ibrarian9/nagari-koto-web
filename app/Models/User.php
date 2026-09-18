@@ -53,8 +53,6 @@ class User extends Authenticatable
         ];
     }
 
-    // ─── Role Helpers ───────────────────────────────────────
-
     public function isSuperAdmin(): bool
     {
         return $this->role === 'super_admin';
@@ -79,8 +77,6 @@ class User extends Authenticatable
     {
         return in_array($this->role, ['super_admin', 'admin', 'operator'], true);
     }
-
-    // ─── Relationships ──────────────────────────────────────
 
     /**
      * Posts authored by this user.

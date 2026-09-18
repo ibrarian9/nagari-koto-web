@@ -17,7 +17,7 @@ class BansosLink extends Component
             [
                 'title'       => 'Cek Bansos Kemensos',
                 'description' => 'Cek status penerima bantuan sosial melalui website resmi Kementerian Sosial RI.',
-                'url'         => 'https://cekbansos.kemensos.go.id',
+                'url'         => config('services.bansos.url'),
                 'icon'        => 'verified',
                 'color'       => 'from-blue-500 to-blue-700',
                 'light'       => 'bg-blue-50 text-blue-600',

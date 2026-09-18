@@ -39,8 +39,6 @@ class PopulationStat extends Model
         ];
     }
 
-    // ─── Scopes ─────────────────────────────────────────────
-
     public function scopeLatestYear($query)
     {
         return $query->orderByDesc('year');

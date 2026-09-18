@@ -31,8 +31,6 @@ class Agenda extends Model
         ];
     }
 
-    // ─── Scopes ─────────────────────────────────────────────
-
     public function scopeUpcoming($query)
     {
         return $query->where('start_date', '>=', now())

@@ -79,8 +79,6 @@ class VillageProfileForm extends Component
         }
     }
 
-    // ─── Social Media Management ─────────────────────────
-
     public function addSocialMedia(): void
     {
         $this->socialMedia[] = ['platform' => 'facebook', 'url' => ''];

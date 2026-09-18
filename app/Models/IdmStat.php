@@ -48,14 +48,10 @@ class IdmStat extends Model
         ];
     }
 
-    // ─── Scopes ─────────────────────────────────────────────
-
     public function scopeLatestYear($query)
     {
         return $query->orderByDesc('year');
     }
-
-    // ─── Helpers ────────────────────────────────────────────
 
     /**
      * Get status label in Indonesian.

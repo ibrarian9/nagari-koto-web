@@ -65,8 +65,6 @@ class CampaignManagement extends Component
         $this->transferInstructions = $setting->transfer_instructions ?? '';
     }
 
-    // ─── Bank Account Management ─────────────────────────
-
     public function openBankSettings(): void
     {
         $this->loadBankSettings();
@@ -101,8 +99,6 @@ class CampaignManagement extends Component
         $this->showBankSettings = false;
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Pengaturan rekening berhasil disimpan.');
     }
-
-    // ─── Campaign CRUD ───────────────────────────────────
 
     public function create(): void
     {
@@ -178,8 +174,6 @@ class CampaignManagement extends Component
         DonationCampaign::findOrFail($id)->delete();
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Campaign berhasil dihapus.');
     }
-
-    // ─── Donation Management ─────────────────────────────
 
     public function viewDonations(int $id): void
     {

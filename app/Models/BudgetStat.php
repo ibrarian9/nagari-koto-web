@@ -33,8 +33,6 @@ class BudgetStat extends Model
         ];
     }
 
-    // ─── Scopes ─────────────────────────────────────────────
-
     public function scopeLatestYear($query)
     {
         return $query->orderByDesc('year');

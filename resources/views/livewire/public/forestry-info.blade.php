@@ -1,17 +1,8 @@
 <div>
     {{-- ─── HERO SECTION ─────────────────────────────────── --}}
     <x-hero-section slug="kehutanan" gradient="from-emerald-800 via-green-900 to-emerald-950" class="py-16 md:py-24">
-        <x-slot:decorations>
-            <div class="absolute inset-0">
-                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-                <div class="absolute bottom-0 left-0 w-96 h-96 bg-green-400/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl"></div>
-                {{-- Tree pattern overlay --}}
-                <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><text y=%2240%22 font-size=%2230%22>🌲</text></svg>'); background-size: 80px;"></div>
-            </div>
-        </x-slot:decorations>
         <div class="text-center">
-            <div class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
+            <div class="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-white/10 border border-white/20 mb-4">
                 <span class="material-symbols-outlined text-white text-3xl">forest</span>
             </div>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
@@ -24,19 +15,19 @@
 
         {{-- Hero Stats --}}
         <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
+            <div class="bg-white/10 rounded-xl border border-white/15 p-4 text-center">
                 <span class="text-3xl font-extrabold text-white">{{ number_format($summary['total_area'], 0, ',', '.') }}</span>
                 <p class="text-xs text-emerald-300 mt-1 font-medium">Total Luas (Ha)</p>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
+            <div class="bg-white/10 rounded-xl border border-white/15 p-4 text-center">
                 <span class="text-3xl font-extrabold text-white">{{ $summary['total_zones'] }}</span>
                 <p class="text-xs text-emerald-300 mt-1 font-medium">Kawasan</p>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
+            <div class="bg-white/10 rounded-xl border border-white/15 p-4 text-center">
                 <span class="text-3xl font-extrabold text-emerald-300">{{ $summary['aktif'] }}</span>
                 <p class="text-xs text-emerald-300 mt-1 font-medium">Aktif</p>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-4 text-center">
+            <div class="bg-white/10 rounded-xl border border-white/15 p-4 text-center">
                 <span class="text-3xl font-extrabold {{ $summary['kritis'] > 0 ? 'text-red-400' : 'text-emerald-300' }}">{{ $summary['kritis'] }}</span>
                 <p class="text-xs text-emerald-300 mt-1 font-medium">Kritis</p>
             </div>
@@ -114,7 +105,7 @@
                             @endif
                             {{-- Category badge overlay --}}
                             <div class="absolute top-3 left-3">
-                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/90 backdrop-blur-sm text-xs font-semibold text-gray-700 shadow-sm">
+                                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white text-xs font-semibold text-gray-700 shadow-sm border border-gray-200">
                                     <span class="material-symbols-outlined text-xs {{ str_replace(['from-', 'to-'], 'text-', $ci['from']) }}">{{ $ci['icon'] }}</span>
                                     {{ $record->category_label }}
                                 </span>

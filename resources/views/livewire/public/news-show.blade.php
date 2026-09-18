@@ -17,7 +17,7 @@
                     class="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white mb-4 transition-colors">
                     <span class="material-symbols-outlined text-base">arrow_back</span> Kembali ke Berita
                 </a>
-                <span class="badge bg-white/20 text-white backdrop-blur-sm mb-3">{{ $post->category?->name ?? 'Umum' }}</span>
+                <span class="badge bg-white/25 text-white border border-white/20 mb-3">{{ $post->category?->name ?? 'Umum' }}</span>
                 <h1 class="text-3xl md:text-4xl font-extrabold text-white leading-tight">{{ $post->title }}</h1>
                 <div class="flex flex-wrap items-center gap-4 mt-4 text-sm text-white/60">
                     <span class="flex items-center gap-1">
@@ -39,7 +39,7 @@
                     class="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white mb-4 transition-colors">
                     <span class="material-symbols-outlined text-base">arrow_back</span> Kembali ke Berita
                 </a>
-                <span class="badge bg-white/20 text-white backdrop-blur-sm mb-3">{{ $post->category?->name ?? 'Umum' }}</span>
+                <span class="badge bg-white/25 text-white border border-white/20 mb-3">{{ $post->category?->name ?? 'Umum' }}</span>
                 <h1 class="text-3xl md:text-4xl font-extrabold text-white leading-tight">{{ $post->title }}</h1>
                 <div class="flex flex-wrap items-center gap-4 mt-4 text-sm text-white/60">
                     <span class="flex items-center gap-1">

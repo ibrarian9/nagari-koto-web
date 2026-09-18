@@ -32,8 +32,6 @@ class PpidBerkala extends Model
         ];
     }
 
-    // ─── Categories ────────────────────────────────────────
-
     public const CATEGORIES = [
         'apbdes' => 'APBDes',
         'rpjmdes' => 'RPJMDes',
@@ -47,8 +45,6 @@ class PpidBerkala extends Model
     {
         return self::CATEGORIES[$this->category] ?? $this->category;
     }
-
-    // ─── Scopes ────────────────────────────────────────────
 
     public function scopePublished($query)
     {
@@ -64,8 +60,6 @@ class PpidBerkala extends Model
     {
         return $query->where('year', $year);
     }
-
-    // ─── Helpers ───────────────────────────────────────────
 
     public function fileExists(): bool
     {

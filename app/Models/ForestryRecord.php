@@ -28,8 +28,6 @@ class ForestryRecord extends Model
         ];
     }
 
-    // ─── Labels ────────────────────────────────────────────
-
     public const CATEGORIES = [
         'hutan_lindung'  => 'Hutan Lindung',
         'hutan_produksi' => 'Hutan Produksi',
@@ -53,8 +51,6 @@ class ForestryRecord extends Model
     {
         return self::STATUSES[$this->status] ?? $this->status;
     }
-
-    // ─── Scopes ────────────────────────────────────────────
 
     public function scopeByYear($query, $year)
     {

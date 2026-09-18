@@ -10,21 +10,12 @@
             <img src="{{ Storage::url($village->photo) }}" alt="{{ $village->name }}"
                 class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
             <div class="absolute inset-0 bg-gradient-to-br from-desa-900/85 via-desa-800/80 to-desa-900/90"></div>
-        @else
-            <div class="absolute inset-0 opacity-10">
-                <div
-                    class="absolute top-0 right-0 w-96 h-96 bg-amber-400 rounded-full filter blur-3xl translate-x-1/2 -translate-y-1/2">
-                </div>
-                <div
-                    class="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full filter blur-3xl -translate-x-1/2 translate-y-1/2">
-                </div>
-            </div>
         @endif
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
                 <div class="lg:col-span-3">
                     <div
-                        class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm text-amber-300 mb-4">
+                        class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-1 text-xs text-amber-300 font-semibold mb-4 border border-white/15">
                         <span class="material-symbols-outlined text-base">location_city</span>
                         Profil Nagari
                     </div>
@@ -44,7 +35,7 @@
                 {{-- Quick Info Cards --}}
                 <div class="lg:col-span-2 grid grid-cols-2 gap-3">
                     @foreach ([['icon' => 'tag', 'value' => $village?->village_code ?? '-', 'label' => 'Kode Nagari'], ['icon' => 'landscape', 'value' => ($village?->area_ha ?? '-') . ' Ha', 'label' => 'Luas Wilayah'], ['icon' => 'calendar_month', 'value' => $village?->established_year ?? '-', 'label' => 'Tahun Berdiri'], ['icon' => 'groups', 'value' => $latestStats ? number_format($latestStats->total_population) : '-', 'label' => 'Penduduk']] as $qi)
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/10">
+                        <div class="bg-white/10 rounded-xl p-4 text-center border border-white/15">
                             <span
                                 class="material-symbols-outlined text-amber-300 text-xl mb-1">{{ $qi['icon'] }}</span>
                             <p class="text-xl font-extrabold text-white">{{ $qi['value'] }}</p>

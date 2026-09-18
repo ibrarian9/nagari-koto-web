@@ -777,7 +777,6 @@
                     });
                 });
 
-                // ─── GREEN TOP LOADING PROGRESS BAR HANDLER ───────────
                 const progressBar = document.getElementById('page-progress-bar');
                 let progressTimer;
 

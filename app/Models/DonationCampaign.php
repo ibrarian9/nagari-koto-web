@@ -27,8 +27,6 @@ class DonationCampaign extends Model
         ];
     }
 
-    // ─── Relations ─────────────────────────────────────────
-
     public function donations(): HasMany
     {
         return $this->hasMany(Donation::class, 'campaign_id');
@@ -38,8 +36,6 @@ class DonationCampaign extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
-
-    // ─── Accessors ─────────────────────────────────────────
 
     public function getProgressPercentAttribute(): float
     {
@@ -56,8 +52,6 @@ class DonationCampaign extends Model
     {
         return $this->end_date && $this->end_date->isPast();
     }
-
-    // ─── Scopes ────────────────────────────────────────────
 
     public function scopeActive($query)
     {

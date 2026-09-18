@@ -12,7 +12,6 @@ class BumnagSeeder extends Seeder
 {
     public function run(): void
     {
-        // ─── Profil BUMNag ─────────────────────────────────
         BumnagProfile::updateOrCreate(['id' => 1], [
             'name' => 'BUMNag Duo Koto Mandiri',
             'description' => 'BUMNag Duo Koto Mandiri merupakan Badan Usaha Milik Nagari yang didirikan sebagai motor penggerak ekonomi masyarakat Nagari Duo Koto. BUMNag ini bertujuan untuk mengoptimalkan potensi lokal, menciptakan lapangan kerja, dan meningkatkan Pendapatan Asli Nagari melalui pengelolaan unit-unit usaha yang profesional dan berkelanjutan.',
@@ -33,7 +32,6 @@ class BumnagSeeder extends Seeder
             ],
         ]);
 
-        // ─── Anggota / Struktur Organisasi ──────────────────
         $pengurus = [
             ['name' => 'Ir. Ronal Fitrah', 'position' => 'Direktur', 'role_type' => 'pengurus', 'period' => '2024-2029', 'order' => 0],
             ['name' => 'Rina Safitri, S.E.', 'position' => 'Sekretaris', 'role_type' => 'pengurus', 'period' => '2024-2029', 'order' => 1],
@@ -54,7 +52,6 @@ class BumnagSeeder extends Seeder
             BumnagMember::create(array_merge($member, ['is_active' => true]));
         }
 
-        // ─── Anggaran BUMNag ───────────────────────────────
         BumnagBudget::create([
             'year' => 2024,
             'total_income' => 485000000,
@@ -85,7 +82,6 @@ class BumnagSeeder extends Seeder
             'keterangan' => "Tahun 2023 menjadi tahun konsolidasi bagi BUMNag setelah dampak pandemi. Pendapatan tumbuh 15% dibandingkan tahun sebelumnya, didorong oleh pulihnya sektor wisata dan dimulainya unit usaha pengelolaan sampah. Belanja operasional dioptimalkan melalui efisiensi penggunaan sumber daya dan digitalisasi administrasi keuangan.",
         ]);
 
-        // ─── Program Kerja ──────────────────────────────────
         $programs = [
             [
                 'nama_kegiatan' => 'Pengembangan Ekowisata Linggai Park',

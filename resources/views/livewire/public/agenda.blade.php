@@ -1,14 +1,8 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────────────── --}}
     <x-hero-section slug="agenda" gradient="from-amber-600 via-amber-700 to-orange-800">
-        <x-slot:decorations>
-            <div class="absolute inset-0">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-                <div class="absolute bottom-0 left-0 w-80 h-80 bg-orange-300/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"></div>
-            </div>
-        </x-slot:decorations>
         <div class="text-center">
-            <div class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5">
+            <div class="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-white/10 border border-white/20 mb-4">
                 <span class="material-symbols-outlined text-white text-3xl">event</span>
             </div>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">

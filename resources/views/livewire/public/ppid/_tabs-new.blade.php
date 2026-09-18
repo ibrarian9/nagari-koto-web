@@ -246,7 +246,7 @@
                         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
                         x-transition:leave-end="opacity-0" @click="showLightbox = false"
                         @keydown.escape.window="showLightbox = false"
-                        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 cursor-zoom-out"
+                        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 cursor-zoom-out"
                         style="display: none;">
                         <img src="{{ Storage::url($alurInformasi->image) }}" alt="Alur Informasi"
                             class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl" @click.stop>
@@ -443,7 +443,7 @@
                         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
                         x-transition:leave-end="opacity-0" @click="showLightbox = false"
                         @keydown.escape.window="showLightbox = false"
-                        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 cursor-zoom-out"
+                        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 cursor-zoom-out"
                         style="display: none;">
                         <img src="{{ Storage::url($alurKeberatan->image) }}" alt="Alur Keberatan"
                             class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl" @click.stop>
@@ -581,7 +581,7 @@
                         x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
                         x-transition:leave-end="opacity-0" @click="showLightbox = false"
                         @keydown.escape.window="showLightbox = false"
-                        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 cursor-zoom-out"
+                        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 cursor-zoom-out"
                         style="display: none;">
                         <img src="{{ Storage::url($alurSengketa->image) }}" alt="Alur Sengketa"
                             class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl" @click.stop>
@@ -627,7 +627,7 @@
                     x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0" @click="showLightbox = false"
                     @keydown.escape.window="showLightbox = false"
-                    class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 cursor-zoom-out"
+                    class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 cursor-zoom-out"
                     style="display: none;">
                     <img src="{{ Storage::url($maklumat->image) }}" alt="Maklumat Pelayanan"
                         class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl" @click.stop>

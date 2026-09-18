@@ -23,8 +23,6 @@ class PpidSertaMerta extends Model
         ];
     }
 
-    // ─── Urgency Config ───────────────────────────────────
-
     public const URGENCY_LEVELS = [
         'rendah' => ['label' => 'Rendah', 'color' => 'bg-blue-100 text-blue-800', 'icon' => 'info'],
         'sedang' => ['label' => 'Sedang', 'color' => 'bg-amber-100 text-amber-800', 'icon' => 'warning'],
@@ -46,8 +44,6 @@ class PpidSertaMerta extends Model
     {
         return self::URGENCY_LEVELS[$this->urgency]['icon'] ?? 'info';
     }
-
-    // ─── Scopes ────────────────────────────────────────────
 
     public function scopeActive($query)
     {

@@ -1,19 +1,11 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────── --}}
     <section class="relative bg-gradient-to-br from-desa-600 via-desa-700 to-desa-900 overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div
-                class="absolute top-0 right-0 w-96 h-96 bg-amber-400 rounded-full filter blur-3xl translate-x-1/2 -translate-y-1/2">
-            </div>
-            <div
-                class="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full filter blur-3xl -translate-x-1/2 translate-y-1/2">
-            </div>
-        </div>
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
                 <div class="lg:col-span-3">
                     <div
-                        class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm text-amber-300 mb-4">
+                        class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3.5 py-1 text-sm text-amber-300 font-semibold mb-4 border border-white/15">
                         <span class="material-symbols-outlined text-base">policy</span>
                         PPID Nagari
                     </div>
@@ -26,8 +18,8 @@
                 </div>
                 {{-- Quick Info Cards --}}
                 <div class="lg:col-span-2 grid grid-cols-2 gap-3">
-                    @foreach ([['icon' => 'schedule', 'value' => $berkalaCount, 'label' => 'Info Berkala'], ['icon' => 'folder_open', 'value' => $setiapSaatCount, 'label' => 'Info Setiap Saat'], ['icon' => 'assignment', 'value' => $permohonanCount, 'label' => 'Permohonan'], ['icon' => 'gavel', 'value' => 'UU 14/2008', 'label' => 'Dasar Hukum']] as $qi)
-                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center border border-white/10">
+                    @foreach ([['icon' => 'schedule', 'value' => $berkalaCount, 'label' => 'Info Berkala'], ['icon' => 'campaign', 'value' => $sertaMertaCount, 'label' => 'Info Serta Merta'], ['icon' => 'folder_open', 'value' => $setiapSaatCount, 'label' => 'Info Setiap Saat'], ['icon' => 'assignment', 'value' => $permohonanCount, 'label' => 'Permohonan']] as $qi)
+                        <div class="bg-white/10 rounded-xl p-4 text-center border border-white/15">
                             <span
                                 class="material-symbols-outlined text-amber-300 text-xl mb-1">{{ $qi['icon'] }}</span>
                             <p class="text-xl font-extrabold text-white">{{ $qi['value'] }}</p>
@@ -135,7 +127,7 @@
                      x-transition:leave-start="opacity-100"
                      x-transition:leave-end="opacity-0"
                      @click="mobileMenuOpen = false"
-                     class="absolute inset-0 bg-black/50 backdrop-blur-xs"></div>
+                     class="absolute inset-0 bg-black/50"></div>
 
                 <!-- Drawer Content -->
                 <div x-show="mobileMenuOpen"
@@ -629,7 +621,7 @@
                             </div>
                         </div>
                         {{-- Lightbox --}}
-                        <div x-show="showLightbox" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="showLightbox = false" @keydown.escape.window="showLightbox = false" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 cursor-zoom-out" style="display: none;">
+                        <div x-show="showLightbox" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="showLightbox = false" @keydown.escape.window="showLightbox = false" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 cursor-zoom-out" style="display: none;">
                             <img src="{{ Storage::url($struktur->image) }}" alt="Bagan Struktur Organisasi PPID" class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl" @click.stop>
                             <button @click="showLightbox = false" class="absolute top-4 right-4 h-10 w-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors">
                                 <span class="material-symbols-outlined">close</span>
@@ -703,7 +695,7 @@
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
          style="display: none;">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="isOpen = false"></div>
+        <div class="absolute inset-0 bg-black/60" @click="isOpen = false"></div>
         <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col">
             <div class="flex items-center justify-between p-4 border-b border-gray-200">
                 <h3 class="font-semibold text-gray-900 text-lg truncate pr-4" x-text="pdfTitle"></h3>

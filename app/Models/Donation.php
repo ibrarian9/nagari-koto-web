@@ -25,22 +25,16 @@ class Donation extends Model
         ];
     }
 
-    // ─── Relations ─────────────────────────────────────────
-
     public function campaign(): BelongsTo
     {
         return $this->belongsTo(DonationCampaign::class, 'campaign_id');
     }
-
-    // ─── Accessors ─────────────────────────────────────────
 
     public function getDisplayNameAttribute(): string
     {
         if ($this->is_anonymous) return 'Hamba Allah';
         return $this->donor_name;
     }
-
-    // ─── Scopes ────────────────────────────────────────────
 
     public function scopeSuccessful($query)
     {

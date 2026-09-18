@@ -99,7 +99,7 @@
                             <div x-show="showPdf" x-transition.opacity.duration.200ms
                                  class="fixed inset-0 z-[999] flex items-center justify-center p-4"
                                  @keydown.escape.window="showPdf = false" style="display:none">
-                                <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="showPdf = false"></div>
+                                <div class="absolute inset-0 bg-black/60" @click="showPdf = false"></div>
                                 <div x-show="showPdf" x-transition.scale.origin.center.duration.200ms
                                      class="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
                                     <div class="flex items-center justify-between px-5 py-3 border-b border-gray-100 bg-gray-50/80">

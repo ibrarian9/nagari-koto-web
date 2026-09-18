@@ -96,8 +96,6 @@ class InstitutionManagement extends Component
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data berhasil dihapus.');
     }
 
-    // ─── Kategori Management ───────────────────────────────
-
     public function openCategoryModal(): void
     {
         $this->ensureDefaultCategoriesExist();

@@ -26,8 +26,6 @@ class Contact extends Model
         ];
     }
 
-    // ─── Scopes ─────────────────────────────────────────────
-
     public function scopeOfCategory($query, string $category)
     {
         return $query->where('category', $category);

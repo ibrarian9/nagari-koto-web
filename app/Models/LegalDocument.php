@@ -36,8 +36,6 @@ class LegalDocument extends Model
         ];
     }
 
-    // ─── Categories ────────────────────────────────────────
-
     public const CATEGORIES = [
         'perdes' => 'Peraturan Desa',
         'sk_wali' => 'SK Wali Nagari',
@@ -54,8 +52,6 @@ class LegalDocument extends Model
         return self::CATEGORIES[$this->category] ?? $this->category;
     }
 
-    // ─── Scopes ────────────────────────────────────────────
-
     public function scopePublished($query)
     {
         return $query->where('is_published', true);
@@ -70,8 +66,6 @@ class LegalDocument extends Model
     {
         return $query->where('year', $year);
     }
-
-    // ─── Helpers ───────────────────────────────────────────
 
     public function fileExists(): bool
     {

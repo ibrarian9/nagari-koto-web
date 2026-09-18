@@ -48,8 +48,6 @@ class Category extends Model
         return $slug;
     }
 
-    // ─── Relationships ──────────────────────────────────────
-
     /**
      * Posts belonging to this category.
      *
@@ -59,8 +57,6 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
-
-    // ─── Scopes ─────────────────────────────────────────────
 
     public function scopeOfType($query, string $type)
     {

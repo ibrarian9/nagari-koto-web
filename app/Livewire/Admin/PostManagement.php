@@ -115,8 +115,6 @@ class PostManagement extends Component
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Berita berhasil dihapus.');
     }
 
-    // ─── Kategori Management ───────────────────────────────
-
     public function openCategoryModal(): void
     {
         $this->ensureDefaultCategoriesExist();

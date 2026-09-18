@@ -26,8 +26,6 @@ class PpidPermohonan extends Model
         ];
     }
 
-    // ─── Status Config ────────────────────────────────────
-
     public const STATUS_MAP = [
         'menunggu' => ['label' => 'Menunggu', 'color' => 'bg-gray-100 text-gray-700'],
         'diproses' => ['label' => 'Diproses', 'color' => 'bg-blue-100 text-blue-800'],
@@ -57,8 +55,6 @@ class PpidPermohonan extends Model
         return self::STATUS_MAP[$this->status]['color'] ?? 'bg-gray-100 text-gray-800';
     }
 
-    // ─── Scopes ────────────────────────────────────────────
-
     public function scopeByStatus($query, string $status)
     {
         return $query->where('status', $status);
@@ -78,8 +74,6 @@ class PpidPermohonan extends Model
         return in_array($this->status, ['menunggu', 'diproses'])
             && $this->created_at->diffInWeekdays(now()) > 10;
     }
-
-    // ─── Generator ─────────────────────────────────────────
 
     /**
      * Generate unique nomor permohonan: PPID-2026-05-0001

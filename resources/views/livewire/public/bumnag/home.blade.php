@@ -2,7 +2,6 @@
     <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         {{-- Page Header --}}
         <div class="text-center mb-16 relative">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-40 h-40 bg-desa-500/5 rounded-full filter blur-2xl -z-10"></div>
 
             @if ($profile->logo)
                 <img src="{{ Storage::url($profile->logo) }}" alt="{{ $profile->name }}"
@@ -152,7 +151,6 @@
 
                 {{-- Quick Links --}}
                 <div class="card p-6 bg-gradient-to-br from-desa-600 to-desa-800 text-white relative overflow-hidden border-none shadow-md">
-                    <div class="absolute -bottom-10 -right-10 w-24 h-24 bg-white/10 rounded-full filter blur-xl"></div>
                     <h3 class="font-extrabold text-sm mb-2">Program Kerja BUMNag</h3>
                     <p class="text-xs text-desa-100 leading-relaxed mb-5">
                         Lihat daftar program kerja dan kegiatan yang sedang dijalankan oleh unit usaha BUMNag.

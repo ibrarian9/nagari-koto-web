@@ -2,7 +2,6 @@
     <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         {{-- Page Header --}}
         <div class="text-center mb-16 relative">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-40 h-40 bg-blue-500/5 rounded-full filter blur-2xl -z-10"></div>
 
             <div
                 class="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 mb-4 shadow-lg shadow-blue-500/20">

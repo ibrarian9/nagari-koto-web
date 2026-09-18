@@ -89,8 +89,6 @@ class IdmStatManagement extends Component
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Data IDM dihapus.');
     }
 
-    // ─── Kategori Management ───────────────────────────────
-
     public function openCategoryModal(): void
     {
         $this->ensureDefaultCategoriesExist();

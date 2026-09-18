@@ -37,8 +37,6 @@ class LetterRequest extends Model
         ];
     }
 
-    // ─── Relationships ──────────────────────────────────────
-
     /**
      * User who submitted this letter request.
      *
@@ -48,8 +46,6 @@ class LetterRequest extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    // ─── Helpers ────────────────────────────────────────────
 
     /**
      * Get human-readable letter type label.

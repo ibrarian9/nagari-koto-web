@@ -37,8 +37,6 @@ class Post extends Model
         ];
     }
 
-    // ─── Relationships ──────────────────────────────────────
-
     /**
      * Category this post belongs to.
      *
@@ -59,8 +57,6 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    // ─── Scopes ─────────────────────────────────────────────
-
     public function scopePublished($query)
     {
         return $query->where('status', 'published')
@@ -72,8 +68,6 @@ class Post extends Model
     {
         return $query->where('status', 'draft');
     }
-
-    // ─── Helpers ────────────────────────────────────────────
 
     /**
      * Get absolute Open Graph image URL for social media sharing.

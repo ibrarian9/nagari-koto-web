@@ -12,7 +12,6 @@ class PpidSeeder extends Seeder
 {
     public function run(): void
     {
-        // ─── Informasi Berkala ──────────────────────────────
         $berkala = [
             ['title' => 'APBDes Tahun Anggaran 2025', 'category' => 'apbdes', 'year' => 2025, 'description' => 'Anggaran Pendapatan dan Belanja Desa Tahun Anggaran 2025 yang telah disahkan dalam Musyawarah Desa.'],
             ['title' => 'APBDes Tahun Anggaran 2024', 'category' => 'apbdes', 'year' => 2024, 'description' => 'Anggaran Pendapatan dan Belanja Desa Tahun Anggaran 2024.'],
@@ -35,7 +34,6 @@ class PpidSeeder extends Seeder
             ]));
         }
 
-        // ─── Informasi Setiap Saat ─────────────────────────
         $setiapSaat = [
             ['title' => 'Daftar Informasi Publik (DIP) Nagari Tahun 2025', 'category' => 'dip', 'year' => 2025, 'description' => 'Daftar seluruh informasi publik yang dikelola oleh Pemerintah Nagari beserta klasifikasinya.'],
             ['title' => 'Statistik Kependudukan Nagari 2025', 'category' => 'statistik_desa', 'year' => 2025, 'description' => 'Data statistik jumlah penduduk, komposisi usia, jenis kelamin, pendidikan, dan mata pencaharian.'],
@@ -56,7 +54,6 @@ class PpidSeeder extends Seeder
             ]));
         }
 
-        // ─── Informasi Serta Merta ─────────────────────────
         $sertaMerta = [
             [
                 'title' => 'Peringatan Cuaca Ekstrem — Hujan Lebat dan Angin Kencang',
@@ -84,7 +81,6 @@ class PpidSeeder extends Seeder
             ]));
         }
 
-        // ─── Permohonan (sample) ───────────────────────────
         $permohonan = [
             [
                 'nama_pemohon' => 'Ahmad Rizki',

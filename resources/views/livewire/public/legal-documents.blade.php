@@ -1,13 +1,9 @@
 <div>
     {{-- ─── HERO ─────────────────────────────────── --}}
     <section class="relative bg-gradient-to-br from-desa-600 via-desa-700 to-desa-900 overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-amber-400 rounded-full filter blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full filter blur-3xl -translate-x-1/2 translate-y-1/2"></div>
-        </div>
         <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
             <div class="text-center">
-                <div class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-1.5 text-sm text-amber-300 mb-4">
+                <div class="inline-flex items-center gap-2 rounded-md bg-white/10 px-3.5 py-1 text-xs text-amber-300 font-semibold mb-4 border border-white/15">
                     <span class="material-symbols-outlined text-base">gavel</span>
                     Produk Hukum
                 </div>
@@ -136,7 +132,7 @@
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
          style="display: none;">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="isOpen = false"></div>
+        <div class="absolute inset-0 bg-black/60" @click="isOpen = false"></div>
         <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col">
             <div class="flex items-center justify-between p-4 border-b border-gray-200">
                 <h3 class="font-semibold text-gray-900 text-lg truncate pr-4" x-text="pdfTitle"></h3>

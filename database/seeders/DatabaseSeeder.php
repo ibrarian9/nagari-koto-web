@@ -20,10 +20,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // ─── Users ──────────────────────────────────────────
         $this->call(UserSeeder::class);
 
-        // ─── Village Profile ────────────────────────────────
         VillageProfile::create([
             'name' => 'Nagari Duo Koto',
             'tagline' => 'Adat basandi syarak, syarak basandi Kitabullah',
@@ -40,7 +38,6 @@ class DatabaseSeeder extends Seeder
             'map_embed_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.35!2d100.35!3d-0.31!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBukittinggi!5e0!3m2!1sid!2sid!4v1700000000000',
         ]);
 
-        // ─── Government Members ─────────────────────────────
         $positions = [
             [
                 'name' => 'H. Syafrizal, S.Pd',
@@ -197,13 +194,11 @@ class DatabaseSeeder extends Seeder
             GovernmentMember::create(array_merge($p, ['is_active' => true]));
         }
 
-        // ─── Categories ─────────────────────────────────────
         $categories = [];
         foreach (['Pengumuman', 'Pembangunan', 'Kegiatan', 'Pendidikan', 'Kesehatan'] as $name) {
             $categories[] = Category::create(['name' => $name, 'slug' => Str::slug($name), 'type' => 'berita']);
         }
 
-        // ─── Posts (8 berita) ────────────────────────────────
         $posts = [
             ['title' => 'Pembangunan Jalan Baru Jorong Koto Tinggi Selesai Tepat Waktu', 'excerpt' => 'Proyek pembangunan jalan sepanjang 2 km di Jorong Koto Tinggi telah rampung.', 'body' => '<p>Pembangunan jalan baru di Jorong Koto Tinggi yang menghubungkan kawasan permukiman dengan area pertanian telah resmi selesai. Proyek senilai Rp 450 juta ini didanai dari Dana Desa tahun anggaran 2024.</p><p>Wali Nagari H. Syafrizal menyatakan bahwa infrastruktur jalan ini akan mempermudah akses warga ke lahan pertanian dan pasar tradisional.</p>'],
             ['title' => 'Pelatihan Keterampilan Digital untuk Pemuda Nagari', 'excerpt' => 'Program pelatihan literasi digital diikuti oleh 50 pemuda dari berbagai jorong.', 'body' => '<p>Pemerintah Nagari Duo Koto bekerja sama dengan Dinas Kominfo Kabupaten Agam menyelenggarakan pelatihan keterampilan digital selama 3 hari. Pelatihan ini mencakup desain grafis, pemasaran digital, dan pengelolaan media sosial.</p>'],
@@ -229,7 +224,6 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        // ─── Potentials (6 potensi) ─────────────────────────
         $potentials = [
             ['category' => 'agriculture', 'title' => 'Padi Organik Duo Koto', 'slug' => 'padi-organik-duo-koto', 'description' => '<p>Hasil panen padi organik dengan kualitas premium yang dibudidayakan secara tradisional oleh petani lokal. Lahan persawahan di Jorong Mudiak dan Jorong Railia menjadi sentra utama produksi.</p>'],
             ['category' => 'tourism', 'title' => 'Air Terjun Kacau', 'slug' => 'air-terjun-kacau', 'description' => '<p>Air terjun alami yang tersembunyi di kawasan hutan Nagari Duo Koto. Dengan ketinggian sekitar 25 meter, air terjun ini menjadi destinasi favorit bagi wisatawan lokal maupun luar daerah.</p>'],
@@ -242,7 +236,6 @@ class DatabaseSeeder extends Seeder
             Potential::create($pot);
         }
 
-        // ─── Products / UMKM (6 usaha) ─────────────────────
         $products = [
             ['owner_name' => 'Pak Udin', 'business_name' => 'Rendang Duo Koto', 'category' => 'Kuliner', 'description' => 'Rendang khas Minangkabau dengan resep turun-temurun dari Jorong Koto Tinggi.', 'address' => 'Jorong Koto Tinggi, Nagari Duo Koto', 'whatsapp' => '081234567890', 'is_active' => true],
             ['owner_name' => 'Ibu Ratna', 'business_name' => 'Keripik Sanjai Ratna', 'category' => 'Makanan Ringan', 'description' => 'Keripik balado dan sanjai khas Bukittinggi, diproduksi di Jorong Pasar Ahad.', 'address' => 'Jorong Pasar Ahad, Nagari Duo Koto', 'whatsapp' => '081234567891', 'is_active' => true],
@@ -255,13 +248,11 @@ class DatabaseSeeder extends Seeder
             Product::create($prod);
         }
 
-        // ─── Contacts ───────────────────────────────────────
         Contact::create(['label' => 'Kantor Wali Nagari', 'phone' => '0752-123456', 'category' => 'government', 'order' => 1]);
         Contact::create(['label' => 'Puskesmas Tanjung Raya', 'phone' => '0752-654321', 'category' => 'health', 'order' => 1]);
         Contact::create(['label' => 'Polsek Tanjung Raya', 'phone' => '0752-112233', 'category' => 'emergency', 'order' => 1]);
         Contact::create(['label' => 'PKK Nagari Duo Koto', 'phone' => '0752-445566', 'category' => 'social', 'order' => 1]);
 
-        // ─── Agendas (8 kegiatan) ───────────────────────────
         $agendas = [
             ['title' => 'Musyawarah Nagari Rencana Pembangunan 2025', 'description' => 'Musyawarah perencanaan pembangunan tahunan nagari bersama seluruh unsur masyarakat.', 'location' => 'Balai Adat Nagari', 'start_date' => now()->addDays(14), 'end_date' => now()->addDays(14)->addHours(4), 'is_public' => true],
             ['title' => 'Gotong Royong Bersih Nagari', 'description' => 'Kegiatan gotong royong membersihkan lingkungan di seluruh jorong.', 'location' => 'Seluruh Jorong', 'start_date' => now()->addDays(7), 'is_public' => true],
@@ -276,7 +267,6 @@ class DatabaseSeeder extends Seeder
             Agenda::create($agenda);
         }
 
-        // ─── Population Stats ───────────────────────────────
         PopulationStat::create([
             'year' => 2024, 'total_population' => 5842, 'male' => 2951, 'female' => 2891, 'total_families' => 1523,
             'age_group_data' => json_encode(['0-14' => 1245, '15-24' => 980, '25-44' => 1650, '45-64' => 1200, '65+' => 767]),
@@ -290,12 +280,10 @@ class DatabaseSeeder extends Seeder
             'occupation_data' => json_encode(['Petani' => 1520, 'Pedagang' => 780, 'PNS' => 310, 'Wiraswasta' => 620, 'Buruh' => 420, 'Lainnya' => 1070]),
         ]);
 
-        // ─── IDM Stats ──────────────────────────────────────
         IdmStat::create(['year' => 2024, 'score' => 0.742, 'status' => 'maju', 'social_score' => 0.785, 'economic_score' => 0.692, 'environment_score' => 0.750, 'accessibility_score' => 0.768, 'basic_service_score' => 0.812, 'governance_score' => 0.735]);
         IdmStat::create(['year' => 2023, 'score' => 0.714, 'status' => 'maju', 'social_score' => 0.756, 'economic_score' => 0.671, 'environment_score' => 0.715, 'accessibility_score' => 0.742, 'basic_service_score' => 0.780, 'governance_score' => 0.710]);
         IdmStat::create(['year' => 2022, 'score' => 0.685, 'status' => 'berkembang', 'social_score' => 0.720, 'economic_score' => 0.640, 'environment_score' => 0.695, 'accessibility_score' => 0.715, 'basic_service_score' => 0.745, 'governance_score' => 0.680]);
 
-        // ─── Budget Stats ───────────────────────────────────
         BudgetStat::create([
             'year' => 2024, 'total_income' => 2150000000, 'total_expenditure' => 1980000000, 'realization_pct' => 92.09,
             'apbdes_data' => [
@@ -327,7 +315,6 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        // ─── Call semua seeder tambahan ──────────────────────
         $this->call([
             DonationCampaignSeeder::class,
             ForestryRecordSeeder::class,

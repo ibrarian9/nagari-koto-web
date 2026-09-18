@@ -7,7 +7,7 @@
                 <span class="material-symbols-outlined text-white text-3xl">account_balance</span>
             </div>
             <h1 class="section-title">Anggaran Nagari (APB Nagari)</h1>
-            <p class="section-subtitle">Transparansi pengelolaan keuangan Nagari</p>
+            <p class="section-subtitle max-w-3xl mx-auto leading-relaxed">Anggaran Pendapatan dan Belanja Nagari (APB Nagari) adalah Rencana Keuangan tahunan pemerintahan Nagari. APB Nagari memuat seluruh Rencana Pendapatan dan Belanja, dan pembiayaan Nagari dalam satu tahun anggaran. Transparansi ini bertujuan agar masyarakat dapat mengawasi dan memantau secara langsung progres pengelolaan keuangan Nagari secara Transparansi dan Akuntabel.</p>
         </div>
 
         {{-- Year Selector --}}

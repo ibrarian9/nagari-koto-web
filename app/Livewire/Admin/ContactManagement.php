@@ -69,8 +69,6 @@ class ContactManagement extends Component
         $this->dispatch('swal', icon: 'success', title: 'Berhasil', text: 'Kontak dihapus.');
     }
 
-    // ─── Kategori Management ───────────────────────────────
-
     public function openCategoryModal(): void
     {
         $this->ensureDefaultCategoriesExist();

@@ -52,7 +52,7 @@
                         @endif
                         @if($product->category)
                             <div class="absolute top-3 left-3">
-                                <span class="badge bg-white/90 backdrop-blur-sm text-amber-800 shadow-sm font-semibold">{{ $product->category }}</span>
+                                <span class="badge bg-white text-amber-800 border border-gray-200 shadow-sm font-semibold">{{ $product->category }}</span>
                             </div>
                         @endif
                     </div>
